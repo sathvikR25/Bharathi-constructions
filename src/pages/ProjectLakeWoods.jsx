@@ -124,18 +124,7 @@ export default function ProjectLakeWoods() {
       // 4. Massive 3D Card Reveals for High-Res Gallery
       
 
-      // 5. Image Inner 3D Reveal
-      gsap.utils.toArray(".").forEach(wrap => {
-        const img = wrap.querySelector(".media-reveal-img");
-        if (img) {
-          gsap.fromTo(img,
-            { scale: 1.15, rotationX: 10, opacity: 0 },
-            { scale: 1, rotationX: 0, opacity: 1, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: wrap, start: "top 95%" } }
-          );
-          // Parallax inside the contain wrapper (subtle)
-          gsap.to(img, { yPercent: 10, ease: "none", scrollTrigger: { trigger: wrap, start: "top bottom", end: "bottom top", scrub: true }});
-        }
-      });
+      
 
     }, mainRef);
 
