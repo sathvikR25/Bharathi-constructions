@@ -102,7 +102,7 @@ export default function ProjectLakeWoods() {
       gsap.utils.toArray(".floor-plan-img").forEach(img => {
         gsap.fromTo(img, 
           { scale: 1.3, opacity: 0, rotationX: 60, rotationY: -15, transformPerspective: 2500, z: -1000 },
-          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 2.5, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 85%" } }
+          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 95%" } }
         );
         gsap.to(img,
           { yPercent: 10, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } }
@@ -122,8 +122,8 @@ export default function ProjectLakeWoods() {
       // 4. Massive 3D Card Reveals for High-Res Gallery
       gsap.utils.toArray(".card-reveal-3d").forEach(card => {
         gsap.fromTo(card, 
-          { opacity: 0, rotationX: 45, rotationY: 20, z: -800, transformPerspective: 2500 },
-          { opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 2.5, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 85%" } }
+          { opacity: 0, rotationX: 15, rotationY: 5, z: -200, transformPerspective: 2500 },
+          { opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
         );
       });
 
@@ -132,8 +132,8 @@ export default function ProjectLakeWoods() {
         const img = wrap.querySelector(".media-reveal-img");
         if (img) {
           gsap.fromTo(img,
-            { scale: 1.4, rotationX: 25, opacity: 0 },
-            { scale: 1, rotationX: 0, opacity: 1, duration: 3, ease: "power4.out", scrollTrigger: { trigger: wrap, start: "top 85%" } }
+            { scale: 1.15, rotationX: 10, opacity: 0 },
+            { scale: 1, rotationX: 0, opacity: 1, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: wrap, start: "top 95%" } }
           );
           // Parallax inside the contain wrapper (subtle)
           gsap.to(img, { yPercent: 10, ease: "none", scrollTrigger: { trigger: wrap, start: "top bottom", end: "bottom top", scrub: true }});
@@ -145,13 +145,26 @@ export default function ProjectLakeWoods() {
     return () => { obs.disconnect(); ctx.revert(); };
   }, []);
 
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis.on('scroll', ScrollTrigger.update);
+    const tick = (time) => { lenis.raf(time * 1000); };
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+    };
+  }, []);
+
+
   return (
     <div style={{background:"var(--paper)", color:"var(--ink)", overflowX:"hidden"}}>
       {}
       <header className={`site-header dark-mode ${navOpen ? "nav-open" : ""}`} style={{position: "fixed", width: "100%", zIndex: 100}}>
         <div className="header-inner" style={{maxWidth:"1600px", margin:"0 auto", padding:"0 2rem", height:"100px", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
           <Link to="/" className="logo-block" style={{textDecoration:"none"}}>
-            <img src="/logo.png" alt="Bharathi Constructions" className="logo-img" loading="lazy" decoding="async" />
+            <img src="/logo.png" alt="Bharathi Constructions" className="logo-img"  decoding="async" />
           </Link>
           <div style={{display:"flex", alignItems:"center", gap:"2rem"}}>
             <a href="/#booking" className="clay-btn skeuo-gold-text" style={{padding: "0.6rem 1.5rem"}}>Site Visit</a>
@@ -174,7 +187,7 @@ export default function ProjectLakeWoods() {
           </div>
 
           <div className="hero-logo-box" style={{position: "absolute", bottom: "4rem", left: "4rem", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-            <img src="/lakewood-media/lakewood-logo.png" alt="Lake Woods" style={{width: "280px", marginBottom: "1rem", filter: "brightness(0) invert(1)"}} loading="lazy" decoding="async" />
+            <img src="/lakewood-media/lakewood-logo.png" alt="Lake Woods" style={{width: "280px", marginBottom: "1rem", filter: "brightness(0) invert(1)"}}  decoding="async" />
             <h1 style={{fontSize:"0.85rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"#fff", margin: 0}}>NCL Colony, Kompally</h1>
           </div>
 
@@ -271,7 +284,7 @@ export default function ProjectLakeWoods() {
                   <img 
                     src="/lakewood-media/floor-plans-min-660a55f02974b.webp" 
                     alt="Lake Woods Floor Plans" 
-                    loading="lazy"
+                    
                     style={{width: "100%", height: "auto", display: "block", mixBlendMode: "multiply"}} 
                   decoding="async" />
                 </div>
@@ -296,7 +309,7 @@ export default function ProjectLakeWoods() {
                   <img 
                     src="/lakewood-media/master-plan-min-660a544def095.webp" 
                     alt="Lake Woods Masterplan" 
-                    loading="lazy"
+                    
                     style={{width: "100%", height: "auto", display: "block", mixBlendMode: "multiply"}} 
                   decoding="async" />
                 </div>
@@ -350,7 +363,7 @@ export default function ProjectLakeWoods() {
                       src={`/lakewood-media/${view}`} 
                       alt={`Lake Woods View ${i+1}`} 
                       style={{width: "100%", height: "auto", objectFit: "contain", display: "block", background: "var(--paper-2)"}} 
-                      loading="lazy"
+                      
                     decoding="async" />
                   </div>
                 </div>
@@ -377,7 +390,7 @@ export default function ProjectLakeWoods() {
                       src={`/lakewood-media/${plan}`} 
                       alt={`Lake Woods Section ${i+1}`} 
                       style={{width: "100%", height: "auto", objectFit: "contain", display: "block"}} 
-                      loading="lazy"
+                      
                     decoding="async" />
                   </div>
                   <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"1.5rem", color:"var(--gold-dark)", textAlign: "center", marginTop: "2rem"}}>{plan.split('__')[1].split('.')[0]}</h3>
@@ -421,7 +434,7 @@ export default function ProjectLakeWoods() {
             {}
             <div style={{width:"100%", marginBottom:"8rem", overflow:"hidden", borderRadius:"4px"}}>
               <div className="mask-img" style={{width:"100%", height:"100%"}}>
-                <img src="/lakewood-media/master-plan-min-660a544def095.webp" alt="Masterplan" style={{width:"100%", display:"block"}} loading="lazy" decoding="async" />
+                <img src="/lakewood-media/master-plan-min-660a544def095.webp" alt="Masterplan" style={{width:"100%", display:"block"}}  decoding="async" />
               </div>
             </div>
           </div>
@@ -438,7 +451,7 @@ export default function ProjectLakeWoods() {
             </div>
             <div style={{display:"grid", gridTemplateColumns:"1fr", gap:"2rem"}}>
               <div className="clay-card text-reveal" style={{overflow:"hidden", border:"2px solid var(--gold)", display:"flex", alignItems:"center", justifyContent:"center", padding:"1rem"}}>
-                <img src="/lakewood-media/map.webp" alt="Lake Woods Map" style={{width:"100%", height:"auto", objectFit:"contain", background:"var(--paper-2)"}} loading="lazy" decoding="async" />
+                <img src="/lakewood-media/map.webp" alt="Lake Woods Map" style={{width:"100%", height:"auto", objectFit:"contain", background:"var(--paper-2)"}}  decoding="async" />
               </div>
               <div className="clay-card text-reveal" style={{padding:"3rem"}}>
                 <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"2rem", color:"var(--gold)", marginBottom:"2rem"}}>Proximity Matrix</h3>
@@ -464,7 +477,7 @@ export default function ProjectLakeWoods() {
         <div style={{maxWidth:"1280px", margin:"0 auto"}}>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr 1fr", alignItems:"center", gap:"2rem", marginBottom:"2.5rem"}}>
             <Link to="/" className="footer-logo-block" style={{textDecoration:"none"}}>
-              <img src="/logo.png" alt="Bharathi Logo" className="logo-img" loading="lazy" decoding="async" />
+              <img src="/logo.png" alt="Bharathi Logo" className="logo-img"  decoding="async" />
             </Link>
             <nav style={{display:"flex", justifyContent:"center", flexWrap:"wrap", gap:"1.5rem"}}>
               {NAV_ITEMS.map(item => (

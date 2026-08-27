@@ -120,7 +120,7 @@ export default function ProjectHorizon() {
       gsap.utils.toArray(".floor-plan-img").forEach(img => {
         gsap.fromTo(img, 
           { scale: 1.3, opacity: 0, rotationX: 60, rotationY: 15, transformPerspective: 2500, z: -1000 },
-          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 2.5, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 85%" } }
+          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2.5, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 85%" } }
         );
         gsap.to(img,
           { yPercent: 5, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } }
@@ -172,11 +172,17 @@ export default function ProjectHorizon() {
 
   
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.5, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    const raf = t => { window.lenisVelocity = lenis.velocity; lenis.raf(t); requestAnimationFrame(raf); };
-    lenis.on("scroll", ScrollTrigger.update);
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+      window.lenisVelocity = lenis.velocity;
+    });
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      lenis.destroy();
+    };
   }, []);
 
   
@@ -241,7 +247,7 @@ export default function ProjectHorizon() {
 
       {}
       <div className={`preloader ${preloaderHidden ? "hidden" : ""}`}>
-        <img src="/logo.png" alt="Bharathi Constructions" className="preloader-logo h-20 w-auto" style={{mixBlendMode:"multiply"}} loading="lazy" decoding="async" />
+        <img src="/logo.png" alt="Bharathi Constructions" className="preloader-logo h-20 w-auto" style={{mixBlendMode:"multiply"}}  decoding="async" />
         <div className="preloader-bar" />
         <p style={{fontSize:"15px", letterSpacing:"0.4em", textTransform:"uppercase", color:"var(--ink-3)"}}>Loading Experience</p>
       </div>
@@ -256,7 +262,7 @@ export default function ProjectHorizon() {
       <header className={`site-header ${navOpen ? "nav-open" : ""} ${headerDark && !navOpen ? "dark-mode" : ""}`}>
         {}
         <a href="#" className="logo-block" >
-          <img src="/logo.png" alt="Bharathi Constructions" className="logo-img" loading="lazy" decoding="async" />
+          <img src="/logo.png" alt="Bharathi Constructions" className="logo-img"  decoding="async" />
           <div className="logo-text-block">
             <span className="logo-name">Bharathi Constructions</span>
             <span className="logo-sub">Luxury Residences ï¿½ Hyderabad</span>
@@ -348,7 +354,7 @@ export default function ProjectHorizon() {
                 <span style={{fontSize:"16px", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--ink-3)"}}>{proj.units}</span>
               </div>
               <div style={{background:"rgba(255,255,255,0.6)", padding:"1.5rem"}}>
-                <img className="floor-plan-img" src="/horizon pics/floor-scaled.webp" alt="Floor Plan" style={{width:"100%", height:"auto", objectFit:"contain"}} loading="lazy" decoding="async" />
+                <img className="floor-plan-img" src="/horizon pics/floor-scaled.webp" alt="Floor Plan" style={{width:"100%", height:"auto", objectFit:"contain"}}  decoding="async" />
               </div>
               <p style={{fontSize:"15px", letterSpacing:"0.25em", textTransform:"uppercase", color:"var(--ink-3)", textAlign:"center", marginTop:"1rem"}}>Indicative ï¿½ actual may vary</p>
             </div>
@@ -500,7 +506,7 @@ export default function ProjectHorizon() {
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr 1fr", alignItems:"center", gap:"2rem", marginBottom:"2.5rem"}}>
             {}
             <div className="footer-logo-block">
-              <img src="/logo.png" alt="Bharathi Constructions" className="footer-logo-img" style={{mixBlendMode:"multiply"}} loading="lazy" decoding="async" />
+              <img src="/logo.png" alt="Bharathi Constructions" className="footer-logo-img" style={{mixBlendMode:"multiply"}}  decoding="async" />
               <div>
                 <div style={{fontFamily:"Playfair Display, serif", fontSize:"1rem", fontWeight:700, letterSpacing:"0.03em", color:"var(--ink)"}}>Bharathi Constructions</div>
                 <div style={{fontSize:"15px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#C9A96E", marginTop:"0.15rem"}}>Luxury Residences ï¿½ Hyderabad</div>

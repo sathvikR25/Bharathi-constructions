@@ -127,7 +127,7 @@ export default function Home() {
       // Hero Typography Reveal
       gsap.fromTo(".reveal", 
         { opacity: 0, y: 50 }, 
-        { opacity: 1, y: 0, stagger: 0.2, duration: 1.5, ease: "power3.out", delay: 0.2 }
+        { opacity: 1, y: 0, stagger: 0.2, duration: 1.0, ease: "power3.out", delay: 0.2 }
       );
       
       gsap.set(".stat-box", { opacity: 0, y: 50 });
@@ -190,11 +190,11 @@ export default function Home() {
           { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
           { 
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            duration: 1.5,
+            duration: 1.0,
             ease: "power4.inOut",
             scrollTrigger: {
               trigger: img.parentElement,
-              start: "top 85%"
+              start: "top 95%"
             }
           }
         );
@@ -267,11 +267,17 @@ export default function Home() {
 
   
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.5, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    const raf = t => { window.lenisVelocity = lenis.velocity; lenis.raf(t); requestAnimationFrame(raf); };
-    lenis.on("scroll", ScrollTrigger.update);
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+      window.lenisVelocity = lenis.velocity;
+    });
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      lenis.destroy();
+    };
   }, []);
 
   
@@ -300,10 +306,10 @@ export default function Home() {
           const img = wrap.querySelector(".mask-img");
           const block = wrap.querySelector(".mask-block");
           if (img && block) {
-            gsap.fromTo(block, { scaleX: 1 }, { scaleX: 0, transformOrigin: "right", duration: 2, ease: "expo.out", scrollTrigger: { trigger: wrap, start: "top 85%" } });
+            gsap.fromTo(block, { scaleX: 1 }, { scaleX: 0, transformOrigin: "right", duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: wrap, start: "top 95%" } });
             gsap.fromTo(img, 
               { scale: 1.5, rotationX: 45, rotationY: 20, opacity: 0, z: -500 }, 
-              { scale: 1, rotationX: 0, rotationY: 0, opacity: 1, z: 0, duration: 3, ease: "expo.out", scrollTrigger: { trigger: wrap, start: "top 85%" } }
+              { scale: 1, rotationX: 0, rotationY: 0, opacity: 1, z: 0, duration: 3, ease: "expo.out", scrollTrigger: { trigger: wrap, start: "top 95%" } }
             );
             gsap.to(img, { yPercent: 15, ease: "none", scrollTrigger: { trigger: wrap, start: "top bottom", end: "bottom top", scrub: true } });
           }
@@ -313,7 +319,7 @@ export default function Home() {
       gsap.utils.toArray(".glass-card").forEach((card, i) => {
         gsap.fromTo(card, 
             { opacity: 0, x: i % 2 === 0 ? -200 : 200, rotationY: i % 2 === 0 ? -45 : 45, rotationX: 20, z: -800, transformPerspective: 2500 }, 
-            { opacity: 1, x: 0, rotationY: 0, rotationX: 0, z: 0, duration: 2.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 85%" } }
+            { opacity: 1, x: 0, rotationY: 0, rotationX: 0, z: 0, duration: 1.2.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
           );
       });
     
@@ -370,7 +376,7 @@ export default function Home() {
       
       const isProject = lm.category === "Development Site";
       const htmlStr = isProject 
-        ? '<div class="custom-map-pin"><div class="pin-pulse" style="border-color:#C9A96E; animation-duration: 1.5s;"></div><div class="pin-dot" style="background:#C9A96E; width:20px; height:20px; margin-left:-5px; margin-top:-5px;"></div></div>' 
+        ? '<div class="custom-map-pin"><div class="pin-pulse" style="border-color:#C9A96E; animation-duration: 1.0s;"></div><div class="pin-dot" style="background:#C9A96E; width:20px; height:20px; margin-left:-5px; margin-top:-5px;"></div></div>' 
         : '<div class="custom-map-pin"><div class="pin-pulse"></div><div class="pin-dot"></div></div>';
       const icon = L.divIcon({ html: htmlStr, className: "custom-div-icon", iconSize: [30, 30] });
 
@@ -404,7 +410,7 @@ export default function Home() {
 
       {}
       <div className={`preloader ${preloaderHidden ? "hidden" : ""}`}>
-        <img src="/logo.png" alt="Bharathi Constructions" className="preloader-logo h-20 w-auto" style={{mixBlendMode:"multiply"}} loading="lazy" decoding="async" />
+        <img src="/logo.png" alt="Bharathi Constructions" className="preloader-logo h-20 w-auto" style={{mixBlendMode:"multiply"}}  decoding="async" />
         <div className="preloader-bar" />
         <p style={{fontSize:"15px", letterSpacing:"0.4em", textTransform:"uppercase", color:"var(--ink-3)"}}>Loading Experience</p>
       </div>
@@ -420,7 +426,7 @@ export default function Home() {
       <header className={`site-header ${navOpen ? "nav-open" : ""} ${headerDark && !navOpen ? "dark-mode" : ""}`}>
         {}
         <a href="#" className="logo-block" >
-          <img src="/logo.png" alt="Bharathi Constructions" className="logo-img" loading="lazy" decoding="async" />
+          <img src="/logo.png" alt="Bharathi Constructions" className="logo-img"  decoding="async" />
           <div className="logo-text-block">
             <span className="logo-name">Bharathi Constructions</span>
             <span className="logo-sub">Signature Spaces</span>
@@ -493,10 +499,10 @@ export default function Home() {
           <div className="reveal-r" style={{display:"flex", flexDirection:"column", gap:"1.25rem"}}>
             <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1.25rem"}}>
               <div className="mask-wrap" style={{aspectRatio: "16/9", marginTop:"3rem"}}>
-                <div className="mask-block" /><img src="/horizon pics/Multi-purpose-Room_FFFF-copy.webp" alt="Lounge" className="mask-img hover:scale-105" style={{width:"100%", height:"100%", objectFit:"cover", transition:"transform 1.4s cubic-bezier(0.16,1,0.3,1)"}} loading="lazy" decoding="async" />
+                <div className="mask-block" /><img src="/horizon pics/Multi-purpose-Room_FFFF-copy.webp" alt="Lounge" className="mask-img hover:scale-105" style={{width:"100%", height:"100%", objectFit:"cover", transition:"transform 1.4s cubic-bezier(0.16,1,0.3,1)"}}  decoding="async" />
               </div>
               <div className="mask-wrap" style={{aspectRatio: "16/9"}}>
-                <div className="mask-block" /><img src="/horizon pics/View_13_FFFFFF-copy.webp" alt="Villa" className="mask-img hover:scale-105" style={{width:"100%", height:"100%", objectFit:"cover", transition:"transform 1.4s cubic-bezier(0.16,1,0.3,1)"}} loading="lazy" decoding="async" />
+                <div className="mask-block" /><img src="/horizon pics/View_13_FFFFFF-copy.webp" alt="Villa" className="mask-img hover:scale-105" style={{width:"100%", height:"100%", objectFit:"cover", transition:"transform 1.4s cubic-bezier(0.16,1,0.3,1)"}}  decoding="async" />
               </div>
             </div>
             <div className="clay-card" style={{padding:"1.25rem", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
@@ -523,7 +529,7 @@ export default function Home() {
             {Object.values(PROJECTS).map((p, idx) => (
               <div key={p.id} className="clay-card reveal" style={{display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(400px, 1fr))", overflow:"hidden"}}>
                 <div className={`proj-card ${idx%2===1?"order-last":""}`} style={{height:"600px", minHeight: "50vh"}}>
-                  <div className="mask-wrap" style={{width:"100%", height:"100%"}} ><div className="mask-block" /><img src={p.bg} alt={p.name} className="mask-img" style={{width:"100%", height:"100%", objectFit:"cover"}} loading="lazy" decoding="async" /></div>
+                  <div className="mask-wrap" style={{width:"100%", height:"100%"}} ><div className="mask-block" /><img src={p.bg} alt={p.name} className="mask-img" style={{width:"100%", height:"100%", objectFit:"cover"}}  decoding="async" /></div>
                   <div className="proj-card-overlay" />
                   <div className="proj-card-info" style={{transformStyle: "preserve-3d"}}>
                     <span style={{fontSize:"15px", letterSpacing:"0.35em", textTransform:"uppercase", color:"#C9A96E", display:"block", marginBottom:"0.4rem"}}>{p.accent}</span>
@@ -654,7 +660,7 @@ export default function Home() {
         <div style={{maxWidth:"1600px", margin:"0 auto", padding:"0 2rem"}}>
           
           <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "6rem", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "6rem"}}>
-            <img src="/logo.png" alt="Bharathi Constructions" style={{height: "120px", filter: "brightness(0) invert(1)", marginBottom: "2rem"}} loading="lazy" decoding="async" />
+            <img src="/logo.png" alt="Bharathi Constructions" style={{height: "120px", filter: "brightness(0) invert(1)", marginBottom: "2rem"}}  decoding="async" />
             <h2 style={{fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", fontWeight: 400, color: "var(--paper)", textAlign: "center", lineHeight: 1.1, margin: 0}}>
               BHARATHI
             </h2>
