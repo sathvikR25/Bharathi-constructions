@@ -87,6 +87,8 @@ export default function ProjectHorizon() {
   const [fixture, setFixture] = useState("champ");
   const [selectedLandmark, setSelectedLandmark] = useState(LANDMARKS[0]);
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const handleScroll = () => setScrolled(window.scrollY > 50); window.addEventListener("scroll", handleScroll); return () => window.removeEventListener("scroll", handleScroll); }, []);
   const [headerDark, setHeaderDark] = useState(false);
   
   

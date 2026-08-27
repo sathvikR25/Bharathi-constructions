@@ -89,6 +89,8 @@ export default function Home() {
   const [fixture, setFixture] = useState("champ");
   const [selectedLandmark, setSelectedLandmark] = useState(LANDMARKS[0]);
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const handleScroll = () => setScrolled(window.scrollY > 50); window.addEventListener("scroll", handleScroll); return () => window.removeEventListener("scroll", handleScroll); }, []);
   const [headerDark, setHeaderDark] = useState(false);
   
   useEffect(() => {
@@ -649,7 +651,7 @@ export default function Home() {
         <div style={{maxWidth:"1600px", margin:"0 auto", padding:"0 2rem"}}>
           
           <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "6rem", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "6rem"}}>
-            <img src="/logo.png" alt="Bharathi Constructions" style={{height: "120px", filter: "brightness(0) invert(1)", marginBottom: "2rem"}}  decoding="async" />
+            <img src="/logo.png" alt="Bharathi Constructions" style={{height: "120px", marginBottom: "2rem"}}  decoding="async" />
             <h2 style={{fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", fontWeight: 400, color: "var(--paper)", textAlign: "center", lineHeight: 1.1, margin: 0}}>
               BHARATHI
             </h2>

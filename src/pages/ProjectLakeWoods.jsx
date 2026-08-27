@@ -53,6 +53,8 @@ const MASONRY_IMAGES = [
 
 export default function ProjectLakeWoods() {
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const handleScroll = () => setScrolled(window.scrollY > 50); window.addEventListener("scroll", handleScroll); return () => window.removeEventListener("scroll", handleScroll); }, []);
   const [headerDark, setHeaderDark] = useState(false);
   
   const heroWrapperRef = useRef(null);
@@ -120,12 +122,7 @@ export default function ProjectLakeWoods() {
 
 
       // 4. Massive 3D Card Reveals for High-Res Gallery
-      gsap.utils.toArray(".").forEach(card => {
-        gsap.fromTo(card, 
-          { opacity: 0, rotationX: 15, rotationY: 5, z: -200, transformPerspective: 2500 },
-          { opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
-        );
-      });
+      
 
       // 5. Image Inner 3D Reveal
       gsap.utils.toArray(".").forEach(wrap => {
@@ -152,7 +149,7 @@ export default function ProjectLakeWoods() {
   return (
     <div style={{background:"var(--paper)", color:"var(--ink)", overflowX:"hidden"}}>
       {}
-      <header className={`site-header dark-mode ${navOpen ? "nav-open" : ""}`} style={{position: "fixed", width: "100%", zIndex: 100}}>
+      <header className={`site-header dark-mode ${navOpen ? "nav-open" : ""} ${scrolled ? "scrolled" : ""}`} style={{position: "fixed", width: "100%", zIndex: 100}}>
         <div className="header-inner" style={{maxWidth:"1600px", margin:"0 auto", padding:"0 2rem", height:"100px", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
           <Link to="/" className="logo-block" style={{textDecoration:"none"}}>
             <img src="/logo.png" alt="Bharathi Constructions" className="logo-img"  decoding="async" />
@@ -178,7 +175,7 @@ export default function ProjectLakeWoods() {
           </div>
 
           <div className="hero-logo-box" style={{position: "absolute", bottom: "4rem", left: "4rem", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-            <img src="/lakewood-media/lakewood-logo.png" alt="Lake Woods" style={{width: "280px", marginBottom: "1rem", filter: "brightness(0) invert(1)"}}  decoding="async" />
+            <img src="/lakewood-media/lakewood-logo.png" alt="Lake Woods" style={{width: "280px", marginBottom: "1rem"}}  decoding="async" />
             <h1 style={{fontSize:"0.85rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"#fff", margin: 0}}>NCL Colony, Kompally</h1>
           </div>
 
