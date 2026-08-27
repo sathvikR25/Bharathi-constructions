@@ -73,61 +73,7 @@ export default function ProjectLakeWoods() {
     }, { threshold: 0.1 });
     document.querySelectorAll(".reveal, .reveal-l, .reveal-r, .text-reveal").forEach(el => obs.observe(el));
 
-    let ctx = gsap.context(() => {
-      // 1. Hero Reveal (Corner Logo)
-      gsap.to(".hero-logo-box", {
-        opacity: 0,
-        y: 40,
-        scrollTrigger: {
-          trigger: heroWrapperRef.current,
-          start: "top top",
-          end: "center center",
-          scrub: true
-        }
-      });
-
-      gsap.fromTo(heroImgRef.current, 
-        { scale: 1 },
-        { 
-          scale: 1.1,
-          scrollTrigger: {
-            trigger: heroWrapperRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        }
-      );
-
-      
-      // 2. Advanced Parallax & Blur for Floor Plans
-      gsap.utils.toArray(".floor-plan-img").forEach(img => {
-        gsap.fromTo(img, 
-          { scale: 1.3, opacity: 0, rotationX: 60, rotationY: -15, transformPerspective: 2500, z: -1000 },
-          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 95%" } }
-        );
-        gsap.to(img,
-          { yPercent: 10, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } }
-        );
-      });
-
-      // 3. Staggered Amenities Slide-Up
-      const amenitiesBlocks = gsap.utils.toArray(".amenity-block");
-      if (amenitiesBlocks.length > 0) {
-        gsap.fromTo(amenitiesBlocks,
-          { opacity: 0, y: 150, rotationX: -90, z: -500, transformPerspective: 1200, transformOrigin: "bottom center" },
-          { opacity: 1, y: 0, rotationX: 0, z: 0, stagger: 0.15, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: "#amenities", start: "top 80%" } }
-        );
-      }
-
-
-      // 4. Massive 3D Card Reveals for High-Res Gallery
-      
-
-      
-
-    }, mainRef);
-
+      let ctx = gsap.context(() => {});
     return () => { obs.disconnect(); ctx.revert(); };
   }, []);
 
@@ -159,7 +105,7 @@ export default function ProjectLakeWoods() {
         <div style={{position: "sticky", top: 0, left: 0, width: "100%", height: "100vh", overflow: "hidden"}}>
           
           <div ref={heroImgRef} style={{position: "absolute", inset: 0, zIndex: 5}}>
-            <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods Exterior" style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}} fetchPriority="high" decoding="sync" />
+            <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods Exterior" style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}}  decoding="async" />
             <div style={{position:"absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 40%)", pointerEvents: "none"}} />
           </div>
 
