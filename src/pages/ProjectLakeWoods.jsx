@@ -120,7 +120,7 @@ export default function ProjectLakeWoods() {
 
 
       // 4. Massive 3D Card Reveals for High-Res Gallery
-      gsap.utils.toArray(".card-reveal-3d").forEach(card => {
+      gsap.utils.toArray(".").forEach(card => {
         gsap.fromTo(card, 
           { opacity: 0, rotationX: 15, rotationY: 5, z: -200, transformPerspective: 2500 },
           { opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
@@ -128,7 +128,7 @@ export default function ProjectLakeWoods() {
       });
 
       // 5. Image Inner 3D Reveal
-      gsap.utils.toArray(".media-reveal-wrapper").forEach(wrap => {
+      gsap.utils.toArray(".").forEach(wrap => {
         const img = wrap.querySelector(".media-reveal-img");
         if (img) {
           gsap.fromTo(img,
@@ -146,16 +146,7 @@ export default function ProjectLakeWoods() {
   }, []);
 
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    lenis.on('scroll', ScrollTrigger.update);
-    const tick = (time) => { lenis.raf(time * 1000); };
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-    return () => {
-      gsap.ticker.remove(tick);
-      lenis.destroy();
-    };
-  }, []);
+    }, []); // Lenis removed
 
 
   return (
@@ -197,7 +188,7 @@ export default function ProjectLakeWoods() {
       {}
       <main ref={mainRef} className="content-wrapper" style={{position:"relative", zIndex:2, background:"var(--paper)", overflow:"hidden", boxShadow:"0 -20px 50px rgba(0,0,0,0.2)"}}>
       {}
-      <div className="aurora-wrap">
+      <div className="hidden">
         <div className="aurora-blob aurora-1"></div>
         <div className="aurora-blob aurora-2"></div>
         <div className="aurora-blob aurora-3"></div>
@@ -356,8 +347,8 @@ export default function ProjectLakeWoods() {
 
             <div style={{display:"flex", flexDirection:"column", gap:"6rem"}}>
               {["View 01_FFFFF copy.jpg", "View 02_FFFFF copy.jpg", "View 03_FFFFFF copy.jpg", "View 04_ffffff copy.jpg", "View 05_FFFFF copy.jpg", "view 06_FFFFFF copy.jpg"].map((view, i) => (
-                <div key={i} className="clay-card card-reveal-3d" style={{padding: "2rem", width: "100%"}}>
-                  <div className="media-reveal-wrapper" style={{width: "100%", height: "auto", overflow: "hidden", borderRadius: "20px"}}>
+                <div key={i} className="clay-card " style={{padding: "2rem", width: "100%"}}>
+                  <div className="" style={{width: "100%", height: "auto", overflow: "hidden", borderRadius: "20px"}}>
                     <img 
                       className="media-reveal-img" 
                       src={`/lakewood-media/${view}`} 
@@ -383,8 +374,8 @@ export default function ProjectLakeWoods() {
 
             <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(600px, 1fr))", gap:"4rem"}}>
               {["SECTION 1__ 2675 - SQ.F.jpg", "SECTION 2__ 2680 - F.jpg", "SECTION 3__ 2290 - f.jpg", "SECTION 4 __ 2285 -f.jpg"].map((plan, i) => (
-                <div key={i} className="clay-card card-reveal-3d" style={{padding: "1.5rem"}}>
-                  <div className="media-reveal-wrapper" style={{width: "100%", height: "auto", overflow: "hidden", borderRadius: "16px"}}>
+                <div key={i} className="clay-card " style={{padding: "1.5rem"}}>
+                  <div className="" style={{width: "100%", height: "auto", overflow: "hidden", borderRadius: "16px"}}>
                     <img 
                       className="media-reveal-img" 
                       src={`/lakewood-media/${plan}`} 

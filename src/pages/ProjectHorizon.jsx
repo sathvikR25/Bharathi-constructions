@@ -172,18 +172,7 @@ export default function ProjectHorizon() {
 
   
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-      window.lenisVelocity = lenis.velocity;
-    });
-    gsap.ticker.lagSmoothing(0);
-    return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
-      lenis.destroy();
-    };
-  }, []);
+    }, []); // Lenis removed
 
   
 
@@ -239,7 +228,7 @@ export default function ProjectHorizon() {
   return (
     <div className="relative min-h-screen overflow-x-hidden" style={{fontFamily:"Inter, system-ui, sans-serif", background:"var(--paper)", color:"var(--ink)"}}>
       {}
-      <div className="aurora-wrap">
+      <div className="hidden">
         <div className="aurora-blob aurora-1"></div>
         <div className="aurora-blob aurora-2"></div>
         <div className="aurora-blob aurora-3"></div>

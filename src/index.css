@@ -280,12 +280,8 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
    ========================================================================= */
 
 /* --- 1. AURORA MORPHISM (Background) --- */
-.aurora-wrap {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.5; mix-blend-mode: multiply;
-}
-.aurora-blob {
-    position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.6; animation: aurora-float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-}
+.aurora-wrap { display: none; }
+.aurora-blob { display: none; }
 .aurora-1 { background: radial-gradient(circle, rgba(201,169,110,0.5) 0%, transparent 70%); width: 70vw; height: 70vw; top: -20%; left: -10%; }
 .aurora-2 { background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 70%); width: 60vw; height: 60vw; bottom: -10%; right: -20%; animation-delay: -5s; }
 .aurora-3 { background: radial-gradient(circle, rgba(189,149,66,0.35) 0%, transparent 70%); width: 50vw; height: 50vw; top: 30%; left: 30%; animation-delay: -10s; }
@@ -299,17 +295,16 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
 
 /* --- 2. LUXURY CLAYMORPHISM --- */
 .clay-card {
-    background: rgba(242, 240, 234, 0.75);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-radius: 32px;
-    box-shadow: 
-        35px 35px 68px rgba(20, 18, 16, 0.08), 
-        -35px -35px 68px rgba(255, 255, 255, 0.9),
-        inset 2px 2px 6px rgba(255, 255, 255, 0.7), 
-        inset -4px -4px 10px rgba(20, 18, 16, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.clay-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 .clay-card:hover {
     transform: translateY(-5px) scale(1.01);
@@ -354,11 +349,12 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
     box-shadow: inset 2px 2px 5px rgba(255,255,255,0.8), inset -2px -2px 6px rgba(20,18,16,0.1), 10px 10px 30px rgba(0,0,0,0.08);
 }
 .skeuo-gold-text {
-    background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 2px 2px 4px rgba(20,18,16,0.15);
-    display: inline-block;
+  color: #1a1a1a !important;
+  background: none !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  text-shadow: none !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 .skeuo-engraved {
     background-color: var(--ink);
@@ -500,4 +496,21 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
 .inner-3d-deep {
     transform: translateZ(100px);
     transition: transform 0.3s ease-out;
+}
+
+.reveal, .reveal-l, .reveal-r, .text-reveal {
+  opacity: 1; /* Fallback if JS breaks */
+  transform: none;
+}
+/* We override it to 0 only if JS is active by adding a body class, or just keep it simple */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal, .reveal-l, .reveal-r, .text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible, .reveal-l.visible, .reveal-r.visible, .text-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
