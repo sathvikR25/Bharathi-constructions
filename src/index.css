@@ -528,19 +528,13 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
   box-shadow: 0 4px 30px rgba(0,0,0,0.03);
 }
 
-.site-header .logo-img {
-  transition: filter 0.4s ease;
-}
+
 
 /* If the header starts dark (like on hero images), it's white. */
-.site-header.dark-mode:not(.scrolled) .logo-img {
-  filter: brightness(0) invert(1) !important;
-}
+
 
 /* When scrolled, it turns into light frosted glass, so logo must be dark */
-.site-header.scrolled .logo-img {
-  filter: none !important;
-}
+
 
 
 .site-header.scrolled .menu-toggle,
