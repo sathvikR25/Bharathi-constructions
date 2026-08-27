@@ -319,7 +319,7 @@ export default function Home() {
       gsap.utils.toArray(".glass-card").forEach((card, i) => {
         gsap.fromTo(card, 
             { opacity: 0, x: i % 2 === 0 ? -200 : 200, rotationY: i % 2 === 0 ? -45 : 45, rotationX: 20, z: -800, transformPerspective: 2500 }, 
-            { opacity: 1, x: 0, rotationY: 0, rotationX: 0, z: 0, duration: 1.2.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
+            { opacity: 1, x: 0, rotationY: 0, rotationX: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 95%" } }
           );
       });
     

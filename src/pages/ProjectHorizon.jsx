@@ -120,7 +120,7 @@ export default function ProjectHorizon() {
       gsap.utils.toArray(".floor-plan-img").forEach(img => {
         gsap.fromTo(img, 
           { scale: 1.3, opacity: 0, rotationX: 60, rotationY: 15, transformPerspective: 2500, z: -1000 },
-          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2.5, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 85%" } }
+          { scale: 1, opacity: 1, rotationX: 0, rotationY: 0, z: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: img, start: "top 85%" } }
         );
         gsap.to(img,
           { yPercent: 5, ease: "none", scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true } }
