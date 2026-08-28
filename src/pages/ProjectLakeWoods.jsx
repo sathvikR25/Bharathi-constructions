@@ -1,7 +1,11 @@
-﻿import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShieldCheck, Star, Award, CheckCircle, Leaf, Building, Zap, Video, Monitor, Gamepad, ShoppingCart, ArrowUpToLine, TreePine, MapPin } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShieldCheck, TreePine, Gamepad, Zap, MapPin, Compass, Maximize, Home, Layers } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -11,40 +15,93 @@ const NAV_ITEMS = [
   { label: "Enquiry", href: "/#contact" }
 ];
 
-const AMENITIES = [
-  { icon: <ShieldCheck size={32} />, h: "Security", desc: "24/7 Advanced Surveillance" },
-  { icon: <TreePine size={32} />, h: "Landscaping", desc: "Curated Green Spaces" },
-  { icon: <Gamepad size={32} />, h: "Recreation", desc: "Mini-Theatre & Lounge" },
-  { icon: <Zap size={32} />, h: "Power", desc: "100% DG Backup" },
-];
-
 export default function ProjectLakeWoods() {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mainRef = useRef(null);
+  const horizontalRef = useRef(null);
   
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     
-    // High-performance Native IntersectionObserver for animations
+    // Native CSS Fades (Safe)
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add("is-visible");
         }
       });
-    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
     
     document.querySelectorAll(".animate-on-scroll").forEach(el => obs.observe(el));
     
+    // GSAP Advanced Animations (Parallax & Horizontal Scroll)
+    let ctx = gsap.context(() => {
+      
+      // Hero Parallax
+      gsap.to(".hero-bg", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // Horizontal Scroll Gallery
+      const sections = gsap.utils.toArray(".horizontal-panel");
+      if (horizontalRef.current && sections.length > 0) {
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: horizontalRef.current,
+            pin: true,
+            scrub: 1,
+            snap: 1 / (sections.length - 1),
+            end: () => "+=" + horizontalRef.current.offsetWidth
+          }
+        });
+      }
+
+      // 3D Image Parallax on Sections
+      gsap.utils.toArray(".parallax-img-container").forEach(container => {
+        const img = container.querySelector("img");
+        if(img) {
+          gsap.to(img, {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        }
+      });
+
+    }, mainRef);
+    
+    // Refresh ScrollTrigger after all images load to prevent calculation bugs
+    const refreshST = () => ScrollTrigger.refresh();
+    setTimeout(refreshST, 500);
+    setTimeout(refreshST, 1500);
+    window.addEventListener("load", refreshST);
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("load", refreshST);
       obs.disconnect();
+      ctx.revert();
     };
   }, []);
 
   return (
-    <div style={{ background: "var(--paper)", color: "var(--ink)", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "var(--paper)", color: "var(--ink)", overflowX: "hidden" }}>
       
       {/* HEADER */}
       <header className={`site-header dark-mode ${navOpen ? "nav-open" : ""} ${scrolled ? "scrolled" : ""}`} style={{position: "fixed", width: "100%", zIndex: 100}}>
@@ -63,146 +120,135 @@ export default function ProjectLakeWoods() {
 
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
-      {/* HERO SECTION */}
-      <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods Exterior" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 1 }} fetchPriority="high" />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%)", zIndex: 2 }}></div>
+      {/* 1. HERO SECTION */}
+      <section className="hero-section" style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyItems: "center" }}>
+        <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods Exterior" className="hero-bg" style={{ position: "absolute", top: "-15%", left: 0, width: "100%", height: "130%", objectFit: "cover", zIndex: 1 }} fetchPriority="high" />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, rgba(10,10,10,0.9) 100%)", zIndex: 2 }}></div>
         
-        <div style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "0 2rem", marginTop: "4rem" }} className="animate-on-scroll fade-up">
-          <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 7rem)", color: "#fff", lineHeight: 1.1, textShadow: "0 10px 30px rgba(0,0,0,0.5)", margin: 0 }}>
-            Bharathi <br/> Lake Woods
-          </h1>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginTop: "2rem", color: "var(--gold)" }}>
+        <div style={{ position: "relative", zIndex: 3, width: "100%", textAlign: "center", padding: "0 2rem", marginTop: "10rem" }} className="animate-on-scroll fade-up">
+          <img src="/lakewood-media/lakewood-logo.png" alt="Lakewood Logo" style={{ width: "350px", maxWidth: "80%", margin: "0 auto", filter: "brightness(0) invert(1)" }} />
+          <div style={{ display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", gap: "0.5rem", marginTop: "2rem", color: "var(--gold)" }}>
             <MapPin size={20} />
             <span style={{ fontSize: "1rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#fff" }}>NCL Colony, Kompally</span>
           </div>
         </div>
       </section>
 
-      {/* FLOATING STATS BAR */}
-      <section style={{ position: "relative", zIndex: 10, marginTop: "-80px", padding: "0 2rem" }}>
-        <div className="animate-on-scroll fade-up" style={{ maxWidth: "1200px", margin: "0 auto", background: "rgba(255, 255, 255, 0.95)", backdropFilter: "blur(20px)", borderRadius: "12px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", padding: "3rem 2rem" }}>
-          {[
-            { n: "40", l: "Exclusive Units" },
-            { n: "8+2", l: "Floors" },
-            { n: "2621", l: "Sq. Yds Extent" },
-            { n: "3 BHK", l: "Premium Residences" }
-          ].map((stat, i) => (
-            <div key={i} style={{ textAlign: "center", borderRight: i !== 3 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
-              <span style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--gold-dark)", display: "block", lineHeight: 1, marginBottom: "0.5rem" }}>{stat.n}</span>
-              <span style={{ fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--ink-2)", fontWeight: 600 }}>{stat.l}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* THE VISION - STICKY LAYOUT */}
-      <section style={{ padding: "8rem 2rem" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "4rem" }}>
-          
-          <div style={{ flex: "1 1 400px" }}>
-            <div style={{ position: "sticky", top: "150px" }} className="animate-on-scroll fade-right">
-              <span style={{ fontSize: "0.9rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold-dark)", fontWeight: 600 }}>The Vision</span>
-              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", color: "var(--ink)", marginTop: "1rem", marginBottom: "2rem", lineHeight: 1.2 }}>
-                Redefining <br/> Exclusivity.
-              </h2>
-              <div style={{ width: "60px", height: "2px", background: "var(--gold)", marginBottom: "2rem" }}></div>
-              <p style={{ fontSize: "1.2rem", color: "var(--ink-2)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
-                Bharathi Lake Woods is a meticulously designed residential enclave comprising precisely 40 ultra-premium 3 BHK apartments. 
-              </p>
-              <p style={{ fontSize: "1.2rem", color: "var(--ink-2)", lineHeight: 1.8 }}>
-                Rising across 8+2 floors, the architecture seamlessly integrates modern elegance with natural surroundings, offering a holistic, resort-like lifestyle.
-              </p>
-            </div>
-          </div>
-
-          <div style={{ flex: "1 1 600px", display: "flex", flexDirection: "column", gap: "3rem" }}>
-            {["View 01_FFFFF copy.jpg", "View 03_FFFFFF copy.jpg", "view 06_FFFFFF copy.jpg"].map((img, idx) => (
-              <div key={idx} className="animate-on-scroll fade-up" style={{ overflow: "hidden", borderRadius: "12px", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}>
-                <img src={`/lakewood-media/${img}`} alt={`Lake Woods View ${idx}`} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.7s ease" }} loading="lazy" decoding="async" className="hover-zoom" />
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* AMENITIES GRID */}
-      <section style={{ padding: "6rem 2rem", background: "var(--ink)", color: "var(--paper)" }}>
+      {/* 2. THE VISION - RENDER VIEWS */}
+      <section style={{ padding: "8rem 2rem", background: "var(--paper)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <div className="animate-on-scroll fade-up" style={{ textAlign: "center", marginBottom: "5rem" }}>
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--paper)" }}>World-Class Amenities</h2>
-            <p style={{ color: "var(--paper-2)", marginTop: "1rem", fontSize: "1.1rem" }}>Curated experiences for the discerning few.</p>
+            <span style={{ fontSize: "0.9rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold-dark)", fontWeight: 600 }}>The Vision</span>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", color: "var(--ink)", marginTop: "1rem" }}>A Benchmark in Exclusivity</h2>
+            <div style={{ width: "60px", height: "2px", background: "var(--gold)", margin: "2rem auto" }}></div>
+            <p style={{ fontSize: "1.2rem", color: "var(--ink-2)", maxWidth: "800px", margin: "0 auto", lineHeight: 1.8 }}>
+              Lake Woods is a meticulously crafted residential enclave comprising precisely 40 ultra-premium 3 BHK apartments. Rising across 8+2 floors, the architecture seamlessly integrates modern elegance with lush natural surroundings.
+            </p>
           </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "2rem" }}>
+            <div className="animate-on-scroll fade-up parallax-img-container" style={{ overflow: "hidden", borderRadius: "12px", height: "600px", position: "relative" }}>
+              <img src="/lakewood-media/View 01_FFFFF copy.jpg" style={{ width: "100%", height: "130%", objectFit: "cover", position: "absolute", top: "-15%" }} alt="View 01" loading="lazy" />
+            </div>
+            <div className="animate-on-scroll fade-up parallax-img-container" style={{ overflow: "hidden", borderRadius: "12px", height: "600px", position: "relative", transitionDelay: "200ms" }}>
+              <img src="/lakewood-media/View 02_FFFFF copy.jpg" style={{ width: "100%", height: "130%", objectFit: "cover", position: "absolute", top: "-15%" }} alt="View 02" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. HORIZONTAL SCROLL GALLERY (IMMERSIVE RENDER SHOWCASE) */}
+      <section ref={horizontalRef} style={{ width: "100%", height: "100vh", display: "flex", flexWrap: "nowrap", overflow: "hidden", background: "var(--ink)" }}>
+        {["View 03_FFFFFF copy.jpg", "View 04_ffffff copy.jpg", "View 05_FFFFF copy.jpg", "view 06_FFFFFF copy.jpg"].map((img, idx) => (
+          <div key={idx} className="horizontal-panel" style={{ flex: "0 0 100vw", height: "100vh", position: "relative" }}>
+            <img src={`/lakewood-media/${img}`} alt={`Render ${idx+3}`} style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} loading="lazy" />
+            <div style={{ position: "absolute", bottom: "10%", left: "5%", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)", padding: "2rem", borderRadius: "8px", borderLeft: "4px solid var(--gold)", color: "#fff", maxWidth: "400px" }}>
+              <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", marginBottom: "0.5rem" }}>Signature Spaces</h3>
+              <p style={{ fontSize: "1rem", letterSpacing: "0.1em", color: "var(--paper-2)", opacity: 0.9 }}>Unmatched luxury at every angle. Impeccable finishes designed for the elite.</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* 4. BROCHURE HIGHLIGHTS - ALTERNATING SECTIONS */}
+      <section style={{ padding: "8rem 2rem", background: "#f9f6ee" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "8rem" }}>
           
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "2rem" }}>
-            {AMENITIES.map((amenity, idx) => (
-              <div key={idx} className="animate-on-scroll fade-up" style={{ transitionDelay: `${idx * 100}ms`, padding: "3rem 2rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", textAlign: "center" }}>
-                <div style={{ color: "var(--gold)", marginBottom: "1.5rem", display: "flex", justifyContent: "center" }}>{amenity.icon}</div>
-                <h3 style={{ fontSize: "1.5rem", fontFamily: "Playfair Display, serif", marginBottom: "1rem" }}>{amenity.h}</h3>
-                <p style={{ color: "var(--paper-2)", lineHeight: 1.6 }}>{amenity.desc}</p>
+          {[
+            { img: "lake-woods-brohure-page-0005.jpg", title: "Uncompromised Quality", desc: "Every square foot is planned to provide a holistic, resort-like lifestyle right in the heart of Hyderabad." },
+            { img: "lake-woods-brohure-page-0007.jpg", title: "Lush Green Landscapes", desc: "Wake up to tranquil breezes. Dedicated pedestrian zones and massive green covers integrate seamlessly." },
+            { img: "lake-woods-brohure-page-0009.jpg", title: "Modern Amenities", desc: "A grand entrance lounge, mini-theatre, and communal zones engineered for modern living." },
+            { img: "lake-woods-brohure-page-0012.jpg", title: "Absolute Privacy", desc: "Zero dead space corridors. Only the finest materials used to guarantee a serene, private environment." }
+          ].map((item, idx) => (
+            <div key={idx} className="animate-on-scroll fade-up" style={{ display: "flex", flexDirection: idx % 2 === 0 ? "row" : "row-reverse", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
+              <div style={{ flex: "1 1 500px", borderRadius: "12px", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+                <img src={`/lakewood-media/${item.img}`} alt={item.title} style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" className="hover-zoom" />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* MASTERPLAN & FLOOR PLANS */}
-      <section style={{ padding: "8rem 2rem", background: "#f8f9fa" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          
-          <div className="animate-on-scroll fade-up" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "4rem", flexWrap: "wrap", marginBottom: "8rem" }}>
-            <div style={{ flex: "1 1 400px" }}>
-              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--ink)", marginBottom: "1.5rem" }}>The Masterplan</h2>
-              <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", lineHeight: 1.8 }}>
-                Designed around community and tranquility with dedicated pedestrian zones and extensive landscaping spanning 2,621 Sq. Yds.
-              </p>
+              <div style={{ flex: "1 1 400px" }}>
+                <span style={{ fontSize: "3rem", color: "var(--gold)", opacity: 0.3, fontFamily: "Playfair Display, serif", lineHeight: 1 }}>0{idx+1}</span>
+                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2.5rem", color: "var(--ink)", marginTop: "1rem", marginBottom: "1.5rem" }}>{item.title}</h3>
+                <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", lineHeight: 1.8 }}>{item.desc}</p>
+                <div style={{ width: "40px", height: "2px", background: "var(--gold)", marginTop: "2rem" }}></div>
+              </div>
             </div>
-            <div style={{ flex: "1 1 600px", borderRadius: "12px", overflow: "hidden", background: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-              <img src="/lakewood-media/master-plan-min-660a544def095.webp" alt="Masterplan" style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" decoding="async" />
-            </div>
-          </div>
-
-          <div className="animate-on-scroll fade-up" style={{ display: "flex", flexDirection: "row-reverse", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
-            <div style={{ flex: "1 1 400px" }}>
-              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--ink)", marginBottom: "1.5rem" }}>Unit Configurations</h2>
-              <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", lineHeight: 1.8 }}>
-                Expansive drawing rooms, dedicated home theater spaces, and large balconies designed for zero dead space.
-              </p>
-              <ul style={{ marginTop: "2rem", listStyle: "none", padding: 0, color: "var(--ink-2)", fontSize: "1.1rem", lineHeight: 2.2 }}>
-                <li><span style={{color: "var(--gold)", marginRight: "10px"}}></span> West Facing Premium: 2205 Sq. Ft.</li>
-                <li><span style={{color: "var(--gold)", marginRight: "10px"}}></span> East Facing Grand: 2600 Sq. Ft.</li>
-                <li><span style={{color: "var(--gold)", marginRight: "10px"}}></span> 100% Vastu Compliant</li>
-              </ul>
-            </div>
-            <div style={{ flex: "1 1 600px", borderRadius: "12px", overflow: "hidden", background: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-              <img src="/lakewood-media/floor-plans-min-660a55f02974b.webp" alt="Floor Plans" style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" decoding="async" />
-            </div>
-          </div>
+          ))}
 
         </div>
       </section>
 
-      {/* FULL GALLERY GRID */}
+      {/* 5. FLOOR PLANS - THE SECTIONS */}
       <section style={{ padding: "8rem 2rem", background: "var(--paper)" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-          <div className="animate-on-scroll fade-up" style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--ink)" }}>Gallery</h2>
-            <div style={{ width: "60px", height: "2px", background: "var(--gold)", margin: "1.5rem auto" }}></div>
+          <div className="animate-on-scroll fade-up" style={{ textAlign: "center", marginBottom: "5rem" }}>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--ink)" }}>Residences</h2>
+            <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", marginTop: "1rem" }}>Detailed configurations ranging from 2200 to 2680 Sq. Ft.</p>
           </div>
-          
-          <div style={{ columnCount: 2, columnGap: "1.5rem" }} className="masonry-grid">
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "3rem" }}>
             {[
-              "View 02_FFFFF copy.jpg",
-              "View 04_ffffff copy.jpg",
-              "View 05_FFFFF copy.jpg",
-              "SECTION 2__ 2680 - F.jpg",
-              "SECTION 3__ 2290 - f.jpg"
-            ].map((img, idx) => (
-              <div key={idx} className="animate-on-scroll fade-up" style={{ breakInside: "avoid", marginBottom: "1.5rem", borderRadius: "8px", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
-                <img src={`/lakewood-media/${img}`} alt={`Lake Woods Gallery ${idx}`} style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" decoding="async" className="hover-zoom" />
+              { img: "SECTION 1__ 2675 - SQ.F.jpg", label: "Section 1: 2675 Sq. Ft." },
+              { img: "SECTION 2__ 2680 - F.jpg", label: "Section 2: 2680 Sq. Ft." },
+              { img: "SECTION 3__ 2290 - f.jpg", label: "Section 3: 2290 Sq. Ft." },
+              { img: "SECTION 4 __ 2285 -f.jpg", label: "Section 4: 2285 Sq. Ft." }
+            ].map((plan, idx) => (
+              <div key={idx} className="animate-on-scroll fade-up" style={{ background: "#fff", padding: "2rem", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.04)", transitionDelay: `${idx * 100}ms` }}>
+                <img src={`/lakewood-media/${plan.img}`} alt={plan.label} style={{ width: "100%", height: "auto", mixBlendMode: "multiply", marginBottom: "2rem" }} loading="lazy" />
+                <h4 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--ink)", textAlign: "center", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "1rem" }}>{plan.label}</h4>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. MASTER PLAN & MAP */}
+      <section style={{ padding: "8rem 2rem", background: "var(--ink)", color: "var(--paper)" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6rem" }}>
+            
+            <div className="animate-on-scroll fade-up" style={{ display: "flex", flexWrap: "wrap", gap: "4rem", alignItems: "center" }}>
+              <div style={{ flex: "1 1 400px" }}>
+                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--gold)" }}>The Masterplan</h3>
+                <p style={{ fontSize: "1.15rem", color: "var(--paper-2)", lineHeight: 1.8, marginTop: "1.5rem" }}>
+                  A bird's eye view of pure exclusivity. Discover how every amenity, walkway, and green zone is meticulously placed to create the ultimate living environment.
+                </p>
+              </div>
+              <div style={{ flex: "1 1 600px" }}>
+                <img src="/lakewood-media/master-plan-min-660a544def095.webp" alt="Masterplan" style={{ width: "100%", height: "auto", borderRadius: "12px" }} loading="lazy" />
+              </div>
+            </div>
+
+            <div className="animate-on-scroll fade-up" style={{ display: "flex", flexWrap: "wrap-reverse", gap: "4rem", alignItems: "center" }}>
+              <div style={{ flex: "1 1 600px" }}>
+                <img src="/lakewood-media/map.webp" alt="Location Map" style={{ width: "100%", height: "auto", borderRadius: "12px", background: "#fff", padding: "1rem" }} loading="lazy" />
+              </div>
+              <div style={{ flex: "1 1 400px" }}>
+                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--gold)" }}>Location</h3>
+                <p style={{ fontSize: "1.15rem", color: "var(--paper-2)", lineHeight: 1.8, marginTop: "1.5rem" }}>
+                  Situated strategically in NCL Colony, Kompally. Unmatched connectivity to major highways, top-tier international schools, and premium retail hubs.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
