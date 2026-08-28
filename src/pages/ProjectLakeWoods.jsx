@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ArrowRight, Compass, Shield, Trees, Zap, Film } from "lucide-react";
+import { MapPin, ArrowRight, Compass, Shield, Trees, Zap, Film, Gamepad2, ShoppingCart, Camera, Dumbbell, CarFront, Wifi } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,12 +42,18 @@ const BROCHURE = [
 ];
 
 const AMENITIES = [
-  { label: "24/7 Security", sub: "Advanced CCTV + Guard" },
-  { label: "Green Landscape", sub: "2000+ Sqft Green Cover" },
-  { label: "Mini Theatre", sub: "8-Seat Screening Room" },
-  { label: "Power Backup", sub: "100% DG Generator" },
-  { label: "Vastu Compliant", sub: "All Units Certified" },
-  { label: "Prime Location", sub: "NCL Colony, Kompally" }
+  { icon: Shield,     label: "24/7 Security",     sub: "Advanced CCTV & Guard Patrol" },
+  { icon: Trees,      label: "Lush Landscaping",   sub: "2,000+ Sqft Curated Green Cover" },
+  { icon: Film,       label: "Mini Theatre",        sub: "Private 8-Seat Screening Room" },
+  { icon: Zap,        label: "Power Backup",        sub: "100% DG Generator Covered" },
+  { icon: Compass,    label: "Vastu Compliant",     sub: "All 4 Units Individually Certified" },
+  { icon: Dumbbell,   label: "Fitness Centre",      sub: "Premium Equipped Gym" },
+  { icon: Gamepad2,   label: "Indoor Games",        sub: "Table Tennis, Carrom & More" },
+  { icon: CarFront,   label: "EV Charging",         sub: "Smart Charging Bays in Basement" },
+  { icon: Wifi,       label: "High-Speed Internet", sub: "Fibre-Optic Ready Infrastructure" },
+  { icon: Camera,     label: "Smart CCTV",          sub: "180+ Camera Full-Coverage Grid" },
+  { icon: ShoppingCart, label: "Grocery Store",    sub: "In-Community Convenience Store" },
+  { icon: MapPin,     label: "Prime Location",      sub: "NCL Colony, Kompally, Hyderabad" }
 ];
 
 function ResidenceCard({ plan, idx }) {
@@ -247,16 +253,24 @@ export default function ProjectLakeWoods() {
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--gold)", fontWeight: 600 }}>Curated Lifestyle</span>
             <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", color: "#fff", marginTop: "1rem" }}>World-Class Amenities</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
-            {AMENITIES.map((a, i) => (
-              <div key={i} className="animate-on-scroll fade-up" style={{ padding: "3rem", background: "#0a0a0a", transitionDelay: i * 80 + "ms", transition: "background 0.3s ease", cursor: "default" }}
-                onMouseEnter={e => e.currentTarget.style.background = "#141414"}
-                onMouseLeave={e => e.currentTarget.style.background = "#0a0a0a"}
-              >
-                <h4 style={{ fontSize: "1.2rem", color: "#fff", marginBottom: "0.5rem", fontWeight: 500 }}>{a.label}</h4>
-                <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.6 }}>{a.sub}</p>
-              </div>
-            ))}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
+            {AMENITIES.map((a, i) => {
+              const Icon = a.icon;
+              return (
+                <div key={i} className="animate-on-scroll fade-up"
+                  style={{ padding: "2.5rem", background: "#0a0a0a", transitionDelay: i * 60 + "ms", transition: "background 0.3s ease", cursor: "default", position: "relative", overflow: "hidden" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "#131313"; e.currentTarget.querySelector(".amenity-line").style.width = "100%"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "#0a0a0a"; e.currentTarget.querySelector(".amenity-line").style.width = "0%"; }}
+                >
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <Icon size={26} color="var(--gold)" strokeWidth={1.5} />
+                  </div>
+                  <h4 style={{ fontSize: "1.05rem", color: "#fff", marginBottom: "0.4rem", fontWeight: 500, letterSpacing: "0.02em" }}>{a.label}</h4>
+                  <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.6 }}>{a.sub}</p>
+                  <div className="amenity-line" style={{ position: "absolute", bottom: 0, left: 0, height: "1px", width: "0%", background: "var(--gold)", transition: "width 0.4s cubic-bezier(0.16,1,0.3,1)" }} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
