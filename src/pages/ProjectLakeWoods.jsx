@@ -16,10 +16,10 @@ const NAV_ITEMS = [
 ];
 
 const RESIDENCES = [
-  { flat: "Flat 01", facing: "East Facing", sqft: "2,290", type: "3 BHK", img: "/lakewood-media/SECTION 3__ 2290 - f-transparent.png", badge: "Premium", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths"], accent: "#C9A96E" },
-  { flat: "Flat 02", facing: "West Facing", sqft: "2,285", type: "3 BHK", img: "/lakewood-media/SECTION 4 __ 2285 -f-transparent.png", badge: "Grand", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths"], accent: "#C9A96E" },
-  { flat: "Flat 03", facing: "East Facing", sqft: "2,675", type: "3 BHK", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F-transparent.png", badge: "Signature", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths", "Home Theatre"], accent: "#B8860B" },
-  { flat: "Flat 04", facing: "West Facing", sqft: "2,680", type: "3 BHK", img: "/lakewood-media/SECTION 2__ 2680 - F-transparent.png", badge: "Elite", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths", "Home Theatre"], accent: "#B8860B" }
+  { flat: "Flat 01", facing: "East Facing", sqft: "2,290", type: "3 BHK", img: "/lakewood-media/SECTION 3__ 2290 - f.jpg", badge: "Premium", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths"], accent: "#C9A96E" },
+  { flat: "Flat 02", facing: "West Facing", sqft: "2,285", type: "3 BHK", img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg", badge: "Grand", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths"], accent: "#C9A96E" },
+  { flat: "Flat 03", facing: "East Facing", sqft: "2,675", type: "3 BHK", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg", badge: "Signature", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths", "Home Theatre"], accent: "#B8860B" },
+  { flat: "Flat 04", facing: "West Facing", sqft: "2,680", type: "3 BHK", img: "/lakewood-media/SECTION 2__ 2680 - F.jpg", badge: "Elite", rooms: ["Master Suite", "2 Bedrooms", "Drawing Room", "Dining Area", "Kitchen", "3 Baths", "Home Theatre"], accent: "#B8860B" }
 ];
 
 const RENDERS = [
@@ -76,24 +76,25 @@ function ResidenceCard({ plan, idx }) {
       style={{ background: "#fff", borderRadius: "20px", overflow: "hidden", transitionDelay: (idx % 2) * 120 + "ms", transformStyle: "preserve-3d", cursor: "crosshair", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 60px rgba(0,0,0,0.07)" }}
       onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseEnter={() => setHovered(true)}
     >
-      <div style={{ background: "linear-gradient(160deg, #0d0d0d 0%, #1c1c1c 100%)", padding: "2rem 2rem 0" }}>
+      <div style={{ background: "#ffffff", padding: "2rem 2rem 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.2rem" }}>
           <div>
             <span style={{ fontSize: "0.65rem", letterSpacing: "0.35em", textTransform: "uppercase", color: plan.accent, fontWeight: 700, display: "block", marginBottom: "0.4rem" }}>{plan.badge} Unit</span>
-            <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2.2rem", color: "#fff", margin: 0, lineHeight: 1 }}>{plan.flat}</h3>
+            <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2.2rem", color: "#111", margin: 0, lineHeight: 1 }}>{plan.flat}</h3>
           </div>
           <div style={{ textAlign: "right" }}>
             <span style={{ display: "block", fontSize: "2.4rem", color: plan.accent, fontFamily: "Playfair Display, serif", lineHeight: 1 }}>{plan.sqft}</span>
-            <span style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.15em" }}>SQ. FT.</span>
+            <span style={{ fontSize: "0.65rem", color: "#999", letterSpacing: "0.15em" }}>SQ. FT.</span>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "0.75rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ display: "flex", gap: "0.75rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
           {[plan.facing, plan.type].map((tag, i) => (
-            <span key={i} style={{ fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase", padding: "0.3rem 0.9rem", borderRadius: "100px", border: "1px solid " + (i === 0 ? plan.accent + "70" : "rgba(255,255,255,0.15)"), color: i === 0 ? plan.accent : "rgba(255,255,255,0.55)" }}>{tag}</span>
+            <span key={i} style={{ fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase", padding: "0.3rem 0.9rem", borderRadius: "100px", border: "1px solid " + (i === 0 ? plan.accent + "70" : "rgba(0,0,0,0.15)"), color: i === 0 ? plan.accent : "#666" }}>{tag}</span>
           ))}
         </div>
-        <div style={{ padding: "2rem 0.5rem", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "360px", transform: hovered ? "translateZ(25px)" : "translateZ(0)", transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)" }}>
-          <img src={plan.img} alt={plan.flat} style={{ width: "100%", maxWidth: "460px", height: "auto", display: "block", imageRendering: "crisp-edges", filter: hovered ? "drop-shadow(0 25px 35px rgba(201,169,110,0.5)) brightness(1.06) contrast(1.04)" : "drop-shadow(0 10px 20px rgba(0,0,0,0.6)) brightness(1.02)", transition: "filter 0.5s ease" }} loading="lazy" />
+        {/* Original JPEG at full quality — mix-blend-mode:multiply removes grey bg visually without processing */}
+        <div style={{ padding: "2rem 0.5rem", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "360px", background: "#fff", transform: hovered ? "translateZ(25px)" : "translateZ(0)", transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)" }}>
+          <img src={plan.img} alt={plan.flat} style={{ width: "100%", maxWidth: "460px", height: "auto", display: "block", mixBlendMode: "multiply", imageRendering: "auto", transition: "transform 0.5s ease, filter 0.4s ease", transform: hovered ? "scale(1.03)" : "scale(1)", filter: hovered ? "brightness(1.02) contrast(1.04)" : "none" }} loading="lazy" />
         </div>
       </div>
       <div style={{ padding: "1.5rem 2rem 2rem", background: "#fff" }}>
