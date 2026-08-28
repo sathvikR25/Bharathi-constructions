@@ -572,3 +572,35 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
     column-count: 1 !important;
   }
 }
+
+/* --- 3D RESIDENCE CARD --- */
+.residence-card {
+  opacity: 0;
+  transform: translateY(80px) rotateX(20deg) scale(0.95);
+  transform-origin: center bottom;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+.residence-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0) scale(1);
+}
+.residence-card-inner {
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.residence-card:hover {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+}
+.residence-img {
+  mix-blend-mode: multiply;
+  transform: translateZ(30px);
+  transition: transform 0.4s ease;
+}
+.residence-card:hover .residence-img {
+  transform: translateZ(50px) scale(1.02);
+}
+.residence-details {
+  transform: translateZ(20px);
+}

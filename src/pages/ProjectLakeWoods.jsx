@@ -196,24 +196,59 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* 5. FLOOR PLANS - THE SECTIONS */}
-      <section style={{ padding: "8rem 2rem", background: "var(--paper)" }}>
+      {/* 5. 3D VIEWS & RESIDENCES */}
+      <section style={{ padding: "8rem 2rem", background: "#fdfbf7" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-          <div className="animate-on-scroll fade-up" style={{ textAlign: "center", marginBottom: "5rem" }}>
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "3rem", color: "var(--ink)" }}>Residences</h2>
-            <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", marginTop: "1rem" }}>Detailed configurations ranging from 2200 to 2680 Sq. Ft.</p>
+          <div className="animate-on-scroll fade-up" style={{ textAlign: "center", marginBottom: "6rem" }}>
+            <span style={{ fontSize: "0.9rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold-dark)", fontWeight: 600 }}>Floor Plans</span>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", color: "var(--ink)", marginTop: "1rem" }}>3D Views & Residences</h2>
+            <div style={{ width: "60px", height: "2px", background: "var(--gold)", margin: "2rem auto" }}></div>
+            <p style={{ fontSize: "1.15rem", color: "var(--ink-2)", marginTop: "1rem", maxWidth: "700px", margin: "0 auto" }}>
+              Intelligently designed layouts ensuring 100% Vastu compliance, zero dead space, and unparalleled luxury in every square foot.
+            </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "3rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "4rem" }}>
             {[
-              { img: "SECTION 1__ 2675 - SQ.F.jpg", label: "Section 1: 2675 Sq. Ft." },
-              { img: "SECTION 2__ 2680 - F.jpg", label: "Section 2: 2680 Sq. Ft." },
-              { img: "SECTION 3__ 2290 - f.jpg", label: "Section 3: 2290 Sq. Ft." },
-              { img: "SECTION 4 __ 2285 -f.jpg", label: "Section 4: 2285 Sq. Ft." }
+              { img: "SECTION 3__ 2290 - f.jpg", flat: "Flat 1", facing: "East Facing", sqft: "2290 sqft", type: "3 BHK" },
+              { img: "SECTION 4 __ 2285 -f.jpg", flat: "Flat 2", facing: "West Facing", sqft: "2285 sqft", type: "3 BHK" },
+              { img: "SECTION 1__ 2675 - SQ.F.jpg", flat: "Flat 3", facing: "East Facing", sqft: "2675 sqft", type: "3 BHK" },
+              { img: "SECTION 2__ 2680 - F.jpg", flat: "Flat 4", facing: "West Facing", sqft: "2680 sqft", type: "3 BHK" }
             ].map((plan, idx) => (
-              <div key={idx} className="animate-on-scroll fade-up" style={{ background: "#fff", padding: "2rem", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.04)", transitionDelay: `${idx * 100}ms` }}>
-                <img src={`/lakewood-media/${plan.img}`} alt={plan.label} style={{ width: "100%", height: "auto", mixBlendMode: "multiply", marginBottom: "2rem" }} loading="lazy" />
-                <h4 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--ink)", textAlign: "center", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "1rem" }}>{plan.label}</h4>
+              <div 
+                key={idx} 
+                className="animate-on-scroll residence-card" 
+                style={{ background: "#fff", borderRadius: "16px", padding: "3rem", transitionDelay: `${(idx % 2) * 150}ms`, border: "1px solid rgba(0,0,0,0.03)" }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  const xPct = x / rect.width - 0.5;
+                  const yPct = y / rect.height - 0.5;
+                  const inner = e.currentTarget.querySelector('.residence-card-inner');
+                  if(inner) inner.style.transform = `rotateY(${xPct * 10}deg) rotateX(${-yPct * 10}deg)`;
+                }}
+                onMouseLeave={(e) => {
+                  const inner = e.currentTarget.querySelector('.residence-card-inner');
+                  if(inner) inner.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                }}
+              >
+                <div className="residence-card-inner" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                  <div style={{ position: "relative", marginBottom: "3rem", flexGrow: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {/* The mix-blend-mode makes the JPEG white background completely transparent against the #fff card */}
+                    <img src={`/lakewood-media/${plan.img}`} alt={plan.flat} className="residence-img" style={{ width: "90%", height: "auto", display: "block", margin: "0 auto" }} loading="lazy" />
+                  </div>
+                  <div className="residence-details" style={{ borderTop: "1px solid rgba(201,169,110,0.3)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem" }}>
+                    <div>
+                      <h4 style={{ fontSize: "2rem", fontFamily: "Playfair Display, serif", color: "var(--ink)", marginBottom: "0.5rem" }}>{plan.flat}</h4>
+                      <p style={{ fontSize: "1.1rem", color: "var(--gold-dark)", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>{plan.facing}</p>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <span style={{ display: "block", fontSize: "1.5rem", color: "var(--ink)", fontWeight: 300 }}>{plan.sqft}</span>
+                      <span style={{ display: "block", fontSize: "0.9rem", color: "var(--ink-2)", letterSpacing: "0.1em" }}>{plan.type} Residence</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
