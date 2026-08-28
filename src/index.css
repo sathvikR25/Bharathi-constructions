@@ -681,3 +681,204 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
 .inner-3d, .inner-3d-deep {
     transform: none !important;
 }
+
+/* =========================================================================
+   ROLLING & SLIDING ANIMATIONS + CLAYMORPHISM — Lake Woods
+   ========================================================================= */
+
+/* --- ROLLING TEXT REVEAL (word-by-word barrel roll) --- */
+@keyframes roll-in {
+  0%   { transform: translateY(120%) rotateX(-90deg); opacity: 0; }
+  100% { transform: translateY(0)    rotateX(0deg);   opacity: 1; }
+}
+@keyframes roll-out {
+  0%   { transform: translateY(0)     rotateX(0deg);    opacity: 1; }
+  100% { transform: translateY(-120%) rotateX(90deg);   opacity: 0; }
+}
+
+.roll-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  perspective: 600px;
+}
+.roll-word span {
+  display: inline-block;
+  transform-origin: top center;
+  transform: translateY(110%) rotateX(-80deg);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+.is-visible .roll-word span,
+.roll-word.in-view span {
+  transform: translateY(0) rotateX(0deg);
+  opacity: 1;
+}
+
+/* --- SLIDING SECTION LABELS (left-rail pull) --- */
+@keyframes slide-in-left {
+  from { transform: translateX(-60px) scaleX(0.96); opacity: 0; }
+  to   { transform: translateX(0)     scaleX(1);    opacity: 1; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(60px) scaleX(0.96); opacity: 0; }
+  to   { transform: translateX(0)    scaleX(1);    opacity: 1; }
+}
+@keyframes slide-in-up {
+  from { transform: translateY(50px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.slide-left  { opacity: 0; animation: none; }
+.slide-right { opacity: 0; animation: none; }
+.slide-up    { opacity: 0; animation: none; }
+.is-visible .slide-left,  .slide-left.in-view  { animation: slide-in-left  0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.is-visible .slide-right, .slide-right.in-view { animation: slide-in-right 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.is-visible .slide-up,    .slide-up.in-view    { animation: slide-in-up    0.9s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* --- COUNTER ROLL (number ticker) --- */
+@keyframes ticker-roll {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.ticker-digit {
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+}
+.ticker-digit span {
+  animation: ticker-roll 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* --- MARQUEE STRIP (scroll-velocity aware) --- */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.lw-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee-scroll 18s linear infinite;
+  will-change: transform;
+}
+.lw-marquee-track:hover { animation-play-state: paused; }
+
+/* --- CLAYMORPHISM DESIGN TOKENS --- */
+
+/* Primary clay card — creamy, soft, tactile */
+.clay-lw {
+  background: linear-gradient(145deg, #fdfbf7, #f0ece3);
+  border-radius: 28px;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  box-shadow:
+    8px 8px 20px rgba(160,140,110,0.18),
+    -4px -4px 12px rgba(255,255,255,0.95),
+    inset 1px 1px 3px rgba(255,255,255,0.8);
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.clay-lw:hover {
+  box-shadow:
+    14px 14px 32px rgba(160,140,110,0.22),
+    -6px -6px 18px rgba(255,255,255,1),
+    inset 2px 2px 5px rgba(255,255,255,0.9);
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Dark clay — for the amenity section (dark bg) */
+.clay-dark {
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    8px 8px 20px rgba(0,0,0,0.5),
+    -4px -4px 12px rgba(255,255,255,0.04),
+    inset 1px 1px 2px rgba(255,255,255,0.06);
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+.clay-dark::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(201,169,110,0.07) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.clay-dark:hover {
+  box-shadow:
+    12px 12px 28px rgba(0,0,0,0.6),
+    -5px -5px 14px rgba(255,255,255,0.05),
+    inset 1px 1px 3px rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+}
+.clay-dark:hover::before { opacity: 1; }
+
+/* Stat clay pill */
+.clay-stat {
+  background: linear-gradient(145deg, #fdfbf7, #eae6dd);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255,255,255,0.95);
+  box-shadow:
+    6px 6px 16px rgba(160,140,110,0.15),
+    -3px -3px 8px rgba(255,255,255,0.9),
+    inset 1px 1px 2px rgba(255,255,255,0.7);
+}
+
+/* Floating clay badge */
+.clay-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(145deg, #fdfbf7, #f5f1e9);
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.9);
+  padding: 0.4rem 1rem;
+  box-shadow:
+    3px 3px 8px rgba(160,140,110,0.18),
+    -2px -2px 6px rgba(255,255,255,0.9);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* Rolling card entrance */
+@keyframes card-roll-in {
+  0%   { transform: perspective(800px) rotateY(-30deg) translateX(-60px); opacity: 0; }
+  100% { transform: perspective(800px) rotateY(0deg)   translateX(0);     opacity: 1; }
+}
+@keyframes card-roll-in-r {
+  0%   { transform: perspective(800px) rotateY(30deg) translateX(60px); opacity: 0; }
+  100% { transform: perspective(800px) rotateY(0deg)  translateX(0);    opacity: 1; }
+}
+.card-roll-l { opacity: 0; }
+.card-roll-r { opacity: 0; }
+.is-visible .card-roll-l { animation: card-roll-in   0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.is-visible .card-roll-r { animation: card-roll-in-r 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Hover zoom for images */
+.hover-zoom { transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.hover-zoom:hover { transform: scale(1.04); }
+
+/* Section slide underline */
+.section-line {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s;
+}
+.is-visible .section-line { width: 60px; }
+
+/* animate-on-scroll base states */
+.animate-on-scroll { opacity: 0; transform: translateY(32px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.animate-on-scroll.fade-up  { transform: translateY(32px); }
+.animate-on-scroll.fade-right { transform: translateX(-32px); }
+.animate-on-scroll.fade-left  { transform: translateX(32px); }
+.animate-on-scroll.is-visible { opacity: 1; transform: translate(0,0); }
+
