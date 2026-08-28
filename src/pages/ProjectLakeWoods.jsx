@@ -137,19 +137,13 @@ export default function ProjectLakeWoods() {
                 <div>
                   <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"2rem", color:"var(--gold-dark)", marginBottom:"1.5rem"}}>Architectural Brilliance</h3>
                   <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8, marginBottom:"2rem"}}>
-                    Crafted for the discerning few, Bharathi Lake Woods is a meticulously designed residential enclave comprising precisely 40 ultra-premium 3 BHK apartments. Spanning 2,621 square yards of prime real estate in NCL Colony, Kompally, the architecture seamlessly integrates modern elegance with natural surroundings.
-                  </p>
-                  <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8}}>
-                    Rising majestically across 8+2 floors, the edifice is an iconic landmark designed to offer absolute exclusivity, privacy, and an elevated standard of living. The facade features signature brick cladding and expansive glass balconies that invite the outdoors in.
+                    Bharathi Lake Woods is a meticulously designed residential enclave comprising precisely 40 ultra-premium 3 BHK apartments in NCL Colony, Kompally. Rising across 8+2 floors, the architecture seamlessly integrates modern elegance with natural surroundings.
                   </p>
                 </div>
                 <div>
                   <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"2rem", color:"var(--gold-dark)", marginBottom:"1.5rem"}}>A Serene Lifestyle</h3>
                   <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8, marginBottom:"2rem"}}>
-                    Imagine waking up to the tranquil breeze of a private enclave. The meticulously planned layout dedicates immense space to curated landscaping, pedestrian-friendly walkways, and interactive communal zones.
-                  </p>
-                  <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8}}>
-                    From the grand entrance lounge to the fully equipped mini-theatre and children's play areas, every inch of Bharathi Lake Woods is engineered to provide a holistic, resort-like lifestyle right in the heart of Hyderabad.
+                    From the grand entrance lounge to the fully equipped mini-theatre and interactive communal zones, every inch is engineered to provide a holistic, resort-like lifestyle right in the heart of Hyderabad.
                   </p>
                 </div>
               </div>
@@ -183,7 +177,7 @@ export default function ProjectLakeWoods() {
               <h2 className="section-heading skeuo-gold-text"><span className="curtain-wrap"><span className="curtain-text" style={{display:"block"}}>Intelligent Spaces</span></span></h2>
               <div className="gold-rule" style={{maxWidth:"240px", margin:"1.5rem auto 3rem"}} />
               <p style={{fontSize:"1.2rem", color:"var(--ink-2)", maxWidth:"800px", margin:"0 auto", lineHeight:1.8}}>
-                Every residence at Bharathi Lake Woods is a testament to thoughtful spatial engineering. Discover our highly detailed masterplan and floor plans, designed to maximize natural light, ventilation, and absolute privacy.
+                Discover our detailed masterplan and floor plans, engineered to maximize natural light, ventilation, and absolute privacy.
               </p>
             </div>
 
@@ -193,7 +187,7 @@ export default function ProjectLakeWoods() {
                 <div style={{flex: "1 1 400px"}}>
                   <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"2.5rem", color:"var(--ink)", marginBottom:"1.5rem"}}>Unit Configurations</h3>
                   <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8}}>
-                    Our 3 BHK luxury residences range from 2205 to 2600 Sq. Ft. The layouts feature expansive drawing rooms, dedicated home theater spaces, and large balconies that overlook the serene landscape.
+                    Expansive drawing rooms, dedicated home theater spaces, and large balconies.
                   </p>
                   <ul style={{marginTop: "2rem", listStyle: "none", padding: 0, color: "var(--ink-2)", fontSize: "1.1rem", lineHeight: 2}}>
                     <li>✓ West Facing Premium: 2205 Sq. Ft.</li>
@@ -218,7 +212,7 @@ export default function ProjectLakeWoods() {
                 <div style={{flex: "1 1 400px"}}>
                   <h3 style={{fontFamily:"Playfair Display, serif", fontSize:"2.5rem", color:"var(--ink)", marginBottom:"1.5rem"}}>The Masterplan</h3>
                   <p style={{fontSize:"1.15rem", color:"var(--ink-2)", lineHeight:1.8}}>
-                    Spanning 2,621 square yards, the masterplan is designed around a central ethos of community and tranquility. The site features dedicated pedestrian zones, extensive landscaping, and world-class recreational amenities seamlessly integrated into the natural topography.
+                    Designed around community and tranquility with dedicated pedestrian zones and extensive landscaping.
                   </p>
                   <ul style={{marginTop: "2rem", listStyle: "none", padding: 0, color: "var(--ink-2)", fontSize: "1.1rem", lineHeight: 2}}>
                     <li>✓ 40 Exclusive Units</li>
