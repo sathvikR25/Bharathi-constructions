@@ -882,3 +882,92 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
 .animate-on-scroll.fade-left  { transform: translateX(32px); }
 .animate-on-scroll.is-visible { opacity: 1; transform: translate(0,0); }
 
+
+/* =========================================================================
+   SPATIAL UX REDESIGN — HOME PAGE (Awwwards Style)
+   ========================================================================= */
+
+/* --- Custom Magnetic Cursor --- */
+body {
+  cursor: none; /* Hide default cursor */
+}
+a, button, [role="button"] {
+  cursor: none;
+}
+.custom-cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.custom-cursor-outline {
+  position: fixed;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid var(--gold-dark);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16,1,0.3,1), height 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s;
+}
+.custom-cursor-outline.active {
+  width: 80px; height: 80px;
+  background: rgba(201, 169, 110, 0.1);
+  border-color: transparent;
+  backdrop-filter: blur(4px);
+}
+
+/* --- Kinetic Typography --- */
+.kinetic-line {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  line-height: 1.05;
+}
+.kinetic-word {
+  overflow: hidden;
+  padding-right: 0.25em; /* spacing between words */
+}
+.kinetic-word span {
+  display: inline-block;
+  transform: translateY(110%) rotateZ(5deg);
+  opacity: 0;
+}
+.kinetic-word.visible span {
+  transform: translateY(0) rotateZ(0deg);
+  opacity: 1;
+  transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), opacity 0.8s ease;
+}
+
+/* --- Spatial Media Cards --- */
+.spatial-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  transform: translateZ(0);
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.spatial-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.16,1,0.3,1), filter 0.8s ease;
+  transform: scale(1.1);
+}
+.spatial-card:hover img {
+  transform: scale(1.0);
+  filter: brightness(0.85);
+}
+
+/* Morphing Aspect Ratio (CSS fallback, mostly GSAP driven) */
+.morph-img-wrapper {
+  width: 100%;
+  height: 100vh;
+  will-change: transform, border-radius, width;
+}
+
