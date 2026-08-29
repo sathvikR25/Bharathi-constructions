@@ -21,6 +21,11 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
     }
   };
 
+  // On mount, set initial state to hidden without animating
+  useEffect(() => {
+    gsap.set(overlayRef.current, { yPercent: -100 });
+  }, []);
+
   useEffect(() => {
     if (navOpen) {
       gsap.to(overlayRef.current, { yPercent: 0, duration: 0.8, ease: "power4.inOut" });
@@ -41,12 +46,14 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
       width: "100%",
       height: "100vh",
       background: "#050505",
-      zIndex: 95, // Below header
+      zIndex: 95,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      transform: "translateY(-100%)",
-      willChange: "transform"
+      willChange: "transform",
+      // Using a CSS variable or hiding it initially before React hydration
+      visibility: navOpen ? "visible" : "hidden",
+      transition: "visibility 0.8s"
     }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem", textAlign: "center" }}>
         <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: "2rem" }}>Navigation</span>
