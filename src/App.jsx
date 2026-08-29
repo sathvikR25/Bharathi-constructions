@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+﻿import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
@@ -9,6 +9,7 @@ import ProjectLakeWoods from "./pages/ProjectLakeWoods";
 import Contact from "./pages/Contact";
 import Legacy from "./pages/Legacy";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,6 +79,7 @@ export default function App() {
             <Route path="/lake-woods" element={<ProjectLakeWoods />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legacy" element={<Legacy />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SmoothScroll>
@@ -85,3 +87,4 @@ export default function App() {
     </ErrorBoundary>
   );
 }
+
