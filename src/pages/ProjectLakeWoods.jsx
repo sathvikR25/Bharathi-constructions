@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,28 +7,27 @@ import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
-import ImageCarousel from "../components/ImageCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const LAKEWOOD_RENDERS = [
-  { src: "/lakewood-media/lakewood-cover.jpg", label: "Lake Woods" },
-  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "Grand Entrance" },
-  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "Facade â€” Evening" },
-  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "Landscape View" },
-  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "Aerial Perspective" },
-  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "Amenity Deck" },
-  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "Lobby & Lounge" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "Master Layout" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "Feature List" },
-  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "Floor Plan Overview" },
+  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 — Lake Woods" },
+  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 — Grand Entrance" },
+  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 — Facade Evening" },
+  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 — Landscape" },
+  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 — Aerial Perspective" },
+  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 — Amenity Deck" },
+  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 — Lobby & Lounge" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 — Master Layout" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 — Feature List" },
+  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 — Floor Plans" },
 ];
 
 const RESIDENCES = [
-  { id: "flat1", label: "Residence 01", sqft: "2290 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 3__ 2290 - f.jpg" },
-  { id: "flat2", label: "Residence 02", sqft: "2285 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg" },
-  { id: "flat3", label: "Residence 03", sqft: "2675 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg" },
-  { id: "flat4", label: "Residence 04", sqft: "2680 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 2__ 2680 - F.jpg" }
+  { id: "flat1", label: "Residence 01", sqft: "2290 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 3__ 2290 - f-transparent.png" },
+  { id: "flat2", label: "Residence 02", sqft: "2285 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 4 __ 2285 -f-transparent.png" },
+  { id: "flat3", label: "Residence 03", sqft: "2675 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F-transparent.png" },
+  { id: "flat4", label: "Residence 04", sqft: "2680 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 2__ 2680 - F-transparent.png" }
 ];
 
 const AMENITIES = [
@@ -51,6 +50,7 @@ export default function ProjectLakeWoods() {
   const mainRef = useRef(null);
   const heroWrapRef = useRef(null);
   const heroTextRef = useRef(null);
+  const galleryTitleRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -65,7 +65,7 @@ export default function ProjectLakeWoods() {
         });
       }
 
-      // 3D Tilt Hover for Residence Cards (Inverted Colors)
+      // 3D Tilt Hover for Residence Cards (Using transparent PNGs now)
       gsap.utils.toArray(".residence-card").forEach(card => {
         const inner = card.querySelector(".residence-inner");
         const floatTl = gsap.timeline({ repeat: -1, yoyo: true }).to(inner, { y: -10, duration: 3, ease: "sine.inOut" });
@@ -81,6 +81,16 @@ export default function ProjectLakeWoods() {
         });
       });
 
+      // Pin Gallery Title while scrolling through the stack
+      if (galleryTitleRef.current) {
+        ScrollTrigger.create({
+          trigger: ".gallery-section",
+          start: "top 20%",
+          end: "bottom 80%",
+          pin: galleryTitleRef.current,
+        });
+      }
+
       // Reveal Images
       gsap.utils.toArray(".reveal-img").forEach(img => {
         gsap.fromTo(img, { scale: 1.15, filter: "brightness(0.8)" }, {
@@ -94,11 +104,9 @@ export default function ProjectLakeWoods() {
   }, []);
 
   return (
-    // INVERTED THEME: Pure Paper Background, Ink Text
     <div ref={mainRef} style={{ background: "#fdfbf7", color: "#0a0a0a", overflowX: "hidden" }}>
       <CustomCursor />
       
-      {/* HEADER */}
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
@@ -130,17 +138,40 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* FULL CAROUSEL (Light Theme Adaptation) */}
-      <section style={{ padding: "10rem 0", background: "#f4f1ea" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 4rem", marginBottom: "4rem" }}>
-          <KineticText as="h2" text="The Lake Woods Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a" }} />
-        </div>
-        <div style={{ filter: "invert(0)" }}> {/* Forces carousel to be standard, but we wrap in a light section */}
-          <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" theme="light" />
+      {/* NEW STACKED GALLERY ANIMATION (Replaces ImageCarousel) */}
+      <section className="gallery-section" style={{ padding: "10rem 4rem", background: "#f4f1ea", position: "relative" }}>
+        <div style={{ maxWidth: "1600px", margin: "0 auto", display: "flex", gap: "6rem", alignItems: "flex-start" }}>
+          
+          {/* Pinned Title Left Side */}
+          <div ref={galleryTitleRef} style={{ flex: "1 1 400px", paddingTop: "5rem" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Gallery</span>
+            <KineticText as="h2" text="Every Detail," style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }} />
+            <KineticText as="h2" text="Captured." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", fontStyle: "italic" }} />
+          </div>
+
+          {/* Stacking Images Right Side */}
+          <div style={{ flex: "2 1 800px", display: "flex", flexDirection: "column", gap: "15vh" }}>
+            {LAKEWOOD_RENDERS.map((item, i) => (
+              <div key={i} style={{ 
+                position: "sticky", 
+                top: "15vh", 
+                width: "100%", 
+                background: "#f4f1ea" // ensures stacked images cover previous ones smoothly 
+              }}>
+                <div style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)", aspectRatio: "16/10" }}>
+                  <img src={item.src} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                </div>
+                <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
-      {/* INVERTED AMENITIES (Light Theme, Dark Borders) */}
+      {/* INVERTED AMENITIES */}
       <section style={{ padding: "10rem 4rem", background: "#fdfbf7" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
@@ -159,7 +190,7 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* 3D RESIDENCES (INVERTED: Dark cards on Light Background) */}
+      {/* 3D RESIDENCES - NOW USING TRANSPARENT PNGS */}
       <section style={{ padding: "10rem 4rem", background: "#f4f1ea", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "8rem" }}>
@@ -177,8 +208,9 @@ export default function ProjectLakeWoods() {
                       <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>{res.facing}</span>
                     </div>
                   </div>
-                  <div style={{ width: "100%", transform: "translateZ(60px)", display: "flex", justifyContent: "center", background: "#fff", padding: "1rem", borderRadius: "12px" }}>
-                     <img src={res.img} alt={res.label} style={{ width: "85%", height: "auto", mixBlendMode: "multiply", pointerEvents: "none" }} />
+                  {/* Removed mix-blend mode and white background, directly placing the transparent PNG */}
+                  <div style={{ width: "100%", transform: "translateZ(60px)", display: "flex", justifyContent: "center", padding: "1rem" }}>
+                     <img src={res.img} alt={res.label} style={{ width: "85%", height: "auto", pointerEvents: "none" }} />
                   </div>
                 </div>
               </div>
@@ -187,7 +219,7 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* LOCATION / MASTERPLAN (Light Theme) */}
+      {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
@@ -197,7 +229,7 @@ export default function ProjectLakeWoods() {
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
               <KineticText as="h2" text="Center of Everything." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit â€” Kandlakoya", "9 min"]].map(([place, time]) => (
+                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit — Kandlakoya", "9 min"]].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
                     <span style={{ fontSize: "1.1rem", color: "#0a0a0a" }}>{place}</span>
                     <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#555" }}>{time}</span>
@@ -208,7 +240,7 @@ export default function ProjectLakeWoods() {
          </div>
       </section>
 
-      {/* FOOTER CTA (INVERTED: Paper Background, Ink Text) */}
+      {/* FOOTER CTA */}
       <section style={{ padding: "12rem 4rem", background: "#f4f1ea", textAlign: "center", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
         <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
         <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
@@ -218,4 +250,3 @@ export default function ProjectLakeWoods() {
     </div>
   );
 }
-
