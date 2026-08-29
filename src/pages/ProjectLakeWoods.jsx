@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Trees, Wind, Eye, Waves, Sun, ShieldCheck } from "lucide-react";
+import { ArrowRight, Shield, Trees, Film, Zap, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
@@ -27,6 +27,21 @@ const RESIDENCES = [
   { id: "flat4", label: "Residence 04", sqft: "2680 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 2__ 2680 - F.jpg" }
 ];
 
+const AMENITIES = [
+  { icon: Shield,     label: "24/7 Security",     sub: "Advanced CCTV & Guard Patrol" },
+  { icon: Trees,      label: "Lush Landscaping",   sub: "2,000+ Sqft Curated Green Cover" },
+  { icon: Film,       label: "Mini Theatre",        sub: "Private 8-Seat Screening Room" },
+  { icon: Zap,        label: "Power Backup",        sub: "100% DG Generator Covered" },
+  { icon: Compass,    label: "Vastu Compliant",     sub: "All 4 Units Individually Certified" },
+  { icon: Dumbbell,   label: "Fitness Centre",      sub: "Premium Equipped Gym" },
+  { icon: Gamepad2,   label: "Indoor Games",        sub: "Table Tennis, Carrom & More" },
+  { icon: CarFront,   label: "EV Charging",         sub: "Smart Charging Bays in Basement" },
+  { icon: Wifi,       label: "High-Speed Internet", sub: "Fibre-Optic Ready Infrastructure" },
+  { icon: Camera,     label: "Smart CCTV",          sub: "180+ Camera Full-Coverage Grid" },
+  { icon: ShoppingCart, label: "Grocery Store",    sub: "In-Community Convenience Store" },
+  { icon: MapPin,     label: "Prime Location",      sub: "NCL Colony, Kompally, Hyderabad" }
+];
+
 export default function ProjectLakeWoods() {
   const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef(null);
@@ -44,11 +59,18 @@ export default function ProjectLakeWoods() {
 
       // 3D Tilt Hover for Residence Cards
       gsap.utils.toArray(".residence-card").forEach(card => {
+        const inner = card.querySelector(".residence-inner");
+        
+        // Add subtle idle floating via GSAP timeline when not hovered
+        const floatTl = gsap.timeline({ repeat: -1, yoyo: true })
+          .to(inner, { y: -10, duration: 3, ease: "sine.inOut" });
+
+        card.addEventListener("mouseenter", () => floatTl.pause());
         card.addEventListener("mousemove", (e) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
           const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(card.querySelector(".residence-inner"), {
+          gsap.to(inner, {
             rotationY: x / 20,
             rotationX: -y / 20,
             ease: "power2.out",
@@ -56,12 +78,21 @@ export default function ProjectLakeWoods() {
           });
         });
         card.addEventListener("mouseleave", () => {
-          gsap.to(card.querySelector(".residence-inner"), {
+          gsap.to(inner, {
             rotationY: 0,
             rotationX: 0,
             ease: "power3.out",
-            duration: 0.6
+            duration: 0.6,
+            onComplete: () => floatTl.play()
           });
+        });
+      });
+
+      // Image Parallax Reveal
+      gsap.utils.toArray(".reveal-img").forEach(img => {
+        gsap.fromTo(img, { scale: 1.15, filter: "brightness(0.5)" }, {
+          scale: 1, filter: "brightness(1)",
+          scrollTrigger: { trigger: img, start: "top bottom", end: "center center", scrub: true }
         });
       });
       
@@ -118,6 +149,25 @@ export default function ProjectLakeWoods() {
         <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" />
       </section>
 
+      {/* AMENITIES */}
+      <section style={{ padding: "10rem 4rem", background: "#0a0a0a" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#fff" }} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+            {AMENITIES.map((a, i) => {
+              const Icon = a.icon;
+              return (
+                <div key={i} style={{ padding: "3rem 2rem", background: "rgba(255,255,255,0.02)", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <Icon size={32} color="#fff" strokeWidth={1} style={{ marginBottom: "2rem" }} />
+                  <h4 style={{ fontSize: "1.2rem", fontWeight: 400, marginBottom: "1rem", color: "#fff" }}>{a.label}</h4>
+                  <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{a.sub}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* 3D RESIDENCES (Pure Monochrome, Mix-blend multiply to hide grey JPG bgs) */}
       <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
@@ -127,7 +177,7 @@ export default function ProjectLakeWoods() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "3rem", perspective: "1000px" }}>
             {RESIDENCES.map((res, i) => (
-              <div key={i} className="residence-card hover-target" style={{ position: "relative", padding: "2rem" }}>
+              <div key={i} className="residence-card hover-target" style={{ position: "relative", padding: "1rem" }}>
                 <div className="residence-inner" style={{ background: "#fff", borderRadius: "24px", padding: "3rem", boxShadow: "0 20px 40px rgba(0,0,0,0.05)", transformStyle: "preserve-3d", display: "flex", flexDirection: "column", alignItems: "center" }}>
                   <div style={{ width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "3rem", transform: "translateZ(30px)" }}>
                     <span style={{ fontSize: "1.5rem", fontFamily: "Playfair Display, serif" }}>{res.label}</span>
@@ -144,6 +194,27 @@ export default function ProjectLakeWoods() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* LOCATION / MASTERPLAN */}
+      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
+            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)" }}>
+              <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+            <div style={{ flex: "1 1 400px" }}>
+              <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
+              <KineticText as="h2" text="Center of Everything." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit — Kandlakoya", "9 min"]].map(([place, time]) => (
+                  <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
+                    <span style={{ fontSize: "1.1rem", color: "#0a0a0a" }}>{place}</span>
+                    <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#555" }}>{time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+         </div>
       </section>
 
       {/* FOOTER CTA */}
