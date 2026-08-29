@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -186,7 +186,7 @@ export default function Home() {
         
         <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
-          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center" }}>
+          <div className="horizontal-card-inner" style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: 1, position: "relative" }}>
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/horizon pics/VIEW_04_FFFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
@@ -194,13 +194,13 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>01 — The Skyline</span>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>01 â€” The Skyline</span>
               <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
               <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
             </div>
           </div>
 
-          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center", flexDirection: "row-reverse" }}>
+          <div className="horizontal-card-inner" style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center", flexDirection: "row-reverse" }}>
             <div style={{ flex: 1, position: "relative" }}>
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
@@ -208,7 +208,7 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>02 — The Sanctuary</span>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>02 â€” The Sanctuary</span>
               <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
               <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
             </div>
@@ -246,7 +246,7 @@ export default function Home() {
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
                   <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.3)", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
-                  <span style={{ fontSize: "2rem", color: "rgba(255,255,255,0.5)" }}>✦</span>
+                  <span style={{ fontSize: "2rem", color: "rgba(255,255,255,0.5)" }}>âœ¦</span>
                 </div>
               ))}
            </div>
@@ -263,7 +263,7 @@ export default function Home() {
           </div>
           <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "3rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>© 2026 Bharathi Constructions.</span>
+            <span>Â© 2026 Bharathi Constructions.</span>
             <span>Hyderabad, Telangana</span>
           </div>
         </div>
@@ -271,3 +271,4 @@ export default function Home() {
     </div>
   );
 }
+

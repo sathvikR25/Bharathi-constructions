@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,16 +11,16 @@ import KineticText from "../components/KineticText";
 gsap.registerPlugin(ScrollTrigger);
 
 const LAKEWOOD_RENDERS = [
-  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 — Lake Woods" },
-  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 — Grand Entrance" },
-  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 — Facade Evening" },
-  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 — Landscape" },
-  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 — Aerial Perspective" },
-  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 — Amenity Deck" },
-  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 — Lobby & Lounge" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 — Master Layout" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 — Feature List" },
-  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 — Floor Plans" },
+  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 â€” Lake Woods" },
+  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 â€” Grand Entrance" },
+  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 â€” Facade Evening" },
+  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 â€” Landscape" },
+  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 â€” Aerial Perspective" },
+  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 â€” Amenity Deck" },
+  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 â€” Lobby & Lounge" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 â€” Master Layout" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 â€” Feature List" },
+  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 â€” Floor Plans" },
 ];
 
 const RESIDENCES = [
@@ -143,7 +143,7 @@ export default function ProjectLakeWoods() {
         <div style={{ maxWidth: "1600px", margin: "0 auto", display: "flex", gap: "6rem", alignItems: "flex-start" }}>
           
           {/* Pinned Title Left Side */}
-          <div ref={galleryTitleRef} style={{ flex: "1 1 400px", paddingTop: "5rem" }}>
+          <div ref={galleryTitleRef} className="pinned-title" style={{ flex: "1 1 400px", paddingTop: "5rem" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Gallery</span>
             <KineticText as="h2" text="Every Detail," style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }} />
             <KineticText as="h2" text="Captured." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", fontStyle: "italic" }} />
@@ -229,7 +229,7 @@ export default function ProjectLakeWoods() {
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
               <KineticText as="h2" text="Center of Everything." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit — Kandlakoya", "9 min"]].map(([place, time]) => (
+                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit â€” Kandlakoya", "9 min"]].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
                     <span style={{ fontSize: "1.1rem", color: "#0a0a0a" }}>{place}</span>
                     <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#555" }}>{time}</span>
@@ -250,3 +250,4 @@ export default function ProjectLakeWoods() {
     </div>
   );
 }
+

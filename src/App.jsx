@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
@@ -38,6 +38,7 @@ function SmoothScroll({ children }) {
 
     // Reset scroll on route change
     lenis.scrollTo(0, { immediate: true });
+    window.scrollTo(0, 0);
 
     return () => {
       lenis.destroy();

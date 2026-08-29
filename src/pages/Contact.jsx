@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
@@ -16,7 +16,7 @@ export default function Contact() {
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
-      <section style={{ paddingTop: "20vh", paddingBottom: "10vh", paddingLeft: "4rem", paddingRight: "4rem", maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem" }}>
+      <section className="contact-layout" style={{ paddingTop: "20vh", paddingBottom: "10vh", paddingLeft: "4rem", paddingRight: "4rem", maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem" }}>
         <div style={{ flex: "1 1 400px" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "1.5rem" }}>Get In Touch</span>
           <KineticText as="h1" text="Let's build" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, fontWeight: 400, color: "#fff", lineHeight: 1.1 }} />
@@ -73,3 +73,4 @@ export default function Contact() {
     </div>
   );
 }
+
