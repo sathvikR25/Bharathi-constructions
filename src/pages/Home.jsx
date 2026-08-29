@@ -142,14 +142,14 @@ export default function Home() {
   const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational sanctuaries. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
 
   return (
-    <div ref={mainRef} style={{ background: "transparent", color: "#fdfbf7", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "transparent", color: "#0a0a0a", overflowX: "hidden" }}>
       
       {/* PRELOADER */}
       <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
-         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#fff", margin: 0, lineHeight: 0.8 }}>0%</h1>
+         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#0a0a0a", margin: 0, lineHeight: 0.8 }}>0%</h1>
       </div>
       
-      <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* 1. IMMERSIVE HERO */}
@@ -177,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
-      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#fff", overflow: "hidden" }}>
+      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#0a0a0a", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
           <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
         </div>
@@ -192,9 +192,9 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>01 â€” The Skyline</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", display: "block", marginBottom: "2rem" }}>01 â€” The Skyline</span>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
+              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
             </div>
           </div>
 
@@ -206,9 +206,9 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>02 â€” The Sanctuary</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", display: "block", marginBottom: "2rem" }}>02 â€” The Sanctuary</span>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
+              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
             </div>
           </div>
 
@@ -243,8 +243,8 @@ export default function Home() {
            <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
-                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.3)", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
-                  <span style={{ fontSize: "2rem", color: "rgba(255,255,255,0.5)" }}>âœ¦</span>
+                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.3)", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
+                  <span style={{ fontSize: "2rem", color: "rgba(0,0,0,0.5)" }}>âœ¦</span>
                 </div>
               ))}
            </div>
@@ -252,15 +252,15 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "transparent", color: "#fff", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
+      <footer style={{ background: "transparent", color: "#0a0a0a", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#fff", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
+          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#0a0a0a", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
-             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => e.target.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.target.style.background="transparent"}>Our Legacy</Link>
-             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "transparent", color: "#000", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
+             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#0a0a0a", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => e.target.style.background="rgba(0,0,0,0.05)"} onMouseLeave={e => e.target.style.background="transparent"}>Our Legacy</Link>
+             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#0a0a0a", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "3rem" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "3rem" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.4)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             <span>Â© 2026 Bharathi Constructions.</span>
             <span>Hyderabad, Telangana</span>
           </div>

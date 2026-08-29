@@ -64,7 +64,7 @@ function Scene({ isLight }) {
 
 export default function Background3D() {
   const location = useLocation();
-  const isLight = location.pathname === "/lake-woods" || location.pathname === "/legacy";
+  const isLight = location.pathname === "/" || location.pathname === "/lake-woods" || location.pathname === "/legacy";
 
   return (
     <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: -1, pointerEvents: "none" }}>
