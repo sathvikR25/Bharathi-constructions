@@ -5,56 +5,91 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import CustomCursor from "../components/CustomCursor";
+import KineticText from "../components/KineticText";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const mainRef = useRef(null);
   
-  // Hero Refs
+  // Refs
+  const preloaderRef = useRef(null);
+  const counterRef = useRef(null);
   const heroSectionRef = useRef(null);
   const heroImgWrapRef = useRef(null);
   const textTopRef = useRef(null);
   const textBottomRef = useRef(null);
-
-  // Horizontal Scroll Refs
+  const visionRef = useRef(null);
   const horizontalSectionRef = useRef(null);
   const horizontalTrackRef = useRef(null);
+  const marqueeRef = useRef(null);
 
   useEffect(() => {
+    // PRELOADER SEQUENCE
+    let count = { val: 0 };
+    gsap.to(count, {
+      val: 100,
+      duration: 2,
+      ease: "power4.inOut",
+      onUpdate: () => {
+        if (counterRef.current) counterRef.current.innerText = Math.round(count.val) + "%";
+      },
+      onComplete: () => {
+        gsap.to(preloaderRef.current, {
+          yPercent: -100,
+          duration: 1.2,
+          ease: "power4.inOut",
+          onComplete: () => {
+            setLoaded(true);
+            ScrollTrigger.refresh();
+          }
+        });
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!loaded) return;
+
     let ctx = gsap.context(() => {
       
       // 1. Hero Pinned Expansion
-      // We pin the hero section. The image wrapper starts small, then grows to 100vw/100vh.
-      // Text splits and moves out of the way.
       const tlHero = gsap.timeline({
         scrollTrigger: {
           trigger: heroSectionRef.current,
           start: "top top",
-          end: "+=150%", // Scroll for 150% of viewport height to complete the animation
-          scrub: 1,      // Smooth scrubbing
+          end: "+=150%",
+          scrub: 1,
           pin: true
         }
       });
+      tlHero.to(heroImgWrapRef.current, { width: "100vw", height: "100vh", borderRadius: "0px", ease: "power2.inOut" }, 0)
+            .to(textTopRef.current, { y: "-150%", opacity: 0, ease: "power2.inOut" }, 0)
+            .to(textBottomRef.current, { y: "150%", opacity: 0, ease: "power2.inOut" }, 0);
 
-      tlHero.to(heroImgWrapRef.current, {
-        width: "100vw",
-        height: "100vh",
-        borderRadius: "0px",
-        ease: "power2.inOut"
-      }, 0)
-      .to(textTopRef.current, { y: "-150%", opacity: 0, ease: "power2.inOut" }, 0)
-      .to(textBottomRef.current, { y: "150%", opacity: 0, ease: "power2.inOut" }, 0);
+      // 2. The Vision (Text Reveal)
+      const words = gsap.utils.toArray(".vision-word");
+      gsap.fromTo(words, 
+        { opacity: 0.1 },
+        { 
+          opacity: 1, 
+          stagger: 0.1, 
+          scrollTrigger: {
+            trigger: visionRef.current,
+            start: "top 70%",
+            end: "bottom 50%",
+            scrub: 1
+          }
+        }
+      );
 
-
-      // 2. Horizontal Scroll Section
-      // Instead of standard scrolling, we pin this container and move the inner track horizontally.
+      // 3. Horizontal Scroll Section
       const track = horizontalTrackRef.current;
       if (track) {
-        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
         gsap.to(track, {
-          x: getScrollAmount,
+          x: () => -(track.scrollWidth - window.innerWidth),
           ease: "none",
           scrollTrigger: {
             trigger: horizontalSectionRef.current,
@@ -66,15 +101,15 @@ export default function Home() {
           }
         });
       }
-      
-      // 3. Parallax Floating Elements (Non-linear scroll)
-      gsap.utils.toArray(".parallax-layer").forEach(layer => {
-        const speed = layer.getAttribute("data-speed") || 1;
-        gsap.to(layer, {
-          y: (i, el) => (1 - parseFloat(speed)) * (ScrollTrigger.maxScroll(window) - (el.offsetTop || 0)),
+
+      // 4. Parallax Image Grid (Lifestyle)
+      gsap.utils.toArray(".parallax-img").forEach(img => {
+        const speed = img.getAttribute("data-speed") || 0.1;
+        gsap.to(img, {
+          yPercent: speed * 100,
           ease: "none",
           scrollTrigger: {
-            trigger: layer,
+            trigger: img.parentElement,
             start: "top bottom",
             end: "bottom top",
             scrub: true
@@ -82,15 +117,40 @@ export default function Home() {
         });
       });
 
+      // 5. Infinite Marquee
+      gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        ease: "none",
+        duration: 20,
+        repeat: -1
+      });
+
+      // Non-linear scroll elements (floating text)
+      gsap.utils.toArray(".parallax-layer").forEach(layer => {
+        const speed = layer.getAttribute("data-speed") || 1;
+        gsap.to(layer, {
+          y: (i, el) => (1 - parseFloat(speed)) * (ScrollTrigger.maxScroll(window) - (el.offsetTop || 0)),
+          ease: "none",
+          scrollTrigger: { trigger: layer, start: "top bottom", end: "bottom top", scrub: true }
+        });
+      });
+
     }, mainRef);
     return () => ctx.revert();
-  }, []);
+  }, [loaded]);
+
+  const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational sanctuaries. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
 
   return (
     <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
       <CustomCursor />
       
-      <header style={{ position: "fixed", width: "100%", zIndex: 100, mixBlendMode: "difference" }}>
+      {/* PRELOADER */}
+      <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "#050505", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
+         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#fff", margin: 0, lineHeight: 0.8 }}>0%</h1>
+      </div>
+      
+      <header style={{ position: "fixed", width: "100%", zIndex: 100, mixBlendMode: "difference", opacity: loaded ? 1 : 0, transition: "opacity 1s" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 2.5rem", height: "100px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Link to="/" className="hover-target"><img src="/logo.png" alt="Bharathi" style={{ height: "45px", filter: "brightness(0) invert(1)" }} /></Link>
           <button className="hover-target" onClick={() => setNavOpen(!navOpen)} style={{ background: "transparent", border: "none", color: "#fff", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>{navOpen ? "Close" : "Menu"}</button>
@@ -98,61 +158,103 @@ export default function Home() {
       </header>
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
-      {/* IMMERSIVE HERO: Pinned & Expanding */}
+      {/* 1. IMMERSIVE HERO */}
       <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        {/* Massive Text Masking */}
         <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center", mixBlendMode: "difference" }}>
           <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#fff", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
           <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#fff", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Legacies</h1>
         </div>
-
-        {/* The "Window" that expands */}
         <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "30vw", height: "40vh", borderRadius: "200px", overflow: "hidden", willChange: "transform, width, height, border-radius" }}>
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon Skyline" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) contrast(1.1)" }} />
         </div>
       </section>
 
-      {/* HORIZONTAL SCROLL JOURNEY (Breaks the vertical brochure layout) */}
-      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "#fdfbf7", color: "#0a0a0a", overflow: "hidden" }}>
-        {/* Fixed massive background text to give depth during horizontal scroll */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.05, pointerEvents: "none", whiteSpace: "nowrap" }}>
-          <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>EXPLORE</span>
+      {/* 2. THE VISION */}
+      <section style={{ padding: "15rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+        <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
+          <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
+            {visionText.map((word, i) => <span key={i} className="vision-word" style={{ opacity: 0.1 }}>{word}</span>)}
+          </p>
+          <div style={{ marginTop: "6rem" }}>
+            <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. HORIZONTAL SCROLL JOURNEY */}
+      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "#050505", color: "#fff", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
         </div>
         
-        {/* The Track that moves left */}
-        <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "10vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
+        <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
-          {/* Card 1: Horizon */}
-          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "4rem", alignItems: "center" }}>
+          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: 1, position: "relative" }}>
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/horizon pics/VIEW_04_FFFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
               </div>
-              <h2 className="parallax-layer" data-speed="1.2" style={{ position: "absolute", top: "20%", left: "-10%", fontFamily: "Playfair Display, serif", fontSize: "6vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
+              <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "2rem" }}>01 — The Skyline</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Enter Horizon <ArrowRight size={16}/></Link>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>01 — The Skyline</span>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
+              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
             </div>
           </div>
 
-          {/* Card 2: Lake Woods */}
-          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "4rem", alignItems: "center", flexDirection: "row-reverse" }}>
+          <div style={{ width: "80vw", maxWidth: "1200px", display: "flex", gap: "6rem", alignItems: "center", flexDirection: "row-reverse" }}>
             <div style={{ flex: 1, position: "relative" }}>
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
               </div>
-              <h2 className="parallax-layer" data-speed="0.8" style={{ position: "absolute", bottom: "10%", right: "-10%", fontFamily: "Playfair Display, serif", fontSize: "6vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
+              <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "2rem" }}>02 — The Sanctuary</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
+              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: "2rem" }}>02 — The Sanctuary</span>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#ccc", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
+              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(255,255,255,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
             </div>
           </div>
 
         </div>
+      </section>
+
+      {/* 4. LIFESTYLE PARALLAX GRID */}
+      <section style={{ padding: "15rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+        <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
+           <div style={{ textAlign: "center", marginBottom: "10rem" }}>
+             <KineticText as="h2" text="The Art of Living." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
+             <p style={{ fontSize: "1.2rem", color: "#666", maxWidth: "600px", margin: "2rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
+           </div>
+
+           <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "2rem", alignItems: "center" }}>
+              <div style={{ gridColumn: "1 / 6", height: "600px", overflow: "hidden", borderRadius: "24px" }}>
+                 <img className="parallax-img" data-speed="0.15" src="/horizon pics/VIEW_08_FFFFF.jpg" alt="Pool" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-15%)" }} />
+              </div>
+              <div style={{ gridColumn: "7 / 13", height: "800px", overflow: "hidden", borderRadius: "24px", marginTop: "10rem" }}>
+                 <img className="parallax-img" data-speed="-0.15" src="/lakewood-media/view 06_FFFFFF copy.jpg" alt="Lobby" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(0%)" }} />
+              </div>
+              <div style={{ gridColumn: "3 / 11", height: "700px", overflow: "hidden", borderRadius: "24px", marginTop: "-5rem", zIndex: 2, border: "20px solid #fdfbf7" }}>
+                 <img className="parallax-img" data-speed="0.2" src="/horizon pics/view_07_FFFFFFF.jpg" alt="Nature" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* 5. INFINITE MARQUEE */}
+      <section style={{ padding: "8rem 0", background: "#050505", overflow: "hidden", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+         <div style={{ display: "flex", width: "200vw" }}>
+           <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
+              {[1,2,3,4,5,6].map(i => (
+                <div key={i} style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.3)", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
+                  <span style={{ fontSize: "2rem", color: "rgba(255,255,255,0.5)" }}>✦</span>
+                </div>
+              ))}
+           </div>
+         </div>
       </section>
 
       {/* FOOTER */}
@@ -160,8 +262,8 @@ export default function Home() {
         <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#fff", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
-             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem" }}>Our Legacy</Link>
-             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#fff", color: "#000", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem" }}>Contact Us</Link>
+             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => e.target.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.target.style.background="transparent"}>Our Legacy</Link>
+             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#fff", color: "#000", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
           <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "3rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
