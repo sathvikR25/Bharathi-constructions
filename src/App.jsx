@@ -1,5 +1,5 @@
 ﻿import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -68,11 +68,32 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+
+function HiddenAdminButton() {
+  const navigate = useNavigate();
+  return (
+    <div 
+      onDoubleClick={() => navigate('/admin')}
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        right: 0,
+        width: '75px',
+        height: '75px',
+        zIndex: 9999,
+        cursor: 'default',
+        background: 'transparent'
+      }}
+    />
+  );
+}
+
 export default function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <SmoothScroll>
+          <HiddenAdminButton />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/horizon" element={<ProjectHorizon />} />
