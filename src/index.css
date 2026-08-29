@@ -1002,3 +1002,14 @@ html.lenis, html.lenis body {
 .gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end {
   display: none !important;
 }
+/* Prevent image jitter, subpixel blurring, and fluctuation during scroll/transform */
+img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+}
+.horizontal-card-inner, .parallax-img, .reveal-img, .residence-inner {
+  will-change: transform;
+}
