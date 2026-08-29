@@ -10,14 +10,14 @@ const PROJECTS = {
   horizon: {
     id: "horizon", name: "Bharathi Horizon", tagline: "An Iconic Project Of 3 BHK Apartments At Suchitra X Roads", subtitle: "the Horizon",
     desc: "A soaring architectural masterpiece in Kompally ï¿½ high-rise sky villas capturing panoramic views of Hyderabad and pristine northern winds.",
-    bg: "/horizon pics/hero-night.jpg", accent: "Sky Residences",
+    bg: "/horizon pics/BIRD_VIEW_FFFFFF.jpg", accent: "Sky Residences",
     units: "3 & 4 BHK Sky Villas", structure: "2 High-Rise Towers", floors: "G+28 Floors",
     status: "Under Construction", location: "Kompally, Hyderabad", completion: "2027", price: "1.8 Cr onwards"
   },
   lakewoods: {
     id: "lakewoods", name: "Bharathi Lake Woods", tagline: "Live Beside", subtitle: "the Lake",
     desc: "An exclusive low-density gated community designed around a serene natural lake ï¿½ pristine tranquility meets clean-lined modernism.",
-    bg: "/horizon pics/hero-night.jpg", accent: "Curated Villas",
+    bg: "/horizon pics/BIRD_VIEW_FFFFFF.jpg", accent: "Curated Villas",
     units: "Premium Curated Villas", structure: "Lakeside Gated Layout", floors: "G+2 Villas",
     status: "Under Construction", location: "Kompally, Hyderabad", completion: "2027", price: "3.2 Cr onwards"
   }
@@ -70,11 +70,11 @@ const FIXTURES = [
 ];
 
 const NAV_ITEMS = [
-  { href: "/", label: "Home", img: "/horizon pics/Multi-purpose-Room_FFFF-copy.webp" },
-  { href: "#amenities", label: "Masterplan", img: "/horizon pics/View_13_FFFFFF-copy.webp" },
-  { href: "#configurator", label: "Configure", img: "/horizon pics/floor-scaled.webp" },
-  { href: "#connectivity", label: "Location", img: "/horizon pics/View_13_FFFFFF-copy.webp" },
-  { href: "#booking", label: "Contact Us", img: "/horizon pics/Multi-purpose-Room_FFFF-copy.webp" }
+  { href: "/", label: "Home", img: "/horizon pics/VIEW_04_FFFFFFF.jpg" },
+  { href: "#amenities", label: "Masterplan", img: "/horizon pics/VIEW_11_FFFFF.jpg" },
+  { href: "#configurator", label: "Configure", img: "/horizon pics/VIEW_12_fffff.jpg" },
+  { href: "#connectivity", label: "Location", img: "/horizon pics/VIEW_11_FFFFF.jpg" },
+  { href: "#booking", label: "Contact Us", img: "/horizon pics/VIEW_04_FFFFFFF.jpg" }
 ];
 
 
@@ -345,7 +345,7 @@ export default function ProjectHorizon() {
                 <span style={{fontSize:"16px", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--ink-3)"}}>{proj.units}</span>
               </div>
               <div style={{background:"rgba(255,255,255,0.6)", padding:"1.5rem"}}>
-                <img className="floor-plan-img" src="/horizon pics/floor-scaled.webp" alt="Floor Plan" style={{width:"100%", height:"auto", objectFit:"contain"}}  decoding="async" />
+                <img className="floor-plan-img" src="/horizon pics/VIEW_12_fffff.jpg" alt="Floor Plan" style={{width:"100%", height:"auto", objectFit:"contain"}}  decoding="async" />
               </div>
               <p style={{fontSize:"15px", letterSpacing:"0.25em", textTransform:"uppercase", color:"var(--ink-3)", textAlign:"center", marginTop:"1rem"}}>Indicative ï¿½ actual may vary</p>
             </div>
@@ -384,7 +384,7 @@ export default function ProjectHorizon() {
                 <div className="progress-bar" style={{marginTop:"0.75rem"}}><div className="progress-fill run" /></div>
               </div>
               <div style={{display:"flex", gap:"1rem", flexWrap:"wrap"}}>
-                <a href="/horizon pics/Horizon_Brohure_15x12_057.webp" target="_blank" className="btn-gold" >Download Brochure</a>
+                <a href="/horizon pics/BIRD_VIEW_FFFFFF.jpg" target="_blank" className="btn-gold" >Download Brochure</a>
                 <a href="#booking" className="clay-btn skeuo-gold-text" ><span>Reserve with Config</span></a>
               </div>
             </div>
@@ -527,6 +527,7 @@ export default function ProjectHorizon() {
     </div>
   );
 }
+
 
 
 
