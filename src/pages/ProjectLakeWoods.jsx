@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const LAKEWOOD_RENDERS = [
   { src: "/lakewood-media/lakewood-cover.jpg", label: "Lake Woods" },
   { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "Grand Entrance" },
-  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "Facade — Evening" },
+  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "Facade â€” Evening" },
   { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "Landscape View" },
   { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "Aerial Perspective" },
   { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "Amenity Deck" },
@@ -46,51 +46,40 @@ export default function ProjectLakeWoods() {
   const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef(null);
   const heroWrapRef = useRef(null);
+  const heroTextRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Spatial Z-Axis Push
+      // INVERTED SPATIAL MECHANIC: Start Small, Grow Massive
       if (heroWrapRef.current) {
-        gsap.to(heroWrapRef.current, {
-          scale: 0.85, opacity: 0, borderRadius: "40px",
-          scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }
+        gsap.fromTo(heroWrapRef.current, 
+          { scale: 0.4, borderRadius: "60px" },
+          { scale: 1, borderRadius: "0px", scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true, pin: true } }
+        );
+        gsap.to(heroTextRef.current, {
+          y: -150, opacity: 0, scrollTrigger: { trigger: ".hero-section", start: "top top", end: "center top", scrub: true }
         });
       }
 
-      // 3D Tilt Hover for Residence Cards
+      // 3D Tilt Hover for Residence Cards (Inverted Colors)
       gsap.utils.toArray(".residence-card").forEach(card => {
         const inner = card.querySelector(".residence-inner");
-        
-        // Add subtle idle floating via GSAP timeline when not hovered
-        const floatTl = gsap.timeline({ repeat: -1, yoyo: true })
-          .to(inner, { y: -10, duration: 3, ease: "sine.inOut" });
-
+        const floatTl = gsap.timeline({ repeat: -1, yoyo: true }).to(inner, { y: -10, duration: 3, ease: "sine.inOut" });
         card.addEventListener("mouseenter", () => floatTl.pause());
         card.addEventListener("mousemove", (e) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
           const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(inner, {
-            rotationY: x / 20,
-            rotationX: -y / 20,
-            ease: "power2.out",
-            duration: 0.4
-          });
+          gsap.to(inner, { rotationY: x / 20, rotationX: -y / 20, ease: "power2.out", duration: 0.4 });
         });
         card.addEventListener("mouseleave", () => {
-          gsap.to(inner, {
-            rotationY: 0,
-            rotationX: 0,
-            ease: "power3.out",
-            duration: 0.6,
-            onComplete: () => floatTl.play()
-          });
+          gsap.to(inner, { rotationY: 0, rotationX: 0, ease: "power3.out", duration: 0.6, onComplete: () => floatTl.play() });
         });
       });
 
-      // Image Parallax Reveal
+      // Reveal Images
       gsap.utils.toArray(".reveal-img").forEach(img => {
-        gsap.fromTo(img, { scale: 1.15, filter: "brightness(0.5)" }, {
+        gsap.fromTo(img, { scale: 1.15, filter: "brightness(0.8)" }, {
           scale: 1, filter: "brightness(1)",
           scrollTrigger: { trigger: img, start: "top bottom", end: "center center", scrub: true }
         });
@@ -101,7 +90,8 @@ export default function ProjectLakeWoods() {
   }, []);
 
   return (
-    <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
+    // INVERTED THEME: Pure Paper Background, Ink Text
+    <div ref={mainRef} style={{ background: "#fdfbf7", color: "#0a0a0a", overflowX: "hidden" }}>
       <CustomCursor />
       
       {/* HEADER */}
@@ -113,18 +103,18 @@ export default function ProjectLakeWoods() {
       </header>
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
-      {/* HERO SECTION */}
-      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div ref={heroWrapRef} style={{ position: "absolute", inset: 0, overflow: "hidden", willChange: "transform, opacity, border-radius", transformOrigin: "center center" }}>
-          <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7)" }} />
+      {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
+      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fdfbf7" }}>
+        <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
+          <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.9)" }} />
         </div>
-        <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none" }}>
-          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Lake Woods</span>
-          <KineticText as="h1" text="Serenity. Engineered." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#fff" }} />
+        <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none", mixBlendMode: "difference", color: "#fff" }}>
+          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "rgba(255,255,255,0.7)" }}>Bharathi Lake Woods</span>
+          <KineticText as="h1" text="Serenity. Engineered." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400 }} />
         </div>
       </section>
 
-      {/* MINIMALIST STATS */}
+      {/* INVERTED MINIMALIST STATS */}
       <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
@@ -133,7 +123,7 @@ export default function ProjectLakeWoods() {
           <div style={{ flex: "1 1 500px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
             {[ { v: "40", l: "Exclusive Units" }, { v: "8+2", l: "Floors" }, { v: "3 BHK", l: "Premium Layouts" }, { v: "2027", l: "Completion" } ].map((stat, i) => (
               <div key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1.5rem" }}>
-                <span style={{ fontFamily: "Playfair Display, serif", fontSize: "2.5rem", display: "block", marginBottom: "0.5rem" }}>{stat.v}</span>
+                <span style={{ fontFamily: "Playfair Display, serif", fontSize: "2.5rem", display: "block", marginBottom: "0.5rem", color: "#0a0a0a" }}>{stat.v}</span>
                 <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#666" }}>{stat.l}</span>
               </div>
             ))}
@@ -141,26 +131,28 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* FULL CAROUSEL */}
-      <section style={{ padding: "10rem 0", background: "#050505" }}>
+      {/* FULL CAROUSEL (Light Theme Adaptation) */}
+      <section style={{ padding: "10rem 0", background: "#f4f1ea" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 4rem", marginBottom: "4rem" }}>
-          <KineticText as="h2" text="The Lake Woods Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#fff" }} />
+          <KineticText as="h2" text="The Lake Woods Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a" }} />
         </div>
-        <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" />
+        <div style={{ filter: "invert(0)" }}> {/* Forces carousel to be standard, but we wrap in a light section */}
+          <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" theme="light" />
+        </div>
       </section>
 
-      {/* AMENITIES */}
-      <section style={{ padding: "10rem 4rem", background: "#0a0a0a" }}>
+      {/* INVERTED AMENITIES (Light Theme, Dark Borders) */}
+      <section style={{ padding: "10rem 4rem", background: "#fdfbf7" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#fff" }} />
+          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
-                <div key={i} style={{ padding: "3rem 2rem", background: "rgba(255,255,255,0.02)", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <Icon size={32} color="#fff" strokeWidth={1} style={{ marginBottom: "2rem" }} />
-                  <h4 style={{ fontSize: "1.2rem", fontWeight: 400, marginBottom: "1rem", color: "#fff" }}>{a.label}</h4>
-                  <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{a.sub}</p>
+                <div key={i} style={{ padding: "3rem 2rem", background: "rgba(0,0,0,0.02)", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.08)" }}>
+                  <Icon size={32} color="#0a0a0a" strokeWidth={1.5} style={{ marginBottom: "2rem" }} />
+                  <h4 style={{ fontSize: "1.2rem", fontWeight: 600, marginBottom: "1rem", color: "#0a0a0a" }}>{a.label}</h4>
+                  <p style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", lineHeight: 1.6 }}>{a.sub}</p>
                 </div>
               );
             })}
@@ -168,8 +160,8 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* 3D RESIDENCES (Pure Monochrome, Mix-blend multiply to hide grey JPG bgs) */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      {/* 3D RESIDENCES (INVERTED: Dark cards on Light Background) */}
+      <section style={{ padding: "10rem 4rem", background: "#f4f1ea", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "8rem" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Floor Plans</span>
@@ -178,15 +170,15 @@ export default function ProjectLakeWoods() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "3rem", perspective: "1000px" }}>
             {RESIDENCES.map((res, i) => (
               <div key={i} className="residence-card hover-target" style={{ position: "relative", padding: "1rem" }}>
-                <div className="residence-inner" style={{ background: "#fff", borderRadius: "24px", padding: "3rem", boxShadow: "0 20px 40px rgba(0,0,0,0.05)", transformStyle: "preserve-3d", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div className="residence-inner" style={{ background: "#0a0a0a", borderRadius: "24px", padding: "3rem", boxShadow: "0 20px 50px rgba(0,0,0,0.15)", transformStyle: "preserve-3d", display: "flex", flexDirection: "column", alignItems: "center", color: "#fff" }}>
                   <div style={{ width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "3rem", transform: "translateZ(30px)" }}>
                     <span style={{ fontSize: "1.5rem", fontFamily: "Playfair Display, serif" }}>{res.label}</span>
                     <div style={{ textAlign: "right" }}>
-                      <span style={{ fontSize: "0.75rem", letterSpacing: "0.1em", display: "block", color: "#666" }}>{res.sqft}</span>
-                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", color: "#999", textTransform: "uppercase" }}>{res.facing}</span>
+                      <span style={{ fontSize: "0.75rem", letterSpacing: "0.1em", display: "block", color: "rgba(255,255,255,0.6)" }}>{res.sqft}</span>
+                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>{res.facing}</span>
                     </div>
                   </div>
-                  <div style={{ width: "100%", transform: "translateZ(60px)", display: "flex", justifyContent: "center" }}>
+                  <div style={{ width: "100%", transform: "translateZ(60px)", display: "flex", justifyContent: "center", background: "#fff", padding: "1rem", borderRadius: "12px" }}>
                      <img src={res.img} alt={res.label} style={{ width: "85%", height: "auto", mixBlendMode: "multiply", pointerEvents: "none" }} />
                   </div>
                 </div>
@@ -196,17 +188,17 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* LOCATION / MASTERPLAN */}
+      {/* LOCATION / MASTERPLAN (Light Theme) */}
       <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
-            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)" }}>
+            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
               <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
               <KineticText as="h2" text="Center of Everything." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit — Kandlakoya", "9 min"]].map(([place, time]) => (
+                {[["DRS International School", "3 min"], ["Decathlon & Cineplanet", "6 min"], ["Malla Reddy Narayana Hospital", "8 min"], ["ORR Exit â€” Kandlakoya", "9 min"]].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
                     <span style={{ fontSize: "1.1rem", color: "#0a0a0a" }}>{place}</span>
                     <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#555" }}>{time}</span>
@@ -217,13 +209,14 @@ export default function ProjectLakeWoods() {
          </div>
       </section>
 
-      {/* FOOTER CTA */}
-      <section style={{ padding: "12rem 4rem", background: "#020202", textAlign: "center" }}>
-        <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#fff" }} />
-        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => e.currentTarget.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.currentTarget.style.background="transparent"}>
+      {/* FOOTER CTA (INVERTED: Paper Background, Ink Text) */}
+      <section style={{ padding: "12rem 4rem", background: "#f4f1ea", textAlign: "center", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+        <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
+        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
           Contact Sales <ArrowRight size={18} />
         </a>
       </section>
     </div>
   );
 }
+

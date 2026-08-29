@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
-export default function ImageCarousel({ images, id }) {
+export default function ImageCarousel({ images, id, theme = "dark" }) {
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const autoRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+
+  const isLight = theme === "light";
+  const fg = isLight ? "#0a0a0a" : "#fff";
+  const bgActive = isLight ? "#0a0a0a" : "#fff";
+  const bgInactive = isLight ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)";
+  const borderCol = isLight ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)";
+  const grad = isLight ? "linear-gradient(transparent, rgba(255,255,255,0.9))" : "linear-gradient(transparent, rgba(0,0,0,0.85))";
+  const textSub = isLight ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)";
 
   const scrollTo = useCallback((index) => {
     if (!trackRef.current) return;
@@ -19,18 +27,10 @@ export default function ImageCarousel({ images, id }) {
     setCurrent(index);
   }, []);
 
-  const next = useCallback(() => {
-    setCurrent(prev => { const n = (prev + 1) % images.length; scrollTo(n); return n; });
-  }, [images.length, scrollTo]);
+  const next = useCallback(() => { setCurrent(prev => { const n = (prev + 1) % images.length; scrollTo(n); return n; }); }, [images.length, scrollTo]);
+  const prev = useCallback(() => { setCurrent(prev => { const n = (prev - 1 + images.length) % images.length; scrollTo(n); return n; }); }, [images.length, scrollTo]);
 
-  const prev = useCallback(() => {
-    setCurrent(prev => { const n = (prev - 1 + images.length) % images.length; scrollTo(n); return n; });
-  }, [images.length, scrollTo]);
-
-  useEffect(() => {
-    autoRef.current = setInterval(next, 3500);
-    return () => clearInterval(autoRef.current);
-  }, [next]);
+  useEffect(() => { autoRef.current = setInterval(next, 3500); return () => clearInterval(autoRef.current); }, [next]);
 
   const pauseAuto = () => clearInterval(autoRef.current);
   const resumeAuto = () => { autoRef.current = setInterval(next, 3500); };
@@ -73,22 +73,22 @@ export default function ImageCarousel({ images, id }) {
           {images.map((img, i) => (
             <div key={i} style={{ flex: "0 0 75vw", maxWidth: "1000px", scrollSnapAlign: "center", borderRadius: "16px", overflow: "hidden", position: "relative", aspectRatio: "16/10", transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.4s", transform: current === i ? "scale(1)" : "scale(0.92)", opacity: current === i ? 1 : 0.4 }}>
               <img src={img.src} alt={img.label} style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", transition: "transform 1.2s cubic-bezier(0.16,1,0.3,1)", transform: current === i ? "scale(1)" : "scale(1.08)" }} loading="lazy" draggable="false" />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "3rem 2.5rem 2rem", background: "linear-gradient(transparent, rgba(0,0,0,0.85))" }}>
-                <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>{String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
-                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: "#fff", margin: "0.5rem 0 0", fontWeight: 400 }}>{img.label}</h4>
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "3rem 2.5rem 2rem", background: grad }}>
+                <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: textSub }}>{String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
+                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: fg, margin: "0.5rem 0 0", fontWeight: 400 }}>{img.label}</h4>
               </div>
             </div>
           ))}
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "2.5rem" }}>
-        <button className="hover-target" onClick={prev} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", transition: "border-color 0.3s" }}><ArrowLeft size={18} /></button>
+        <button className="hover-target" onClick={prev} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowLeft size={18} /></button>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           {images.map((_, i) => (
-            <button key={i} className="hover-target" onClick={() => scrollTo(i)} style={{ width: current === i ? "32px" : "8px", height: "8px", borderRadius: "100px", background: current === i ? "#fff" : "rgba(255,255,255,0.15)", border: "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)", padding: 0 }} />
+            <button key={i} className="hover-target" onClick={() => scrollTo(i)} style={{ width: current === i ? "32px" : "8px", height: "8px", borderRadius: "100px", background: current === i ? bgActive : bgInactive, border: "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)", padding: 0 }} />
           ))}
         </div>
-        <button className="hover-target" onClick={next} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", transition: "border-color 0.3s" }}><ArrowRight size={18} /></button>
+        <button className="hover-target" onClick={next} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowRight size={18} /></button>
       </div>
     </div>
   );
