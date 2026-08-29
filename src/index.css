@@ -4,14 +4,14 @@
 @tailwind utilities;
 
 :root {
-  --gold: #C9A96E;
-  --gold-dark: #8B6A3E;
+  --gold: #A0A0A0;
+  --gold-dark: #606060;
   --ink: #141210;
   --ink-2: #4A453E;
   --ink-3: #8A8175;
   --paper: #F2F0EA;
   --paper-2: #EAE7DF;
-  --border: rgba(201,169,110,0.14);
+  --border: rgba(255,255,255,0.14);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
