@@ -5,7 +5,7 @@ import KineticText from "../components/KineticText";
 
 export default function NotFound() {
   return (
-    <div style={{ background: "#050505", color: "#fdfbf7", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+    <div style={{ background: "transparent", color: "#fdfbf7", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
       <div style={{ textAlign: "center" }}>
         <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(6rem, 15vw, 15rem)", color: "rgba(255,255,255,0.05)", margin: 0, lineHeight: 1 }}>404</h1>
         <KineticText as="h2" text="This space doesn't exist yet." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4rem)", margin: "-2rem 0 3rem 0", color: "#fff", position: "relative", zIndex: 10 }} />

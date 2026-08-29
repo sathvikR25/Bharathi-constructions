@@ -31,7 +31,7 @@ export default function Contact() {
   };
 
   return (
-    <div style={{ background: "#050505", color: "#fdfbf7", minHeight: "100vh" }}>
+    <div style={{ background: "transparent", color: "#fdfbf7", minHeight: "100vh" }}>
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
@@ -83,7 +83,7 @@ export default function Contact() {
                   <option value="Lake Woods" style={{ background: "#0a0a0a" }}>Bharathi Lake Woods</option>
                 </select>
               </div>
-              <button type="submit" className="hover-target" style={{ marginTop: "1rem", background: "#fff", color: "#000", border: "none", padding: "1.5rem", borderRadius: "100px", fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.02)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>
+              <button type="submit" className="hover-target" style={{ marginTop: "1rem", background: "transparent", color: "#000", border: "none", padding: "1.5rem", borderRadius: "100px", fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.02)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>
                 Submit Inquiry
               </button>
             </form>

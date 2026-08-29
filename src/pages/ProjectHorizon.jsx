@@ -64,7 +64,7 @@ export default function ProjectHorizon() {
   }, []);
 
   return (
-    <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "transparent", color: "#fdfbf7", overflowX: "hidden" }}>
       
       {/* HEADER */}
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
@@ -82,7 +82,7 @@ export default function ProjectHorizon() {
       </section>
 
       {/* MINIMALIST STATS */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Elevating Kompally." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#0a0a0a" }} />
@@ -99,7 +99,7 @@ export default function ProjectHorizon() {
       </section>
 
       {/* FULL CAROUSEL */}
-      <section style={{ padding: "10rem 0", background: "#050505" }}>
+      <section style={{ padding: "10rem 0", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 4rem", marginBottom: "4rem" }}>
           <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#fff" }} />
         </div>
@@ -126,7 +126,7 @@ export default function ProjectHorizon() {
       </section>
 
       {/* LOCATION / MASTERPLAN */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh" }}>
               <img className="reveal-img" src="/horizon pics/floor-scaled.webp" alt="Masterplan" style={{ width: "100%", height: "100%", objectFit: "cover" }} />

@@ -142,10 +142,10 @@ export default function Home() {
   const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational sanctuaries. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
 
   return (
-    <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "transparent", color: "#fdfbf7", overflowX: "hidden" }}>
       
       {/* PRELOADER */}
-      <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "#050505", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
+      <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
          <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#fff", margin: 0, lineHeight: 0.8 }}>0%</h1>
       </div>
       
@@ -164,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* 2. THE VISION */}
-      <section style={{ padding: "15rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
@@ -177,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
-      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "#050505", color: "#fff", overflow: "hidden" }}>
+      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#fff", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
           <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
         </div>
@@ -216,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* 4. LIFESTYLE PARALLAX GRID */}
-      <section style={{ padding: "15rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
            <div style={{ textAlign: "center", marginBottom: "10rem" }}>
              <KineticText as="h2" text="The Art of Living." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
@@ -238,7 +238,7 @@ export default function Home() {
       </section>
 
       {/* 5. INFINITE MARQUEE */}
-      <section style={{ padding: "8rem 0", background: "#050505", overflow: "hidden", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+      <section style={{ padding: "8rem 0", background: "transparent", overflow: "hidden", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
          <div style={{ display: "flex", width: "200vw" }}>
            <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
               {[1,2,3,4,5,6].map(i => (
@@ -252,12 +252,12 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "#050505", color: "#fff", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
+      <footer style={{ background: "transparent", color: "#fff", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#fff", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
              <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => e.target.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.target.style.background="transparent"}>Our Legacy</Link>
-             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#fff", color: "#000", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
+             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "transparent", color: "#000", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
           <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "3rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase" }}>

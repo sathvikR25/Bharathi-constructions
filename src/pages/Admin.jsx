@@ -30,7 +30,7 @@ export default function Admin() {
   );
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#050505", color: "#fff", fontFamily: "system-ui, sans-serif" }}>
+    <div style={{ display: "flex", minHeight: "100vh", background: "transparent", color: "#fff", fontFamily: "system-ui, sans-serif" }}>
       
       {/* SIDEBAR */}
       <div style={{ width: "260px", background: "#0a0a0a", borderRight: "1px solid rgba(255,255,255,0.05)", padding: "2rem" }}>
@@ -61,7 +61,7 @@ export default function Admin() {
               />
             </div>
             <Bell size={20} color="rgba(255,255,255,0.5)" cursor="pointer" />
-            <div style={{ width: "40px", height: "40px", background: "#fff", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#000", fontWeight: "bold" }}>A</div>
+            <div style={{ width: "40px", height: "40px", background: "transparent", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#000", fontWeight: "bold" }}>A</div>
           </div>
         </header>
 

@@ -103,13 +103,13 @@ export default function ProjectLakeWoods() {
   }, []);
 
   return (
-    <div ref={mainRef} style={{ background: "#fdfbf7", color: "#0a0a0a", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "transparent", color: "#0a0a0a", overflowX: "hidden" }}>
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
-      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fdfbf7" }}>
+      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
         <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
           <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.9)" }} />
         </div>
@@ -120,7 +120,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* INVERTED MINIMALIST STATS */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a" }}>
+      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Breathe Deep." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#0a0a0a" }} />
@@ -170,7 +170,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* INVERTED AMENITIES */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7" }}>
+      <section style={{ padding: "10rem 4rem", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
@@ -218,7 +218,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* LOCATION / MASTERPLAN */}
-      <section style={{ padding: "10rem 4rem", background: "#fdfbf7", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
               <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "100%", objectFit: "cover" }} />

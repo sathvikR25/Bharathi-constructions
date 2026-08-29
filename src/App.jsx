@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Legacy from "./pages/Legacy";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import Background3D from "./components/Background3D";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,6 +94,7 @@ export default function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <SmoothScroll>
+          <Background3D />
           <HiddenAdminButton />
           <Routes>
             <Route path="/" element={<Home />} />

@@ -8,7 +8,7 @@ export default function Legacy() {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <div style={{ background: "#fdfbf7", color: "#0a0a0a", minHeight: "100vh" }}>
+    <div style={{ background: "transparent", color: "#0a0a0a", minHeight: "100vh" }}>
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
