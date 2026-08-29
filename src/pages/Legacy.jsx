@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
-import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 
 export default function Legacy() {
@@ -10,7 +9,6 @@ export default function Legacy() {
 
   return (
     <div style={{ background: "#fdfbf7", color: "#0a0a0a", minHeight: "100vh" }}>
-      <CustomCursor />
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />

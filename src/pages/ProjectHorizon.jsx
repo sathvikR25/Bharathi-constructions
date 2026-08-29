@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Waves, AlignVerticalSpaceAround, Trees, Building2, Droplet, ShieldCheck, Car } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
-import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 import ImageCarousel from "../components/ImageCarousel";
 
@@ -66,7 +65,6 @@ export default function ProjectHorizon() {
 
   return (
     <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
-      <CustomCursor />
       
       {/* HEADER */}
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />

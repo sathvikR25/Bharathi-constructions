@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
-import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -144,7 +143,6 @@ export default function Home() {
 
   return (
     <div ref={mainRef} style={{ background: "#050505", color: "#fdfbf7", overflowX: "hidden" }}>
-      <CustomCursor />
       
       {/* PRELOADER */}
       <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "#050505", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>

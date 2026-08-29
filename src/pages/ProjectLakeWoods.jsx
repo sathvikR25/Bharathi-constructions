@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Shield, Trees, Film, Zap, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
-import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -105,7 +104,6 @@ export default function ProjectLakeWoods() {
 
   return (
     <div ref={mainRef} style={{ background: "#fdfbf7", color: "#0a0a0a", overflowX: "hidden" }}>
-      <CustomCursor />
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />

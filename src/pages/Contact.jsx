@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Phone, Mail, CheckCircle } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
-import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 
 export default function Contact() {
@@ -33,7 +32,6 @@ export default function Contact() {
 
   return (
     <div style={{ background: "#050505", color: "#fdfbf7", minHeight: "100vh" }}>
-      <CustomCursor />
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 

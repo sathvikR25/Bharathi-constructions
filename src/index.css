@@ -887,41 +887,6 @@ body { background: var(--paper); font-family: "Inter", system-ui, sans-serif; co
    SPATIAL UX REDESIGN — HOME PAGE (Awwwards Style)
    ========================================================================= */
 
-/* --- Custom Magnetic Cursor --- */
-body {
-  cursor: none; /* Hide default cursor */
-}
-a, button, [role="button"] {
-  cursor: none;
-}
-.custom-cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  width: 6px; height: 6px;
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-}
-.custom-cursor-outline {
-  position: fixed;
-  top: 0; left: 0;
-  width: 40px; height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s cubic-bezier(0.16,1,0.3,1), height 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s;
-}
-.custom-cursor-outline.active {
-  width: 80px; height: 80px;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: transparent;
-  backdrop-filter: blur(4px);
-}
-
 /* --- Kinetic Typography --- */
 .kinetic-line {
   display: flex;
@@ -999,12 +964,7 @@ html.lenis, html.lenis body {
 
 /* INVERSE AUDIT FIXES: Mobile Responsiveness, Overlaps, and Blending */
 
-/* 1. Disable Custom Cursor on Touch Devices to prevent phantom stuck cursors */
-@media (pointer: coarse) {
-  .custom-cursor-dot, .custom-cursor-outline {
-    display: none !important;
-  }
-}
+
 
 /* 2. Global Mobile Layout Adjustments */
 @media (max-width: 768px) {
