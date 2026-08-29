@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ProjectHorizon from "./pages/ProjectHorizon";
 import ProjectLakeWoods from "./pages/ProjectLakeWoods";
+import Contact from "./pages/Contact";
+import Legacy from "./pages/Legacy";
+import NotFound from "./pages/NotFound";
 
 class ErrorBoundary extends React.Component {
   constructor(props) { super(props); this.state = { hasError: false, error: null, info: null }; }
@@ -30,6 +33,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/horizon" element={<ProjectHorizon />} />
           <Route path="/lake-woods" element={<ProjectLakeWoods />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legacy" element={<Legacy />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
