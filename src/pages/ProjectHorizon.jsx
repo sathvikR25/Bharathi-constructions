@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Waves, AlignVerticalSpaceAround, Trees, Building2, Droplet, ShieldCheck, Car } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
+import Header from "../components/Header";
 import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 import ImageCarousel from "../components/ImageCarousel";
@@ -68,12 +69,7 @@ export default function ProjectHorizon() {
       <CustomCursor />
       
       {/* HEADER */}
-      <header style={{ position: "fixed", width: "100%", zIndex: 100, mixBlendMode: "difference" }}>
-        <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 2.5rem", height: "100px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link to="/" className="hover-target"><img src="/logo.png" alt="Bharathi" style={{ height: "45px", filter: "brightness(0) invert(1)" }} /></Link>
-          <button className="hover-target" onClick={() => setNavOpen(!navOpen)} style={{ background: "transparent", border: "none", color: "#fff", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>{navOpen ? "Close" : "Menu"}</button>
-        </div>
-      </header>
+      <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION */}

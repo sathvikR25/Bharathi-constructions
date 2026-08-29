@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Shield, Trees, Film, Zap, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
+import Header from "../components/Header";
 import CustomCursor from "../components/CustomCursor";
 import KineticText from "../components/KineticText";
 import ImageCarousel from "../components/ImageCarousel";
@@ -18,6 +19,9 @@ const LAKEWOOD_RENDERS = [
   { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "Aerial Perspective" },
   { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "Amenity Deck" },
   { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "Lobby & Lounge" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "Master Layout" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "Feature List" },
+  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "Floor Plan Overview" },
 ];
 
 const RESIDENCES = [
@@ -95,12 +99,7 @@ export default function ProjectLakeWoods() {
       <CustomCursor />
       
       {/* HEADER */}
-      <header style={{ position: "fixed", width: "100%", zIndex: 100, mixBlendMode: "difference" }}>
-        <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 2.5rem", height: "100px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link to="/" className="hover-target"><img src="/logo.png" alt="Bharathi" style={{ height: "45px", filter: "brightness(0) invert(1)" }} /></Link>
-          <button className="hover-target" onClick={() => setNavOpen(!navOpen)} style={{ background: "transparent", border: "none", color: "#fff", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>{navOpen ? "Close" : "Menu"}</button>
-        </div>
-      </header>
+      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
