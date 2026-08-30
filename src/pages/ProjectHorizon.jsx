@@ -77,7 +77,7 @@ export default function ProjectHorizon() {
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
-          <KineticText as="h1" text="Sculpting the Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#0a0a0a" }} />
+          <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#0a0a0a" }} />
         </div>
       </section>
 
@@ -85,7 +85,7 @@ export default function ProjectHorizon() {
       <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
-            <KineticText as="h2" text="Elevating Kompally." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#0a0a0a" }} />
+            <KineticText as="h2" text="Premium Living in Kompally." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#0a0a0a" }} />
           </div>
           <div style={{ flex: "1 1 500px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
             {[ { v: "3 & 4 BHK", l: "Sky Villas" }, { v: "G+28", l: "Floors" }, { v: "2", l: "High-Rise Towers" }, { v: "2027", l: "Completion" } ].map((stat, i) => (
@@ -109,7 +109,7 @@ export default function ProjectHorizon() {
       {/* AMENITIES */}
       <section style={{ padding: "10rem 4rem", background: "#0a0a0a" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
+          <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
@@ -133,7 +133,7 @@ export default function ProjectHorizon() {
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Plan</span>
-              <KineticText as="h2" text="Center of Everything." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
+              <KineticText as="h2" text="Prime Location." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                 {[["DRS International School", "3 min"], ["Malla Reddy Narayana Hospital", "6 min"], ["ORR Exit — Kandlakoya", "8 min"]].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
@@ -148,7 +148,7 @@ export default function ProjectHorizon() {
 
       {/* FOOTER CTA */}
       <section style={{ padding: "12rem 4rem", background: "transparent", textAlign: "center" }}>
-        <KineticText as="h2" text="Reserve Your Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
+        <KineticText as="h2" text="Book Your Home." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
         <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#0a0a0a";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
           Contact Sales <ArrowRight size={18} />
         </a>

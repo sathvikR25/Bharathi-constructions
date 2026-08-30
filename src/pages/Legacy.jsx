@@ -15,8 +15,8 @@ export default function Legacy() {
 
       <section style={{ paddingTop: "25vh", paddingBottom: "10vh", paddingLeft: "4rem", paddingRight: "4rem", maxWidth: "1200px", margin: "0 auto" }}>
         <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", display: "block", marginBottom: "1.5rem" }}>Our Heritage</span>
-        <KineticText as="h1" text="Four Decades of" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 7vw, 7rem)", margin: 0, fontWeight: 400, color: "#0a0a0a", lineHeight: 1.1 }} />
-        <KineticText as="h1" text="Uncompromising Precision." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 7vw, 7rem)", margin: "0 0 6rem 0", fontWeight: 400, color: "rgba(0,0,0,0.3)", fontStyle: "italic", lineHeight: 1.1 }} />
+        <KineticText as="h1" text="Over Two Decades of" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 7vw, 7rem)", margin: 0, fontWeight: 400, color: "#0a0a0a", lineHeight: 1.1 }} />
+        <KineticText as="h1" text="Quality Real Estate." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 7vw, 7rem)", margin: "0 0 6rem 0", fontWeight: 400, color: "rgba(0,0,0,0.3)", fontStyle: "italic", lineHeight: 1.1 }} />
         
         <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", display: "flex", flexWrap: "wrap", gap: "6rem" }}>
           <div style={{ flex: "1 1 300px" }}>

@@ -193,8 +193,8 @@ export default function Home() {
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>01 THE SKYLINE</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A modern high-rise project with excellent views and natural ventilation.</p>
+              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={16}/></Link>
             </div>
           </div>
 
@@ -207,8 +207,8 @@ export default function Home() {
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>02 THE SANCTUARY</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A premium residential community located in a peaceful environment.</p>
+              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={16}/></Link>
             </div>
           </div>
 
@@ -219,7 +219,7 @@ export default function Home() {
       <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
            <div style={{ textAlign: "center", marginBottom: "10rem" }}>
-             <KineticText as="h2" text="The Art of Living." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
+             <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
              <p style={{ fontSize: "1.2rem", color: "#666", maxWidth: "600px", margin: "2rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
            </div>
 
