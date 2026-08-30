@@ -273,12 +273,10 @@ export default function ProjectLakeWoods() {
           
           {/* AFFILIATIONS AND COPYRIGHT */}
           <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center", fontWeight: 700, color: "#0a0a0a", letterSpacing: "0.05em" }}>
-              <span>MEMBER OF CREDAI</span>
-              <span>|</span>
-              <span>APPROVED HMDA (Growing Global)</span>
-              <span>|</span>
-              <span>TS RERA No: P02200006662</span>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center", mixBlendMode: "multiply" }}>
+              <div style={{ width: "700px", height: "130px", overflow: "hidden", position: "relative" }}>
+                <img src="/lakewood-media/contact-details-source.jpg" alt="CREDAI, HMDA, TS RERA Logos" style={{ position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", width: "1024px", height: "auto" }} />
+              </div>
             </div>
             <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>© 2026 Bharathi Constructions</span>
           </div>
