@@ -128,8 +128,8 @@ export default function ProjectHorizon() {
       {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
-            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh" }}>
-              <img className="reveal-img" src="/horizon pics/floor-scaled.webp" alt="Masterplan" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden" }}>
+              <img className="reveal-img" src="/horizon pics/floor-scaled.webp" alt="Masterplan" style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Plan</span>

@@ -156,8 +156,8 @@ export default function ProjectLakeWoods() {
                 width: "100%", 
                 background: "#f4f1ea" // ensures stacked images cover previous ones smoothly 
               }}>
-                <div style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)", aspectRatio: "16/10" }}>
-                  <img src={item.src} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                <div style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)" }}>
+                  <img src={item.src} alt={item.label} style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" />
                 </div>
                 <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
@@ -234,8 +234,8 @@ export default function ProjectLakeWoods() {
                   { img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg", title: "Section 4", sqft: "2285 SQ.FT" }
                 ].map((item, idx) => (
                   <div key={idx} style={{ overflow: "hidden" }}>
-                    <div style={{ width: "100%", aspectRatio: "16/10", overflow: "hidden", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
-                      <img className="reveal-img" src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} />
+                    <div style={{ width: "100%", overflow: "hidden", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
+                      <img className="reveal-img" src={item.img} alt={item.title} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} />
                     </div>
                     <div style={{ marginTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 1rem" }}>
                       <span style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a" }}>{item.title}</span>
@@ -251,8 +251,8 @@ export default function ProjectLakeWoods() {
         {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
-            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
-              <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
+              <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
