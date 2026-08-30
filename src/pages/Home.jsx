@@ -55,6 +55,14 @@ export default function Home() {
 
     let ctx = gsap.context(() => {
       
+      // 0. Scroll Indicator Animation
+      gsap.to(".scroll-indicator-line", {
+        y: "200%",
+        duration: 1.5,
+        repeat: -1,
+        ease: "power2.inOut"
+      });
+
       // 1. Hero Pinned Expansion
       const tlHero = gsap.timeline({
         scrollTrigger: {
@@ -151,6 +159,23 @@ export default function Home() {
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
+
+      {/* 0. ONBOARDING VIDEO HERO */}
+      <section style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#0a0a0a" }}>
+        <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.5 }}>
+          <source src="/onboarding.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff" }}>
+          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.8 }}>Welcome To</span>
+          <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", margin: 0, lineHeight: 1 }}>Bharathi<br/><span style={{ fontStyle: "italic", color: "#c9a96e" }}>Constructions</span></h1>
+        </div>
+        <div style={{ position: "absolute", bottom: "4rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
+          <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.6 }}>Scroll to Explore</span>
+          <div style={{ width: "1px", height: "60px", background: "rgba(255,255,255,0.2)", margin: "0 auto", position: "relative", overflow: "hidden" }}>
+             <div className="scroll-indicator-line" style={{ position: "absolute", top: "-100%", left: 0, width: "100%", height: "100%", background: "#fff" }} />
+          </div>
+        </div>
+      </section>
 
       {/* 1. IMMERSIVE HERO */}
       <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
