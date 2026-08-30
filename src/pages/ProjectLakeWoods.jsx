@@ -273,9 +273,12 @@ export default function ProjectLakeWoods() {
           
           {/* AFFILIATIONS AND COPYRIGHT */}
           <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center", mixBlendMode: "multiply" }}>
-              <div style={{ width: "700px", height: "130px", overflow: "hidden", position: "relative" }}>
-                <img src="/lakewood-media/contact-details-source.jpg" alt="CREDAI, HMDA, TS RERA Logos" style={{ position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", width: "1024px", height: "auto" }} />
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "3rem", alignItems: "center" }}>
+              <img src="/lakewood-media/credai-logo.png" alt="Member of CREDAI" style={{ height: "40px", width: "auto", objectFit: "contain", filter: "grayscale(100%) contrast(1.2)" }} />
+              <img src="/lakewood-media/hmda-logo.png" alt="APPROVED HMDA" style={{ height: "50px", width: "auto", objectFit: "contain", filter: "grayscale(100%) contrast(1.2)" }} />
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <img src="/lakewood-media/tsrera-logo.png" alt="TS RERA" style={{ height: "45px", width: "auto", objectFit: "contain", filter: "grayscale(100%) contrast(1.2)" }} />
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#666", letterSpacing: "0.05em" }}>TS RERA No: P02200006662</span>
               </div>
             </div>
             <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>© 2026 Bharathi Constructions</span>
