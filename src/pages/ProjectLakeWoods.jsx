@@ -99,13 +99,13 @@ export default function ProjectLakeWoods() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
-      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
+      <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fff" }}>
         <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
-          <img src="/lakewood-media/lakewood-cover.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "contain", filter: "brightness(0.95)" }} />
+          <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.95)" }} />
         </div>
-        <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#0a0a0a", textShadow: "0 2px 10px rgba(255,255,255,1)" }}>Bharathi Lake Woods</span>
-            <h1 className="color-animated-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 700, WebkitTextStroke: "1px rgba(255,255,255,0.3)" }}>Bharathi Lake Woods.</h1>
+        <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none", mixBlendMode: "difference", color: "#fff" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#fff" }}>Bharathi Lake Woods</span>
+            <KineticText as="h1" text="Bharathi Lake Woods." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400 }} />
           </div>
       </section>
 
