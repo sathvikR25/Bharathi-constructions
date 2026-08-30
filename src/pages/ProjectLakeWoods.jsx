@@ -217,7 +217,38 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* LOCATION / MASTERPLAN */}
+      {/* 3D SECTION/FLAT RENDERS */}
+        <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
+          <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: "8rem" }}>
+              <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: "1.5rem" }}>The Spaces</span>
+              <KineticText as="h2" text="Spatial Perspectives." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 5vw, 5rem)", margin: 0, color: "#0a0a0a" }} />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "6rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "4rem" }}>
+                {[
+                  { img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg", title: "Section 1", sqft: "2675 SQ.FT" },
+                  { img: "/lakewood-media/SECTION 2__ 2680 - F.jpg", title: "Section 2", sqft: "2680 SQ.FT" },
+                  { img: "/lakewood-media/SECTION 3__ 2290 - f.jpg", title: "Section 3", sqft: "2290 SQ.FT" },
+                  { img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg", title: "Section 4", sqft: "2285 SQ.FT" }
+                ].map((item, idx) => (
+                  <div key={idx} style={{ overflow: "hidden" }}>
+                    <div style={{ width: "100%", aspectRatio: "16/10", overflow: "hidden", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
+                      <img className="reveal-img" src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} />
+                    </div>
+                    <div style={{ marginTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 1rem" }}>
+                      <span style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a" }}>{item.title}</span>
+                      <span style={{ fontSize: "0.8rem", letterSpacing: "0.15em", color: "#000", fontWeight: 700 }}>{item.sqft}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", height: "70vh", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
