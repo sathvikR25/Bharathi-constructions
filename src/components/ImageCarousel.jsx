@@ -1,91 +1,141 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function ImageCarousel({ images, id, theme = "dark" }) {
-  const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const autoRef = useRef(null);
-  const isDragging = useRef(false);
+  
+  // Drag states
   const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const isDragging = useRef(false);
 
   const isLight = theme === "light";
   const fg = isLight ? "#0a0a0a" : "#fff";
   const bgActive = isLight ? "#0a0a0a" : "#fff";
   const bgInactive = isLight ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)";
   const borderCol = isLight ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)";
-  const grad = isLight ? "linear-gradient(transparent, rgba(255,255,255,0.9))" : "linear-gradient(transparent, rgba(0,0,0,0.85))";
-  const textSub = isLight ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)";
+  
+  const next = useCallback(() => { setCurrent(prev => (prev + 1) % images.length); }, [images.length]);
+  const prev = useCallback(() => { setCurrent(prev => (prev - 1 + images.length) % images.length); }, [images.length]);
 
-  const scrollTo = useCallback((index) => {
-    if (!trackRef.current) return;
-    const el = trackRef.current;
-    const card = el.children[index];
-    if (!card) return;
-    const offset = card.offsetLeft - (el.parentElement.offsetWidth / 2) + (card.offsetWidth / 2);
-    el.scrollTo({ left: offset, behavior: "smooth" });
-    setCurrent(index);
-  }, []);
-
-  const next = useCallback(() => { setCurrent(prev => { const n = (prev + 1) % images.length; scrollTo(n); return n; }); }, [images.length, scrollTo]);
-  const prev = useCallback(() => { setCurrent(prev => { const n = (prev - 1 + images.length) % images.length; scrollTo(n); return n; }); }, [images.length, scrollTo]);
-
-  useEffect(() => { autoRef.current = setInterval(next, 3500); return () => clearInterval(autoRef.current); }, [next]);
+  useEffect(() => { 
+    autoRef.current = setInterval(next, 4000); 
+    return () => clearInterval(autoRef.current); 
+  }, [next]);
 
   const pauseAuto = () => clearInterval(autoRef.current);
-  const resumeAuto = () => { autoRef.current = setInterval(next, 3500); };
+  const resumeAuto = () => { autoRef.current = setInterval(next, 4000); };
 
-  const onDragStart = (e) => {
+  const handleDragStart = (e) => {
     isDragging.current = true;
-    startX.current = (e.touches ? e.touches[0].pageX : e.pageX) - trackRef.current.offsetLeft;
-    scrollLeft.current = trackRef.current.scrollLeft;
+    startX.current = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
     pauseAuto();
   };
-  const onDragMove = (e) => {
+
+  const handleDragEnd = (e) => {
     if (!isDragging.current) return;
-    e.preventDefault();
-    const x = (e.touches ? e.touches[0].pageX : e.pageX) - trackRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    trackRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-  const onDragEnd = () => {
     isDragging.current = false;
+    const endX = e.type.includes('mouse') ? e.pageX : (e.changedTouches ? e.changedTouches[0].pageX : startX.current);
+    const diff = startX.current - endX;
+    
+    if (diff > 50) next();
+    else if (diff < -50) prev();
+    
     resumeAuto();
-    if (!trackRef.current) return;
-    const el = trackRef.current;
-    const center = el.scrollLeft + el.parentElement.offsetWidth / 2;
-    let closest = 0, minDist = Infinity;
-    Array.from(el.children).forEach((child, i) => {
-      const childCenter = child.offsetLeft + child.offsetWidth / 2;
-      const dist = Math.abs(center - childCenter);
-      if (dist < minDist) { minDist = dist; closest = i; }
-    });
-    scrollTo(closest);
   };
 
   return (
-    <div style={{ position: "relative", width: "100%" }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
-      <div style={{ overflow: "hidden", width: "100%" }}>
-        <div ref={trackRef} style={{ display: "flex", gap: "1.5rem", overflowX: "auto", scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch", paddingBottom: "1rem" }}
-          onMouseDown={onDragStart} onMouseMove={onDragMove} onMouseUp={onDragEnd} onMouseLeave={onDragEnd}
-          onTouchStart={onDragStart} onTouchMove={onDragMove} onTouchEnd={onDragEnd}
-        >
-          {images.map((img, i) => (
-            <div key={i} style={{ flex: "0 0 75vw", maxWidth: "1000px", scrollSnapAlign: "center", borderRadius: "16px", overflow: "hidden", position: "relative", aspectRatio: "16/10", transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.4s", transform: current === i ? "scale(1)" : "scale(0.92)", opacity: current === i ? 1 : 0.4 }}>
-              <img src={img.src} alt={img.label} style={{ width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", transition: "transform 1.2s cubic-bezier(0.16,1,0.3,1)", transform: current === i ? "scale(1)" : "scale(1.08)" }} loading="lazy" draggable="false" />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "3rem 2.5rem 2rem", background: grad }}>
-                <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: textSub }}>{String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
-                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: fg, margin: "0.5rem 0 0", fontWeight: 400 }}>{img.label}</h4>
+    <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "4rem 0" }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
+      
+      {/* 3D Stage */}
+      <div 
+        style={{ 
+          position: "relative", 
+          height: "65vh", 
+          display: "flex", 
+          justifyContent: "center", 
+          alignItems: "center", 
+          perspective: "1200px", 
+          transformStyle: "preserve-3d" 
+        }}
+        onMouseDown={handleDragStart}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={(e) => { if (isDragging.current) handleDragEnd(e); }}
+        onTouchStart={handleDragStart}
+        onTouchEnd={handleDragEnd}
+      >
+        {images.map((img, i) => {
+          // Calculate offset relative to current, accounting for wrap-around
+          let offset = i - current;
+          const half = Math.floor(images.length / 2);
+          if (offset > half) offset -= images.length;
+          if (offset < -half) offset += images.length;
+
+          const absOffset = Math.abs(offset);
+          const isActive = offset === 0;
+
+          // 3D Math for Mesmerizing Effect
+          const translateX = offset * 55; // percentage
+          const translateZ = isActive ? 0 : -absOffset * 150;
+          const rotateY = offset === 0 ? 0 : (offset > 0 ? -25 : 25);
+          const scale = isActive ? 1 : Math.max(0.6, 1 - absOffset * 0.15);
+          const opacity = isActive ? 1 : Math.max(0, 1 - absOffset * 0.3);
+          const blur = isActive ? 0 : absOffset * 4;
+
+          return (
+            <div 
+              key={i} 
+              onClick={() => setCurrent(i)}
+              style={{
+                position: "absolute",
+                width: "60vw",
+                maxWidth: "900px",
+                height: "100%",
+                borderRadius: "24px",
+                background: isLight ? "#fff" : "#111",
+                boxShadow: isActive ? "0 40px 80px rgba(0,0,0,0.2)" : "0 20px 40px rgba(0,0,0,0.1)",
+                transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                transform: `translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                zIndex: 100 - absOffset,
+                opacity: opacity,
+                filter: `blur(${blur}px)`,
+                cursor: isActive ? "grab" : "pointer",
+                display: "flex",
+                flexDirection: "column",
+                overflow: "hidden"
+              }}
+            >
+              <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center", padding: "1rem" }}>
+                <img 
+                  src={img.src} 
+                  alt={img.label} 
+                  style={{ 
+                    width: "100%", 
+                    height: "100%", 
+                    objectFit: "contain", // CRITICAL: Never crop
+                    pointerEvents: "none" 
+                  }} 
+                  loading="lazy" 
+                  draggable="false" 
+                />
+              </div>
+              <div style={{ padding: "2rem", textAlign: "center", background: isLight ? "rgba(255,255,255,0.9)" : "rgba(17,17,17,0.9)", backdropFilter: "blur(10px)" }}>
+                <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)" }}>
+                  {String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+                </span>
+                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: fg, margin: "0.5rem 0 0" }}>{img.label}</h4>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "2.5rem" }}>
+
+      {/* Controls */}
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "3rem" }}>
         <button className="hover-target" onClick={prev} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowLeft size={18} /></button>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           {images.map((_, i) => (
-            <button key={i} className="hover-target" onClick={() => scrollTo(i)} style={{ width: current === i ? "32px" : "8px", height: "8px", borderRadius: "100px", background: current === i ? bgActive : bgInactive, border: "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)", padding: 0 }} />
+            <button key={i} className="hover-target" onClick={() => setCurrent(i)} style={{ width: current === i ? "32px" : "8px", height: "8px", borderRadius: "100px", background: current === i ? bgActive : bgInactive, border: "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)", padding: 0 }} />
           ))}
         </div>
         <button className="hover-target" onClick={next} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowRight size={18} /></button>
