@@ -102,7 +102,7 @@ export default function App() {
             <Route path="/lake-woods" element={<ProjectLakeWoods />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legacy" element={<Legacy />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/*" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SmoothScroll>
