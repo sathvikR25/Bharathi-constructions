@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const mainRef = useRef(null);
   
@@ -54,6 +55,13 @@ export default function Home() {
     if (!loaded) return;
 
     let ctx = gsap.context(() => {
+      
+      
+      // Onboarding Hero Text Reveal
+      gsap.fromTo(".hero-onboarding-text",
+        { y: 80, opacity: 0, rotateX: 20 },
+        { y: 0, opacity: 1, rotateX: 0, stagger: 0.15, duration: 1.5, ease: "power3.out" }
+      );
       
       // 0. Scroll Indicator Animation
       gsap.to(".scroll-indicator-line", {
@@ -161,18 +169,39 @@ export default function Home() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* 0. ONBOARDING VIDEO HERO */}
-      <section style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#0a0a0a" }}>
-        <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.5 }}>
+      <section onMouseMove={(e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        setMousePos({ x, y });
+      }} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
+        
+        {/* PARALLAX VIDEO BACKGROUND */}
+        <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.65, transform: `scale(1.05) translate(${mousePos.x}px, ${mousePos.y}px)`, transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}>
           <source src="/onboarding.mp4" type="video/mp4" />
         </video>
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff" }}>
-          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.8 }}>Welcome To</span>
-          <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", margin: 0, lineHeight: 1 }}>Bharathi<br/><span style={{ fontStyle: "italic", color: "#c9a96e" }}>Constructions</span></h1>
+
+        {/* CINEMATIC VIGNETTE OVERLAY */}
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%)", zIndex: 0, pointerEvents: "none" }} />
+        
+        {/* TOP GRACEFUL TEXT */}
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div className="hero-onboarding-text" style={{ overflow: "hidden", marginBottom: "2rem" }}>
+            <span style={{ fontSize: "0.85rem", letterSpacing: "0.5em", textTransform: "uppercase", display: "inline-block", opacity: 0.9, borderBottom: "1px solid rgba(255,255,255,0.2)", paddingBottom: "0.8rem", color: "#c9a96e" }}>A New Standard of Living</span>
+          </div>
+
+          <div style={{ perspective: "800px" }}>
+            <h1 className="hero-onboarding-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 11vw, 12rem)", margin: 0, lineHeight: 0.9, color: "#fff", textTransform: "uppercase", letterSpacing: "0.02em", textShadow: "0 20px 50px rgba(0,0,0,0.8)" }}>Bharathi</h1>
+          </div>
+          <div style={{ perspective: "800px" }}>
+            <h1 className="hero-onboarding-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 5vw, 6rem)", margin: 0, lineHeight: 1, color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.7)", fontStyle: "italic", textTransform: "uppercase", letterSpacing: "0.15em", marginTop: "0.5rem" }}>Constructions</h1>
+          </div>
         </div>
-        <div style={{ position: "absolute", bottom: "4rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
-          <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.6 }}>Scroll to Explore</span>
-          <div style={{ width: "1px", height: "60px", background: "rgba(255,255,255,0.2)", margin: "0 auto", position: "relative", overflow: "hidden" }}>
-             <div className="scroll-indicator-line" style={{ position: "absolute", top: "-100%", left: 0, width: "100%", height: "100%", background: "#fff" }} />
+
+        {/* SCROLL INDICATOR */}
+        <div className="hero-onboarding-text" style={{ position: "absolute", bottom: "3rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
+          <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.5 }}>Scroll to Explore</span>
+          <div style={{ width: "1px", height: "80px", background: "rgba(255,255,255,0.15)", margin: "0 auto", position: "relative", overflow: "hidden" }}>
+             <div className="scroll-indicator-line" style={{ position: "absolute", top: "-100%", left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, transparent, #c9a96e, #fff)" }} />
           </div>
         </div>
       </section>
