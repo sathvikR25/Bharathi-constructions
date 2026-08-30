@@ -1013,3 +1013,18 @@ img {
 .horizontal-card-inner, .parallax-img, .reveal-img, .residence-inner {
   will-change: transform;
 }
+
+@keyframes gradientShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.color-animated-text {
+  background: linear-gradient(270deg, #0a0a0a, #c9a96e, #111, #e3c05c, #000);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShine 6s ease infinite;
+  filter: drop-shadow(0px 4px 20px rgba(255,255,255,0.6));
+}
