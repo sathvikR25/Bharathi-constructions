@@ -10,16 +10,16 @@ import KineticText from "../components/KineticText";
 gsap.registerPlugin(ScrollTrigger);
 
 const LAKEWOOD_RENDERS = [
-  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 â€” Lake Woods" },
-  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 â€” Grand Entrance" },
-  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 â€” Facade Evening" },
-  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 â€” Landscape" },
-  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 â€” Aerial Perspective" },
-  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 â€” Amenity Deck" },
-  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 â€” Lobby & Lounge" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 â€” Master Layout" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 â€” Feature List" },
-  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 â€” Floor Plans" },
+  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 Lake Woods" },
+  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 Grand Entrance" },
+  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 Facade Evening" },
+  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 Landscape" },
+  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 Aerial Perspective" },
+  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 Amenity Deck" },
+  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 Lobby & Lounge" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 Master Layout" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 Feature List" },
+  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 Floor Plans" },
 ];
 
 const RESIDENCES = [

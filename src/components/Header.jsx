@@ -53,10 +53,10 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
       transform: "translateY(0)",
       transition: "background 0.3s, backdrop-filter 0.3s"
     }}>
-      <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 2.5rem", height: "160px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 2.5rem", height: "100px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         
-        <Link to="/" className="hover-target" style={{ display: "flex", alignItems: "center" }} onClick={() => setNavOpen(false)}>
-          <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "140px", ...logoStyle, transition: "filter 0.3s" }} />
+        <Link to="/" className="hover-target" style={{ display: "flex", alignItems: "center", overflow: "hidden", height: "70px", width: "170px", justifyContent: "flex-start" }} onClick={() => setNavOpen(false)}>
+          <img src="/logo.png" alt="Bharathi Constructions" style={{ width: "240px", maxWidth: "none", transform: "scale(1.4) translateX(10%)", transformOrigin: "left center", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
         </Link>
         
         <div style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}>

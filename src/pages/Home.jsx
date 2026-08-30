@@ -192,7 +192,7 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", display: "block", marginBottom: "2rem" }}>01 â€” The Skyline</span>
+              <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>01 THE SKYLINE</span>
               <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A soaring architectural masterpiece capturing panoramic views and pristine northern winds.</p>
               <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Horizon <ArrowRight size={16}/></Link>
             </div>
@@ -206,7 +206,7 @@ export default function Home() {
               <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
             </div>
             <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", display: "block", marginBottom: "2rem" }}>02 â€” The Sanctuary</span>
+              <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>02 THE SANCTUARY</span>
               <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>An exclusive low-density community designed around a serene natural lake.</p>
               <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>Enter Lake Woods <ArrowRight size={16}/></Link>
             </div>
