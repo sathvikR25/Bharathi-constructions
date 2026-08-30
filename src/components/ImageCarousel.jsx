@@ -19,12 +19,12 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
   const prev = useCallback(() => { setCurrent(prev => (prev - 1 + images.length) % images.length); }, [images.length]);
 
   useEffect(() => { 
-    autoRef.current = setInterval(next, 4000); 
+    autoRef.current = setInterval(next, 4500); 
     return () => clearInterval(autoRef.current); 
   }, [next]);
 
   const pauseAuto = () => clearInterval(autoRef.current);
-  const resumeAuto = () => { autoRef.current = setInterval(next, 4000); };
+  const resumeAuto = () => { autoRef.current = setInterval(next, 4500); };
 
   const handleDragStart = (e) => {
     isDragging.current = true;
@@ -45,17 +45,17 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
   };
 
   return (
-    <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "4rem 0" }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
+    <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "2rem 0 4rem 0" }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
       
-      {/* 3D Stage */}
+      {/* 3D Mesmerizing Stage */}
       <div 
         style={{ 
           position: "relative", 
-          height: "65vh", 
+          height: "80vh", // MASSIVE height
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center", 
-          perspective: "1200px", 
+          perspective: "1800px", 
           transformStyle: "preserve-3d" 
         }}
         onMouseDown={handleDragStart}
@@ -74,13 +74,45 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
           const absOffset = Math.abs(offset);
           const isActive = offset === 0;
 
-          // 3D Math for Mesmerizing Effect
-          const translateX = offset * 55; // percentage
-          const translateZ = isActive ? 0 : -absOffset * 150;
-          const rotateY = offset === 0 ? 0 : (offset > 0 ? -25 : 25);
-          const scale = isActive ? 1 : Math.max(0.6, 1 - absOffset * 0.15);
-          const opacity = isActive ? 1 : Math.max(0, 1 - absOffset * 0.3);
-          const blur = isActive ? 0 : absOffset * 4;
+          // Mesmerizing 3D Transitions (Cube, Fold, Float, Flip)
+          let transform = "";
+          let opacity = 0;
+          let zIndex = 50 - absOffset;
+          let blur = 0;
+
+          if (offset === 0) {
+            transform = "translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)"; // Spotlight
+            opacity = 1;
+            zIndex = 100;
+          } else if (offset === 1) {
+            transform = "translate3d(50%, 0, -300px) rotateY(-60deg) scale(0.9)"; // Cube Right
+            opacity = 0.85;
+            blur = 2;
+          } else if (offset === -1) {
+            transform = "translate3d(-50%, 0, -300px) rotateY(60deg) scale(0.9)"; // Cube Left
+            opacity = 0.85;
+            blur = 2;
+          } else if (offset === 2) {
+            transform = "translate3d(20%, 35%, -600px) rotateX(75deg) rotateZ(-15deg) scale(0.75)"; // Paper Fold Bottom Right
+            opacity = 0.6;
+            blur = 5;
+          } else if (offset === -2) {
+            transform = "translate3d(-20%, -35%, -600px) rotateX(-75deg) rotateZ(15deg) scale(0.75)"; // Paper Fold Top Left
+            opacity = 0.6;
+            blur = 5;
+          } else if (offset === 3) {
+            transform = "translate3d(60%, -25%, -900px) rotateY(-20deg) rotateZ(30deg) scale(0.5)"; // Float Away Top Right
+            opacity = 0.3;
+            blur = 10;
+          } else if (offset === -3) {
+            transform = "translate3d(-60%, 25%, -900px) rotateY(20deg) rotateZ(-30deg) scale(0.5)"; // Float Away Bottom Left
+            opacity = 0.3;
+            blur = 10;
+          } else {
+            // Flip 180 and hide in deep background
+            transform = "translate3d(0, 0, -1200px) rotateY(180deg) rotateZ(90deg) scale(0)";
+            opacity = 0;
+          }
 
           return (
             <div 
@@ -88,42 +120,43 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
               onClick={() => setCurrent(i)}
               style={{
                 position: "absolute",
-                width: "60vw",
-                maxWidth: "900px",
+                width: "85vw", // MASSIVE width
+                maxWidth: "1400px",
                 height: "100%",
-                borderRadius: "24px",
-                background: isLight ? "#fff" : "#111",
-                boxShadow: isActive ? "0 40px 80px rgba(0,0,0,0.2)" : "0 20px 40px rgba(0,0,0,0.1)",
-                transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-                transform: `translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-                zIndex: 100 - absOffset,
+                borderRadius: "32px", // Softer curves for luxury feel
+                background: isLight ? "#fdfbf7" : "#050505",
+                boxShadow: isActive ? (isLight ? "0 40px 100px rgba(0,0,0,0.15)" : "0 40px 100px rgba(0,0,0,0.6)") : "0 10px 30px rgba(0,0,0,0.1)",
+                transition: "all 1.2s cubic-bezier(0.19, 1, 0.22, 1)", // Cinematic ease
+                transform: transform,
+                zIndex: zIndex,
                 opacity: opacity,
                 filter: `blur(${blur}px)`,
                 cursor: isActive ? "grab" : "pointer",
                 display: "flex",
                 flexDirection: "column",
-                overflow: "hidden"
+                overflow: "hidden",
+                border: isActive ? `1px solid ${isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)'}` : 'none'
               }}
             >
-              <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center", padding: "1rem" }}>
+              <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center", padding: "1.5rem" }}>
                 <img 
                   src={img.src} 
                   alt={img.label} 
                   style={{ 
                     width: "100%", 
                     height: "100%", 
-                    objectFit: "contain", // CRITICAL: Never crop
+                    objectFit: "contain", // Absolutely no cropping
                     pointerEvents: "none" 
                   }} 
                   loading="lazy" 
                   draggable="false" 
                 />
               </div>
-              <div style={{ padding: "2rem", textAlign: "center", background: isLight ? "rgba(255,255,255,0.9)" : "rgba(17,17,17,0.9)", backdropFilter: "blur(10px)" }}>
-                <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)" }}>
+              <div style={{ padding: "1.5rem 3rem", textAlign: "center", background: isLight ? "rgba(253, 251, 247, 0.95)" : "rgba(5, 5, 5, 0.95)", backdropFilter: "blur(12px)", borderTop: `1px solid ${borderCol}` }}>
+                <span style={{ fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", color: isLight ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)", display: "block", marginBottom: "0.5rem" }}>
                   {String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
                 </span>
-                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: fg, margin: "0.5rem 0 0" }}>{img.label}</h4>
+                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", color: fg, margin: 0, fontWeight: 400 }}>{img.label}</h4>
               </div>
             </div>
           );
@@ -131,14 +164,14 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
       </div>
 
       {/* Controls */}
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "3rem" }}>
-        <button className="hover-target" onClick={prev} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowLeft size={18} /></button>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "4rem" }}>
+        <button className="hover-target" onClick={prev} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "all 0.3s" }} onMouseEnter={e => { e.currentTarget.style.background = fg; e.currentTarget.style.color = isLight ? "#fff" : "#000"; }} onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = fg; }}><ArrowLeft size={18} /></button>
+        <div style={{ display: "flex", gap: "0.75rem" }}>
           {images.map((_, i) => (
-            <button key={i} className="hover-target" onClick={() => setCurrent(i)} style={{ width: current === i ? "32px" : "8px", height: "8px", borderRadius: "100px", background: current === i ? bgActive : bgInactive, border: "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)", padding: 0 }} />
+            <button key={i} className="hover-target" onClick={() => setCurrent(i)} style={{ width: current === i ? "40px" : "10px", height: "10px", borderRadius: "100px", background: current === i ? bgActive : bgInactive, border: "none", transition: "all 0.5s cubic-bezier(0.19, 1, 0.22, 1)", padding: 0 }} />
           ))}
         </div>
-        <button className="hover-target" onClick={next} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "border-color 0.3s" }}><ArrowRight size={18} /></button>
+        <button className="hover-target" onClick={next} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "all 0.3s" }} onMouseEnter={e => { e.currentTarget.style.background = fg; e.currentTarget.style.color = isLight ? "#fff" : "#000"; }} onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = fg; }}><ArrowRight size={18} /></button>
       </div>
     </div>
   );
