@@ -154,9 +154,9 @@ export default function Home() {
 
       {/* 1. IMMERSIVE HERO */}
       <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center", mixBlendMode: "difference" }}>
-          <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#fff", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
-          <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#fff", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Legacies</h1>
+        <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center"}}>
+          <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#0a0a0a", WebkitTextStroke: "2px #0a0a0a", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
+          <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "transparent", WebkitTextStroke: "3px #c9a96e", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Legacies</h1>
         </div>
         <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "30vw", height: "40vh", borderRadius: "200px", overflow: "hidden", willChange: "transform, width, height, border-radius" }}>
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon Skyline" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) contrast(1.1)" }} />
@@ -189,7 +189,7 @@ export default function Home() {
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/horizon pics/VIEW_04_FFFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
               </div>
-              <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0 }}>Horizon.</h2>
+              <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", margin: 0 }}>Horizon.</h2>
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>01 THE SKYLINE</span>
@@ -203,7 +203,7 @@ export default function Home() {
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "20px" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
               </div>
-              <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", mixBlendMode: "difference", m: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
+              <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-15%", fontFamily: "Playfair Display, serif", fontSize: "7vw", color: "#fff", margin: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>02 THE SANCTUARY</span>
