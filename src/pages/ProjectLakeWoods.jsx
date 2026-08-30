@@ -222,13 +222,67 @@ export default function ProjectLakeWoods() {
          </div>
       </section>
 
-      {/* FOOTER CTA */}
-      <section style={{ padding: "12rem 4rem", background: "#f4f1ea", textAlign: "center", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
-        <KineticText as="h2" text="Book Your Home." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
-        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
-          Contact Sales <ArrowRight size={18} />
-        </a>
-      </section>
+      {/* COMPREHENSIVE PROJECT FOOTER */}
+        <section style={{ padding: "8rem 4rem 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+          
+          {/* CTA */}
+          <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
+            <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
+            <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
+              Contact Sales <ArrowRight size={18} />
+            </a>
+          </div>
+
+          {/* EXTRACTED DETAILS GRID */}
+          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "4rem", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+            
+            {/* CORPORATE ADDRESS */}
+            <div>
+              <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Corporate Office</h4>
+              <p style={{ color: "#444" }}>#2301, Plot No.: 51 & 52, Delight Square<br/>
+              3rd floor, Green Park Avenue, Suchitra 'X' Roads,<br/>
+              Hyderabad-500067, Telangana.</p>
+            </div>
+
+            {/* SITE ADDRESS */}
+            <div>
+              <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Site Address</h4>
+              <p style={{ color: "#444" }}>Sy no 106, NCL, Kompally,<br/>
+              Dundigal Gandimaisamma Mandal,<br/>
+              Medchal Malkajgiri District, Telangana 500100.</p>
+            </div>
+
+            {/* CONTACT INFO */}
+            <div>
+              <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Connect</h4>
+              <p style={{ color: "#444", marginBottom: "0.5rem" }}>
+                <strong>Sales:</strong> +91 7997992051 <br/>
+                <strong>Office:</strong> +91 7997992052 <br/>
+                <strong>Support:</strong> +91 7997992053
+              </p>
+              <p style={{ color: "#444", marginBottom: "0.5rem" }}>
+                <strong>E-mail:</strong> <a href="mailto:bharathiconstructionshyd@gmail.com" style={{ color: "#0a0a0a", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>bharathiconstructionshyd@gmail.com</a>
+              </p>
+              <p style={{ color: "#444" }}>
+                <strong>Socials:</strong> @bharathiconstructionshyd
+              </p>
+            </div>
+
+          </div>
+          
+          {/* AFFILIATIONS AND COPYRIGHT */}
+          <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center", fontWeight: 700, color: "#0a0a0a", letterSpacing: "0.05em" }}>
+              <span>MEMBER OF CREDAI</span>
+              <span>|</span>
+              <span>APPROVED HMDA (Growing Global)</span>
+              <span>|</span>
+              <span>TS RERA No: P02200006662</span>
+            </div>
+            <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>© 2026 Bharathi Constructions</span>
+          </div>
+        </section>
     </div>
   );
 }
