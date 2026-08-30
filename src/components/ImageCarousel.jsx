@@ -19,12 +19,12 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
   const prev = useCallback(() => { setCurrent(prev => (prev - 1 + images.length) % images.length); }, [images.length]);
 
   useEffect(() => { 
-    autoRef.current = setInterval(next, 4500); 
+    autoRef.current = setInterval(next, 2800); 
     return () => clearInterval(autoRef.current); 
   }, [next]);
 
   const pauseAuto = () => clearInterval(autoRef.current);
-  const resumeAuto = () => { autoRef.current = setInterval(next, 4500); };
+  const resumeAuto = () => { autoRef.current = setInterval(next, 2800); };
 
   const handleDragStart = (e) => {
     isDragging.current = true;
@@ -45,13 +45,13 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
   };
 
   return (
-    <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "2rem 0 4rem 0" }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
+    <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "1rem 0" }} >
       
       {/* 3D Mesmerizing Stage */}
       <div 
         style={{ 
           position: "relative", 
-          height: "80vh", // MASSIVE height
+          height: "90vh",
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center", 
@@ -120,8 +120,8 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
               onClick={() => setCurrent(i)}
               style={{
                 position: "absolute",
-                width: "85vw", // MASSIVE width
-                maxWidth: "1400px",
+                width: "95vw",
+                maxWidth: "1800px",
                 height: "100%",
                 borderRadius: "32px", // Softer curves for luxury feel
                 background: isLight ? "#fdfbf7" : "#050505",
@@ -138,7 +138,7 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
                 border: isActive ? `1px solid ${isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)'}` : 'none'
               }}
             >
-              <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center", padding: "1.5rem" }}>
+              <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center", padding: "0" }}>
                 <img 
                   src={img.src} 
                   alt={img.label} 
@@ -152,11 +152,11 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
                   draggable="false" 
                 />
               </div>
-              <div style={{ padding: "1.5rem 3rem", textAlign: "center", background: isLight ? "rgba(253, 251, 247, 0.95)" : "rgba(5, 5, 5, 0.95)", backdropFilter: "blur(12px)", borderTop: `1px solid ${borderCol}` }}>
+              <div style={{ padding: "1rem 2rem", textAlign: "center", background: isLight ? "rgba(253, 251, 247, 0.95)" : "rgba(5, 5, 5, 0.95)", backdropFilter: "blur(12px)", borderTop: `1px solid ${borderCol}` }}>
                 <span style={{ fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", color: isLight ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)", display: "block", marginBottom: "0.5rem" }}>
                   {String(i + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
                 </span>
-                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", color: fg, margin: 0, fontWeight: 400 }}>{img.label}</h4>
+                <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: fg, margin: 0, fontWeight: 400 }}>{img.label}</h4>
               </div>
             </div>
           );
@@ -164,7 +164,7 @@ export default function ImageCarousel({ images, id, theme = "dark" }) {
       </div>
 
       {/* Controls */}
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "4rem" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "2rem" }}>
         <button className="hover-target" onClick={prev} style={{ background: "transparent", border: `1px solid ${borderCol}`, borderRadius: "50%", width: "50px", height: "50px", display: "flex", alignItems: "center", justifyContent: "center", color: fg, transition: "all 0.3s" }} onMouseEnter={e => { e.currentTarget.style.background = fg; e.currentTarget.style.color = isLight ? "#fff" : "#000"; }} onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = fg; }}><ArrowLeft size={18} /></button>
         <div style={{ display: "flex", gap: "0.75rem" }}>
           {images.map((_, i) => (
