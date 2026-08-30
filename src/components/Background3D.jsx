@@ -99,7 +99,7 @@ function Scene({ isLight }) {
       {/* Floating Shape 3: Massive Architectural Cylinder (Pillar) */}
       <Float speed={0.8} rotationIntensity={0.2} floatIntensity={1}>
         <mesh position={[2, -4, -10]} rotation={[Math.PI / 2, 0.2, 0]}>
-          <cylinderGeometry args={[2, 2, 10, 64]} />
+          <torusGeometry args={[3.5, 0.4, 64, 100]} />
           <meshPhysicalMaterial 
             color={isLight ? "#f4f1ea" : "#1a1a1a"}
             roughness={0.2}

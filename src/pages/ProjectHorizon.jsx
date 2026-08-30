@@ -149,7 +149,7 @@ export default function ProjectHorizon() {
       {/* FOOTER CTA */}
       <section style={{ padding: "12rem 4rem", background: "#020202", textAlign: "center" }}>
         <KineticText as="h2" text="Reserve Your Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#fff" }} />
-        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => e.currentTarget.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.currentTarget.style.background="transparent"}>
+        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#fff"; e.currentTarget.style.color="#000";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#fff";}}>
           Contact Sales <ArrowRight size={18} />
         </a>
       </section>

@@ -166,7 +166,7 @@ export default function Home() {
       {/* 2. THE VISION */}
       <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
+          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#0a0a0a", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
             {visionText.map((word, i) => <span key={i} className="vision-word" style={{ opacity: 0.1 }}>{word}</span>)}
           </p>
@@ -243,7 +243,7 @@ export default function Home() {
            <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
-                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.3)", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
+                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "#0a0a0a", WebkitTextStroke: "none", fontWeight: "700", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
                   <span style={{ fontSize: "2rem", color: "rgba(0,0,0,0.5)" }}>âœ¦</span>
                 </div>
               ))}
@@ -256,7 +256,7 @@ export default function Home() {
         <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#0a0a0a", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
-             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#0a0a0a", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => e.target.style.background="rgba(0,0,0,0.05)"} onMouseLeave={e => e.target.style.background="transparent"}>Our Legacy</Link>
+             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#0a0a0a", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => {e.target.style.background="#0a0a0a"; e.target.style.color="#fff";}} onMouseLeave={e => {e.target.style.background="transparent"; e.target.style.color="#0a0a0a";}}>Our Legacy</Link>
              <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#0a0a0a", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "3rem" }} />
