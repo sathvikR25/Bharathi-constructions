@@ -20,14 +20,19 @@ const LAKEWOOD_RENDERS = [
   { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 Lobby & Lounge" },
   { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 Master Layout" },
   { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 Feature List" },
-  { src: "/lakewood-media/floor-plans-min-660a55f02974b.webp", label: "10 Floor Plans" },
+  
+  { src: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg", label: "Residence 01 - 3D View" },
+  { src: "/lakewood-media/SECTION 2__ 2680 - F.jpg", label: "Residence 02 - 3D View" },
+  { src: "/lakewood-media/SECTION 3__ 2290 - f.jpg", label: "Residence 03 - 3D View" },
+  { src: "/lakewood-media/SECTION 4 __ 2285 -f.jpg", label: "Residence 04 - 3D View" }
+,
 ];
 
 const RESIDENCES = [
-  { id: "flat1", label: "Residence 01", sqft: "2290 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 3__ 2290 - f-transparent.png" },
-  { id: "flat2", label: "Residence 02", sqft: "2285 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 4 __ 2285 -f-transparent.png" },
-  { id: "flat3", label: "Residence 03", sqft: "2675 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F-transparent.png" },
-  { id: "flat4", label: "Residence 04", sqft: "2680 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 2__ 2680 - F-transparent.png" }
+  { id: "flat1", label: "Residence 01", sqft: "2675 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg" },
+  { id: "flat2", label: "Residence 02", sqft: "2680 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 2__ 2680 - F.jpg" },
+  { id: "flat3", label: "Residence 03", sqft: "2290 SQ.FT", facing: "East Facing", img: "/lakewood-media/SECTION 3__ 2290 - f.jpg" },
+  { id: "flat4", label: "Residence 04", sqft: "2285 SQ.FT", facing: "West Facing", img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg" }
 ];
 
 const AMENITIES = [
@@ -167,17 +172,17 @@ export default function ProjectLakeWoods() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "3rem", perspective: "1000px" }}>
             {RESIDENCES.map((res, i) => (
               <div key={i} className="residence-card hover-target" style={{ position: "relative", padding: "1rem" }}>
-                <div className="residence-inner" style={{ background: "#0a0a0a", borderRadius: "24px", padding: "3rem", boxShadow: "0 20px 50px rgba(0,0,0,0.15)", transformStyle: "preserve-3d", display: "flex", flexDirection: "column", alignItems: "center", color: "#fff" }}>
+                <div className="residence-inner" style={{ background: "#fff", borderRadius: "24px", padding: "3rem", boxShadow: "0 20px 50px rgba(0,0,0,0.05)", transformStyle: "preserve-3d", display: "flex", flexDirection: "column", alignItems: "center", color: "#0a0a0a", border: "1px solid rgba(0,0,0,0.05)" }}>
                   <div style={{ width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "3rem", transform: "translateZ(30px)" }}>
                     <span style={{ fontSize: "1.5rem", fontFamily: "Playfair Display, serif" }}>{res.label}</span>
                     <div style={{ textAlign: "right" }}>
-                      <span style={{ fontSize: "0.75rem", letterSpacing: "0.1em", display: "block", color: "rgba(255,255,255,0.6)" }}>{res.sqft}</span>
-                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>{res.facing}</span>
+                      <span style={{ fontSize: "0.75rem", letterSpacing: "0.1em", display: "block", color: "rgba(0,0,0,0.6)", fontWeight: 600 }}>{res.sqft}</span>
+                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", color: "rgba(0,0,0,0.4)", textTransform: "uppercase" }}>{res.facing}</span>
                     </div>
                   </div>
                   {/* Removed mix-blend mode and white background, directly placing the transparent PNG */}
                   <div style={{ width: "100%", transform: "translateZ(60px)", display: "flex", justifyContent: "center", padding: "1rem" }}>
-                     <img src={res.img} alt={res.label} style={{ width: "85%", height: "auto", pointerEvents: "none" }} />
+                     <img src={res.img} alt={res.label} style={{ width: "100%", height: "auto", borderRadius: "12px", pointerEvents: "none", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }} />
                   </div>
                 </div>
               </div>
@@ -186,38 +191,7 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* 3D SECTION/FLAT RENDERS */}
-        <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a" }}>
-          <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-            <div style={{ textAlign: "center", marginBottom: "8rem" }}>
-              <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: "1.5rem" }}>The Spaces</span>
-              <KineticText as="h2" text="3D Floor Plans." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 5vw, 5rem)", margin: 0, color: "#0a0a0a" }} />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "6rem" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "4rem" }}>
-                {[
-                  { img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg", title: "Section 1", sqft: "2675 SQ.FT" },
-                  { img: "/lakewood-media/SECTION 2__ 2680 - F.jpg", title: "Section 2", sqft: "2680 SQ.FT" },
-                  { img: "/lakewood-media/SECTION 3__ 2290 - f.jpg", title: "Section 3", sqft: "2290 SQ.FT" },
-                  { img: "/lakewood-media/SECTION 4 __ 2285 -f.jpg", title: "Section 4", sqft: "2285 SQ.FT" }
-                ].map((item, idx) => (
-                  <div key={idx} style={{ overflow: "hidden" }}>
-                    <div style={{ width: "100%", overflow: "hidden", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
-                      <img className="reveal-img" src={item.img} alt={item.title} style={{ width: "100%", maxHeight: "80vh", objectFit: "contain", display: "block", transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} />
-                    </div>
-                    <div style={{ marginTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 1rem" }}>
-                      <span style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a" }}>{item.title}</span>
-                      <span style={{ fontSize: "0.8rem", letterSpacing: "0.15em", color: "#000", fontWeight: 700 }}>{item.sqft}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* LOCATION / MASTERPLAN */}
+      {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "10rem 4rem", background: "transparent", color: "#0a0a0a", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
