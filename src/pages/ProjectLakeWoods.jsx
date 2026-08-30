@@ -49,7 +49,7 @@ export default function ProjectLakeWoods() {
   const mainRef = useRef(null);
   const heroWrapRef = useRef(null);
   const heroTextRef = useRef(null);
-  const galleryTitleRef = useRef(null);
+  const galleryTrackRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -136,38 +136,28 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* NEW STACKED GALLERY ANIMATION (Replaces ImageCarousel) */}
-      <section className="gallery-section" style={{ padding: "10rem 4rem", background: "#f4f1ea", position: "relative" }}>
-        <div style={{ maxWidth: "1600px", margin: "0 auto", display: "flex", gap: "6rem", alignItems: "flex-start" }}>
-          
-          {/* Pinned Title Left Side */}
-          <div ref={galleryTitleRef} className="pinned-title" style={{ flex: "1 1 400px", paddingTop: "5rem" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Gallery</span>
-            <KineticText as="h2" text="Every Detail," style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }} />
-            <KineticText as="h2" text="Captured." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", fontStyle: "italic" }} />
-          </div>
-
-          {/* Stacking Images Right Side */}
-          <div style={{ flex: "2 1 800px", display: "flex", flexDirection: "column", gap: "15vh" }}>
-            {LAKEWOOD_RENDERS.map((item, i) => (
-              <div key={i} style={{ 
-                position: "sticky", 
-                top: "15vh", 
-                width: "100%", 
-                background: "#f4f1ea" // ensures stacked images cover previous ones smoothly 
-              }}>
-                <div style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)" }}>
-                  <img src={item.src} alt={item.label} style={{ width: "100%", height: "auto", display: "block" }} loading="lazy" />
+      {/* HORIZONTAL GSAP SCROLL GALLERY */}
+        <section className="gallery-section" style={{ height: "400vh", position: "relative", background: "#f4f1ea" }}>
+          <div className="gallery-sticky-container" style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ padding: "0 4rem", marginBottom: "2rem" }}>
+              <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>The Gallery</span>
+              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }}>Every Detail, <span style={{ fontStyle: "italic" }}>Captured.</span></h2>
+            </div>
+            
+            <div className="gallery-track" ref={galleryTrackRef} style={{ display: "flex", gap: "6rem", padding: "0 4rem", width: "max-content", willChange: "transform", alignItems: "center" }}>
+              {LAKEWOOD_RENDERS.map((item, i) => (
+                <div key={i} style={{ width: "70vw", maxWidth: "900px", flexShrink: 0 }}>
+                  <div style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <img src={item.src} alt={item.label} style={{ width: "100%", height: "auto", maxHeight: "65vh", objectFit: "contain", display: "block" }} loading="lazy" />
+                  </div>
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
+                  </div>
                 </div>
-                <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
-        </div>
-      </section>
+        </section>
 
       {/* INVERTED AMENITIES */}
       <section style={{ padding: "10rem 4rem", background: "transparent" }}>

@@ -76,8 +76,8 @@ export default function ProjectHorizon() {
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none" }}>
-          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
-          <KineticText as="h1" text="Sculpting the Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#fff" }} />
+          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
+          <KineticText as="h1" text="Sculpting the Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#0a0a0a" }} />
         </div>
       </section>
 
@@ -101,7 +101,7 @@ export default function ProjectHorizon() {
       {/* FULL CAROUSEL */}
       <section style={{ padding: "10rem 0", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 4rem", marginBottom: "4rem" }}>
-          <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#fff" }} />
+          <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a" }} />
         </div>
         <ImageCarousel images={HORIZON_RENDERS} id="horizon" />
       </section>
@@ -109,15 +109,15 @@ export default function ProjectHorizon() {
       {/* AMENITIES */}
       <section style={{ padding: "10rem 4rem", background: "#0a0a0a" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#fff" }} />
+          <KineticText as="h2" text="Curated Lifestyle." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#0a0a0a" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
-                <div key={i} style={{ padding: "3rem 2rem", background: "rgba(255,255,255,0.02)", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <Icon size={32} color="#fff" strokeWidth={1} style={{ marginBottom: "2rem" }} />
-                  <h4 style={{ fontSize: "1.2rem", fontWeight: 400, marginBottom: "1rem", color: "#fff" }}>{a.label}</h4>
-                  <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{a.desc}</p>
+                <div key={i} style={{ padding: "3rem 2rem", background: "rgba(0,0,0,0.02)", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)" }}>
+                  <Icon size={32} color="#0a0a0a" strokeWidth={1} style={{ marginBottom: "2rem" }} />
+                  <h4 style={{ fontSize: "1.2rem", fontWeight: 400, marginBottom: "1rem", color: "#0a0a0a" }}>{a.label}</h4>
+                  <p style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.5)", lineHeight: 1.6 }}>{a.desc}</p>
                 </div>
               );
             })}
@@ -147,9 +147,9 @@ export default function ProjectHorizon() {
       </section>
 
       {/* FOOTER CTA */}
-      <section style={{ padding: "12rem 4rem", background: "#020202", textAlign: "center" }}>
-        <KineticText as="h2" text="Reserve Your Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#fff" }} />
-        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#fff"; e.currentTarget.style.color="#000";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#fff";}}>
+      <section style={{ padding: "12rem 4rem", background: "transparent", textAlign: "center" }}>
+        <KineticText as="h2" text="Reserve Your Skyline." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#0a0a0a" }} />
+        <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#0a0a0a"; e.currentTarget.style.color="#0a0a0a";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#0a0a0a";}}>
           Contact Sales <ArrowRight size={18} />
         </a>
       </section>
