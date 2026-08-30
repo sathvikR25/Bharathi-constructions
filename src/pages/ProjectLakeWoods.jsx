@@ -80,21 +80,7 @@ export default function ProjectLakeWoods() {
         });
       });
 
-              // Horizontal Gallery Scrub
-        if (galleryTrackRef.current) {
-          gsap.to(galleryTrackRef.current, {
-            x: () => -(galleryTrackRef.current.scrollWidth - window.innerWidth + 128),
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".gallery-section",
-              start: "top top",
-              end: () => "+=" + galleryTrackRef.current.offsetWidth,
-              scrub: 1,
-              // pin: true (handled by CSS sticky)
-              invalidateOnRefresh: true,
-            }
-          });
-        }
+              
 
       // Reveal Images
       gsap.utils.toArray(".reveal-img").forEach(img => {
@@ -142,26 +128,26 @@ export default function ProjectLakeWoods() {
         </div>
       </section>
 
-      {/* HORIZONTAL GSAP SCROLL GALLERY */}
-        <section className="gallery-section" style={{ position: "relative", background: "#f4f1ea", overflow: "hidden" }}>
-          <div className="gallery-sticky-container" style={{ height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div style={{ padding: "0 4rem", marginBottom: "2rem" }}>
-              <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>The Gallery</span>
-              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }}>Every Detail, <span style={{ fontStyle: "italic" }}>Captured.</span></h2>
-            </div>
-            
-            <div className="gallery-track" ref={galleryTrackRef} style={{ display: "flex", gap: "6rem", padding: "0 4rem", width: "max-content", willChange: "transform", alignItems: "center" }}>
-              {LAKEWOOD_RENDERS.map((item, i) => (
-                <div key={i} style={{ height: "65vh", flexShrink: 0, display: "flex", flexDirection: "column" }}>
-                  <div style={{ flex: 1, borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)", background: "#fff", display: "flex" }}>
-                    <img src={item.src} alt={item.label} onLoad={() => ScrollTrigger.refresh()} style={{ maxWidth: "85vw", maxHeight: "65vh", width: "auto", height: "auto", objectFit: "contain", display: "block" }} loading="lazy" />
-                  </div>
-                  <div style={{ marginTop: "1.5rem" }}>
-                    <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
-                  </div>
+      {/* NATIVE HORIZONTAL SNAP GALLERY */}
+        <section className="gallery-section" style={{ height: "100vh", position: "relative", background: "#f4f1ea", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ padding: "0 4rem", marginBottom: "3rem" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>The Gallery</span>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }}>Every Detail, <span style={{ fontStyle: "italic" }}>Captured.</span></h2>
+          </div>
+          
+          <div className="gallery-track" ref={galleryTrackRef} style={{ display: "flex", gap: "2rem", padding: "0 4rem", width: "100%", overflowX: "auto", scrollSnapType: "x mandatory", alignItems: "center" }}>
+            {LAKEWOOD_RENDERS.map((item, i) => (
+              <div key={i} style={{ height: "65vh", flexShrink: 0, display: "flex", flexDirection: "column", scrollSnapAlign: "center", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.1)", background: "#fff", display: "flex", height: "calc(100% - 4rem)" }}>
+                  <img src={item.src} alt={item.label} style={{ width: "auto", height: "100%", objectFit: "contain", display: "block" }} loading="lazy" />
                 </div>
-              ))}
-            </div>
+                <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+                  <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.5rem", color: "#0a0a0a", margin: 0 }}>{item.label}</h3>
+                </div>
+              </div>
+            ))}
+            {/* End padding spacer */}
+            <div style={{ width: "4rem", height: "1px", flexShrink: 0 }}></div>
           </div>
         </section>
 
