@@ -80,15 +80,21 @@ export default function ProjectLakeWoods() {
         });
       });
 
-      // Pin Gallery Title while scrolling through the stack
-      if (galleryTitleRef.current) {
-        ScrollTrigger.create({
-          trigger: ".gallery-section",
-          start: "top 20%",
-          end: "bottom 80%",
-          pin: galleryTitleRef.current,
-        });
-      }
+              // Horizontal Gallery Scrub
+        if (galleryTrackRef.current) {
+          gsap.to(galleryTrackRef.current, {
+            x: () => -(galleryTrackRef.current.scrollWidth - window.innerWidth + 128),
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".gallery-section",
+              start: "top top",
+              end: () => "+=" + galleryTrackRef.current.offsetWidth,
+              scrub: 1,
+              // pin: true (handled by CSS sticky)
+              invalidateOnRefresh: true,
+            }
+          });
+        }
 
       // Reveal Images
       gsap.utils.toArray(".reveal-img").forEach(img => {
