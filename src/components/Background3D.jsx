@@ -29,95 +29,107 @@ function Scene({ isLight, isHorizon, isHome }) {
       <Environment preset={isLight ? "city" : "night"} />
 
       {isHome ? (
-        // EXCLUSIVE HOME SHAPES (Innovative Construction: Cranes, Helmets, Buildings)
+        // EXCLUSIVE HOME SHAPES (Improved Construction Geometries)
         <>
-          {/* STYLIZED TOWER CRANE */}
-          <Float speed={1.2} rotationIntensity={0.4} floatIntensity={1.5}>
-            <group position={[4, 1, -8]} rotation={[0.2, 0.8, 0.1]} scale={1.2}>
+          {/* TOWER CRANE - Taller, more imposing, better proportions */}
+          <Float speed={1.2} rotationIntensity={0.3} floatIntensity={1.5}>
+            <group position={[6, 0, -12]} rotation={[0.1, -0.4, 0.05]} scale={1.8}>
               {/* Mast */}
-              <mesh position={[0, 0, 0]}>
-                <boxGeometry args={[0.2, 4, 0.2]} />
-                <meshPhysicalMaterial color={isLight ? "#111" : "#eae5da"} roughness={0.3} metalness={0.7} />
+              <mesh position={[0, -1, 0]}>
+                <boxGeometry args={[0.15, 6, 0.15]} />
+                <meshPhysicalMaterial color={isLight ? "#222" : "#eae5da"} roughness={0.3} metalness={0.8} />
               </mesh>
-              {/* Jib (Arm) */}
-              <mesh position={[1.2, 1.9, 0]}>
-                <boxGeometry args={[3.5, 0.2, 0.2]} />
-                <meshPhysicalMaterial color="#c9a96e" roughness={0.1} metalness={0.9} />
+              {/* Jib (Long Arm) */}
+              <mesh position={[1.8, 1.9, 0]}>
+                <boxGeometry args={[4.5, 0.15, 0.15]} />
+                <meshPhysicalMaterial color="#c9a96e" roughness={0.1} metalness={1} clearcoat={1} />
               </mesh>
-              {/* Counter Jib */}
+              {/* Counter Jib (Short Arm) */}
               <mesh position={[-0.8, 1.9, 0]}>
-                <boxGeometry args={[1.5, 0.2, 0.2]} />
-                <meshPhysicalMaterial color="#c9a96e" roughness={0.1} metalness={0.9} />
+                <boxGeometry args={[1.5, 0.15, 0.15]} />
+                <meshPhysicalMaterial color="#c9a96e" roughness={0.1} metalness={1} clearcoat={1} />
               </mesh>
               {/* Counterweight */}
-              <mesh position={[-1.3, 1.6, 0]}>
-                <boxGeometry args={[0.5, 0.6, 0.4]} />
-                <meshPhysicalMaterial color={isLight ? "#eae5da" : "#222"} roughness={0.4} metalness={0.5} />
+              <mesh position={[-1.3, 1.65, 0]}>
+                <boxGeometry args={[0.6, 0.5, 0.5]} />
+                <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111"} roughness={0.5} metalness={0.4} />
               </mesh>
-              {/* Cable & Hook */}
-              <mesh position={[2.5, 0.5, 0]}>
-                <cylinderGeometry args={[0.01, 0.01, 2.8]} />
+              {/* Drop Cable & Hook */}
+              <mesh position={[3.5, 0.2, 0]}>
+                <cylinderGeometry args={[0.015, 0.015, 3.4]} />
                 <meshPhysicalMaterial color={isLight ? "#555" : "#ccc"} />
               </mesh>
-              <mesh position={[2.5, -0.9, 0]}>
+              <mesh position={[3.5, -1.5, 0]}>
                 <boxGeometry args={[0.3, 0.3, 0.3]} />
-                <meshPhysicalMaterial color="#c9a96e" />
-              </mesh>
-            </group>
-          </Float>
-
-          {/* FLOATING CITYSCAPE / SKYSCRAPERS */}
-          <Float speed={1} rotationIntensity={0.5} floatIntensity={2}>
-            <group position={[-5, -1, -8]} rotation={[0.2, Math.PI / 4, 0]} scale={1.5}>
-              {/* Tower 1 (Glass) */}
-              <mesh position={[0, 1.5, 0]}>
-                <boxGeometry args={[1.2, 3, 1.2]} />
-                <meshPhysicalMaterial color={isLight ? "#fff" : "#000"} roughness={0.1} metalness={0.9} clearcoat={1} transparent opacity={0.8} />
-              </mesh>
-              {/* Tower 2 (Gold) */}
-              <mesh position={[1.2, 1, 0.2]}>
-                <boxGeometry args={[0.8, 2, 0.8]} />
                 <meshPhysicalMaterial color="#c9a96e" roughness={0.2} metalness={0.8} />
               </mesh>
-              {/* Tower 3 (Dark/Solid) */}
-              <mesh position={[-1, 0.5, 0.5]}>
-                <boxGeometry args={[0.8, 1, 0.8]} />
-                <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111"} roughness={0.5} metalness={0.5} map={logoTex} />
+            </group>
+          </Float>
+
+          {/* FLOATING CITYSCAPE - Denser, more towers, sharper glass */}
+          <Float speed={1} rotationIntensity={0.5} floatIntensity={2}>
+            <group position={[-5, -1, -8]} rotation={[0.1, Math.PI / 4, 0]} scale={1.6}>
+              {/* Tower 1 (Tall Glass) */}
+              <mesh position={[0, 2, 0]}>
+                <boxGeometry args={[1.2, 4, 1.2]} />
+                <meshPhysicalMaterial color={isLight ? "#ffffff" : "#050505"} roughness={0.05} metalness={0.95} clearcoat={1} transparent opacity={0.85} />
+              </mesh>
+              {/* Tower 2 (Gold Medium) */}
+              <mesh position={[1.2, 1.2, 0.2]}>
+                <boxGeometry args={[0.8, 2.4, 0.8]} />
+                <meshPhysicalMaterial color="#c9a96e" roughness={0.2} metalness={0.8} />
+              </mesh>
+              {/* Tower 3 (Dark/Concrete Low) */}
+              <mesh position={[-1, 0.8, 0.8]}>
+                <boxGeometry args={[0.8, 1.6, 0.8]} />
+                <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111"} roughness={0.6} metalness={0.3} map={logoTex} />
+              </mesh>
+              {/* Tower 4 (Sleek Silver/Metal) */}
+              <mesh position={[0.5, 1.5, -1.2]}>
+                <boxGeometry args={[0.7, 3, 0.7]} />
+                <meshPhysicalMaterial color={isLight ? "#ccc" : "#222"} roughness={0.2} metalness={0.8} />
               </mesh>
             </group>
           </Float>
 
-          {/* ABSTRACT BUILDER HELMET */}
-          <Float speed={1.5} rotationIntensity={1.2} floatIntensity={1.5}>
-            <group position={[-2, 3.5, -12]} rotation={[0.4, -0.2, 0.2]} scale={1.2}>
+          {/* BUILDER HELMET - Realistic Yellow/Safety Color & Proportions */}
+          <Float speed={1.5} rotationIntensity={1.5} floatIntensity={1.5}>
+            <group position={[-3, 4, -12]} rotation={[0.5, -0.3, 0.2]} scale={1.4}>
               {/* Dome */}
               <mesh rotation={[0, 0, 0]}>
-                <sphereGeometry args={[1.2, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
-                <meshPhysicalMaterial color="#c9a96e" roughness={0.2} metalness={0.8} clearcoat={1} />
+                <sphereGeometry args={[1.2, 64, 64, 0, Math.PI * 2, 0, Math.PI / 2]} />
+                <meshPhysicalMaterial color="#FFC107" roughness={0.15} metalness={0.1} clearcoat={1} clearcoatRoughness={0.1} />
               </mesh>
               {/* Brim */}
-              <mesh position={[0, -0.05, 0.2]} rotation={[0, 0, 0]}>
-                <cylinderGeometry args={[1.35, 1.35, 0.1, 32]} />
-                <meshPhysicalMaterial color="#c9a96e" roughness={0.2} metalness={0.8} clearcoat={1} />
+              <mesh position={[0, -0.05, 0.15]} rotation={[0, 0, 0]}>
+                <cylinderGeometry args={[1.35, 1.45, 0.1, 64]} />
+                <meshPhysicalMaterial color="#FFC107" roughness={0.15} metalness={0.1} clearcoat={1} />
               </mesh>
-              {/* Top Ridge */}
-              <mesh position={[0, 0.6, 0]} rotation={[0, 0, 0]}>
-                <boxGeometry args={[0.2, 1.3, 1.8]} />
-                <meshPhysicalMaterial color="#c9a96e" roughness={0.2} metalness={0.8} />
+              {/* Top Ridge (Safety Helmet Detail) */}
+              <mesh position={[0, 0.65, 0]} rotation={[0, 0, 0]}>
+                <boxGeometry args={[0.25, 1.2, 1.7]} />
+                <meshPhysicalMaterial color="#FFC107" roughness={0.15} metalness={0.1} clearcoat={1} />
               </mesh>
             </group>
           </Float>
           
-          {/* MODERN HOUSE FRAME / BLUEPRINT */}
-          <Float speed={2} rotationIntensity={0.8} floatIntensity={2.5}>
-            <group position={[3, -3.5, -10]} rotation={[0.2, -0.5, 0]} scale={1.5}>
+          {/* HOUSE FRAME / BLUEPRINT - Thicker lines, stronger architectural look */}
+          <Float speed={2} rotationIntensity={1} floatIntensity={2.5}>
+            <group position={[2, -4, -9]} rotation={[0.3, -0.6, 0.1]} scale={1.7}>
+              {/* Base Frame */}
               <mesh position={[0, 0, 0]}>
-                <boxGeometry args={[2, 2, 2]} />
-                <meshPhysicalMaterial color={isLight ? "#111" : "#fff"} wireframe={true} transparent opacity={0.5} />
+                <boxGeometry args={[2.2, 2.2, 2.2]} />
+                <meshPhysicalMaterial color={isLight ? "#000" : "#fff"} wireframe={true} transparent opacity={0.3} />
               </mesh>
-              <mesh position={[0, 1.5, 0]} rotation={[0, Math.PI/4, 0]}>
-                <coneGeometry args={[1.8, 1.5, 4]} />
-                <meshPhysicalMaterial color="#c9a96e" wireframe={true} transparent opacity={0.8} />
+              {/* Solid Core for depth */}
+              <mesh position={[0, 0, 0]}>
+                <boxGeometry args={[2.1, 2.1, 2.1]} />
+                <meshPhysicalMaterial color={isLight ? "#f4f1ea" : "#0a0a0a"} roughness={0.5} metalness={0.5} transparent opacity={0.6} />
+              </mesh>
+              {/* Roof Frame */}
+              <mesh position={[0, 1.7, 0]} rotation={[0, Math.PI/4, 0]}>
+                <coneGeometry args={[2, 1.5, 4]} />
+                <meshPhysicalMaterial color="#c9a96e" wireframe={true} transparent opacity={0.9} />
               </mesh>
             </group>
           </Float>
