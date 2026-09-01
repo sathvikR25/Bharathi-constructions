@@ -29,22 +29,23 @@ function Scene({ isLight, isHorizon }) {
       <mesh position={[0, 0, -15]} scale={25}>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial 
-          color={isLight ? "#f0ebd8" : "#0a0a0a"} 
+          color={isLight ? "#e8e3d5" : "#111111"} 
           roughness={0.8} 
           metalness={0.2} 
-          distort={0.3} 
-          speed={0.5} 
+          distort={0.5} 
+          speed={0.8} 
           side={THREE.BackSide}
         />
       </mesh>
 
-      {/* Atmospheric Particles */}
+      {/* Atmospheric Particles - INCREASED VISIBILITY */}
       <Sparkles 
-        count={250} 
-        scale={[25, 25, 25]} 
-        size={isLight ? 4 : 6} 
-        speed={0.3} 
-        opacity={isLight ? 0.3 : 0.5} 
+        count={800} 
+        scale={[40, 40, 20]} 
+        position={[0, 0, 0]}
+        size={isLight ? 15 : 25} 
+        speed={0.8} 
+        opacity={isLight ? 0.8 : 1} 
         color={isLight ? "#c9a96e" : "#ffffff"} 
       />
 
