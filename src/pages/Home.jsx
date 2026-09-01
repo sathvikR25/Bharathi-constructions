@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -248,7 +248,7 @@ export default function Home() {
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>01 THE SKYLINE</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A modern high-rise project with excellent views and natural ventilation.</p>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
               <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={16}/></Link>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function Home() {
             </div>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.5rem 1.2rem", borderRadius: "100px", display: "inline-block", marginBottom: "2rem", fontWeight: 600 }}>02 THE SANCTUARY</span>
-              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>A premium residential community located in a peaceful environment.</p>
+              <p style={{ fontSize: "1.5rem", lineHeight: 1.6, color: "#333", maxWidth: "400px", marginBottom: "3rem" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
               <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={16}/></Link>
             </div>
           </div>
@@ -299,7 +299,7 @@ export default function Home() {
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
                   <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "#0a0a0a", WebkitTextStroke: "none", fontWeight: "700", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
-                  <span style={{ fontSize: "2rem", color: "rgba(0,0,0,0.5)" }}>âœ¦</span>
+                  <span style={{ fontSize: "2rem", color: "rgba(0,0,0,0.3)" }}>✦</span>
                 </div>
               ))}
            </div>
@@ -308,15 +308,37 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer style={{ background: "transparent", color: "#0a0a0a", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#0a0a0a", margin: "0 0 4rem 0" }}>Precision in Every Metric.</h2>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#0a0a0a", margin: "0 0 4rem 0", textAlign: "center" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
              <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#0a0a0a", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => {e.target.style.background="#0a0a0a"; e.target.style.color="#fff";}} onMouseLeave={e => {e.target.style.background="transparent"; e.target.style.color="#0a0a0a";}}>Our Legacy</Link>
              <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#0a0a0a", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
+
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "3rem" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.4)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>Â© 2026 Bharathi Constructions.</span>
+
+          {/* Footer Info Grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
+            <div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Office</span>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad — 500067</p>
+            </div>
+            <div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
+              <a href="tel:+917997992051" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>+91 79979 92051</a>
+              <a href="mailto:info@bharathiconstructionshyd.com" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>info@bharathiconstructionshyd.com</a>
+            </div>
+            <div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Navigate</span>
+              {[["Our Legacy", "/legacy"], ["Bharathi Horizon", "/horizon"], ["Lake Woods", "/lake-woods"], ["Builder Profile", "/builder-profile"]].map(([label, href]) => (
+                <Link key={href} to={href} style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>{label}</Link>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <span>© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <span>Hyderabad, Telangana</span>
           </div>
         </div>
