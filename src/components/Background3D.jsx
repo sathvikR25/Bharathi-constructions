@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, useTexture, ContactShadows } from "@react-three/drei";
+import { Float, Environment, useTexture, ContactShadows, Sparkles, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { useLocation } from "react-router-dom";
 
@@ -22,6 +22,32 @@ function Scene({ isLight, isHorizon }) {
 
   return (
     <>
+      {/* ANTIGRAVITY-STYLE BACKGROUND ANIMATIONS */}
+      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 10, 30]} />
+      
+      {/* Subtle Fluid Aurora Gradient (Enclosing Sphere) */}
+      <mesh position={[0, 0, -15]} scale={25}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <MeshDistortMaterial 
+          color={isLight ? "#f0ebd8" : "#0a0a0a"} 
+          roughness={0.8} 
+          metalness={0.2} 
+          distort={0.3} 
+          speed={0.5} 
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* Atmospheric Particles */}
+      <Sparkles 
+        count={250} 
+        scale={[25, 25, 25]} 
+        size={isLight ? 4 : 6} 
+        speed={0.3} 
+        opacity={isLight ? 0.3 : 0.5} 
+        color={isLight ? "#c9a96e" : "#ffffff"} 
+      />
+
       <ambientLight intensity={isLight ? 0.8 : 0.2} />
       <directionalLight position={[10, 10, 5]} intensity={isLight ? 1 : 0.5} color={isLight ? "#ffffff" : "#c9a96e"} />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#ffffff" />
