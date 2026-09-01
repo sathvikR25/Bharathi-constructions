@@ -304,7 +304,6 @@ export default function Home() {
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
                   <span className="marquee-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", color: "#0a0a0a", fontWeight: "700", margin: "0 clamp(1.5rem, 4vw, 4rem)", textTransform: "uppercase" }}>Bharathi Constructions</span>
-                  <span style={{ fontSize: "clamp(1rem, 2vw, 2rem)", color: "rgba(0,0,0,0.3)" }}>✦</span>
                 </div>
               ))}
            </div>
