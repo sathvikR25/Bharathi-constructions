@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -152,13 +152,24 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* 3D SPOTLIGHT CAROUSEL GALLERY */}
-        <section className="gallery-section" style={{ padding: "8rem 0", position: "relative", background: "#f4f1ea", overflow: "hidden" }}>
-          <div style={{ padding: "0 4rem", marginBottom: "2rem", textAlign: "center" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>The Gallery</span>
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }}>Project <span style={{ fontStyle: "italic" }}>Gallery</span></h2>
+      <section style={{ padding: "8rem 0 6rem", background: "#f4f1ea", overflow: "hidden" }}>
+        <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(1.5rem, 4vw, 4rem)" }}>
+          <div style={{ marginBottom: "3rem", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+            <div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "0.75rem" }}>
+                The Gallery
+              </span>
+              <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", margin: 0, color: "#0a0a0a", lineHeight: 1.1 }}>
+                Project <span style={{ fontStyle: "italic" }}>Gallery</span>
+              </h2>
+            </div>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666" }}>
+              {LAKEWOOD_RENDERS.length} renders
+            </span>
           </div>
           <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" theme="light" />
-        </section>
+        </div>
+      </section>
 
       {/* INVERTED AMENITIES */}
       <section style={{ padding: "10rem 4rem", background: "transparent" }}>

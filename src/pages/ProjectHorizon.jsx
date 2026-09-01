@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -123,12 +123,22 @@ export default function ProjectHorizon() {
         </div>
       </section>
 
-      {/* FULL CAROUSEL */}
-      <section style={{ padding: "10rem 0", background: "transparent" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 4rem", marginBottom: "4rem" }}>
-          <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#0a0a0a" }} />
+      {/* GALLERY — full bleed dark bg */}
+      <section style={{ padding: "8rem 0 6rem", background: "#050505" }}>
+        <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(1.5rem, 4vw, 4rem)" }}>
+          <div style={{ marginBottom: "3rem", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+            <div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", display: "block", marginBottom: "0.75rem" }}>
+                Visual Tour
+              </span>
+              <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", margin: 0, color: "#fff", fontWeight: 400 }} />
+            </div>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+              {HORIZON_RENDERS.length} renders
+            </span>
+          </div>
+          <ImageCarousel images={HORIZON_RENDERS} id="horizon" />
         </div>
-        <ImageCarousel images={HORIZON_RENDERS} id="horizon" />
       </section>
 
       {/* AMENITIES */}

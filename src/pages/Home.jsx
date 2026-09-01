@@ -229,6 +229,11 @@ export default function Home() {
             <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
           </div>
         </div>
+
+        <div style={{ textAlign: "center", marginTop: "clamp(8rem,12vw,12rem)" }}>
+          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
+          <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
+        </div>
       </section>
 
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
@@ -273,10 +278,6 @@ export default function Home() {
       {/* 4. LIFESTYLE PARALLAX GRID */}
       <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-           <div style={{ textAlign: "center", marginBottom: "clamp(4rem,10vw,10rem)" }}>
-             <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
-             <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", color: "#666", maxWidth: "600px", margin: "2rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
-           </div>
 
            {/* Mobile: simple stack. Desktop: overlapping grid */}
            <div className="parallax-mobile-stack" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
