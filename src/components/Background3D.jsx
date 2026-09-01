@@ -29,18 +29,18 @@ function Scene({ isLight, isHorizon }) {
       <Environment preset={isLight ? "city" : "night"} />
 
       {isHorizon ? (
-        // EXCLUSIVE HORIZON SHAPE (Massive Dodecahedron - faceted, solid, monumental architecture)
-        <Float speed={1} rotationIntensity={0.4} floatIntensity={1.5}>
-          <mesh position={[2, 0, -10]} rotation={[0.4, 0.6, 0]}>
-            <dodecahedronGeometry args={[5.5, 0]} />
+        // EXCLUSIVE HORIZON SHAPE (Massive 4-Sided Pyramid - representing the peak, the skyline, and legacy)
+        <Float speed={1} rotationIntensity={0.3} floatIntensity={1.5}>
+          <mesh position={[2, -1, -12]} rotation={[0.2, 0.4, 0]}>
+            <coneGeometry args={[4.5, 7, 4]} />
             <meshPhysicalMaterial color="#eae5da" roughness={0.15} metalness={0.85} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
           </mesh>
         </Float>
       ) : (
-        // STANDARD SHAPE (Massive Torus Knot - continuous, flowing, modern sculpture)
-        <Float speed={0.8} rotationIntensity={0.3} floatIntensity={2}>
-          <mesh position={[2, 0, -12]} rotation={[0.2, 0.5, 0]}>
-            <torusKnotGeometry args={[4.5, 1.2, 128, 32]} />
+        // STANDARD SHAPE (Massive Perfect Cube - the fundamental building block of construction)
+        <Float speed={0.8} rotationIntensity={0.4} floatIntensity={2}>
+          <mesh position={[2, 0, -12]} rotation={[0.6, 0.8, 0]}>
+            <boxGeometry args={[5, 5, 5]} />
             <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
           </mesh>
         </Float>
