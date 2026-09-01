@@ -7,58 +7,66 @@ import { useLocation } from "react-router-dom";
 function AntigravityParticles({ isLight }) {
   const meshRef = useRef();
   const groupRef = useRef();
-  const count = 4000; // Doubled density for a richer galaxy
-  const radius = 24; 
+  const count = 2500; // Optimal count for the structured Vogel spiral
 
   useLayoutEffect(() => {
     if (!meshRef.current) return;
     const dummy = new THREE.Object3D();
     const color = new THREE.Color();
-    const phi = Math.PI * (3 - Math.sqrt(5));
+    
+    // Golden angle in radians
+    const goldenAngle = 2.399963229728653; 
+    const c = 0.55; // Spread factor to fill the background
 
     for (let i = 0; i < count; i++) {
-      const y = 1 - (i / (count - 1)) * 2;
-      const r = Math.sqrt(1 - y * y);
-      const theta = phi * i;
+      const theta = i * goldenAngle;
+      const r = c * Math.sqrt(i);
 
-      const x = Math.cos(theta) * r;
-      const z = Math.sin(theta) * r;
+      const x = r * Math.cos(theta);
+      const y = r * Math.sin(theta);
+      // Create a slight bowl/cone shape for beautiful 3D parallax depth
+      const z = -r * 0.15; 
 
-      // Add volumetric noise so it's a deep cloud, not a thin 1px shell
-      const depthNoise = (Math.random() - 0.5) * 8; 
-      const finalRadius = radius + depthNoise;
-      
-      dummy.position.set(x * finalRadius, y * finalRadius, z * finalRadius);
+      dummy.position.set(x, y, z);
 
-      // Flow direction (point to next particle on the spiral)
-      const yNext = 1 - ((i + 1) / (count - 1)) * 2;
-      const rNext = Math.sqrt(1 - yNext * yNext);
-      const thetaNext = phi * (i + 1);
-      const xNext = Math.cos(thetaNext) * rNext;
-      const zNext = Math.sin(thetaNext) * rNext;
+      // Orientation: Point exactly along the spiral tangent curve
+      const thetaNext = (i + 1) * goldenAngle;
+      const rNext = c * Math.sqrt(i + 1);
+      const xNext = rNext * Math.cos(thetaNext);
+      const yNext = rNext * Math.sin(thetaNext);
+      const zNext = -rNext * 0.15;
       
-      dummy.lookAt(xNext * finalRadius, yNext * finalRadius, zNext * finalRadius);
+      dummy.lookAt(xNext, yNext, zNext);
       
-      // Organic flow lengths (some short dots, some long streaks)
-      dummy.scale.set(1, 1, Math.random() * 2.5 + 0.2);
+      // Keep dashes uniform and short, exactly like the reference image
+      const sizeScale = Math.min(1.5, 0.5 + (i / count)); 
+      dummy.scale.set(1, 1, sizeScale);
       dummy.updateMatrix();
       
       meshRef.current.setMatrixAt(i, dummy.matrix);
 
-      // Color spatial gradient (Antigravity Blue -> Purple -> Red -> Yellow)
-      const normalizedX = (x + 1) / 2; 
+      // 100% Accurate Color Sweep based on angle (Blue -> Pink -> Yellow)
+      const angle = Math.atan2(y, x);
       
-      if (normalizedX < 0.33) {
-         color.lerpColors(new THREE.Color("#4285F4"), new THREE.Color("#8A2BE2"), normalizedX / 0.33);
-      } else if (normalizedX < 0.66) {
-         color.lerpColors(new THREE.Color("#8A2BE2"), new THREE.Color("#EA4335"), (normalizedX - 0.33) / 0.33);
+      if (angle > -Math.PI && angle <= -Math.PI/2) {
+         // Bottom Left: Solid Blue
+         color.set("#4285F4");
+      } else if (angle > -Math.PI/2 && angle <= 0) {
+         // Bottom Right: Blue transitioning to Yellow
+         const t = (angle + Math.PI/2) / (Math.PI/2);
+         color.lerpColors(new THREE.Color("#4285F4"), new THREE.Color("#F9AB00"), t);
+      } else if (angle > 0 && angle <= Math.PI/2) {
+         // Top Right: Yellow transitioning to Red
+         const t = angle / (Math.PI/2);
+         color.lerpColors(new THREE.Color("#F9AB00"), new THREE.Color("#EA4335"), t);
       } else {
-         color.lerpColors(new THREE.Color("#EA4335"), new THREE.Color("#F9AB00"), (normalizedX - 0.66) / 0.34);
+         // Top Left: Red transitioning back to Blue
+         const t = (angle - Math.PI/2) / (Math.PI/2);
+         color.lerpColors(new THREE.Color("#EA4335"), new THREE.Color("#4285F4"), t);
       }
       
       if (!isLight) {
-        // Boost vibrancy in dark mode to create an intense glowing effect
-        color.multiplyScalar(1.3);
+        color.multiplyScalar(1.2);
       }
 
       meshRef.current.setColorAt(i, color);
@@ -73,25 +81,25 @@ function AntigravityParticles({ isLight }) {
   useFrame((state, delta) => {
     if (!groupRef.current || !meshRef.current) return;
     
-    // Smooth, deep mouse parallax tracking
-    const targetX = (state.pointer.x * Math.PI) / 4;
-    const targetY = (state.pointer.y * Math.PI) / 4;
+    // Smooth, structured mouse parallax tracking
+    const targetX = (state.pointer.x * Math.PI) / 8;
+    const targetY = (state.pointer.y * Math.PI) / 8;
     
-    groupRef.current.rotation.y += (targetX - groupRef.current.rotation.y) * 0.04;
-    groupRef.current.rotation.x += (-targetY - groupRef.current.rotation.x) * 0.04;
+    groupRef.current.rotation.y += (targetX - groupRef.current.rotation.y) * 0.05;
+    groupRef.current.rotation.x += (-targetY - groupRef.current.rotation.x) * 0.05;
 
-    // Continuous galaxy spin
-    meshRef.current.rotation.y += delta * 0.06;
-    meshRef.current.rotation.z += delta * 0.03;
+    // Continuous galaxy spin (very slow and graceful, like the reference)
+    meshRef.current.rotation.z -= delta * 0.08;
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, -8]}>
+    <group ref={groupRef} position={[0, 0, -10]}>
       <instancedMesh ref={meshRef} args={[null, null, count]}>
-        <cylinderGeometry args={[0.03, 0.03, 0.8, 4]} />
+        {/* Short dashes pointing perfectly along the Z axis (which lookAt targets) */}
+        <boxGeometry args={[0.025, 0.025, 0.25]} />
         <meshBasicMaterial 
           transparent={true}
-          opacity={isLight ? 0.8 : 0.9}
+          opacity={isLight ? 0.9 : 1}
           depthWrite={false}
           blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
           toneMapped={false} 
