@@ -249,31 +249,31 @@ export default function Home() {
         
         <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
-          <div className="horizontal-card-inner" style={{ width: "150vw", maxWidth: "2400px", display: "flex", gap: "12rem", alignItems: "center" }}>
-            <div style={{ flex: 1, position: "relative" }}>
-              <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "40px" }}>
+          <div className="horizontal-card-inner" style={{ width: "120vw", flexShrink: 0, display: "flex", gap: "5vw", alignItems: "center" }}>
+            <div style={{ flex: "0 0 55%", position: "relative" }}>
+              <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/horizon pics/VIEW_04_FFFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
               </div>
-              <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-10%", fontFamily: "Playfair Display, serif", fontSize: "14vw", color: "#fff", margin: 0 }}>Horizon.</h2>
+              <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-10%", fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 14vw, 15rem)", color: "#fff", margin: 0, whiteSpace: "nowrap" }}>Horizon.</h2>
             </div>
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "1.2rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8rem 2rem", borderRadius: "100px", display: "inline-block", marginBottom: "3rem", fontWeight: 600 }}>01 THE SKYLINE</span>
-              <p style={{ fontSize: "2.8rem", lineHeight: 1.5, color: "#333", maxWidth: "800px", marginBottom: "4rem" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "1.2rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={20}/></Link>
+            <div style={{ flex: "0 0 40%", paddingRight: "4vw" }}>
+              <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>01 THE SKYLINE</span>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#333", marginBottom: "4vw" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
+              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
             </div>
           </div>
 
-          <div className="horizontal-card-inner" style={{ width: "150vw", maxWidth: "2400px", display: "flex", gap: "12rem", alignItems: "center", flexDirection: "row-reverse" }}>
-            <div style={{ flex: 1, position: "relative" }}>
-              <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "40px" }}>
+          <div className="horizontal-card-inner" style={{ width: "120vw", flexShrink: 0, display: "flex", gap: "5vw", alignItems: "center", flexDirection: "row-reverse" }}>
+            <div style={{ flex: "0 0 55%", position: "relative" }}>
+              <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
               </div>
-              <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-10%", fontFamily: "Playfair Display, serif", fontSize: "14vw", color: "#fff", margin: 0, textAlign: "right" }}>Lake<br/>Woods.</h2>
+              <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-10%", fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 14vw, 15rem)", color: "#fff", margin: 0, textAlign: "right", whiteSpace: "nowrap" }}>Lake<br/>Woods.</h2>
             </div>
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: "1.2rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8rem 2rem", borderRadius: "100px", display: "inline-block", marginBottom: "3rem", fontWeight: 600 }}>02 THE SANCTUARY</span>
-              <p style={{ fontSize: "2.8rem", lineHeight: 1.5, color: "#333", maxWidth: "800px", marginBottom: "4rem" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "1.2rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={20}/></Link>
+            <div style={{ flex: "0 0 40%", paddingLeft: "4vw" }}>
+              <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>02 THE SANCTUARY</span>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#333", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
+              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
             </div>
           </div>
 
