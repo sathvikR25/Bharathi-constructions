@@ -229,15 +229,18 @@ export default function Home() {
             <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
           </div>
         </div>
-
-        <div style={{ textAlign: "center", marginTop: "clamp(8rem,12vw,12rem)" }}>
-          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
-          <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
-        </div>
       </section>
 
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
       <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#0a0a0a", overflow: "hidden" }}>
+        
+        {/* Pinned Header above the cards */}
+        <div style={{ position: "absolute", top: "clamp(3rem, 8vh, 6rem)", left: 0, width: "100%", textAlign: "center", zIndex: 10 }}>
+          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 5vw, 5rem)", margin: 0, color: "#0a0a0a" }} />
+          <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0", padding: "0 1.5rem" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
+        </div>
+
+        {/* Faded Background Text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
           <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
         </div>
