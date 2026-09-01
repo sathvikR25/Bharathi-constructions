@@ -29,19 +29,19 @@ function Scene({ isLight, isHorizon }) {
       <Environment preset={isLight ? "city" : "night"} />
 
       {isHorizon ? (
-        // EXCLUSIVE HORIZON SHAPE (Single large, sharp modern element)
-        <Float speed={1.2} rotationIntensity={0.5} floatIntensity={1.5}>
-          <mesh position={[2, 0, -8]} rotation={[0.5, 0.5, 0]}>
-            <octahedronGeometry args={[5, 0]} />
-            <meshPhysicalMaterial color="#eae5da" roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
+        // EXCLUSIVE HORIZON SHAPE (Massive Dodecahedron - faceted, solid, monumental architecture)
+        <Float speed={1} rotationIntensity={0.4} floatIntensity={1.5}>
+          <mesh position={[2, 0, -10]} rotation={[0.4, 0.6, 0]}>
+            <dodecahedronGeometry args={[5.5, 0]} />
+            <meshPhysicalMaterial color="#eae5da" roughness={0.15} metalness={0.85} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
           </mesh>
         </Float>
       ) : (
-        // STANDARD SHAPE (Single massive elegant structure)
-        <Float speed={1} rotationIntensity={0.4} floatIntensity={2}>
-          <mesh position={[2, 0, -8]} rotation={[0.2, 0.8, 0]}>
-            <icosahedronGeometry args={[5, 0]} />
-            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.15} metalness={0.85} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+        // STANDARD SHAPE (Massive Torus Knot - continuous, flowing, modern sculpture)
+        <Float speed={0.8} rotationIntensity={0.3} floatIntensity={2}>
+          <mesh position={[2, 0, -12]} rotation={[0.2, 0.5, 0]}>
+            <torusKnotGeometry args={[4.5, 1.2, 128, 32]} />
+            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
           </mesh>
         </Float>
       )}
