@@ -147,23 +147,23 @@ function LakeWoodsScene({ isLight }) {
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, -10]}>
+    <group ref={groupRef} position={[0, 0, -15]}>
       <Float speed={2} floatIntensity={3}>
-        <mesh position={[-4, 2, -2]} scale={5}>
+        <mesh position={[-4, 2, -2]} scale={6}>
           <sphereGeometry args={[1, 64, 64]} />
-          <MeshDistortMaterial color="#0a2a22" distort={0.6} speed={1.5} roughness={0.2} transparent opacity={0.9} />
+          <MeshDistortMaterial color="#0a2a22" distort={0.6} speed={1.5} roughness={0.2} transparent opacity={0.2} />
         </mesh>
       </Float>
       <Float speed={2.5} floatIntensity={4}>
-        <mesh position={[4, -2, 2]} scale={6}>
+        <mesh position={[4, -2, 2]} scale={7}>
           <sphereGeometry args={[1, 64, 64]} />
-          <MeshDistortMaterial color="#c9a96e" distort={0.5} speed={2} roughness={0.1} transparent opacity={0.8} />
+          <MeshDistortMaterial color="#c9a96e" distort={0.5} speed={2} roughness={0.1} transparent opacity={0.25} />
         </mesh>
       </Float>
       <Float speed={1.5} floatIntensity={2}>
-        <mesh position={[0, 1, -5]} scale={7}>
+        <mesh position={[0, 1, -5]} scale={8}>
           <sphereGeometry args={[1, 64, 64]} />
-          <MeshDistortMaterial color="#123645" distort={0.7} speed={1} roughness={0.2} transparent opacity={0.9} />
+          <MeshDistortMaterial color="#123645" distort={0.7} speed={1} roughness={0.2} transparent opacity={0.15} />
         </mesh>
       </Float>
     </group>
