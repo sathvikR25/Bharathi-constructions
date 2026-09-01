@@ -8,6 +8,7 @@ import ProjectHorizon from "./pages/ProjectHorizon";
 import ProjectLakeWoods from "./pages/ProjectLakeWoods";
 import Contact from "./pages/Contact";
 import Legacy from "./pages/Legacy";
+import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Background3D from "./components/Background3D";
@@ -102,6 +103,7 @@ export default function App() {
             <Route path="/lake-woods" element={<ProjectLakeWoods />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legacy" element={<Legacy />} />
+            <Route path="/builder-profile" element={<BuilderProfile />} />
             <Route path="/admin/*" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -110,4 +112,3 @@ export default function App() {
     </ErrorBoundary>
   );
 }
-
