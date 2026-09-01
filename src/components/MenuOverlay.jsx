@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 const MENU_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Our Legacy", href: "/legacy" },
+  { label: "Builder Profile", href: "/builder-profile" },
   { label: "Bharathi Horizon", href: "/horizon", isSub: true },
   { label: "Bharathi Lake Woods", href: "/lake-woods", isSub: true },
   { label: "Contact Us", href: "/contact" }
