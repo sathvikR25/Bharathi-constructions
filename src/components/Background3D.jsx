@@ -1,19 +1,12 @@
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, useTexture, ContactShadows } from "@react-three/drei";
+import { Float, Environment, Sparkles, MeshDistortMaterial, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { useLocation } from "react-router-dom";
 
 function Scene({ isLight, isHorizon }) {
   const bgRef = useRef(new THREE.Color(isLight ? "#fdfbf7" : "#050505"));
-  
   const targetBg = useMemo(() => new THREE.Color(isLight ? "#fdfbf7" : "#050505"), [isLight]);
-
-  const logoTex = useTexture("/logo.png");
-  useMemo(() => {
-    logoTex.wrapS = logoTex.wrapT = THREE.RepeatWrapping;
-    logoTex.repeat.set(3, 3);
-  }, [logoTex]);
 
   useFrame((state, delta) => {
     bgRef.current.lerp(targetBg, delta * 2);
@@ -22,34 +15,37 @@ function Scene({ isLight, isHorizon }) {
 
   return (
     <>
-      <ambientLight intensity={isLight ? 0.8 : 0.2} />
+      <ambientLight intensity={isLight ? 0.8 : 0.3} />
       <directionalLight position={[10, 10, 5]} intensity={isLight ? 1 : 0.5} color={isLight ? "#ffffff" : "#c9a96e"} />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#ffffff" />
       
       <Environment preset={isLight ? "city" : "night"} />
+      
+      {/* Fog smoothly fades the terrain into the background */}
+      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 5, 25]} />
 
-      {isHorizon ? (
-        // EXCLUSIVE HORIZON SHAPE: "The Monolith" (A vertically stretched Icosahedron)
-        // Represents a futuristic skyscraper skyline or a luxury crystal shard.
-        <Float speed={0.8} rotationIntensity={0.5} floatIntensity={1.5}>
-          <mesh position={[2, 0, -12]} rotation={[0.2, 0.4, 0]} scale={[1, 2.2, 1]}>
-            <icosahedronGeometry args={[3.5, 0]} />
-            <meshPhysicalMaterial color="#eae5da" roughness={0.12} metalness={0.88} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
-          </mesh>
-        </Float>
-      ) : (
-        // STANDARD SHAPE: "The Architectural Halo" (A massive Torus with a square cross-section)
-        // Represents a modern architectural monument, continuity, and "beyond bricks".
-        <Float speed={0.8} rotationIntensity={0.3} floatIntensity={2}>
-          <mesh position={[2, 0, -12]} rotation={[0.8, 0.6, 0]}>
-            {/* radialSegments=4 creates a square-tube ring instead of a round tube */}
-            <torusGeometry args={[4.5, 1.5, 4, 72]} />
-            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-          </mesh>
-        </Float>
-      )}
+      {/* LUXURY ATMOSPHERE: Floating golden/silver motes of light instead of a shape */}
+      <Sparkles 
+        count={300} 
+        scale={25} 
+        size={isLight ? 3 : 5} 
+        speed={0.2} 
+        opacity={isLight ? 0.2 : 0.4} 
+        color={isLight ? "#c9a96e" : "#ffffff"} 
+      />
 
-      <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
+      {/* IMMERSIVE TERRAIN: A massive floor plane that gently ripples like liquid metal or silk */}
+      <mesh position={[0, -6, -10]} rotation={[-Math.PI / 2, 0, 0]} scale={30}>
+        <planeGeometry args={[1, 1, 128, 128]} />
+        <MeshDistortMaterial 
+          color={isLight ? "#eae5da" : (isHorizon ? "#0a0a0a" : "#111111")} 
+          roughness={0.2} 
+          metalness={0.8} 
+          distort={0.4} 
+          speed={isHorizon ? 1.5 : 0.8}
+          clearcoat={1}
+        />
+      </mesh>
     </>
   );
 }
