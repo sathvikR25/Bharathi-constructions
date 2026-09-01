@@ -21,24 +21,25 @@ function Scene({ isLight, isHorizon }) {
       
       <Environment preset={isLight ? "city" : "night"} />
       
-      {/* Fog smoothly fades the terrain into the background */}
-      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 5, 25]} />
+      {/* Fog smoothly fades the terrain into the background - pushed back so things are visible */}
+      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 10, 40]} />
 
-      {/* LUXURY ATMOSPHERE: Floating golden/silver motes of light instead of a shape */}
+      {/* LUXURY ATMOSPHERE: Floating golden/silver motes of light */}
       <Sparkles 
-        count={300} 
-        scale={25} 
-        size={isLight ? 3 : 5} 
-        speed={0.2} 
-        opacity={isLight ? 0.2 : 0.4} 
+        position={[0, 0, -5]}
+        count={400} 
+        scale={[25, 15, 20]} 
+        size={isLight ? 6 : 8} 
+        speed={0.4} 
+        opacity={isLight ? 0.5 : 0.6} 
         color={isLight ? "#c9a96e" : "#ffffff"} 
       />
 
-      {/* IMMERSIVE TERRAIN: A massive floor plane that gently ripples like liquid metal or silk */}
-      <mesh position={[0, -6, -10]} rotation={[-Math.PI / 2, 0, 0]} scale={30}>
+      {/* IMMERSIVE TERRAIN: Moved up to Y=-2.5 so it is clearly visible in the camera's FOV */}
+      <mesh position={[0, -2.5, -5]} rotation={[-Math.PI / 2, 0, 0]} scale={40}>
         <planeGeometry args={[1, 1, 128, 128]} />
         <MeshDistortMaterial 
-          color={isLight ? "#eae5da" : (isHorizon ? "#0a0a0a" : "#111111")} 
+          color={isLight ? "#e6dcbd" : (isHorizon ? "#1a1a1a" : "#111111")} 
           roughness={0.2} 
           metalness={0.8} 
           distort={0.4} 
