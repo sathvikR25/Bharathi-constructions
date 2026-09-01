@@ -29,60 +29,21 @@ function Scene({ isLight, isHorizon }) {
       <Environment preset={isLight ? "city" : "night"} />
 
       {isHorizon ? (
-        // EXCLUSIVE HORIZON SHAPES (Abstract, sharp, modern)
-        <>
-          <Float speed={1.5} rotationIntensity={0.8} floatIntensity={2}>
-            <mesh position={[4, 1, -8]} rotation={[0.5, 0.5, 0]}>
-              <octahedronGeometry args={[2.5, 0]} />
-              <meshPhysicalMaterial color="#eae5da" roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
-            </mesh>
-          </Float>
-
-          <Float speed={1.2} rotationIntensity={1.2} floatIntensity={1.5}>
-            <mesh position={[-5, -2, -6]} rotation={[Math.PI / 4, 0.2, 0.1]}>
-              <capsuleGeometry args={[1, 3, 32, 64]} />
-              <meshPhysicalMaterial color="#f4f1ea" roughness={0.3} metalness={0.7} map={logoTex} blending={THREE.MultiplyBlending} />
-            </mesh>
-          </Float>
-
-          <Float speed={0.8} rotationIntensity={0.4} floatIntensity={1}>
-            <mesh position={[-2, 3, -12]} rotation={[0, 0.5, 0]}>
-              <sphereGeometry args={[2.5, 64, 64]} />
-              <meshPhysicalMaterial color="#eae5da" roughness={0.2} metalness={0.8} map={logoTex} blending={THREE.MultiplyBlending} />
-            </mesh>
-          </Float>
-        </>
+        // EXCLUSIVE HORIZON SHAPE (Single large, sharp modern element)
+        <Float speed={1.2} rotationIntensity={0.5} floatIntensity={1.5}>
+          <mesh position={[2, 0, -8]} rotation={[0.5, 0.5, 0]}>
+            <octahedronGeometry args={[5, 0]} />
+            <meshPhysicalMaterial color="#eae5da" roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
+          </mesh>
+        </Float>
       ) : (
-        // STANDARD SHAPES (Abstract, Premium, Elegant)
-        <>
-          <Float speed={1} rotationIntensity={0.5} floatIntensity={2}>
-            <mesh position={[5, 2, -6]} rotation={[0.5, 0.5, 0]}>
-              <torusKnotGeometry args={[1.5, 0.4, 128, 32]} />
-              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#222222"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-            </mesh>
-          </Float>
-
-          <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1.5}>
-            <mesh position={[-6, -1, -8]} rotation={[-0.5, 0.2, 0.1]}>
-              <dodecahedronGeometry args={[2.5, 0]} />
-              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.3} metalness={0.7} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-            </mesh>
-          </Float>
-
-          <Float speed={0.8} rotationIntensity={0.2} floatIntensity={1}>
-            <mesh position={[2, -4, -10]} rotation={[Math.PI / 2, 0.2, 0]}>
-              <torusGeometry args={[3.5, 0.4, 64, 100]} />
-              <meshPhysicalMaterial color={isLight ? "#f4f1ea" : "#1a1a1a"} roughness={0.2} metalness={0.8} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-            </mesh>
-          </Float>
-
-          <Float speed={2} rotationIntensity={1.5} floatIntensity={2.5}>
-            <mesh position={[-3, 4, -12]} rotation={[0.2, 0.8, 0]}>
-              <icosahedronGeometry args={[2, 0]} />
-              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#050505"} roughness={0.1} metalness={1} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-            </mesh>
-          </Float>
-        </>
+        // STANDARD SHAPE (Single massive elegant structure)
+        <Float speed={1} rotationIntensity={0.4} floatIntensity={2}>
+          <mesh position={[2, 0, -8]} rotation={[0.2, 0.8, 0]}>
+            <icosahedronGeometry args={[5, 0]} />
+            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.15} metalness={0.85} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+          </mesh>
+        </Float>
       )}
 
       <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
