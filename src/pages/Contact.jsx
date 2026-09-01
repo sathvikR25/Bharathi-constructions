@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MapPin, Phone, Mail, CheckCircle, ArrowRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
@@ -62,12 +62,12 @@ export default function Contact() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       <section style={{
-        paddingTop: "22vh", paddingBottom: "10vh",
-        paddingLeft: "clamp(2rem,5vw,6rem)", paddingRight: "clamp(2rem,5vw,6rem)",
+        paddingTop: "clamp(8rem, 22vh, 22vh)", paddingBottom: "clamp(4rem, 10vh, 10vh)",
+        paddingLeft: "clamp(1.25rem, 5vw, 6rem)", paddingRight: "clamp(1.25rem, 5vw, 6rem)",
         maxWidth: "1400px", margin: "0 auto",
       }}>
         {/* Heading */}
-        <div className="contact-reveal" style={{ marginBottom: "6rem" }}>
+        <div className="contact-reveal" style={{ marginBottom: "clamp(3rem, 6vw, 6rem)" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", display: "block", marginBottom: "1.5rem" }}>
             Get In Touch
           </span>
@@ -75,7 +75,7 @@ export default function Contact() {
         </div>
 
         {/* Two column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "6rem", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))", gap: "clamp(2rem, 5vw, 6rem)", alignItems: "start" }}>
           
           {/* LEFT — Contact Info */}
           <div className="contact-reveal" style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
@@ -156,7 +156,7 @@ export default function Contact() {
                   Send an Inquiry
                 </h3>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))", gap: "2rem" }}>
                   <div>
                     <label style={LABEL_STYLE}>Full Name *</label>
                     <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your name" style={INPUT_STYLE} onFocus={e => e.target.style.borderColor = "#c9a96e"} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} />

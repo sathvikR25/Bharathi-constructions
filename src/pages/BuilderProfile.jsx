@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SEO from "../components/SEO";
@@ -154,34 +154,26 @@ export default function BuilderProfile() {
           <p className="text-xl text-white/50 tracking-wide">Managing Partner, Bharathi Constructions</p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#c9a96e]/0 via-[#c9a96e]/30 to-[#c9a96e]/0 transform md:-translate-x-1/2"></div>
+        <div className="relative max-w-4xl mx-auto pl-0 md:pl-0">
+          {/* Vertical Line — left on mobile, center on desktop */}
+          <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#c9a96e]/0 via-[#c9a96e]/30 to-[#c9a96e]/0 md:-translate-x-1/2"></div>
 
-          <div className="space-y-16">
+          <div className="space-y-10 md:space-y-16">
             {timelineData.map((item, index) => (
-              <div key={index} className={`timeline-item relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""} items-center gap-8`}>
+              <div key={index} className={`timeline-item relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""} md:items-center gap-4 md:gap-8 pl-14 md:pl-0`}>
                 
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 w-12 h-12 bg-[#050505] border-2 border-[#c9a96e] rounded-full flex items-center justify-center transform -translate-x-1/2 z-10 hidden md:flex">
+                {/* Timeline Dot — hidden on mobile (replaced by inline icon) */}
+                <div className="absolute left-0 md:left-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#050505] border-2 border-[#c9a96e] rounded-full flex items-center justify-center -translate-x-1/2 md:-translate-x-1/2 z-10">
                   {item.icon}
                 </div>
                 
-                {/* Mobile Icon (since dot is hidden on small screens) */}
-                <div className="md:hidden flex items-center gap-4 mb-4 self-start">
-                  <div className="w-10 h-10 bg-[#111] border border-[#c9a96e]/50 rounded-full flex items-center justify-center">
-                    {item.icon}
-                  </div>
-                  <span className="text-[#c9a96e] font-semibold">{item.date}</span>
-                </div>
-
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pl-16" : "md:pr-16 text-left md:text-right"}`}>
-                  <div className="bg-[#111] p-8 rounded-2xl border border-white/5 hover:border-[#c9a96e]/30 transition-colors">
-                    <span className="hidden md:block text-[#c9a96e] text-sm font-bold tracking-widest mb-3 uppercase">{item.date}</span>
-                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                    <h4 className="text-md text-white/50 uppercase tracking-wider mb-4">{item.subtitle}</h4>
-                    <p className="text-white/70 leading-relaxed">
+                  <div className="bg-[#111] p-5 md:p-8 rounded-2xl border border-white/5 hover:border-[#c9a96e]/30 transition-colors">
+                    <span className="text-[#c9a96e] text-xs font-bold tracking-widest mb-2 uppercase block">{item.date}</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{item.title}</h3>
+                    <h4 className="text-sm text-white/50 uppercase tracking-wider mb-3">{item.subtitle}</h4>
+                    <p className="text-white/70 leading-relaxed text-sm md:text-base">
                       {item.description}
                     </p>
                   </div>

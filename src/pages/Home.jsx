@@ -219,7 +219,7 @@ export default function Home() {
       </section>
 
       {/* 2. THE VISION */}
-      <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
+      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#0a0a0a" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#0a0a0a", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
@@ -271,21 +271,22 @@ export default function Home() {
       </section>
 
       {/* 4. LIFESTYLE PARALLAX GRID */}
-      <section style={{ padding: "15rem 4rem", background: "transparent", color: "#0a0a0a" }}>
+      <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#0a0a0a" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-           <div style={{ textAlign: "center", marginBottom: "10rem" }}>
+           <div style={{ textAlign: "center", marginBottom: "clamp(4rem,10vw,10rem)" }}>
              <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: 0, color: "#0a0a0a" }} />
-             <p style={{ fontSize: "1.2rem", color: "#666", maxWidth: "600px", margin: "2rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
+             <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", color: "#666", maxWidth: "600px", margin: "2rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
            </div>
 
-           <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "2rem", alignItems: "center" }}>
-              <div style={{ gridColumn: "1 / 6", height: "600px", overflow: "hidden", borderRadius: "24px" }}>
+           {/* Mobile: simple stack. Desktop: overlapping grid */}
+           <div className="parallax-mobile-stack" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
                  <img className="parallax-img" data-speed="0.15" src="/horizon pics/VIEW_08_FFFFF.jpg" alt="Pool" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-15%)" }} />
               </div>
-              <div style={{ gridColumn: "7 / 13", height: "800px", overflow: "hidden", borderRadius: "24px", marginTop: "10rem" }}>
-                 <img className="parallax-img" data-speed="-0.15" src="/lakewood-media/view 06_FFFFFF copy.jpg" alt="Lobby" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(0%)" }} />
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
+                 <img className="parallax-img" data-speed="-0.15" src="/lakewood-media/view 06_FFFFFF copy.jpg" alt="Lobby" style={{ width: "100%", height: "130%", objectFit: "cover" }} />
               </div>
-              <div style={{ gridColumn: "3 / 11", height: "700px", overflow: "hidden", borderRadius: "24px", marginTop: "-5rem", zIndex: 2, border: "20px solid #fdfbf7" }}>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
                  <img className="parallax-img" data-speed="0.2" src="/horizon pics/view_07_FFFFFFF.jpg" alt="Nature" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
               </div>
            </div>
@@ -293,13 +294,13 @@ export default function Home() {
       </section>
 
       {/* 5. INFINITE MARQUEE */}
-      <section style={{ padding: "8rem 0", background: "transparent", overflow: "hidden", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+      <section style={{ padding: "clamp(4rem,8vw,8rem) 0", background: "transparent", overflow: "hidden", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
          <div style={{ display: "flex", width: "200vw" }}>
            <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
-                  <span style={{ fontFamily: "Playfair Display, serif", fontSize: "6rem", color: "#0a0a0a", WebkitTextStroke: "none", fontWeight: "700", margin: "0 4rem", textTransform: "uppercase" }}>Bharathi Constructions</span>
-                  <span style={{ fontSize: "2rem", color: "rgba(0,0,0,0.3)" }}>✦</span>
+                  <span className="marquee-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", color: "#0a0a0a", fontWeight: "700", margin: "0 clamp(1.5rem, 4vw, 4rem)", textTransform: "uppercase" }}>Bharathi Constructions</span>
+                  <span style={{ fontSize: "clamp(1rem, 2vw, 2rem)", color: "rgba(0,0,0,0.3)" }}>✦</span>
                 </div>
               ))}
            </div>
