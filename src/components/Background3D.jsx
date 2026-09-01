@@ -1,12 +1,19 @@
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, Sparkles, MeshDistortMaterial, useTexture } from "@react-three/drei";
+import { Float, Environment, useTexture, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { useLocation } from "react-router-dom";
 
 function Scene({ isLight, isHorizon }) {
   const bgRef = useRef(new THREE.Color(isLight ? "#fdfbf7" : "#050505"));
+  
   const targetBg = useMemo(() => new THREE.Color(isLight ? "#fdfbf7" : "#050505"), [isLight]);
+
+  const logoTex = useTexture("/logo.png");
+  useMemo(() => {
+    logoTex.wrapS = logoTex.wrapT = THREE.RepeatWrapping;
+    logoTex.repeat.set(3, 3);
+  }, [logoTex]);
 
   useFrame((state, delta) => {
     bgRef.current.lerp(targetBg, delta * 2);
@@ -15,38 +22,70 @@ function Scene({ isLight, isHorizon }) {
 
   return (
     <>
-      <ambientLight intensity={isLight ? 0.8 : 0.3} />
+      <ambientLight intensity={isLight ? 0.8 : 0.2} />
       <directionalLight position={[10, 10, 5]} intensity={isLight ? 1 : 0.5} color={isLight ? "#ffffff" : "#c9a96e"} />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#ffffff" />
       
       <Environment preset={isLight ? "city" : "night"} />
-      
-      {/* Fog smoothly fades the terrain into the background - pushed back so things are visible */}
-      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 10, 40]} />
 
-      {/* LUXURY ATMOSPHERE: Floating golden/silver motes of light */}
-      <Sparkles 
-        position={[0, 0, -5]}
-        count={400} 
-        scale={[25, 15, 20]} 
-        size={isLight ? 6 : 8} 
-        speed={0.4} 
-        opacity={isLight ? 0.5 : 0.6} 
-        color={isLight ? "#c9a96e" : "#ffffff"} 
-      />
+      {isHorizon ? (
+        // EXCLUSIVE HORIZON SHAPES (Abstract, sharp, modern)
+        <>
+          <Float speed={1.5} rotationIntensity={0.8} floatIntensity={2}>
+            <mesh position={[4, 1, -8]} rotation={[0.5, 0.5, 0]}>
+              <octahedronGeometry args={[2.5, 0]} />
+              <meshPhysicalMaterial color="#eae5da" roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
+            </mesh>
+          </Float>
 
-      {/* IMMERSIVE TERRAIN: Moved up to Y=-2.5 so it is clearly visible in the camera's FOV */}
-      <mesh position={[0, -2.5, -5]} rotation={[-Math.PI / 2, 0, 0]} scale={40}>
-        <planeGeometry args={[1, 1, 128, 128]} />
-        <MeshDistortMaterial 
-          color={isLight ? "#e6dcbd" : (isHorizon ? "#1a1a1a" : "#111111")} 
-          roughness={0.2} 
-          metalness={0.8} 
-          distort={0.4} 
-          speed={isHorizon ? 1.5 : 0.8}
-          clearcoat={1}
-        />
-      </mesh>
+          <Float speed={1.2} rotationIntensity={1.2} floatIntensity={1.5}>
+            <mesh position={[-5, -2, -6]} rotation={[Math.PI / 4, 0.2, 0.1]}>
+              <capsuleGeometry args={[1, 3, 32, 64]} />
+              <meshPhysicalMaterial color="#f4f1ea" roughness={0.3} metalness={0.7} map={logoTex} blending={THREE.MultiplyBlending} />
+            </mesh>
+          </Float>
+
+          <Float speed={0.8} rotationIntensity={0.4} floatIntensity={1}>
+            <mesh position={[-2, 3, -12]} rotation={[0, 0.5, 0]}>
+              <sphereGeometry args={[2.5, 64, 64]} />
+              <meshPhysicalMaterial color="#eae5da" roughness={0.2} metalness={0.8} map={logoTex} blending={THREE.MultiplyBlending} />
+            </mesh>
+          </Float>
+        </>
+      ) : (
+        // STANDARD SHAPES (Abstract, Premium, Elegant)
+        <>
+          <Float speed={1} rotationIntensity={0.5} floatIntensity={2}>
+            <mesh position={[5, 2, -6]} rotation={[0.5, 0.5, 0]}>
+              <torusKnotGeometry args={[1.5, 0.4, 128, 32]} />
+              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#222222"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+            </mesh>
+          </Float>
+
+          <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1.5}>
+            <mesh position={[-6, -1, -8]} rotation={[-0.5, 0.2, 0.1]}>
+              <dodecahedronGeometry args={[2.5, 0]} />
+              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.3} metalness={0.7} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+            </mesh>
+          </Float>
+
+          <Float speed={0.8} rotationIntensity={0.2} floatIntensity={1}>
+            <mesh position={[2, -4, -10]} rotation={[Math.PI / 2, 0.2, 0]}>
+              <torusGeometry args={[3.5, 0.4, 64, 100]} />
+              <meshPhysicalMaterial color={isLight ? "#f4f1ea" : "#1a1a1a"} roughness={0.2} metalness={0.8} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+            </mesh>
+          </Float>
+
+          <Float speed={2} rotationIntensity={1.5} floatIntensity={2.5}>
+            <mesh position={[-3, 4, -12]} rotation={[0.2, 0.8, 0]}>
+              <icosahedronGeometry args={[2, 0]} />
+              <meshPhysicalMaterial color={isLight ? "#eae5da" : "#050505"} roughness={0.1} metalness={1} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+            </mesh>
+          </Float>
+        </>
+      )}
+
+      <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
     </>
   );
 }
