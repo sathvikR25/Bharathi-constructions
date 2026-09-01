@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 function AntigravityParticles({ isLight }) {
   const meshRef = useRef();
   const groupRef = useRef();
-  const count = 2000;
-  const radius = 22; 
+  const count = 4000; // Doubled density for a richer galaxy
+  const radius = 24; 
 
   useLayoutEffect(() => {
     if (!meshRef.current) return;
@@ -24,19 +24,28 @@ function AntigravityParticles({ isLight }) {
       const x = Math.cos(theta) * r;
       const z = Math.sin(theta) * r;
 
-      dummy.position.set(x * radius, y * radius, z * radius);
+      // Add volumetric noise so it's a deep cloud, not a thin 1px shell
+      const depthNoise = (Math.random() - 0.5) * 8; 
+      const finalRadius = radius + depthNoise;
+      
+      dummy.position.set(x * finalRadius, y * finalRadius, z * finalRadius);
 
+      // Flow direction (point to next particle on the spiral)
       const yNext = 1 - ((i + 1) / (count - 1)) * 2;
       const rNext = Math.sqrt(1 - yNext * yNext);
       const thetaNext = phi * (i + 1);
       const xNext = Math.cos(thetaNext) * rNext;
       const zNext = Math.sin(thetaNext) * rNext;
       
-      dummy.lookAt(xNext * radius, yNext * radius, zNext * radius);
+      dummy.lookAt(xNext * finalRadius, yNext * finalRadius, zNext * finalRadius);
+      
+      // Organic flow lengths (some short dots, some long streaks)
+      dummy.scale.set(1, 1, Math.random() * 2.5 + 0.2);
       dummy.updateMatrix();
       
       meshRef.current.setMatrixAt(i, dummy.matrix);
 
+      // Color spatial gradient (Antigravity Blue -> Purple -> Red -> Yellow)
       const normalizedX = (x + 1) / 2; 
       
       if (normalizedX < 0.33) {
@@ -48,7 +57,8 @@ function AntigravityParticles({ isLight }) {
       }
       
       if (!isLight) {
-        color.multiplyScalar(0.7);
+        // Boost vibrancy in dark mode to create an intense glowing effect
+        color.multiplyScalar(1.3);
       }
 
       meshRef.current.setColorAt(i, color);
@@ -62,21 +72,30 @@ function AntigravityParticles({ isLight }) {
 
   useFrame((state, delta) => {
     if (!groupRef.current || !meshRef.current) return;
-    const targetX = (state.pointer.x * Math.PI) / 6;
-    const targetY = (state.pointer.y * Math.PI) / 6;
     
-    groupRef.current.rotation.y += (targetX - groupRef.current.rotation.y) * 0.05;
-    groupRef.current.rotation.x += (-targetY - groupRef.current.rotation.x) * 0.05;
+    // Smooth, deep mouse parallax tracking
+    const targetX = (state.pointer.x * Math.PI) / 4;
+    const targetY = (state.pointer.y * Math.PI) / 4;
+    
+    groupRef.current.rotation.y += (targetX - groupRef.current.rotation.y) * 0.04;
+    groupRef.current.rotation.x += (-targetY - groupRef.current.rotation.x) * 0.04;
 
-    meshRef.current.rotation.y += delta * 0.03;
-    meshRef.current.rotation.z += delta * 0.01;
+    // Continuous galaxy spin
+    meshRef.current.rotation.y += delta * 0.06;
+    meshRef.current.rotation.z += delta * 0.03;
   });
 
   return (
     <group ref={groupRef} position={[0, 0, -8]}>
       <instancedMesh ref={meshRef} args={[null, null, count]}>
-        <boxGeometry args={[0.08, 0.08, 0.6]} />
-        <meshBasicMaterial toneMapped={false} />
+        <cylinderGeometry args={[0.03, 0.03, 0.8, 4]} />
+        <meshBasicMaterial 
+          transparent={true}
+          opacity={isLight ? 0.8 : 0.9}
+          depthWrite={false}
+          blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
+          toneMapped={false} 
+        />
       </instancedMesh>
     </group>
   );
