@@ -29,18 +29,21 @@ function Scene({ isLight, isHorizon }) {
       <Environment preset={isLight ? "city" : "night"} />
 
       {isHorizon ? (
-        // EXCLUSIVE HORIZON SHAPE (Massive 4-Sided Pyramid - representing the peak, the skyline, and legacy)
-        <Float speed={1} rotationIntensity={0.3} floatIntensity={1.5}>
-          <mesh position={[2, -1, -12]} rotation={[0.2, 0.4, 0]}>
-            <coneGeometry args={[4.5, 7, 4]} />
-            <meshPhysicalMaterial color="#eae5da" roughness={0.15} metalness={0.85} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
+        // EXCLUSIVE HORIZON SHAPE: "The Monolith" (A vertically stretched Icosahedron)
+        // Represents a futuristic skyscraper skyline or a luxury crystal shard.
+        <Float speed={0.8} rotationIntensity={0.5} floatIntensity={1.5}>
+          <mesh position={[2, 0, -12]} rotation={[0.2, 0.4, 0]} scale={[1, 2.2, 1]}>
+            <icosahedronGeometry args={[3.5, 0]} />
+            <meshPhysicalMaterial color="#eae5da" roughness={0.12} metalness={0.88} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
           </mesh>
         </Float>
       ) : (
-        // STANDARD SHAPE (Massive Perfect Cube - the fundamental building block of construction)
-        <Float speed={0.8} rotationIntensity={0.4} floatIntensity={2}>
-          <mesh position={[2, 0, -12]} rotation={[0.6, 0.8, 0]}>
-            <boxGeometry args={[5, 5, 5]} />
+        // STANDARD SHAPE: "The Architectural Halo" (A massive Torus with a square cross-section)
+        // Represents a modern architectural monument, continuity, and "beyond bricks".
+        <Float speed={0.8} rotationIntensity={0.3} floatIntensity={2}>
+          <mesh position={[2, 0, -12]} rotation={[0.8, 0.6, 0]}>
+            {/* radialSegments=4 creates a square-tube ring instead of a round tube */}
+            <torusGeometry args={[4.5, 1.5, 4, 72]} />
             <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
           </mesh>
         </Float>
