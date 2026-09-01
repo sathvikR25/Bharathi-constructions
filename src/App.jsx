@@ -1,17 +1,22 @@
-﻿import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+﻿import React, { useEffect, Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Home from "./pages/Home";
-import ProjectHorizon from "./pages/ProjectHorizon";
-import ProjectLakeWoods from "./pages/ProjectLakeWoods";
-import Contact from "./pages/Contact";
-import Legacy from "./pages/Legacy";
-import BuilderProfile from "./pages/BuilderProfile";
-import NotFound from "./pages/NotFound";
-import Admin from "./pages/Admin";
+import { HelmetProvider } from "react-helmet-async";
+
 import Background3D from "./components/Background3D";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+
+// Lazy load routes to split JS bundle sizes
+const Home = lazy(() => import("./pages/Home"));
+const ProjectHorizon = lazy(() => import("./pages/ProjectHorizon"));
+const ProjectLakeWoods = lazy(() => import("./pages/ProjectLakeWoods"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Legacy = lazy(() => import("./pages/Legacy"));
+const BuilderProfile = lazy(() => import("./pages/BuilderProfile"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +27,7 @@ function SmoothScroll({ children }) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom ease
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
       direction: "vertical",
       gestureDirection: "vertical",
       smooth: true,
@@ -70,45 +75,36 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-
-function HiddenAdminButton() {
-  const navigate = useNavigate();
-  return (
-    <div 
-      onDoubleClick={() => navigate('/admin')}
-      style={{
-        position: 'fixed',
-        bottom: 0,
-        right: 0,
-        width: '75px',
-        height: '75px',
-        zIndex: 9999,
-        cursor: 'default',
-        background: 'transparent'
-      }}
-    />
-  );
-}
+// Fallback loader for suspense
+const PageLoader = () => (
+  <div className="h-screen w-screen bg-[#050505] flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-[#c9a96e]/20 border-t-[#c9a96e] rounded-full animate-spin"></div>
+  </div>
+);
 
 export default function App() {
   return (
-    <ErrorBoundary>
-      <BrowserRouter>
-        <SmoothScroll>
-          <Background3D />
-          <HiddenAdminButton />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/horizon" element={<ProjectHorizon />} />
-            <Route path="/lake-woods" element={<ProjectLakeWoods />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/legacy" element={<Legacy />} />
-            <Route path="/builder-profile" element={<BuilderProfile />} />
-            <Route path="/admin/*" element={<Admin />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </SmoothScroll>
-      </BrowserRouter>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <SmoothScroll>
+            <Background3D />
+            <WhatsAppWidget />
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/horizon" element={<ProjectHorizon />} />
+                <Route path="/lake-woods" element={<ProjectLakeWoods />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/legacy" element={<Legacy />} />
+                <Route path="/builder-profile" element={<BuilderProfile />} />
+                <Route path="/admin/*" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </SmoothScroll>
+        </BrowserRouter>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }

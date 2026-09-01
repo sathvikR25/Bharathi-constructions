@@ -1,16 +1,44 @@
-import React from "react";
+﻿import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import KineticText from "../components/KineticText";
+import { gsap } from "gsap";
+import SEO from "../components/SEO";
 
 export default function NotFound() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".error-text",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" }
+      );
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div style={{ background: "transparent", color: "#fdfbf7", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(6rem, 15vw, 15rem)", color: "rgba(255,255,255,0.05)", margin: 0, lineHeight: 1 }}>404</h1>
-        <KineticText as="h2" text="This space doesn't exist yet." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4rem)", margin: "-2rem 0 3rem 0", color: "#fff", position: "relative", zIndex: 10 }} />
-        <Link to="/" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => e.currentTarget.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.currentTarget.style.background="transparent"}>
-          Return Home <ArrowRight size={18} />
+    <div ref={containerRef} className="min-h-screen flex items-center justify-center bg-[#050505] text-[#eae5da] selection:bg-[#c9a96e] selection:text-[#050505] relative overflow-hidden">
+      <SEO title="Page Not Found" description="The page you are looking for does not exist." />
+      
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c9a96e]/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="text-center z-10 px-6">
+        <h1 className="error-text text-[#c9a96e] text-9xl md:text-[12rem] font-serif mb-4 leading-none mix-blend-screen opacity-50">
+          404
+        </h1>
+        <h2 className="error-text text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+          Page Not Found
+        </h2>
+        <p className="error-text text-white/50 text-lg max-w-md mx-auto mb-10 leading-relaxed">
+          The space you are looking for might have been moved, renamed, or perhaps never existed in our blueprints.
+        </p>
+        <Link 
+          to="/"
+          className="error-text inline-block px-8 py-4 border border-[#c9a96e]/30 rounded-full text-sm font-medium tracking-widest text-[#c9a96e] uppercase hover:bg-[#c9a96e] hover:text-black transition-all duration-300"
+        >
+          Return to Home
         </Link>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Shield, Trees, Film, Zap, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 import ImageCarousel from "../components/ImageCarousel";
 
@@ -91,10 +92,12 @@ export default function ProjectLakeWoods() {
     }, mainRef);
     return () => ctx.revert();
   }, []);
-
   return (
     <div ref={mainRef} style={{ background: "transparent", color: "#0a0a0a", overflowX: "hidden" }}>
-      
+      <SEO 
+        title="Bharathi Lake Woods" 
+        description="Exclusive residential living spaces by Bharathi Constructions, offering unmatched tranquility and premium amenities." 
+      />
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
@@ -103,10 +106,32 @@ export default function ProjectLakeWoods() {
         <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
           <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.95)" }} />
         </div>
-        <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none", mixBlendMode: "difference", color: "#fff" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#fff" }}>Bharathi Lake Woods</span>
-            <KineticText as="h1" text="Bharathi Lake Woods." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400 }} />
-          </div>
+                  <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto", mixBlendMode: "difference", color: "#fff" }}>
+              <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#fff" }}>Bharathi Lake Woods</span>
+              <KineticText as="h1" text="Bharathi Lake Woods." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400 }} />
+              <a 
+                href="/brochures/lake-woods-brochure.pdf" 
+                download
+                style={{
+                  display: "inline-block",
+                  padding: "1rem 2.5rem",
+                  border: "1px solid rgba(255,255,255,0.4)",
+                  borderRadius: "100px",
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.15em",
+                  fontSize: "0.8rem",
+                  textDecoration: "none",
+                  transition: "all 0.3s",
+                  backdropFilter: "blur(4px)",
+                  background: "rgba(0,0,0,0.1)"
+                }}
+                onMouseEnter={e => { e.target.style.background = "#fff"; e.target.style.color = "#000"; }}
+                onMouseLeave={e => { e.target.style.background = "rgba(0,0,0,0.1)"; e.target.style.color = "#fff"; }}
+              >
+                Download Brochure
+              </a>
+            </div>
       </section>
 
       {/* INVERTED MINIMALIST STATS */}
@@ -287,4 +312,6 @@ export default function ProjectLakeWoods() {
     </div>
   );
 }
+
+
 

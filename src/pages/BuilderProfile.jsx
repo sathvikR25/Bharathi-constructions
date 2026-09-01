@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SEO from "../components/SEO";
 import { Briefcase, GraduationCap, MapPin, Building2, Users } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -95,10 +96,9 @@ export default function BuilderProfile() {
       date: "Ongoing",
     },
   ];
-
   return (
     <div ref={pageRef} className="min-h-screen bg-[#050505] text-[#eae5da] pt-32 pb-20 font-sans selection:bg-[#c9a96e] selection:text-[#050505]">
-      
+      <SEO title="Builder Profile" description="Explore the legacy and timeline of the founders behind Bharathi Constructions." />
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
         <div className="hero-text inline-block px-4 py-1 border border-[#c9a96e]/30 rounded-full text-sm font-medium tracking-widest text-[#c9a96e] mb-6 uppercase">
@@ -196,3 +196,5 @@ export default function BuilderProfile() {
     </div>
   );
 }
+
+

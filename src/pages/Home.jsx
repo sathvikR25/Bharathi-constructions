@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -323,4 +324,5 @@ export default function Home() {
     </div>
   );
 }
+
 

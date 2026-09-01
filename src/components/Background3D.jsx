@@ -1,4 +1,4 @@
-﻿import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, useTexture, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
@@ -98,7 +98,7 @@ export default function Background3D() {
   const isHorizon = path === "/horizon";
 
   return (
-    <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: -1, pointerEvents: "none" }}>
+    <div className="fixed top-0 left-0 w-screen h-screen -z-10 pointer-events-none opacity-40 md:opacity-100 transition-opacity duration-500">
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
         <React.Suspense fallback={null}>
           <Scene isLight={isLight} isHorizon={isHorizon} />

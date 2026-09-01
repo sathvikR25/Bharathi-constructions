@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+﻿import React, { useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 
 const MENU_ITEMS = [
@@ -12,6 +12,7 @@ const MENU_ITEMS = [
 ];
 
 export default function MenuOverlay({ navOpen, setNavOpen }) {
+  const location = useLocation();
   const overlayRef = useRef(null);
   const linksRef = useRef([]);
   linksRef.current = [];
@@ -22,7 +23,6 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
     }
   };
 
-  // On mount, set initial state to hidden without animating
   useEffect(() => {
     gsap.set(overlayRef.current, { yPercent: -100 });
   }, []);
@@ -52,41 +52,45 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
       alignItems: "center",
       justifyContent: "center",
       willChange: "transform",
-      // Using a CSS variable or hiding it initially before React hydration
       visibility: navOpen ? "visible" : "hidden",
       transition: "visibility 0.8s"
     }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem", textAlign: "center" }}>
         <span style={{ fontSize: "0.8rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: "2rem" }}>Navigation</span>
-        {MENU_ITEMS.map((item, i) => (
-          <div key={i} style={{ overflow: "hidden" }}>
-            <Link 
-              ref={addToRefs}
-              to={item.href} 
-              className="hover-target"
-              onClick={() => setNavOpen(false)} 
-              style={{
-                textDecoration: "none", 
-                fontFamily: "Playfair Display, serif", 
-                fontSize: item.isSub ? "clamp(2rem, 4vw, 3rem)" : "clamp(3.5rem, 6vw, 5.5rem)", 
-                color: item.isSub ? "rgba(255,255,255,0.4)" : "#fff",
-                fontStyle: item.isSub ? "italic" : "normal",
-                display: "block",
-                transition: "color 0.3s, transform 0.3s"
-              }}
-              onMouseEnter={e => {
-                e.target.style.color = "#fff";
-                e.target.style.transform = "translateX(20px)";
-              }}
-              onMouseLeave={e => {
-                e.target.style.color = item.isSub ? "rgba(255,255,255,0.4)" : "#fff";
-                e.target.style.transform = "translateX(0px)";
-              }}
-            >
-              {item.label}
-            </Link>
-          </div>
-        ))}
+        {MENU_ITEMS.map((item, i) => {
+          const isActive = location.pathname === item.href;
+          
+          return (
+            <div key={i} style={{ overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+              {isActive && <div className="w-2 h-2 rounded-full bg-[#c9a96e]"></div>}
+              <Link 
+                ref={addToRefs}
+                to={item.href} 
+                className="hover-target"
+                onClick={() => setNavOpen(false)} 
+                style={{
+                  textDecoration: "none", 
+                  fontFamily: "Playfair Display, serif", 
+                  fontSize: item.isSub ? "clamp(2rem, 4vw, 3rem)" : "clamp(3.5rem, 6vw, 5.5rem)", 
+                  color: isActive ? "#c9a96e" : (item.isSub ? "rgba(255,255,255,0.4)" : "#fff"),
+                  fontStyle: item.isSub ? "italic" : "normal",
+                  display: "block",
+                  transition: "color 0.3s, transform 0.3s"
+                }}
+                onMouseEnter={e => {
+                  if (!isActive) e.target.style.color = "#fff";
+                  e.target.style.transform = "translateX(20px)";
+                }}
+                onMouseLeave={e => {
+                  if (!isActive) e.target.style.color = item.isSub ? "rgba(255,255,255,0.4)" : "#fff";
+                  e.target.style.transform = "translateX(0px)";
+                }}
+              >
+                {item.label}
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

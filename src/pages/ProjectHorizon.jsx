@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Waves, AlignVerticalSpaceAround, Trees, Building2, Droplet, ShieldCheck, Car } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 import ImageCarousel from "../components/ImageCarousel";
 
@@ -62,10 +63,12 @@ export default function ProjectHorizon() {
     }, mainRef);
     return () => ctx.revert();
   }, []);
-
   return (
     <div ref={mainRef} style={{ background: "transparent", color: "#fdfbf7", overflowX: "hidden" }}>
-      
+      <SEO 
+        title="Bharathi Horizon" 
+        description="Premium luxury residential project by Bharathi Constructions featuring infinite pools and sky gardens." 
+      />
       {/* HEADER */}
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
@@ -75,10 +78,32 @@ export default function ProjectHorizon() {
         <div ref={heroWrapRef} style={{ position: "absolute", inset: 0, overflow: "hidden", willChange: "transform, opacity, border-radius", transformOrigin: "center center" }}>
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75)" }} />
         </div>
-        <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "none" }}>
-          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
-          <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, fontWeight: 400, color: "#0a0a0a" }} />
-        </div>
+                  <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
+            <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#0a0a0a" }} />
+            <a 
+              href="/brochures/horizon-brochure.pdf" 
+              download
+              style={{
+                display: "inline-block",
+                padding: "1rem 2.5rem",
+                border: "1px solid rgba(0,0,0,0.2)",
+                borderRadius: "100px",
+                color: "#0a0a0a",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                fontSize: "0.8rem",
+                textDecoration: "none",
+                transition: "all 0.3s",
+                backdropFilter: "blur(4px)",
+                background: "rgba(255,255,255,0.1)"
+              }}
+              onMouseEnter={e => { e.target.style.background = "#0a0a0a"; e.target.style.color = "#fff"; }}
+              onMouseLeave={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.color = "#0a0a0a"; }}
+            >
+              Download Brochure
+            </a>
+          </div>
       </section>
 
       {/* MINIMALIST STATS */}
@@ -135,7 +160,7 @@ export default function ProjectHorizon() {
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Plan</span>
               <KineticText as="h2" text="Prime Location." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#0a0a0a" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                {[["DRS International School", "3 min"], ["Malla Reddy Narayana Hospital", "6 min"], ["ORR Exit — Kandlakoya", "8 min"]].map(([place, time]) => (
+                {[["DRS International School", "3 min"], ["Malla Reddy Narayana Hospital", "6 min"], ["ORR Exit â€” Kandlakoya", "8 min"]].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
                     <span style={{ fontSize: "1.1rem", color: "#0a0a0a" }}>{place}</span>
                     <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "#555" }}>{time}</span>
@@ -156,3 +181,4 @@ export default function ProjectHorizon() {
     </div>
   );
 }
+
