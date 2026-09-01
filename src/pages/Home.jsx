@@ -231,15 +231,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 2.5 PROJECTS INTRO */}
+      <section style={{ padding: "clamp(8rem,12vw,12rem) clamp(1.5rem,4rem,4rem) 0", background: "transparent", color: "#0a0a0a", textAlign: "center" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, color: "#0a0a0a", justifyContent: "center" }} />
+          <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
+        </div>
+      </section>
+
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
       <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#0a0a0a", overflow: "hidden" }}>
         
-        {/* Pinned Header above the cards */}
-        <div style={{ position: "absolute", top: "clamp(3rem, 8vh, 6rem)", left: 0, width: "100%", textAlign: "center", zIndex: 10 }}>
-          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 5vw, 5rem)", margin: 0, color: "#0a0a0a" }} />
-          <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0", padding: "0 1.5rem" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
-        </div>
-
         {/* Faded Background Text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
           <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
