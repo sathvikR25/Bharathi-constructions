@@ -1,4 +1,4 @@
-ï»¿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ArrowUpRight, Phone } from "lucide-react";
@@ -100,13 +100,13 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           clipPath: "inset(0 0 100% 0)",
         }}
       >
-        {/* LEFT PANEL â€” hidden on mobile */}
+        {/* LEFT PANEL — hidden on mobile */}
         <div
           ref={leftRef}
           className="menu-left-panel"
           style={{
             position: "relative", overflow: "hidden",
-            background: "#0a0a0a",
+            background: "#123645",
             borderRight: "1px solid rgba(255,255,255,0.05)",
             display: "flex", flexDirection: "column",
             justifyContent: "flex-end", padding: "3rem",
@@ -149,7 +149,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
                   >
                     <div>
                       <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", color: "#c9a96e", display: "block", marginBottom: "0.3rem", textTransform: "uppercase" }}>
-                        {p.num} â€” {p.sub}
+                        {p.num} — {p.sub}
                       </span>
                       <span style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)", color: isActive ? "#c9a96e" : "#fff", fontStyle: "italic", lineHeight: 1 }}>
                         {p.label}
@@ -173,7 +173,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           </div>
         </div>
 
-        {/* RIGHT PANEL â€” full width on mobile */}
+        {/* RIGHT PANEL — full width on mobile */}
         <div
           ref={rightRef}
           className="menu-right-panel"
@@ -256,7 +256,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             marginTop: "2rem", flexWrap: "wrap", gap: "1rem",
           }}>
             <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
-              Â© 2026 Bharathi Constructions
+              © 2026 Bharathi Constructions
             </span>
             <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer"

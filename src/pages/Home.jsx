@@ -159,11 +159,11 @@ export default function Home() {
   const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational sanctuaries. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
 
   return (
-    <div ref={mainRef} style={{ background: "transparent", color: "#0a0a0a", overflowX: "hidden" }}>
+    <div ref={mainRef} style={{ background: "transparent", color: "#123645", overflowX: "hidden" }}>
       
       {/* PRELOADER */}
       <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
-         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#0a0a0a", margin: 0, lineHeight: 0.8 }}>0%</h1>
+         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#123645", margin: 0, lineHeight: 0.8 }}>0%</h1>
       </div>
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
@@ -210,7 +210,7 @@ export default function Home() {
       {/* 1. IMMERSIVE HERO */}
       <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center"}}>
-          <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#0a0a0a", WebkitTextStroke: "2px #0a0a0a", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
+          <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#123645", WebkitTextStroke: "2px #123645", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
           <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 8.5vw, 15rem)", margin: 0, color: "transparent", WebkitTextStroke: "3px #c9a96e", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Constructions</h1>
         </div>
         <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "30vw", height: "40vh", borderRadius: "200px", overflow: "hidden", willChange: "transform, width, height, border-radius" }}>
@@ -219,28 +219,28 @@ export default function Home() {
       </section>
 
       {/* 2. THE VISION */}
-      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#0a0a0a" }}>
+      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#123645" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#0a0a0a", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
+          <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#123645", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
             {visionText.map((word, i) => <span key={i} className="vision-word" style={{ opacity: 0.1 }}>{word}</span>)}
           </p>
           <div style={{ marginTop: "6rem" }}>
-            <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
+            <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
           </div>
         </div>
       </section>
 
       {/* 2.5 PROJECTS INTRO */}
-      <section style={{ padding: "clamp(8rem,12vw,12rem) clamp(1.5rem,4rem,4rem) 0", background: "transparent", color: "#0a0a0a", textAlign: "center" }}>
+      <section style={{ padding: "clamp(8rem,12vw,12rem) clamp(1.5rem,4rem,4rem) 0", background: "transparent", color: "#123645", textAlign: "center" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, color: "#0a0a0a", justifyContent: "center" }} />
+          <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, color: "#123645", justifyContent: "center" }} />
           <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
         </div>
       </section>
 
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
-      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#0a0a0a", overflow: "hidden" }}>
+      <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#123645", overflow: "hidden" }}>
         
         {/* Faded Background Text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
@@ -258,8 +258,8 @@ export default function Home() {
             </div>
             <div style={{ flex: "0 0 40%", paddingRight: "4vw" }}>
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>01 THE SKYLINE</span>
-              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#333", marginBottom: "4vw" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
+              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
             </div>
           </div>
 
@@ -272,8 +272,8 @@ export default function Home() {
             </div>
             <div style={{ flex: "0 0 40%", paddingLeft: "4vw" }}>
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>02 THE SANCTUARY</span>
-              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#333", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#0a0a0a", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
+              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
             </div>
           </div>
 
@@ -281,7 +281,7 @@ export default function Home() {
       </section>
 
       {/* 4. LIFESTYLE PARALLAX GRID */}
-      <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#0a0a0a" }}>
+      <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#123645" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
 
            {/* Mobile: simple stack. Desktop: overlapping grid */}
@@ -305,7 +305,7 @@ export default function Home() {
            <div ref={marqueeRef} style={{ display: "flex", whiteSpace: "nowrap", alignItems: "center" }}>
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} style={{ display: "flex", alignItems: "center" }}>
-                  <span className="marquee-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", color: "#0a0a0a", fontWeight: "700", margin: "0 clamp(1.5rem, 4vw, 4rem)", textTransform: "uppercase" }}>Bharathi Constructions</span>
+                  <span className="marquee-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", color: "#123645", fontWeight: "700", margin: "0 clamp(1.5rem, 4vw, 4rem)", textTransform: "uppercase" }}>Bharathi Constructions</span>
                 </div>
               ))}
            </div>
@@ -313,12 +313,12 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "transparent", color: "#0a0a0a", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
+      <footer style={{ background: "transparent", color: "#123645", padding: "12rem 4rem 4rem", position: "relative", zIndex: 10 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#0a0a0a", margin: "0 0 4rem 0", textAlign: "center" }}>Precision in Every Metric.</h2>
+          <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 8vw, 8rem)", color: "#123645", margin: "0 0 4rem 0", textAlign: "center" }}>Precision in Every Metric.</h2>
           <div style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "8rem" }}>
-             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#0a0a0a", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => {e.target.style.background="#0a0a0a"; e.target.style.color="#fff";}} onMouseLeave={e => {e.target.style.background="transparent"; e.target.style.color="#0a0a0a";}}>Our Legacy</Link>
-             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#0a0a0a", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
+             <Link to="/legacy" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", border: "1px solid rgba(0,0,0,0.2)", color: "#123645", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "background 0.3s" }} onMouseEnter={e => {e.target.style.background="#123645"; e.target.style.color="#fff";}} onMouseLeave={e => {e.target.style.background="transparent"; e.target.style.color="#123645";}}>Our Legacy</Link>
+             <Link to="/contact" className="hover-target" style={{ padding: "1.5rem 4rem", borderRadius: "100px", background: "#123645", color: "#fff", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", transition: "transform 0.3s" }} onMouseEnter={e => e.target.style.transform="scale(1.05)"} onMouseLeave={e => e.target.style.transform="scale(1)"}>Contact Us</Link>
           </div>
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "3rem" }} />
@@ -331,13 +331,13 @@ export default function Home() {
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
-              <a href="tel:+917997992051" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>+91 79979 92051</a>
-              <a href="mailto:info@bharathiconstructionshyd.com" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>info@bharathiconstructionshyd.com</a>
+              <a href="tel:+917997992051" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>+91 79979 92051</a>
+              <a href="mailto:info@bharathiconstructionshyd.com" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>info@bharathiconstructionshyd.com</a>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Navigate</span>
               {[["Our Legacy", "/legacy"], ["Bharathi Horizon", "/horizon"], ["Lake Woods", "/lake-woods"], ["Builder Profile", "/builder-profile"]].map(([label, href]) => (
-                <Link key={href} to={href} style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#0a0a0a"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>{label}</Link>
+                <Link key={href} to={href} style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>{label}</Link>
               ))}
             </div>
           </div>

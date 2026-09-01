@@ -97,7 +97,7 @@ export default function BuilderProfile() {
     },
   ];
   return (
-    <div ref={pageRef} className="min-h-screen bg-[#050505] text-[#eae5da] pt-32 pb-20 font-sans selection:bg-[#c9a96e] selection:text-[#050505]">
+    <div ref={pageRef} className="min-h-screen bg-[#09141A] text-[#eae5da] pt-32 pb-20 font-sans selection:bg-[#c9a96e] selection:text-[#09141A]">
       <SEO title="Builder Profile" description="Explore the legacy and timeline of the founders behind Bharathi Constructions." />
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
@@ -135,7 +135,7 @@ export default function BuilderProfile() {
               { name: "Mrs. A. Bharathi", role: "Partner" },
               { name: "Mrs. A. Anusha", role: "Partner" }
             ].map((partner, i) => (
-              <div key={i} className="partner-card bg-[#0a0a0a] p-6 border border-white/10 rounded-xl hover:border-[#c9a96e]/50 transition-colors duration-300">
+              <div key={i} className="partner-card bg-[#123645] p-6 border border-white/10 rounded-xl hover:border-[#c9a96e]/50 transition-colors duration-300">
                 <Users className="w-8 h-8 text-[#c9a96e] mb-4 opacity-50" />
                 <h3 className="text-xl font-semibold text-white mb-1">{partner.name}</h3>
                 <p className="text-[#c9a96e] text-sm tracking-wider uppercase">{partner.role}</p>
@@ -163,7 +163,7 @@ export default function BuilderProfile() {
               <div key={index} className={`timeline-item relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""} md:items-center gap-4 md:gap-8 pl-14 md:pl-0`}>
                 
                 {/* Timeline Dot — hidden on mobile (replaced by inline icon) */}
-                <div className="absolute left-0 md:left-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#050505] border-2 border-[#c9a96e] rounded-full flex items-center justify-center -translate-x-1/2 md:-translate-x-1/2 z-10">
+                <div className="absolute left-0 md:left-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#09141A] border-2 border-[#c9a96e] rounded-full flex items-center justify-center -translate-x-1/2 md:-translate-x-1/2 z-10">
                   {item.icon}
                 </div>
                 

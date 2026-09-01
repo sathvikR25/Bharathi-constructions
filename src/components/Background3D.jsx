@@ -110,9 +110,9 @@ function AntigravityParticles({ isLight }) {
 }
 
 function Scene({ isLight, isHorizon }) {
-  const bgRef = useRef(new THREE.Color(isLight ? "#fdfbf7" : "#050505"));
+  const bgRef = useRef(new THREE.Color(isLight ? "#fdfbf7" : "#09141A"));
   
-  const targetBg = useMemo(() => new THREE.Color(isLight ? "#fdfbf7" : "#050505"), [isLight]);
+  const targetBg = useMemo(() => new THREE.Color(isLight ? "#fdfbf7" : "#09141A"), [isLight]);
 
   const logoTex = useTexture("/logo.png");
   useMemo(() => {
@@ -127,11 +127,11 @@ function Scene({ isLight, isHorizon }) {
 
   return (
     <>
-      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#050505", 15, 45]} />
+      <fog attach="fog" args={[isLight ? "#fdfbf7" : "#09141A", 15, 45]} />
       
       <mesh position={[0, 0, -15]} scale={25}>
         <sphereGeometry args={[1, 64, 64]} />
-        <MeshDistortMaterial color={isLight ? "#e8e3d5" : "#111111"} roughness={0.8} metalness={0.2} distort={0.5} speed={0.8} side={THREE.BackSide} />
+        <MeshDistortMaterial color={isLight ? "#e8e3d5" : "#06202b"} roughness={0.8} metalness={0.2} distort={0.5} speed={0.8} side={THREE.BackSide} />
       </mesh>
 
       <AntigravityParticles isLight={isLight} />
@@ -153,7 +153,7 @@ function Scene({ isLight, isHorizon }) {
         <Float speed={1.2} rotationIntensity={0.8} floatIntensity={2}>
           <mesh position={[2, 0, -8]} rotation={[-0.5, 0.2, 0.1]}>
             <dodecahedronGeometry args={[3.5, 0]} />
-            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#111111"} roughness={0.2} metalness={0.8} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
+            <meshPhysicalMaterial color={isLight ? "#eae5da" : "#06202b"} roughness={0.2} metalness={0.8} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
           </mesh>
         </Float>
       )}
