@@ -123,7 +123,7 @@ export default function AdminShell() {
       <aside className="w-72 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
         <div className="p-8 pb-12">
           <Link to="/">
-            <img src="/logo.png" alt="Logo" className="h-10 filter brightness-0" />
+            <img src="/logo.png" alt="Logo" className="h-10" style={{ mixBlendMode: 'multiply' }} />
           </Link>
           <div className="mt-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e] font-semibold">CRM Platform</div>
         </div>

@@ -1,7 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import { MessageCircle } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 export default function WhatsAppWidget() {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) return null;
+
   const phoneNumber = "+917997992051";
   const defaultMessage = "Hello Bharathi Constructions, I would like to know more about your projects.";
 
