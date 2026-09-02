@@ -12,18 +12,16 @@ import ImageCarousel from "../components/ImageCarousel";
 gsap.registerPlugin(ScrollTrigger);
 
 const LAKEWOOD_RENDERS = [
-  { src: "/lakewood-media/lakewood-cover.jpg", label: "01 Lake Woods" },
-  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "02 Grand Entrance" },
-  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "03 Facade Evening" },
-  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "04 Landscape" },
-  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "05 Aerial Perspective" },
-  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "06 Amenity Deck" },
-  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "07 Lobby & Lounge" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "08 Master Layout" },
-  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "09 Feature List" },
-  
-  { src: "/lakewood-media/floor-plans-brochure.jpg", label: "10 Floor Plans" }
-,
+  { src: "/lakewood-media/lakewood-cover.jpg", label: "Project Overview" },
+  { src: "/lakewood-media/View 01_FFFFF copy.jpg", label: "Grand Entrance" },
+  { src: "/lakewood-media/View 02_FFFFF copy.jpg", label: "Facade Evening" },
+  { src: "/lakewood-media/View 03_FFFFFF copy.jpg", label: "Landscape & Open Spaces" },
+  { src: "/lakewood-media/View 04_ffffff copy.jpg", label: "Aerial Perspective" },
+  { src: "/lakewood-media/View 05_FFFFF copy.jpg", label: "Amenity Deck" },
+  { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "Lobby & Lounge" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "Master Layout" },
+  { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "Feature List" },
+  { src: "/lakewood-media/floor-plans-brochure.jpg", label: "Floor Plans" },
 ];
 
 
@@ -45,6 +43,7 @@ const AMENITIES = [
 
 export default function ProjectLakeWoods() {
   const [navOpen, setNavOpen] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState(null);
   const mainRef = useRef(null);
   const heroWrapRef = useRef(null);
   const heroTextRef = useRef(null);
@@ -80,6 +79,20 @@ export default function ProjectLakeWoods() {
       });
 
               
+        // Collage Stagger Animation
+        gsap.utils.toArray(".collage-item").forEach((item) => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          });
+        });
 
       // Reveal Images
       gsap.utils.toArray(".reveal-img").forEach(img => {
@@ -101,37 +114,32 @@ export default function ProjectLakeWoods() {
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
+      {/* LIGHTBOX MODAL */}
+      {lightboxImg && (
+        <div 
+          style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.95)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out" }}
+          onClick={() => setLightboxImg(null)}
+          className="animate-in fade-in duration-300"
+        >
+          <img 
+            src={lightboxImg} 
+            alt="Fullscreen Preview" 
+            style={{ maxWidth: "90%", maxHeight: "90vh", objectFit: "contain", borderRadius: "8px", boxShadow: "0 20px 50px rgba(0,0,0,0.5)" }} 
+            className="animate-in zoom-in-95 duration-300"
+          />
+          <span style={{ position: "absolute", top: "2rem", right: "3rem", color: "#fff", fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase", background: "rgba(255,255,255,0.1)", padding: "0.5rem 1rem", borderRadius: "100px", backdropFilter: "blur(10px)" }}>Close</span>
+        </div>
+      )}
+
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fff" }}>
         <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
           <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.95)" }} />
         </div>
-                  <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto", mixBlendMode: "difference", color: "#fff" }}>
-              <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#fff" }}>Bharathi Lake Woods</span>
-              <KineticText as="h1" text="Bharathi Lake Woods." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400 }} />
-              <a 
-                href="/brochures/lake-woods-brochure.pdf" 
-                download
-                style={{
-                  display: "inline-block",
-                  padding: "1rem 2.5rem",
-                  border: "1px solid rgba(255,255,255,0.4)",
-                  borderRadius: "100px",
-                  color: "#fff",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.15em",
-                  fontSize: "0.8rem",
-                  textDecoration: "none",
-                  transition: "all 0.3s",
-                  backdropFilter: "blur(4px)",
-                  background: "rgba(0,0,0,0.1)"
-                }}
-                onMouseEnter={e => { e.target.style.background = "#fff"; e.target.style.color = "#000"; }}
-                onMouseLeave={e => { e.target.style.background = "rgba(0,0,0,0.1)"; e.target.style.color = "#fff"; }}
-              >
-                Download Brochure
-              </a>
-            </div>
+        <div ref={heroTextRef} style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto", mixBlendMode: "difference", color: "#fff" }}>
+          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", display: "block", marginBottom: "1rem", color: "#fff" }}>Bharathi Lake Woods</span>
+          <KineticText as="h1" text="Bharathi Lake Woods." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400 }} />
+        </div>
       </section>
 
       {/* INVERTED MINIMALIST STATS */}
@@ -169,14 +177,19 @@ export default function ProjectLakeWoods() {
           </div>
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
             {LAKEWOOD_RENDERS.map((img, i) => (
-              <div key={i} className="break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-[#123645]/5">
+              <div 
+                key={i} 
+                onClick={() => setLightboxImg(img.src)}
+                className="collage-item break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-[#123645]/5"
+                style={{ opacity: 0, transform: "translateY(40px)" }} // Initial state for GSAP
+              >
                 <img 
                   src={img.src} 
                   alt={img.label} 
                   className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#123645]/90 via-[#123645]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#123645]/90 via-[#123645]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none">
                   <span className="text-white font-serif text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{img.label}</span>
                 </div>
               </div>
@@ -279,9 +292,14 @@ export default function ProjectLakeWoods() {
           <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
             <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
-            <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
-              Contact Sales <ArrowRight size={18} />
-            </a>
+            <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+              <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
+                Contact Sales <ArrowRight size={18} />
+              </a>
+              <a href="/brochures/lake-woods-brochure.pdf" download className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
+                Download Brochure <ArrowRight size={18} />
+              </a>
+            </div>
           </div>
 
           {/* EXTRACTED DETAILS GRID */}
