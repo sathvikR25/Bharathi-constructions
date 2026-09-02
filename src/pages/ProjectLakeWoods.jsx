@@ -189,9 +189,6 @@ export default function ProjectLakeWoods() {
                   className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#123645]/90 via-[#123645]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none">
-                  <span className="text-white font-serif text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{img.label}</span>
-                </div>
               </div>
             ))}
           </div>
