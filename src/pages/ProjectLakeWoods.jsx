@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -115,7 +116,7 @@ export default function ProjectLakeWoods() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* LIGHTBOX MODAL */}
-      {lightboxImg && (
+      {lightboxImg && typeof document !== "undefined" && createPortal(
         <div 
           style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.95)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out" }}
           onClick={() => setLightboxImg(null)}
@@ -128,7 +129,8 @@ export default function ProjectLakeWoods() {
             className="animate-in zoom-in-95 duration-300"
           />
           <span style={{ position: "absolute", top: "2rem", right: "3rem", color: "#fff", fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase", background: "rgba(255,255,255,0.1)", padding: "0.5rem 1rem", borderRadius: "100px", backdropFilter: "blur(10px)" }}>Close</span>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
@@ -289,13 +291,19 @@ export default function ProjectLakeWoods() {
           <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
             <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
-            <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-              <a href="#contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
-                Contact Sales <ArrowRight size={18} />
-              </a>
-              <a href="/brochures/lake-woods-brochure.pdf" download className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.2)", borderRadius: "100px", transition: "background 0.3s, color 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
-                Download Brochure <ArrowRight size={18} />
-              </a>
+            <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
+              <div className="relative inline-flex group rounded-full p-[2px] overflow-hidden hover-target">
+                <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s' }} />
+                <a href="#contact" style={{ position: "relative", zIndex: 10, display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", background: "#f4f1ea", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", borderRadius: "100px", transition: "all 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="#f4f1ea"; e.currentTarget.style.color="#123645";}}>
+                  Contact Sales <ArrowRight size={18} />
+                </a>
+              </div>
+              <div className="relative inline-flex group rounded-full p-[2px] overflow-hidden hover-target">
+                <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
+                <a href="/brochures/lake-woods-brochure.pdf" download style={{ position: "relative", zIndex: 10, display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", background: "#f4f1ea", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", borderRadius: "100px", transition: "all 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="#f4f1ea"; e.currentTarget.style.color="#123645";}}>
+                  Download Brochure <ArrowRight size={18} />
+                </a>
+              </div>
             </div>
           </div>
 
