@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Shield, Trees, Film, Zap, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
+import { ArrowRight, Shield, Trees, Film, Zap, Activity, Flower2, Compass, Dumbbell, Gamepad2, CarFront, Wifi, Camera, ShoppingCart, MapPin } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
@@ -31,7 +31,7 @@ const LAKEWOOD_RENDERS = [
 const AMENITIES = [
   { icon: Shield,     label: "24/7 Security",     sub: "Advanced CCTV & Guard Patrol" },
   { icon: Trees,      label: "Lush Landscaping",   sub: "2,000+ Sqft Curated Green Cover" },
-  { icon: Film,       label: "Mini Theatre",        sub: "Private 8-Seat Screening Room" },
+  { icon: Activity, label: "Jogging Track", sub: "Dedicated Scenic Jogging Track" },
   { icon: Zap,        label: "Power Backup",        sub: "100% DG Generator Covered" },
   { icon: Compass,    label: "Vastu Compliant",     sub: "All 4 Units Individually Certified" },
   { icon: Dumbbell,   label: "Fitness Centre",      sub: "Premium Equipped Gym" },
@@ -39,7 +39,7 @@ const AMENITIES = [
   { icon: CarFront,   label: "EV Charging",         sub: "Smart Charging Bays in Basement" },
   { icon: Wifi,       label: "High-Speed Internet", sub: "Fibre-Optic Ready Infrastructure" },
   { icon: Camera,     label: "Smart CCTV",          sub: "180+ Camera Full-Coverage Grid" },
-  { icon: ShoppingCart, label: "Grocery Store",    sub: "In-Community Convenience Store" },
+  { icon: Flower2, label: "Yoga/Meditation/Multipurpose Hall", sub: "Spacious Multi-Activity Hall" },
   { icon: MapPin,     label: "Prime Location",      sub: "NCL Colony, Kompally, Hyderabad" }
 ];
 
