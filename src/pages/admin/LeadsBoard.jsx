@@ -1,7 +1,7 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { MoreHorizontal, Phone, Mail, Calendar, CheckCircle2, UserCircle2 } from 'lucide-react';
 
-export default function LeadsBoard({ leads, setLeads }) {
+export default function LeadsBoard({ leads, updateLeadStatus }) {
   const columns = ['New', 'Contacted', 'Site Visit', 'Negotiation', 'Closed'];
 
   const getStatusColor = (status) => {
@@ -16,7 +16,9 @@ export default function LeadsBoard({ leads, setLeads }) {
   };
 
   const moveLead = (leadId, newStatus) => {
-    setLeads(leads.map(l => l.id === leadId ? { ...l, status: newStatus } : l));
+    if (updateLeadStatus) {
+      updateLeadStatus(leadId, newStatus);
+    }
   };
 
   return (

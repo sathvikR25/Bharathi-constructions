@@ -4,11 +4,13 @@ import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import KineticText from "../components/KineticText";
 import SEO from "../components/SEO";
+import { supabase } from '../lib/supabase';
 import { gsap } from "gsap";
 
 export default function Contact() {
   const [navOpen, setNavOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const pageRef = useRef(null);
   
   const [formData, setFormData] = useState({
@@ -29,17 +31,33 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+    setSubmitting(true);
     
-    const newLead = { ...formData, id: Date.now(), date: new Date().toISOString() };
-    const existingLeads = JSON.parse(localStorage.getItem("crm_leads") || "[]");
-    localStorage.setItem("crm_leads", JSON.stringify([newLead, ...existingLeads]));
+    const { error } = await supabase
+      .from('leads')
+      .insert([
+        { 
+          name: formData.name, 
+          email: formData.email, 
+          phone: formData.phone, 
+          project: formData.project, 
+          status: 'New' 
+        }
+      ]);
+      
+    setSubmitting(false);
     
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", project: "Horizon", message: "" });
-    setTimeout(() => setSubmitted(false), 5000);
+    if (!error) {
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", project: "Horizon", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
+    } else {
+      console.error("Error submitting lead:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   const INPUT_STYLE = {
@@ -198,7 +216,7 @@ export default function Contact() {
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.02)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
-                  Submit Inquiry <ArrowRight size={16} />
+                  {submitting ? "Submitting..." : "Submit Inquiry"} <ArrowRight size={16} />
                 </button>
               </form>
             )}
