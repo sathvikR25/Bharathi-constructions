@@ -17,6 +17,7 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
+    countryCode: "+91",
     project: "Horizon",
     message: "",
   });
@@ -36,15 +37,18 @@ export default function Contact() {
     if (!formData.name || !formData.phone) return;
     setSubmitting(true);
     
+    const fullPhone = `${formData.countryCode} ${formData.phone}`;
+    
     const { error } = await supabase
       .from('leads')
       .insert([
         { 
           name: formData.name, 
           email: formData.email, 
-          phone: formData.phone, 
+          phone: fullPhone, 
           project: formData.project, 
-          status: 'New' 
+          status: 'New',
+          message: formData.message
         }
       ]);
       
@@ -52,7 +56,7 @@ export default function Contact() {
     
     if (!error) {
       setSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", project: "Horizon", message: "" });
+      setFormData({ name: "", email: "", phone: "", countryCode: "+91", project: "Horizon", message: "" });
       setTimeout(() => setSubmitted(false), 5000);
     } else {
       console.error("Error submitting lead:", error);
@@ -106,11 +110,17 @@ export default function Contact() {
               <div>
                 <span style={LABEL_STYLE}>Corporate Office</span>
                 <p style={{ margin: 0, fontSize: "1rem", lineHeight: 1.8, color: "rgba(255,255,255,0.75)" }}>
-                  #2301, Plot No.: 51 & 52<br />
-                  Delight Square, 3rd Floor<br />
-                  Green Park Avenue, Suchitra X Roads<br />
-                  Hyderabad, Telangana — 500067
+                  #2301, Plot No.: 51 & 52,<br />
+                  Delight Square 3rd Floor, Green Park Avenue,<br />
+                  Suchitra X Roads, Hyderabad, Telangana-500067
                 </p>
+                <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={{
+                  display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                  marginTop: "1rem", color: "#c9a96e", textDecoration: "none",
+                  fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase"
+                }}>
+                  Get Directions <ArrowRight size={14} />
+                </a>
               </div>
             </div>
 
@@ -120,13 +130,13 @@ export default function Contact() {
                 <Phone size={18} color="#c9a96e" />
               </div>
               <div>
-                <span style={LABEL_STYLE}>Sales Inquiry</span>
-                <a href="tel:+917997992051" style={{ display: "block", fontSize: "1rem", color: "rgba(255,255,255,0.75)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color = "#c9a96e"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
-                  +91 79979 92051
-                </a>
-                <a href="tel:+917997992052" style={{ display: "block", fontSize: "1rem", color: "rgba(255,255,255,0.75)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color = "#c9a96e"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
-                  +91 79979 92052
-                </a>
+                <span style={LABEL_STYLE}>Direct Lines</span>
+                <p style={{ margin: 0, fontSize: "1.2rem", color: "#fff", marginBottom: "0.5rem" }}>
+                  +91 7997992051
+                </p>
+                <p style={{ margin: 0, fontSize: "1.2rem", color: "#fff" }}>
+                  +91 7997992052
+                </p>
               </div>
             </div>
 
@@ -136,34 +146,26 @@ export default function Contact() {
                 <Mail size={18} color="#c9a96e" />
               </div>
               <div>
-                <span style={LABEL_STYLE}>Email</span>
-                <a href="mailto:info@bharathiconstructionshyd.com" style={{ display: "block", fontSize: "1rem", color: "rgba(255,255,255,0.75)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color = "#c9a96e"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
+                <span style={LABEL_STYLE}>Email Us</span>
+                <p style={{ margin: 0, fontSize: "1.1rem", color: "#fff" }}>
                   info@bharathiconstructionshyd.com
-                </a>
+                </p>
               </div>
             </div>
 
-            {/* Map embed */}
-            <div style={{ borderRadius: "16px", overflow: "hidden", height: "220px", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <iframe
-                title="Bharathi Constructions Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.1234!2d78.4867!3d17.5234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8f6f6f6f6f6f%3A0x6f6f6f6f6f6f6f6f!2sSuchitra%20X%20Roads%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1"
-                width="100%" height="100%" style={{ border: 0, filter: "grayscale(0.8) contrast(1.1) invert(0.9)" }}
-                allowFullScreen loading="lazy"
-              />
-            </div>
           </div>
 
           {/* RIGHT — Form */}
-          <div className="contact-reveal" style={{
-            background: "rgba(255,255,255,0.03)", padding: "3.5rem",
-            borderRadius: "24px", border: "1px solid rgba(255,255,255,0.07)",
-            backdropFilter: "blur(12px)",
-          }}>
+          <div className="contact-reveal" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "30px", padding: "clamp(2rem, 4vw, 4rem)", position: "relative", overflow: "hidden" }}>
+            {/* Glow accent */}
+            <div style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: "radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%)", transform: "translate(30%, -30%)", pointerEvents: "none" }} />
+            
             {submitted ? (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "400px", gap: "2rem", textAlign: "center" }}>
-                <CheckCircle size={64} color="#c9a96e" />
-                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", margin: 0, color: "#fff" }}>Inquiry Received</h3>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", height: "100%", minHeight: "400px", gap: "1.5rem" }}>
+                <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "rgba(201,169,110,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <CheckCircle size={30} color="#c9a96e" />
+                </div>
+                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", color: "#fff", margin: 0 }}>Thank You.</h3>
                 <p style={{ color: "rgba(255,255,255,0.5)", lineHeight: 1.6, maxWidth: "320px" }}>
                   A sales representative will contact you within 24 hours to discuss your dream home.
                 </p>
@@ -181,7 +183,30 @@ export default function Contact() {
                   </div>
                   <div>
                     <label style={LABEL_STYLE}>Phone Number *</label>
-                    <input required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} type="tel" placeholder="+91 99999 99999" style={INPUT_STYLE} onFocus={e => e.target.style.borderColor = "#c9a96e"} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} />
+                    <div style={{ display: "flex", alignItems: "flex-end", gap: "1rem" }}>
+                      <select 
+                        value={formData.countryCode} 
+                        onChange={e => setFormData({...formData, countryCode: e.target.value})} 
+                        style={{ ...INPUT_STYLE, width: "auto", flexShrink: 0, appearance: "none", cursor: "pointer", background: "transparent", color: "#fff" }}
+                      >
+                        <option value="+91" style={{ background: "#0a0a0a" }}>IND (+91)</option>
+                        <option value="+1" style={{ background: "#0a0a0a" }}>USA (+1)</option>
+                        <option value="+44" style={{ background: "#0a0a0a" }}>UK (+44)</option>
+                        <option value="+971" style={{ background: "#0a0a0a" }}>UAE (+971)</option>
+                        <option value="+61" style={{ background: "#0a0a0a" }}>AUS (+61)</option>
+                        <option value="+65" style={{ background: "#0a0a0a" }}>SGP (+65)</option>
+                      </select>
+                      <input 
+                        required 
+                        value={formData.phone} 
+                        onChange={e => setFormData({...formData, phone: e.target.value})} 
+                        type="tel" 
+                        placeholder="99999 99999" 
+                        style={{ ...INPUT_STYLE, flex: 1 }} 
+                        onFocus={e => e.target.style.borderColor = "#c9a96e"} 
+                        onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} 
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -204,23 +229,25 @@ export default function Contact() {
                   <textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} rows={3} placeholder="Tell us about your requirements..." style={{...INPUT_STYLE, resize: "none"}} onFocus={e => e.target.style.borderColor = "#c9a96e"} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} />
                 </div>
 
-                <button type="submit" style={{
+                <button type="submit" disabled={submitting || submitted} style={{
                   padding: "1.4rem 2rem", borderRadius: "100px",
                   background: "#c9a96e", color: "#000",
                   border: "none", fontSize: "0.85rem",
                   letterSpacing: "0.15em", textTransform: "uppercase",
-                  cursor: "pointer", fontWeight: 600,
+                  cursor: (submitting || submitted) ? "not-allowed" : "pointer", fontWeight: 600,
                   transition: "transform 0.3s, background 0.3s",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem",
+                  opacity: (submitting || submitted) ? 0.7 : 1
                 }}
-                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.02)"}
-                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                  onMouseEnter={e => { if(!submitting && !submitted) e.currentTarget.style.transform = "scale(1.02)" }}
+                  onMouseLeave={e => { if(!submitting && !submitted) e.currentTarget.style.transform = "scale(1)" }}
                 >
                   {submitting ? "Submitting..." : "Submit Inquiry"} <ArrowRight size={16} />
                 </button>
               </form>
             )}
           </div>
+
         </div>
       </section>
     </div>
