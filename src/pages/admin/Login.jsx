@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { supabase } from '../../lib/supabase';
+import { auth } from '../../lib/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ArrowRight, Lock } from 'lucide-react';
 
 export default function Login({ onLogin }) {
@@ -13,16 +14,11 @@ export default function Login({ onLogin }) {
     setLoading(true);
     setError(null);
     
-    // Attempt authentication with Supabase
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      onLogin(userCredential.user);
+    } catch (error) {
       setError(error.message);
-    } else if (data.session) {
-      onLogin(data.session.user);
     }
     setLoading(false);
   };

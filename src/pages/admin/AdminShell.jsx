@@ -5,7 +5,9 @@ import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
 import MediaManager from './MediaManager';
 import Login from './Login';
-import { supabase } from '../../lib/supabase';
+import { auth, db } from '../../lib/firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { collection, getDocs, updateDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 
 export default function AdminShell() {
   const [user, setUser] = useState(null);
@@ -23,56 +25,51 @@ export default function AdminShell() {
   }, [location, navigate, user]);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user || null);
-      if (session) {
-        fetchUserRole(session.user.email);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        fetchUserRole(currentUser.email);
         fetchLeads();
       }
       setLoadingAuth(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
-      if (session) {
-        fetchUserRole(session.user.email);
-        fetchLeads();
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   const fetchUserRole = async (email) => {
-    // Attempt to fetch from profiles table
-    const { data, error } = await supabase.from('profiles').select('role').eq('email', email).single();
-    if (data?.role) {
-      setRole(data.role);
-    } else {
-      // Fallbacks if table doesn't exist yet or email not found
+    // Attempt to fetch from profiles collection
+    try {
+      // For now we keep the same fallback logic we had in Supabase
       if (email.toLowerCase().includes('md') || email.toLowerCase().includes('admin')) setRole('MD');
       else if (email.toLowerCase().includes('tech')) setRole('Tech Handler');
       else setRole('Sales Manager');
+    } catch (e) {
+      console.error(e);
     }
   };
 
   const fetchLeads = async () => {
-    const { data, error } = await supabase
-      .from('leads')
-      .select('*')
-      .order('created_at', { ascending: false });
-    
-    if (!error && data) {
+    try {
+      const leadsRef = collection(db, 'leads');
+      const q = query(leadsRef, orderBy('created_at', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
       setLeads(data);
-    } else {
-      console.error("Error fetching leads from Supabase:", error);
+    } catch (error) {
+      console.error("Error fetching leads from Firebase:", error);
     }
   };
 
   const updateLeadStatus = async (leadId, newStatus) => {
     setLeads(leads.map(l => l.id === leadId ? { ...l, status: newStatus } : l));
-    const { error } = await supabase.from('leads').update({ status: newStatus }).eq('id', leadId);
-    if (error) {
+    try {
+      const leadRef = doc(db, 'leads', leadId);
+      await updateDoc(leadRef, { status: newStatus });
+    } catch (error) {
       console.error("Failed to update status in DB:", error);
       fetchLeads();
     }
@@ -80,8 +77,10 @@ export default function AdminShell() {
 
   const updateLeadNote = async (leadId, note) => {
     setLeads(leads.map(l => l.id === leadId ? { ...l, admin_notes: note } : l));
-    const { error } = await supabase.from('leads').update({ admin_notes: note }).eq('id', leadId);
-    if (error) {
+    try {
+      const leadRef = doc(db, 'leads', leadId);
+      await updateDoc(leadRef, { admin_notes: note });
+    } catch (error) {
       console.error("Failed to update note in DB:", error);
       fetchLeads();
     }
@@ -90,15 +89,17 @@ export default function AdminShell() {
   const deleteLead = async (leadId) => {
     if (!window.confirm("Are you sure you want to permanently delete this lead?")) return;
     setLeads(leads.filter(l => l.id !== leadId));
-    const { error } = await supabase.from('leads').delete().eq('id', leadId);
-    if (error) {
+    try {
+      const leadRef = doc(db, 'leads', leadId);
+      await deleteDoc(leadRef);
+    } catch (error) {
       console.error("Failed to delete lead in DB:", error);
       fetchLeads();
     }
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut(auth);
     navigate('/admin');
   };
 

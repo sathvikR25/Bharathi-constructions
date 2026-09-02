@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { MapPin, Phone, Mail, CheckCircle, ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useRef } from 'react';
+import { Mail, Phone, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import KineticText from "../components/KineticText";
 import SEO from "../components/SEO";
-import { supabase } from '../lib/supabase';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { gsap } from "gsap";
 
 export default function Contact() {
@@ -34,74 +35,64 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
     setSubmitting(true);
     
     const fullPhone = `${formData.countryCode} ${formData.phone}`;
     
-    const { error } = await supabase
-      .from('leads')
-      .insert([
-        { 
-          name: formData.name, 
-          email: formData.email, 
-          phone: fullPhone, 
-          project: formData.project, 
-          status: 'New',
-          message: formData.message
-        }
-      ]);
+    try {
+      await addDoc(collection(db, 'leads'), {
+        name: formData.name, 
+        email: formData.email, 
+        phone: fullPhone, 
+        project: formData.project, 
+        status: 'New',
+        message: formData.message,
+        created_at: serverTimestamp()
+      });
       
-    setSubmitting(false);
-    
-    if (!error) {
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", countryCode: "+91", project: "Horizon", message: "" });
       setTimeout(() => setSubmitted(false), 5000);
-    } else {
+    } catch (error) {
       console.error("Error submitting lead:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const INPUT_STYLE = {
-    background: "transparent", border: "none",
-    borderBottom: "1px solid rgba(255,255,255,0.15)",
-    padding: "0.75rem 0", color: "#fff", fontSize: "1.1rem",
-    outline: "none", width: "100%", transition: "border-color 0.3s",
-    fontFamily: "inherit",
+    width: "100%", padding: "1.2rem", background: "rgba(255,255,255,0.03)", 
+    border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", color: "#fff",
+    fontSize: "0.95rem", outline: "none", transition: "border-color 0.3s"
   };
-
   const LABEL_STYLE = {
-    fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
-    color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem", display: "block",
+    display: "block", fontSize: "0.75rem", textTransform: "uppercase",
+    letterSpacing: "0.15em", color: "rgba(255,255,255,0.5)", marginBottom: "0.75rem", fontWeight: 600
   };
 
   return (
-    <div ref={pageRef} style={{ background: "transparent", color: "#fdfbf7", minHeight: "100vh", overflowX: "hidden" }}>
-      <SEO title="Contact Us" description="Get in touch with Bharathi Constructions. Visit us at our Hyderabad office or call our sales team." />
+    <div ref={pageRef} style={{ background: "#050505", color: "#fff", minHeight: "100vh", overflowX: "hidden" }}>
+      <SEO title="Contact Us - Bharathi Constructions" description="Get in touch with our sales team to find your dream luxury home in Hyderabad." />
+      
       <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
-      <section style={{
-        paddingTop: "clamp(8rem, 22vh, 22vh)", paddingBottom: "clamp(4rem, 10vh, 10vh)",
-        paddingLeft: "clamp(1.25rem, 5vw, 6rem)", paddingRight: "clamp(1.25rem, 5vw, 6rem)",
-        maxWidth: "1400px", margin: "0 auto",
-      }}>
-        {/* Heading */}
-        <div className="contact-reveal" style={{ marginBottom: "clamp(3rem, 6vw, 6rem)" }}>
-          <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", display: "block", marginBottom: "1.5rem" }}>
-            Get In Touch
-          </span>
-          <KineticText as="h1" text="Let's build your legacy." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 7vw, 7rem)", margin: 0, fontWeight: 400, color: "#fff", lineHeight: 1.05 }} />
-        </div>
-
-        {/* Two column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))", gap: "clamp(2rem, 5vw, 6rem)", alignItems: "start" }}>
+      <section style={{ paddingTop: "12rem", paddingBottom: "6rem", px: "2rem" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "6rem", padding: "0 2rem" }}>
           
-          {/* LEFT — Contact Info */}
+          {/* LEFT ?" Info */}
           <div className="contact-reveal" style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
-            
+            <div>
+              <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "1.5rem" }}>
+                Connect With Us
+              </span>
+              <KineticText as="h1" text="Begin Your Journey." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 6vw, 6rem)", margin: "0 0 2rem 0", lineHeight: 1.1, color: "#fff" }} />
+              <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "450px" }}>
+                Whether you are seeking a skyline residence or a tranquil villa, our advisors are here to assist you.
+              </p>
+            </div>
+
             {/* Address */}
             <div style={{ display: "flex", gap: "1.5rem" }}>
               <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -109,22 +100,15 @@ export default function Contact() {
               </div>
               <div>
                 <span style={LABEL_STYLE}>Corporate Office</span>
-                <p style={{ margin: 0, fontSize: "1rem", lineHeight: 1.8, color: "rgba(255,255,255,0.75)" }}>
-                  #2301, Plot No.: 51 & 52,<br />
-                  Delight Square 3rd Floor, Green Park Avenue,<br />
-                  Suchitra X Roads, Hyderabad, Telangana-500067
+                <p style={{ margin: 0, fontSize: "1.1rem", color: "#fff", lineHeight: 1.6 }}>
+                  #2301, Plot No.: 51 & 52, Delight Square<br/>
+                  3rd floor, Green Park Avenue,<br/>
+                  Suchitra 'X' Roads, Hyderabad-500067.
                 </p>
-                <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={{
-                  display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                  marginTop: "1rem", color: "#c9a96e", textDecoration: "none",
-                  fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase"
-                }}>
-                  Get Directions <ArrowRight size={14} />
-                </a>
               </div>
             </div>
 
-            {/* Phone */}
+            {/* Phones */}
             <div style={{ display: "flex", gap: "1.5rem" }}>
               <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <Phone size={18} color="#c9a96e" />
@@ -155,7 +139,7 @@ export default function Contact() {
 
           </div>
 
-          {/* RIGHT — Form */}
+          {/* RIGHT ?" Form */}
           <div className="contact-reveal" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "30px", padding: "clamp(2rem, 4vw, 4rem)", position: "relative", overflow: "hidden" }}>
             {/* Glow accent */}
             <div style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: "radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%)", transform: "translate(30%, -30%)", pointerEvents: "none" }} />
