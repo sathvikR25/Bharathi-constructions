@@ -291,19 +291,42 @@ export default function ProjectLakeWoods() {
           <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
             <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
-            <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
-              <div className="relative inline-flex group rounded-full p-[2px] overflow-hidden hover-target">
+            <div style={{ display: "flex", justifyContent: "center", gap: "2.5rem", flexWrap: "wrap" }}>
+              
+              {/* CONTACT SALES BUTTON */}
+              <div className="relative inline-flex group/wrap rounded-full p-[2px] overflow-hidden hover-target">
+                {/* Rotating Border */}
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s' }} />
-                <a href="#contact" style={{ position: "relative", zIndex: 10, display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", background: "#f4f1ea", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", borderRadius: "100px", transition: "all 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="#f4f1ea"; e.currentTarget.style.color="#123645";}}>
-                  Contact Sales <ArrowRight size={18} />
+                
+                {/* Button Body */}
+                <a href="#contact" className="relative z-10 flex items-center justify-center bg-[#f4f1ea] rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                  {/* Dynamic Color Fill (Sweeps up from bottom left) */}
+                  <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
+                  
+                  {/* Inner Content */}
+                  <span className="relative z-20 flex items-center gap-3 text-[#123645] group-hover/inner:text-white transition-colors duration-500 text-[0.85rem] tracking-[0.2em] uppercase font-semibold">
+                    Contact Sales <ArrowRight size={18} className="transform group-hover/inner:translate-x-1 transition-transform duration-500" />
+                  </span>
                 </a>
               </div>
-              <div className="relative inline-flex group rounded-full p-[2px] overflow-hidden hover-target">
+
+              {/* DOWNLOAD BROCHURE BUTTON */}
+              <div className="relative inline-flex group/wrap rounded-full p-[2px] overflow-hidden hover-target">
+                {/* Rotating Border */}
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
-                <a href="/brochures/lake-woods-brochure.pdf" download style={{ position: "relative", zIndex: 10, display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", background: "#f4f1ea", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", borderRadius: "100px", transition: "all 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="#f4f1ea"; e.currentTarget.style.color="#123645";}}>
-                  Download Brochure <ArrowRight size={18} />
+                
+                {/* Button Body */}
+                <a href="/brochures/lake-woods-brochure.pdf" download className="relative z-10 flex items-center justify-center bg-[#f4f1ea] rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                  {/* Dynamic Color Fill (Sweeps up from bottom left) */}
+                  <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
+                  
+                  {/* Inner Content */}
+                  <span className="relative z-20 flex items-center gap-3 text-[#123645] group-hover/inner:text-white transition-colors duration-500 text-[0.85rem] tracking-[0.2em] uppercase font-semibold">
+                    Download Brochure <ArrowRight size={18} className="transform group-hover/inner:translate-x-1 transition-transform duration-500" />
+                  </span>
                 </a>
               </div>
+
             </div>
           </div>
 
