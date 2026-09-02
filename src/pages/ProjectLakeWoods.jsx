@@ -167,7 +167,21 @@ export default function ProjectLakeWoods() {
               {LAKEWOOD_RENDERS.length} renders
             </span>
           </div>
-          <ImageCarousel images={LAKEWOOD_RENDERS} id="lakewood" theme="light" />
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            {LAKEWOOD_RENDERS.map((img, i) => (
+              <div key={i} className="break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-[#123645]/5">
+                <img 
+                  src={img.src} 
+                  alt={img.label} 
+                  className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#123645]/90 via-[#123645]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span className="text-white font-serif text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{img.label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
