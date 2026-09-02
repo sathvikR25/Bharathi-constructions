@@ -294,12 +294,12 @@ export default function ProjectLakeWoods() {
             <div style={{ display: "flex", justifyContent: "center", gap: "2.5rem", flexWrap: "wrap" }}>
               
               {/* CONTACT SALES BUTTON */}
-              <div className="relative inline-flex group/wrap rounded-full p-[2px] overflow-hidden hover-target">
+              <div className="relative inline-flex group/wrap rounded-full p-[3px] shadow-2xl shadow-[#c9a96e]/20 overflow-hidden hover-target">
                 {/* Rotating Border */}
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s' }} />
                 
                 {/* Button Body */}
-                <a href="#contact" className="relative z-10 flex items-center justify-center bg-[#f4f1ea] rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <a href="#contact" className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
                   {/* Dynamic Color Fill (Sweeps up from bottom left) */}
                   <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
                   
@@ -311,12 +311,12 @@ export default function ProjectLakeWoods() {
               </div>
 
               {/* DOWNLOAD BROCHURE BUTTON */}
-              <div className="relative inline-flex group/wrap rounded-full p-[2px] overflow-hidden hover-target">
+              <div className="relative inline-flex group/wrap rounded-full p-[3px] shadow-2xl shadow-[#c9a96e]/20 overflow-hidden hover-target">
                 {/* Rotating Border */}
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
                 
                 {/* Button Body */}
-                <a href="/brochures/lake-woods-brochure.pdf" download className="relative z-10 flex items-center justify-center bg-[#f4f1ea] rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <a href="/brochures/lake-woods-brochure.pdf" download className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
                   {/* Dynamic Color Fill (Sweeps up from bottom left) */}
                   <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
                   

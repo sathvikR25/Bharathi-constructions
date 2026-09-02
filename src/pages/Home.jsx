@@ -162,8 +162,7 @@ export default function Home() {
     <div ref={mainRef} style={{ background: "transparent", color: "#123645", overflowX: "hidden" }}>
       
       {/* PRELOADER */}
-      <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem" }}>
-         <h1 ref={counterRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 15vw, 15rem)", color: "#123645", margin: 0, lineHeight: 0.8 }}>0%</h1>
+      <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem", pointerEvents: "none" }}>
       </div>
       
       <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
