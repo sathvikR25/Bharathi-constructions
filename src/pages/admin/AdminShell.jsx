@@ -119,14 +119,18 @@ export default function AdminShell() {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-50 text-gray-900 font-sans overflow-hidden">
+    <div className="flex h-screen bg-[#f8f9fa] relative overflow-hidden text-[#123645] font-sans">
+      {/* Ambient Glassmorphism Background Orbs */}
+      <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-[#c9a96e] rounded-full mix-blend-multiply filter blur-[150px] opacity-20 pointer-events-none animate-pulse" style={{ animationDuration: '10s' }}></div>
+      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#123645] rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }}></div>
+
       {/* SIDEBAR */}
-      <aside className="w-72 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
+      <aside className="w-72 relative z-20 backdrop-blur-2xl bg-white/60 border-r border-white/60 shadow-[4px_0_24px_rgba(0,0,0,0.02)] flex flex-col">
         <div className="p-8 pb-12">
           <Link to="/">
-            <img src="/logo.png" alt="Logo" className="h-10" style={{ mixBlendMode: 'multiply' }} />
+            <img src="/logo.png" alt="Logo" className="h-10 drop-shadow-sm" style={{ mixBlendMode: 'multiply' }} />
           </Link>
-          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e] font-semibold">CRM Platform</div>
+          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e] font-bold">CRM Platform</div>
         </div>
 
         <nav className="flex-1 px-4 space-y-2">
@@ -136,56 +140,56 @@ export default function AdminShell() {
               <Link 
                 key={item.name}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 font-medium ${isActive ? 'bg-white/80 text-[#123645] shadow-sm border border-white/80' : 'text-[#123645]/60 hover:bg-white/50 hover:text-[#123645]'}`}
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className={`w-5 h-5 ${isActive ? 'text-[#c9a96e]' : ''}`} />
                 <span>{item.name}</span>
               </Link>
             )
           })}
         </nav>
 
-        <div className="p-6 mt-auto border-t border-gray-100">
+        <div className="p-6 mt-auto border-t border-white/50 bg-white/20">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center font-serif text-[#c9a96e] font-bold">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#123645] to-[#1b4a5e] shadow-md flex items-center justify-center font-serif text-[#c9a96e] font-bold text-lg">
               {user.email.charAt(0).toUpperCase()}
             </div>
             <div className="overflow-hidden">
-              <p className="font-medium text-gray-900 truncate">{user.email}</p>
-              <p className="text-xs text-[#c9a96e] font-semibold uppercase tracking-wider">{role}</p>
+              <p className="font-semibold text-[#123645] truncate text-sm">{user.email}</p>
+              <p className="text-[0.65rem] text-[#c9a96e] font-bold uppercase tracking-wider mt-0.5">{role}</p>
             </div>
           </div>
-          <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-2 w-full text-left text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+          <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-2.5 w-full text-left text-[#123645]/60 hover:text-red-600 hover:bg-red-50/80 hover:shadow-sm hover:border-red-100 border border-transparent rounded-xl transition-all duration-300">
             <LogOut className="w-4 h-4" />
-            <span className="font-medium text-sm">Logout</span>
+            <span className="font-semibold text-sm">Logout</span>
           </button>
         </div>
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 flex flex-col min-w-0 bg-gray-50">
+      <main className="flex-1 flex flex-col min-w-0 relative z-10">
         {/* HEADER */}
-        <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-10 shadow-sm z-10">
-          <div className="flex items-center gap-4 bg-gray-100 border border-gray-200 rounded-full px-4 py-2 w-96">
-            <Search className="w-4 h-4 text-gray-400" />
-            <input type="text" placeholder="Search leads, projects..." className="bg-transparent border-none focus:outline-none text-sm w-full text-gray-900 placeholder-gray-500" />
+        <header className="h-20 relative z-20 backdrop-blur-2xl bg-white/50 border-b border-white/60 flex items-center justify-between px-10 shadow-sm">
+          <div className="flex items-center gap-4 bg-white/50 border border-white/80 shadow-inner rounded-full px-5 py-2.5 w-96 focus-within:ring-4 focus-within:ring-[#c9a96e]/20 focus-within:bg-white transition-all duration-300">
+            <Search className="w-4 h-4 text-[#123645]/40" />
+            <input type="text" placeholder="Search leads, projects..." className="bg-transparent border-none focus:outline-none text-sm w-full text-[#123645] placeholder-[#123645]/40 font-medium" />
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="relative text-gray-500 hover:text-gray-900 transition-colors">
+            <button className="relative text-[#123645]/60 hover:text-[#c9a96e] transition-colors p-2 bg-white/50 rounded-full border border-white/80 shadow-sm hover:shadow-md">
               <Bell className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#c9a96e] rounded-full"></span>
+              <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-[#c9a96e] border-2 border-white rounded-full"></span>
             </button>
           </div>
         </header>
 
         {/* ROUTES CONTAINER */}
-        <div className="flex-1 overflow-y-auto p-10 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-10 custom-scrollbar relative z-10">
           <Routes>
             <Route path="dashboard" element={<Overview leads={leads} />} />
             <Route path="pipeline" element={<LeadsBoard leads={leads} updateLeadStatus={updateLeadStatus} updateLeadNote={updateLeadNote} deleteLead={deleteLead} role={role} />} />
             <Route path="media" element={<MediaManager role={role} />} />
-            <Route path="settings" element={<div className="text-gray-500 text-center mt-20">Settings Module Coming Soon</div>} />
+            <Route path="settings" element={<div className="text-[#123645]/60 text-center mt-20 font-medium bg-white/40 p-10 rounded-3xl border border-white/60 backdrop-blur-xl max-w-md mx-auto">Settings Module Coming Soon</div>} />
           </Routes>
         </div>
       </main>

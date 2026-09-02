@@ -24,37 +24,43 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-xl">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[#f8f9fa]">
+      {/* Ambient Background Orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#c9a96e] rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-pulse" style={{ animationDuration: '8s' }}></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#123645] rounded-full mix-blend-multiply filter blur-[150px] opacity-20 animate-pulse" style={{ animationDuration: '10s' }}></div>
+
+      <div className="w-full max-w-md relative z-10 backdrop-blur-2xl bg-white/50 border border-white/60 rounded-3xl p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]">
         <div className="flex justify-center mb-8">
-          <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200">
-            <Lock className="w-5 h-5 text-gray-400" />
+          <div className="w-16 h-16 bg-gradient-to-br from-[#123645] to-[#1b4a5e] rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+            <Lock className="w-7 h-7 text-[#c9a96e] -rotate-3" />
           </div>
         </div>
-        <h2 className="text-3xl font-serif text-gray-900 text-center mb-2">Admin Portal</h2>
-        <p className="text-gray-500 text-center text-sm mb-8">Sign in to manage projects and leads.</p>
+        <h2 className="text-3xl font-serif text-[#123645] text-center mb-2 font-semibold">Admin Portal</h2>
+        <p className="text-[#123645]/60 text-center text-sm mb-10 font-medium">Sign in to manage projects and leads.</p>
 
-        <form onSubmit={handleLogin} className="space-y-4">
-          {error && <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-lg text-center">{error}</div>}
+        <form onSubmit={handleLogin} className="space-y-6">
+          {error && <div className="bg-red-50/80 backdrop-blur-md border border-red-200 text-red-600 text-sm p-4 rounded-xl text-center shadow-sm">{error}</div>}
           
-          <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Email</label>
+          <div className="space-y-1.5">
+            <label className="block text-[0.7rem] font-bold text-[#123645]/70 uppercase tracking-widest ml-1">Email</label>
             <input 
               type="email" 
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full bg-white/60 border border-white/80 text-[#123645] rounded-xl px-5 py-3.5 focus:outline-none focus:border-[#c9a96e] focus:bg-white focus:ring-4 focus:ring-[#c9a96e]/20 transition-all duration-300 shadow-sm placeholder-[#123645]/30 font-medium"
+              placeholder="admin@bharathiconstructions.com"
               required 
             />
           </div>
           
-          <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Password</label>
+          <div className="space-y-1.5">
+            <label className="block text-[0.7rem] font-bold text-[#123645]/70 uppercase tracking-widest ml-1">Password</label>
             <input 
               type="password" 
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full bg-white/60 border border-white/80 text-[#123645] rounded-xl px-5 py-3.5 focus:outline-none focus:border-[#c9a96e] focus:bg-white focus:ring-4 focus:ring-[#c9a96e]/20 transition-all duration-300 shadow-sm placeholder-[#123645]/30 font-medium"
+              placeholder="••••••••"
               required 
             />
           </div>
@@ -62,9 +68,9 @@ export default function Login({ onLogin }) {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-black transition-colors flex justify-center items-center gap-2 mt-4 disabled:opacity-50"
+            className="w-full bg-gradient-to-r from-[#123645] to-[#1b4a5e] text-white font-semibold py-4 rounded-xl hover:shadow-lg hover:shadow-[#123645]/30 transition-all duration-300 flex justify-center items-center gap-3 mt-6 disabled:opacity-50 group border border-[#123645]/50"
           >
-            {loading ? 'Authenticating...' : 'Sign In'} <ArrowRight className="w-4 h-4" />
+            {loading ? 'Authenticating...' : 'Sign In'} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </form>
       </div>
