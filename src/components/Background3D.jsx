@@ -81,19 +81,18 @@ function HomeScene({ isLight, logoTex }) {
         <MeshDistortMaterial color={isLight ? "#e8e3d5" : "#06202b"} roughness={0.8} metalness={0.2} distort={0.5} speed={0.8} side={THREE.BackSide} />
       </mesh>
       <AntigravityParticles isLight={isLight} />
-      {/* Elegant ambient glass shape replacing the dodecahedron */}
-      <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-        <mesh position={[2, 0, -8]} rotation={[-0.5, 0.2, 0.1]}>
-          <torusGeometry args={[4, 1.2, 64, 128]} />
-          <meshPhysicalMaterial 
-            color={isLight ? "#ffffff" : "#0a2a22"} 
+      {/* Wavy, floating, light-colored ambient shape */}
+      <Float speed={2.5} rotationIntensity={0.5} floatIntensity={2}>
+        <mesh position={[2, -1, -8]}>
+          <sphereGeometry args={[4, 128, 128]} />
+          <MeshDistortMaterial 
+            color={isLight ? "#fef8f0" : "#0a2a22"} 
+            distort={0.4} 
+            speed={2} 
             roughness={0.1} 
-            metalness={0.1} 
-            transmission={0.9} 
-            thickness={2} 
-            clearcoat={1}
+            metalness={0.3}
             transparent={true}
-            opacity={0.8}
+            opacity={0.85}
           />
         </mesh>
       </Float>
