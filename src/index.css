@@ -1164,6 +1164,26 @@ section, footer { overflow-x: hidden !important; }
     z-index: 2;
     border: 20px solid #fdfbf7 !important;
   }
+  .parallax-mobile-stack > div:nth-child(4) {
+    grid-column: 1 / 7;
+    height: 500px !important;
+    margin-top: -8rem !important;
+  }
+  .parallax-mobile-stack > div:nth-child(5) {
+    grid-column: 8 / 13;
+    height: 600px !important;
+    margin-top: 4rem !important;
+  }
+  .parallax-mobile-stack > div:nth-child(6) {
+    grid-column: 2 / 8;
+    height: 650px !important;
+    margin-top: 4rem !important;
+  }
+  .parallax-mobile-stack > div:nth-child(7) {
+    grid-column: 7 / 13;
+    height: 500px !important;
+    margin-top: -3rem !important;
+  }
 }
 
 /* Home horizontal scroll cards — stack on mobile */
