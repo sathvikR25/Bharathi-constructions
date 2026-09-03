@@ -294,6 +294,18 @@ export default function Home() {
               <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
                  <img className="parallax-img" data-speed="0.2" src="/horizon pics/view_07_FFFFFFF.jpg" alt="Nature" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
               </div>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
+                <img className="parallax-img" data-speed="-0.12" src="/lakewood-media/View 05_FFFFF copy.jpg" alt="Amenity" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
+              </div>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
+                <img className="parallax-img" data-speed="0.18" src="/horizon pics/view_10_FFFFFF.jpg" alt="Exterior" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
+              </div>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
+                <img className="parallax-img" data-speed="-0.2" src="/lakewood-media/View 02_FFFFF copy.jpg" alt="Facade" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
+              </div>
+              <div style={{ height: "clamp(240px, 50vw, 600px)", overflow: "hidden", borderRadius: "24px" }}>
+                <img className="parallax-img" data-speed="0.15" src="/horizon pics/view_09_FFFFFFF.jpg" alt="Driveway" style={{ width: "100%", height: "130%", objectFit: "cover", transform: "translateY(-10%)" }} />
+              </div>
            </div>
         </div>
       </section>

@@ -81,12 +81,7 @@ function HomeScene({ isLight, logoTex }) {
         <MeshDistortMaterial color={isLight ? "#e8e3d5" : "#06202b"} roughness={0.8} metalness={0.2} distort={0.5} speed={0.8} side={THREE.BackSide} />
       </mesh>
       <AntigravityParticles isLight={isLight} />
-      <Float speed={1.2} rotationIntensity={0.8} floatIntensity={2}>
-        <mesh position={[2, 0, -8]} rotation={[-0.5, 0.2, 0.1]}>
-          <dodecahedronGeometry args={[3.5, 0]} />
-          <meshPhysicalMaterial color={isLight ? "#eae5da" : "#06202b"} roughness={0.2} metalness={0.8} clearcoat={1} map={logoTex} blending={isLight ? THREE.MultiplyBlending : THREE.AdditiveBlending} />
-        </mesh>
-      </Float>
+      {/* Sleek ambient shadow floor */}
       <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
     </>
   );
