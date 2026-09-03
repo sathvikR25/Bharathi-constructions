@@ -136,7 +136,7 @@ export default function ProjectLakeWoods() {
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fff" }}>
         {/* Affiliation Logos Top Right */}
-        <div className="animate-in fade-in slide-in-from-top-4 duration-1000 delay-500" style={{ position: "absolute", top: "2.5rem", right: "2.5rem", zIndex: 30, display: "flex", gap: "1.5rem", alignItems: "center", background: "rgba(255,255,255,0.95)", padding: "0.75rem 1.5rem", borderRadius: "100px", boxShadow: "0 20px 40px rgba(0,0,0,0.15)", backdropFilter: "blur(10px)" }}>
+        <div style={{ position: "absolute", top: "clamp(110px, 15vh, 140px)", right: "clamp(1.5rem, 4vw, 3rem)", zIndex: 50, display: "flex", gap: "1.5rem", alignItems: "center", background: "rgba(255,255,255,0.95)", padding: "0.75rem 1.5rem", borderRadius: "100px", boxShadow: "0 20px 40px rgba(0,0,0,0.15)", backdropFilter: "blur(10px)" }}>
           <img src="/lakewood-media/credai_logo.png" alt="CREDAI" style={{ height: "25px", objectFit: "contain" }} />
           <img src="/lakewood-media/hmda-logo.png" alt="HMDA" style={{ height: "35px", objectFit: "contain" }} />
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderLeft: "1px solid rgba(0,0,0,0.1)", paddingLeft: "1.5rem" }}>
