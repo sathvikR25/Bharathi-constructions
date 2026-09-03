@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -105,8 +105,8 @@ export default function Legacy() {
 
       {/* HERO IMAGE */}
       <div className="legacy-reveal" style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(2rem,5vw,6rem)", marginBottom: "12rem" }}>
-        <div style={{ borderRadius: "24px", overflow: "hidden", aspectRatio: "16/7" }}>
-          <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Bharathi Constructions" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.9)" }} />
+        <div style={{ borderRadius: "24px", overflow: "hidden" }}>
+          <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Bharathi Constructions" style={{ width: "100%", height: "auto", display: "block", filter: "brightness(0.9)" }} />
         </div>
       </div>
 
