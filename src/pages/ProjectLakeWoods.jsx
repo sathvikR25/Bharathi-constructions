@@ -22,7 +22,7 @@ const LAKEWOOD_RENDERS = [
   { src: "/lakewood-media/view 06_FFFFFF copy.jpg", label: "Lobby & Lounge" },
   { src: "/lakewood-media/lake-woods-brohure-page-0011.jpg", label: "Master Layout" },
   { src: "/lakewood-media/lake-woods-brohure-page-0012.jpg", label: "Feature List" },
-  { src: "/lakewood-media/floor-plans-brochure.jpg", label: "Floor Plans" },
+  
 ];
 
 
@@ -135,6 +135,16 @@ export default function ProjectLakeWoods() {
 
       {/* HERO SECTION (INVERTED: PINNED & EXPANDING) */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#fff" }}>
+        {/* Affiliation Logos Top Right */}
+        <div className="animate-in fade-in slide-in-from-top-4 duration-1000 delay-500" style={{ position: "absolute", top: "2.5rem", right: "2.5rem", zIndex: 30, display: "flex", gap: "1.5rem", alignItems: "center", background: "rgba(255,255,255,0.95)", padding: "0.75rem 1.5rem", borderRadius: "100px", boxShadow: "0 20px 40px rgba(0,0,0,0.15)", backdropFilter: "blur(10px)" }}>
+          <img src="/lakewood-media/credai_logo.png" alt="CREDAI" style={{ height: "25px", objectFit: "contain" }} />
+          <img src="/lakewood-media/hmda-logo.png" alt="HMDA" style={{ height: "35px", objectFit: "contain" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderLeft: "1px solid rgba(0,0,0,0.1)", paddingLeft: "1.5rem" }}>
+            <img src="/lakewood-media/tsrera-logo.png" alt="TS RERA" style={{ height: "30px", objectFit: "contain" }} />
+            <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "#123645", letterSpacing: "0.05em", lineHeight: 1.2, textTransform: "uppercase" }}>TS RERA<br/>P02200006662</span>
+          </div>
+        </div>
+
         <div ref={heroWrapRef} style={{ position: "absolute", width: "100%", height: "100%", overflow: "hidden", willChange: "transform, border-radius", transformOrigin: "center center" }}>
           <img src="/lakewood-media/View 03_FFFFFF copy.jpg" alt="Lake Woods" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.95)" }} />
         </div>
@@ -358,7 +368,7 @@ export default function ProjectLakeWoods() {
                 <strong>Support:</strong> +91 7997992053
               </p>
               <p style={{ color: "#444", marginBottom: "0.5rem" }}>
-                <strong>E-mail:</strong> <a href="mailto:bharathiconstructionshyd@gmail.com" style={{ color: "#123645", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>bharathiconstructionshyd@gmail.com</a>
+                <strong>E-mail:</strong> <a href="mailto:bharathiconstructionshyd1@gmail.com" style={{ color: "#123645", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>bharathiconstructionshyd1@gmail.com</a>
               </p>
               <p style={{ color: "#444" }}>
                 <strong>Socials:</strong> @bharathiconstructionshyd
@@ -368,21 +378,10 @@ export default function ProjectLakeWoods() {
           </div>
           
           {/* AFFILIATIONS AND COPYRIGHT */}
-          <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "3rem", alignItems: "center" }}>
-              <img src="/lakewood-media/credai_logo.png" alt="Member of CREDAI" style={{ height: "45px", width: "auto", objectFit: "contain" }} />
-              <img src="/lakewood-media/hmda-logo.png" alt="APPROVED HMDA" style={{ height: "60px", width: "auto", objectFit: "contain" }} />
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <img src="/lakewood-media/tsrera-logo.png" alt="TS RERA" style={{ height: "55px", width: "auto", objectFit: "contain" }} />
-                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#666", letterSpacing: "0.05em" }}>TS RERA No: P02200006662</span>
-              </div>
-            </div>
+          <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
             <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>© 2026 Bharathi Constructions</span>
           </div>
         </section>
     </div>
   );
-}
-
-
 

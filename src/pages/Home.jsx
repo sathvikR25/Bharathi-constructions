@@ -331,7 +331,7 @@ export default function Home() {
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
               <a href="tel:+917997992051" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>+91 79979 92051</a>
-              <a href="mailto:info@bharathiconstructionshyd.com" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>info@bharathiconstructionshyd.com</a>
+              <a href="mailto:bharathiconstructionshyd1@gmail.com" style={{ display: "block", fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", lineHeight: 2, transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.6)"}>bharathiconstructionshyd1@gmail.com</a>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Navigate</span>

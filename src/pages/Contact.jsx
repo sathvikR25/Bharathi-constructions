@@ -132,7 +132,7 @@ export default function Contact() {
               <div>
                 <span style={LABEL_STYLE}>Email Us</span>
                 <p style={{ margin: 0, fontSize: "1.1rem", color: "#fff" }}>
-                  info@bharathiconstructionshyd.com
+                  bharathiconstructionshyd1@gmail.com
                 </p>
               </div>
             </div>
