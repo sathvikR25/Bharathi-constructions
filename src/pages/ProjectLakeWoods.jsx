@@ -264,7 +264,7 @@ export default function ProjectLakeWoods() {
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 min(100%, 500px)", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)", height: "450px" }}>
               <iframe 
-                src="https://maps.google.com/maps?q=NCL,%20Kompally,%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?q=Bharathi%20Horizon,%20Kompally,%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, display: "block" }} 
