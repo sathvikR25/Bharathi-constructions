@@ -257,7 +257,7 @@ export default function Home() {
             </div>
             <div style={{ flex: "0 0 40%", paddingRight: "4vw" }}>
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>01 HORIZON</span>
-              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Rising above the city skyline — 53 residences designed for those who choose to live at the very top.</p>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>An exclusive collection of 128 premium luxury flats designed for those who choose to live at the very top.</p>
               <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
             </div>
           </div>
@@ -271,7 +271,7 @@ export default function Home() {
             </div>
             <div style={{ flex: "0 0 40%", paddingLeft: "4vw" }}>
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>02 LAKE WOODS</span>
-              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra — a premium villas & apartments community crafted for tranquil living.</p>
+              <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra &mdash; a premium flats community crafted for tranquil living.</p>
               <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Office</span>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad — 500067</p>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad â€” 500067</p>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
@@ -355,7 +355,7 @@ export default function Home() {
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <span>Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <span>Hyderabad, Telangana</span>
           </div>
         </div>
@@ -363,5 +363,6 @@ export default function Home() {
     </div>
   );
 }
+
 
 

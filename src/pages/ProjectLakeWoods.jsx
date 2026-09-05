@@ -234,7 +234,7 @@ export default function ProjectLakeWoods() {
           
             <div style={{ marginBottom: "8rem", display: "flex", justifyContent: "center" }}>
               <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff", width: "100%", maxWidth: "1200px" }}>
-                <img className="reveal-img" src="/lakewood-media/typical floor plan.jpg" alt="Typical Floor Plan" style={{ cursor: "zoom-in", width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} onClick={() => setLightboxImg("/lakewood-media/typical floor plan.jpg")} />
+                <img className="reveal-img" src="/lakewood-media/typical-floor-plan.jpg" alt="Typical Floor Plan" style={{ cursor: "zoom-in", width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} onClick={() => setLightboxImg("/lakewood-media/typical-floor-plan.jpg")} />
               </div>
             </div>
 
