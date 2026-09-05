@@ -178,23 +178,32 @@ export default function ProjectHorizon() {
             </span>
           </div>
           
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6" style={{ columnGap: "1.5rem" }}>
-            {HORIZON_RENDERS.map((img, i) => (
-              <div 
-                key={i} 
-                onClick={() => setLightboxImg(img.src)}
-                className="collage-item break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-white inline-block w-full mb-6"
-                style={{ opacity: 0, transform: "translateY(40px)" }}
-              >
-                <img 
-                  src={img.src} 
-                  alt={img.label} 
-                  className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
-                  loading="lazy"
-                  style={{ imageRendering: "high-quality" }}
-                />
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:auto-rows-[250px]">
+            {HORIZON_RENDERS.map((img, i) => {
+              let spanClass = "md:col-span-1 md:row-span-1";
+              if (i === 0) spanClass = "md:col-span-2 md:row-span-2";
+              else if (i === 4) spanClass = "md:col-span-1 md:row-span-2";
+              else if (i === 5) spanClass = "md:col-span-2 md:row-span-1";
+              else if (i === 7) spanClass = "md:col-span-2 md:row-span-2";
+              else if (i === 10) spanClass = "md:col-span-2 md:row-span-1";
+
+              return (
+                <div 
+                  key={i} 
+                  onClick={() => setLightboxImg(img.src)}
+                  className={`collage-item relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-white ${spanClass}`}
+                  style={{ opacity: 0, transform: "translateY(40px)", minHeight: "250px" }}
+                >
+                  <img 
+                    src={img.src} 
+                    alt={img.label} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="lazy"
+                    style={{ imageRendering: "high-quality" }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
         </div>

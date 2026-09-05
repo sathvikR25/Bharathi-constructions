@@ -1,4 +1,4 @@
-﻿import React, { useEffect, Suspense, lazy } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
@@ -15,6 +15,7 @@ const ProjectLakeWoods = lazy(() => import("./pages/ProjectLakeWoods"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Legacy = lazy(() => import("./pages/Legacy"));
 const BuilderProfile = lazy(() => import("./pages/BuilderProfile"));
+const Policy = lazy(() => import("./pages/Policy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 
@@ -98,10 +99,16 @@ export default function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/legacy" element={<Legacy />} />
                 <Route path="/builder-profile" element={<BuilderProfile />} />
+                <Route path="/policy" element={<Policy />} />
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
+            
+            {/* Global Accessible Policy Button */}
+            <a href="/policy" className="fixed bottom-4 left-4 z-50 bg-black/60 hover:bg-black text-white/70 hover:text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-md transition-all uppercase tracking-widest border border-white/10" style={{ textDecoration: 'none' }}>
+              Privacy Policy
+            </a>
           </SmoothScroll>
         </BrowserRouter>
       </ErrorBoundary>
