@@ -232,14 +232,11 @@ export default function ProjectLakeWoods() {
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Architecture</span>
           <KineticText as="h2" text="Floor Plans & 3D Views." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 5vw, 5rem)", margin: "0 0 6rem 0", color: "#123645" }} />
           
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 500px), 1fr))", gap: "4rem", marginBottom: "8rem" }}>
-            <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff" }}>
-              <img className="reveal-img" src="/lakewood-media/floor-plans-brochure-2.jpg" alt="East Facing Floor Plans - Flat 01 & 03" style={{ width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} />
+            <div style={{ marginBottom: "8rem", display: "flex", justifyContent: "center" }}>
+              <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff", width: "100%", maxWidth: "1200px" }}>
+                <img className="reveal-img" src="/lakewood-media/typical floor plan.jpg" alt="Typical Floor Plan" style={{ cursor: "zoom-in", width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} onClick={() => setLightboxImg("/lakewood-media/typical floor plan.jpg")} />
+              </div>
             </div>
-            <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff" }}>
-              <img className="reveal-img" src="/lakewood-media/floor-plans-brochure.jpg" alt="West Facing Floor Plans - Flat 02 & 04" style={{ width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} />
-            </div>
-          </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: "4rem" }}>
             {[
