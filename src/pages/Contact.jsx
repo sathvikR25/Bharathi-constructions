@@ -89,7 +89,7 @@ export default function Contact() {
               </span>
               <KineticText as="h1" text="Begin Your Journey." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 6vw, 6rem)", margin: "0 0 2rem 0", lineHeight: 1.1, color: "#fff" }} />
               <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "450px" }}>
-                Whether you are seeking a skyline residence or a tranquil villa, our advisors are here to assist you.
+                Whether you are seeking an exclusive sky-high flat or a tranquil luxury residence, our advisors are here to assist you.
               </p>
             </div>
 
@@ -139,8 +139,8 @@ export default function Contact() {
 
           </div>
 
-          {/* RIGHT ?" Form */}
-          <div className="contact-reveal" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "30px", padding: "clamp(2rem, 4vw, 4rem)", position: "relative", overflow: "hidden" }}>
+          {/* RIGHT - Form */}
+          <div className="contact-reveal" style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "30px", padding: "clamp(2.5rem, 4vw, 4rem)", position: "relative", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.4)" }}>
             {/* Glow accent */}
             <div style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: "radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%)", transform: "translate(30%, -30%)", pointerEvents: "none" }} />
             
@@ -155,8 +155,8 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.8rem", color: "#fff", margin: 0 }}>
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2.5rem", position: "relative", zIndex: 1 }}>
+                <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", color: "#fff", margin: 0 }}>
                   Send an Inquiry
                 </h3>
 
@@ -234,6 +234,23 @@ export default function Contact() {
 
         </div>
       </section>
+
+      {/* FULL WIDTH MAP */}
+      <section className="contact-reveal" style={{ padding: "0 clamp(1.5rem, 4vw, 4rem) 8rem" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", borderRadius: "30px", overflow: "hidden", height: "500px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 30px 60px rgba(0,0,0,0.4)" }}>
+          <iframe 
+            src="https://maps.google.com/maps?q=Delight%20Square,%20Suchitra%20X%20Roads,%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0, display: "block" }} 
+            allowFullScreen="" 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Bharathi Constructions Corporate Office Map"
+          ></iframe>
+        </div>
+      </section>
+
     </div>
   );
 }

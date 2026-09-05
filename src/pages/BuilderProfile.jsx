@@ -77,7 +77,7 @@ export default function BuilderProfile() {
     {
       title: "Investing & Working Partner",
       subtitle: "ARR Projects",
-      description: "Contributed to two completed gated-community developments: Mahalaxmi Residency, Kompally (18 villas) and Kavery Homes, Ameenpur (38 villas).",
+      description: "Contributed to two completed gated-community developments: Mahalaxmi Residency, Kompally (18 premium residences) and Kavery Homes, Ameenpur (38 exclusive residences).",
       icon: <Building2 className="w-6 h-6 text-[#c9a96e]" />,
       date: "2009 - 2013",
     },
