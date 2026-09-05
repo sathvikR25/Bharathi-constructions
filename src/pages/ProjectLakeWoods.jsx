@@ -265,8 +265,17 @@ export default function ProjectLakeWoods() {
       {/* LOCATION / MASTERPLAN */}
       <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
-            <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
-              <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ flex: "1 1 min(100%, 500px)", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)", height: "450px" }}>
+              <iframe 
+                src="https://maps.google.com/maps?q=NCL,%20Kompally,%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, display: "block" }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Lake Woods Location Map"
+              ></iframe>
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
