@@ -235,22 +235,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FULL WIDTH MAP */}
-      <section className="contact-reveal" style={{ padding: "0 clamp(1.5rem, 4vw, 4rem) 8rem" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", borderRadius: "30px", overflow: "hidden", height: "500px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 30px 60px rgba(0,0,0,0.4)" }}>
-          <iframe 
-            src="https://maps.google.com/maps?q=Delight%20Square,%20Suchitra%20X%20Roads,%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0, display: "block" }} 
-            allowFullScreen="" 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Bharathi Constructions Corporate Office Map"
-          ></iframe>
-        </div>
-      </section>
-
     </div>
   );
 }
