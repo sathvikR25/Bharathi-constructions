@@ -1,2 +1,2 @@
-﻿import AdminShell from './admin/AdminShell';
+import AdminShell from './admin/AdminShell';
 export default AdminShell;

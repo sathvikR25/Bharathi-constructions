@@ -218,7 +218,7 @@ export default function Home() {
       </section>
 
       {/* 2. THE VISION */}
-      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#123645" }}>
+      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#123645", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
@@ -231,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* 2.5 PROJECTS INTRO */}
-      <section style={{ padding: "clamp(8rem,12vw,12rem) clamp(1.5rem,4rem,4rem) 0", background: "transparent", color: "#123645", textAlign: "center" }}>
+      <section style={{ padding: "clamp(8rem,12vw,12rem) clamp(1.5rem, 5vw, 4rem) 0", background: "transparent", color: "#123645", textAlign: "center" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <KineticText as="h2" text="Our Projects." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: 0, color: "#123645", justifyContent: "center" }} />
           <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "#666", maxWidth: "600px", margin: "1rem auto 0" }}>Beyond bricks and mortar, we curate environments that elevate your daily existence.</p>
@@ -280,7 +280,7 @@ export default function Home() {
       </section>
 
       {/* 4. LIFESTYLE PARALLAX GRID */}
-      <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem,4rem,4rem)", background: "transparent", color: "#123645" }}>
+      <section style={{ padding: "clamp(5rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
 
            {/* Mobile: simple stack. Desktop: overlapping grid */}

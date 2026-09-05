@@ -108,7 +108,7 @@ export default function Legacy() {
       </section>
 
       {/* DUAL HERO IMAGES */}
-      <div className="legacy-reveal" style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(2rem,5vw,6rem)", marginBottom: "12rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+      <div className="legacy-reveal" style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(2rem,5vw,6rem)", marginBottom: "12rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "2rem" }}>
         <div style={{ borderRadius: "24px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Bharathi Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", flex: 1, filter: "brightness(0.9)" }} />
           <div style={{ padding: "1.5rem 0" }}>
@@ -143,7 +143,7 @@ export default function Legacy() {
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "4rem", textAlign: "center" }}>
             Our Core Pillars
           </span>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "4rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "4rem" }}>
             {PILLARS.map((pillar, i) => (
               <div key={i} style={{ padding: "3rem", background: "#fff", borderRadius: "24px", boxShadow: "0 20px 40px rgba(0,0,0,0.02)" }}>
                 <div style={{ width: "60px", height: "60px", borderRadius: "16px", background: "rgba(201,169,110,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "2rem" }}>

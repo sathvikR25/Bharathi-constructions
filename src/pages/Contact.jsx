@@ -79,7 +79,7 @@ export default function Contact() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       <section style={{ paddingTop: "12rem", paddingBottom: "6rem", px: "2rem" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "6rem", padding: "0 2rem" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 350px), 1fr))", gap: "6rem", padding: "0 2rem" }}>
           
           {/* LEFT ?" Info */}
           <div className="contact-reveal" style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

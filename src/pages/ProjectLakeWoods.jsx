@@ -155,7 +155,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* INVERTED MINIMALIST STATS */}
-      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Project Highlights" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#123645" }} />
@@ -208,7 +208,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* INVERTED AMENITIES */}
-      <section style={{ padding: "10rem 4rem", background: "transparent" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
@@ -227,12 +227,12 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* FLOOR PLANS & 3D VIEWS */}
-      <section style={{ padding: "10rem 4rem", background: "#f4f1ea", color: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "#f4f1ea", color: "#123645" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>The Architecture</span>
           <KineticText as="h2" text="Floor Plans & 3D Views." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 5vw, 5rem)", margin: "0 0 6rem 0", color: "#123645" }} />
           
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "4rem", marginBottom: "8rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 500px), 1fr))", gap: "4rem", marginBottom: "8rem" }}>
             <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff" }}>
               <img className="reveal-img" src="/lakewood-media/floor-plans-brochure-2.jpg" alt="East Facing Floor Plans - Flat 01 & 03" style={{ width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} />
             </div>
@@ -241,7 +241,7 @@ export default function ProjectLakeWoods() {
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "4rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: "4rem" }}>
             {[
               { img: "/lakewood-media/SECTION 1__ 2675 - SQ.F.jpg", title: "Section 1", sqft: "2675 SQ.FT" },
               { img: "/lakewood-media/SECTION 2__ 2680 - F.jpg", title: "Section 2", sqft: "2680 SQ.FT" },
@@ -263,19 +263,19 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* LOCATION / MASTERPLAN */}
-      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
               <img className="reveal-img" src="/lakewood-media/map.webp" alt="Map" style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Location & Connectivity</span>
-              <KineticText as="h2" text="Prime Location." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#123645" }} />
+              <KineticText as="h2" text="Prime Locations." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 3rem 0", color: "#123645" }} />
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                 {[
                   ["St. Ann's International School", "3 min"], 
                   ["Decathlon, TNR Northcity, Malls", "6 min"], 
-                  ["Access to Multiple Hospitals", "8 min"], 
+                  ["KIMS Hospitals", "2 min"], 
                   ["ORR Exit Kandlakoya", "9 min"]
                 ].map(([place, time]) => (
                   <div key={place} style={{ display: "flex", justifyContent: "space-between", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
@@ -289,7 +289,7 @@ export default function ProjectLakeWoods() {
       </section>
 
       {/* COMPREHENSIVE PROJECT FOOTER */}
-        <section style={{ padding: "8rem 4rem 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+        <section style={{ padding: "clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem) 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
           
           {/* CTA */}
           <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
@@ -303,7 +303,7 @@ export default function ProjectLakeWoods() {
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s' }} />
                 
                 {/* Button Body */}
-                <a href="#contact" className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <a href="/contact" className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
                   {/* Dynamic Color Fill (Sweeps up from bottom left) */}
                   <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
                   
@@ -320,7 +320,7 @@ export default function ProjectLakeWoods() {
                 <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
                 
                 {/* Button Body */}
-                <a href="/brochures/lake-woods-brochure.pdf" download className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <a href="/brouchers/Lake wood broucher.pdf" download className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
                   {/* Dynamic Color Fill (Sweeps up from bottom left) */}
                   <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
                   
@@ -335,7 +335,7 @@ export default function ProjectLakeWoods() {
           </div>
 
           {/* EXTRACTED DETAILS GRID */}
-          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
             
             {/* CORPORATE ADDRESS */}
             <div>

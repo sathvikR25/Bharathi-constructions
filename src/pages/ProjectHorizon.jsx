@@ -117,7 +117,7 @@ export default function ProjectHorizon() {
       </section>
 
       {/* MINIMALIST STATS */}
-      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "4rem" }}>
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Premium Living in Kompally." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#123645" }} />
@@ -152,10 +152,10 @@ export default function ProjectHorizon() {
       </section>
 
       {/* AMENITIES */}
-      <section style={{ padding: "10rem 4rem", background: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "#123645" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
@@ -171,7 +171,7 @@ export default function ProjectHorizon() {
       </section>
 
       {/* LOCATION / MASTERPLAN */}
-      <section style={{ padding: "10rem 4rem", background: "transparent", color: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "6rem", alignItems: "center" }}>
             <div style={{ flex: "1 1 500px", borderRadius: "24px", overflow: "hidden" }}>
               <img className="reveal-img" src="/horizon pics/floor-scaled.webp" alt="Masterplan" style={{ width: "100%", height: "auto", display: "block" }} />
