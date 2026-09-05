@@ -72,7 +72,7 @@ function AntigravityParticles({ isLight }) {
   );
 }
 
-function WavyHorizonLogo({ isLight }) {
+function WavyHorizonLogo({ isLight, position = [2, -1, -8] }) {
   const alphaMap = useMemo(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 1024;
@@ -124,7 +124,7 @@ function WavyHorizonLogo({ isLight }) {
 
   return (
     <Float speed={2} rotationIntensity={0.2} floatIntensity={1.5}>
-      <mesh ref={meshRef} position={[2, -1, -8]}>
+      <mesh ref={meshRef} position={position}>
         <sphereGeometry args={[4, 128, 128]} />
         <meshStandardMaterial 
           color="#A75536" 
@@ -139,7 +139,7 @@ function WavyHorizonLogo({ isLight }) {
   );
 }
 
-// 1. Home Scene (The Antigravity Spiral + Horizon Logo)
+// 1. Home Scene (The Antigravity Spiral + Dodecahedron)
 function HomeScene({ isLight, logoTex }) {
   return (
     <>
@@ -149,8 +149,21 @@ function HomeScene({ isLight, logoTex }) {
       </mesh>
       <AntigravityParticles isLight={isLight} />
       
-      {/* 3D Horizon Logo "O" Model */}
-      <WavyHorizonLogo isLight={isLight} />
+      {/* Wavy, floating, light-colored ambient shape */}
+      <Float speed={2.5} rotationIntensity={0.5} floatIntensity={2}>
+        <mesh position={[2, -1, -8]}>
+          <sphereGeometry args={[4, 128, 128]} />
+          <MeshDistortMaterial 
+            color={isLight ? "#fef8f0" : "#0a2a22"} 
+            distort={0.4} 
+            speed={2} 
+            roughness={0.1} 
+            metalness={0.3}
+            transparent={true}
+            opacity={0.85}
+          />
+        </mesh>
+      </Float>
       
       {/* Sleek ambient shadow floor */}
       <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
@@ -192,12 +205,7 @@ function HorizonScene({ isLight, logoTex }) {
         <planeGeometry args={[50, 50, 80, 80]} />
         <meshBasicMaterial wireframe={true} color={isLight ? "#123645" : "#c9a96e"} transparent={true} opacity={isLight ? 0.2 : 0.4} />
       </mesh>
-      <Float speed={1.2} rotationIntensity={0.8} floatIntensity={2}>
-        <mesh position={[2, 4, 4]} rotation={[0.5, 0.5, 0]}>
-          <icosahedronGeometry args={[3.5, 0]} />
-          <meshPhysicalMaterial color={isLight ? "#eae5da" : "#123645"} roughness={0.1} metalness={0.9} clearcoat={1} map={logoTex} blending={THREE.MultiplyBlending} />
-        </mesh>
-      </Float>
+      <WavyHorizonLogo isLight={isLight} position={[2, 4, 4]} />
     </group>
   );
 }
