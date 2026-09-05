@@ -50,7 +50,7 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
         height: "clamp(70px, 10vw, 100px)",
         display: "flex", justifyContent: "space-between", alignItems: "center"
       }}>
-        <Link to="/" style={{ display: "flex", alignItems: "center", height: "clamp(40px, 6vw, 60px)" }} onClick={() => setNavOpen(false)}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", height: "clamp(60px, 9vw, 90px)" }} onClick={() => setNavOpen(false)}>
           <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "100%", width: "auto", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
         </Link>
 

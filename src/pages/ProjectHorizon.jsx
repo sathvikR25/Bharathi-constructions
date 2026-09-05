@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
+
 import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 
@@ -94,7 +95,7 @@ export default function ProjectHorizon() {
         description="Premium luxury residential project by Bharathi Constructions featuring infinite pools and sky gardens." 
       />
       {/* HEADER */}
-      <Header theme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION */}
@@ -239,12 +240,75 @@ export default function ProjectHorizon() {
          </div>
       </section>
 
-      {/* FOOTER CTA */}
-      <section style={{ padding: "clamp(4rem, 12vw, 12rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", textAlign: "center" }}>
-        <KineticText as="h2" text="Book Your Home." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
-        <a href="/contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", padding: "1.5rem 4rem", border: "1px solid rgba(0,0,0,0.3)", borderRadius: "100px", transition: "background 0.3s" }} onMouseEnter={e => {e.currentTarget.style.background="#123645"; e.currentTarget.style.color="#fff";}} onMouseLeave={e => {e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#123645";}}>
-          Contact Sales <ArrowRight size={18} />
-        </a>
+      {/* COMPREHENSIVE PROJECT FOOTER */}
+      <section style={{ padding: "clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem) 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+        
+        {/* CTA */}
+        <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
+          <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
+          <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
+          <div style={{ display: "flex", justifyContent: "center", gap: "2.5rem", flexWrap: "wrap" }}>
+            
+            {/* CONTACT SALES BUTTON */}
+            <div className="relative inline-flex group/wrap rounded-full p-[3px] shadow-2xl shadow-[#c9a96e]/20 overflow-hidden hover-target">
+              <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s' }} />
+              <a href="/contact" className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
+                <span className="relative z-20 flex items-center gap-3 text-[#123645] group-hover/inner:text-white transition-colors duration-500 text-[0.85rem] tracking-[0.2em] uppercase font-semibold">
+                  Contact Sales <ArrowRight size={18} className="transform group-hover/inner:translate-x-1 transition-transform duration-500" />
+                </span>
+              </a>
+            </div>
+
+            {/* DOWNLOAD BROCHURE BUTTON */}
+            <div className="relative inline-flex group/wrap rounded-full p-[3px] shadow-2xl shadow-[#c9a96e]/20 overflow-hidden hover-target">
+              <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
+              <a href="/brouchers/Horizon_Brohure.pdf" download className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
+                <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
+                <span className="relative z-20 flex items-center gap-3 text-[#123645] group-hover/inner:text-white transition-colors duration-500 text-[0.85rem] tracking-[0.2em] uppercase font-semibold">
+                  Download Brochure <ArrowRight size={18} className="transform group-hover/inner:translate-x-1 transition-transform duration-500" />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* EXTRACTED DETAILS GRID */}
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+          
+          {/* CORPORATE ADDRESS */}
+          <div>
+            <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Corporate Office</h4>
+            <p style={{ color: "#444" }}>#2301, Plot No.: 51 & 52, Delight Square<br/>
+            3rd floor, Green Park Avenue, Suchitra 'X' Roads,<br/>
+            Hyderabad-500067, Telangana.</p>
+          </div>
+
+          {/* SITE ADDRESS */}
+          <div>
+            <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Site Address</h4>
+            <p style={{ color: "#444" }}>Horizon by Bharathi Constructions,<br/>
+            Kompally,<br/>
+            Hyderabad, Telangana.</p>
+          </div>
+
+          {/* CONTACT INFO */}
+          <div>
+            <h4 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.2rem", marginBottom: "1rem", color: "#000" }}>Connect</h4>
+            <p style={{ color: "#444", marginBottom: "0.5rem" }}>
+              <strong>Sales:</strong> +91 7997992051 <br/>
+              <strong>Office:</strong> +91 7997992052 <br/>
+            </p>
+            <p style={{ color: "#444", marginBottom: "0.5rem" }}>
+              <strong>E-mail:</strong> <a href="mailto:bharathiconstructionshyd1@gmail.com" style={{ color: "#123645", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>bharathiconstructionshyd1@gmail.com</a>
+            </p>
+          </div>
+        </div>
+        
+        {/* AFFILIATIONS AND COPYRIGHT */}
+        <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
+          <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>&copy; 2026 Bharathi Constructions</span>
+        </div>
       </section>
       
       {/* GLOBAL LIGHTBOX PORTAL */}
@@ -266,6 +330,7 @@ export default function ProjectHorizon() {
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes scaleUp { to { transform: scale(1); } }
       `}</style>
+      
     </div>
   );
 }

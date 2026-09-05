@@ -87,22 +87,23 @@ function WavyHorizonLogo({ isLight, position = [2, -1, -8] }) {
     ctx.fillStyle = "#000000";
     const numGaps = 4;
     for (let i = 0; i < numGaps; i++) {
-      const yCenter = 240 + (i * 180); 
+      const yCenter = 220 + (i * 190); 
       ctx.beginPath();
+      // Forward path (top edge of the gap)
       for (let x = 0; x <= 1024; x += 10) {
-        const amplitude = 35 + Math.sin(i * 1.5) * 15;
-        const frequency = 0.007;
-        const phase = i * 0.8;
-        const y = yCenter + Math.sin(x * frequency + phase) * amplitude;
-        if (x === 0) ctx.moveTo(x, y - 16); 
-        else ctx.lineTo(x, y - 16);
+        const wave = Math.sin(x * 0.006 + i * 0.9) * (30 + i * 5) + Math.cos(x * 0.01) * 15;
+        // The thickness varies along the X axis giving that hand-drawn logo feel
+        const thickness = 18 + Math.sin(x * 0.004 + i) * 12; 
+        const y = yCenter + wave;
+        if (x === 0) ctx.moveTo(x, y - thickness); 
+        else ctx.lineTo(x, y - thickness);
       }
+      // Backward path (bottom edge of the gap)
       for (let x = 1024; x >= 0; x -= 10) {
-        const amplitude = 35 + Math.sin(i * 1.5) * 15;
-        const frequency = 0.007;
-        const phase = i * 0.8;
-        const y = yCenter + Math.sin(x * frequency + phase) * amplitude;
-        ctx.lineTo(x, y + 16);
+        const wave = Math.sin(x * 0.006 + i * 0.9) * (30 + i * 5) + Math.cos(x * 0.01) * 15;
+        const thickness = 18 + Math.sin(x * 0.004 + i) * 12;
+        const y = yCenter + wave;
+        ctx.lineTo(x, y + thickness);
       }
       ctx.fill();
     }
@@ -127,9 +128,9 @@ function WavyHorizonLogo({ isLight, position = [2, -1, -8] }) {
       <mesh ref={meshRef} position={position}>
         <sphereGeometry args={[4, 128, 128]} />
         <meshStandardMaterial 
-          color="#A75536" 
-          metalness={0.4}
-          roughness={0.2}
+          color="#BA5A31" 
+          metalness={0.5}
+          roughness={0.15}
           alphaMap={alphaMap}
           alphaTest={0.5}
           side={THREE.DoubleSide}
@@ -203,7 +204,7 @@ function HorizonScene({ isLight, logoTex }) {
     <group ref={groupRef} position={[0, -4, -12]}>
       <mesh ref={meshRef} rotation={[-Math.PI / 2.2, 0, 0]}>
         <planeGeometry args={[50, 50, 80, 80]} />
-        <meshBasicMaterial wireframe={true} color={isLight ? "#123645" : "#c9a96e"} transparent={true} opacity={isLight ? 0.2 : 0.4} />
+        <meshBasicMaterial wireframe={true} color={isLight ? "#d4af37" : "#c9a96e"} transparent={true} opacity={isLight ? 0.35 : 0.4} />
       </mesh>
       <WavyHorizonLogo isLight={isLight} position={[2, 4, 4]} />
     </group>
