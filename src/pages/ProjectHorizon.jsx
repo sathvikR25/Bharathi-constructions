@@ -116,29 +116,31 @@ export default function ProjectHorizon() {
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(0,0,0,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
-            <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#123645" }} />
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
+            <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#fff", textShadow: "0 10px 30px rgba(0,0,0,0.3)" }} />
             <a 
               href="/brouchers/Horizon_Brohure.pdf" 
               download
               style={{
-                display: "inline-block",
-                padding: "1rem 2.5rem",
-                border: "1px solid rgba(0,0,0,0.2)",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "1.2rem 3rem",
                 borderRadius: "100px",
                 color: "#123645",
+                fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.15em",
                 fontSize: "0.8rem",
                 textDecoration: "none",
-                transition: "all 0.3s",
-                backdropFilter: "blur(4px)",
-                background: "rgba(255,255,255,0.1)"
+                transition: "all 0.4s",
+                background: "#fff",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
               }}
-              onMouseEnter={e => { e.target.style.background = "#123645"; e.target.style.color = "#fff"; }}
-              onMouseLeave={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.color = "#123645"; }}
+              onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 15px 35px rgba(0,0,0,0.25)"; }}
+              onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)"; }}
             >
-              Download Brochure
+              Download Brochure <ArrowRight size={18} />
             </a>
           </div>
       </section>
@@ -161,26 +163,26 @@ export default function ProjectHorizon() {
       </section>
 
       {/* GALLERY - COLLAGE */}
-      <section style={{ padding: "8rem 0 6rem", background: "#09141A" }}>
+      <section style={{ padding: "8rem 0 6rem", background: "#f4f1ea" }}>
         <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 clamp(1.5rem, 4vw, 4rem)" }}>
           <div style={{ marginBottom: "3rem", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
             <div>
-              <span style={{ fontSize: "0.65rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", display: "block", marginBottom: "0.75rem" }}>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "0.75rem" }}>
                 Visual Tour
               </span>
-              <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", margin: 0, color: "#fff", fontWeight: 400 }} />
+              <KineticText as="h2" text="The Horizon Gallery." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", margin: 0, color: "#123645", fontWeight: 400 }} />
             </div>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666" }}>
               {HORIZON_RENDERS.length} renders
             </span>
           </div>
           
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6" style={{ columnGap: "1.5rem" }}>
             {HORIZON_RENDERS.map((img, i) => (
               <div 
                 key={i} 
                 onClick={() => setLightboxImg(img.src)}
-                className="collage-item break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-shadow bg-[#ffffff]/5"
+                className="collage-item break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow bg-white inline-block w-full mb-6"
                 style={{ opacity: 0, transform: "translateY(40px)" }}
               >
                 <img 
@@ -188,12 +190,8 @@ export default function ProjectHorizon() {
                   alt={img.label} 
                   className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
                   loading="lazy"
+                  style={{ imageRendering: "high-quality" }}
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white font-serif text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center px-4">
-                    {img.label}
-                  </span>
-                </div>
               </div>
             ))}
           </div>
@@ -202,17 +200,17 @@ export default function ProjectHorizon() {
       </section>
 
       {/* AMENITIES */}
-      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "#123645" }}>
+      <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#fdfbf7" }} />
+          <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
-                <div key={i} style={{ padding: "2.5rem 2rem", background: "rgba(255,255,255,0.03)", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={i} style={{ padding: "2.5rem 2rem", background: "#f4f1ea", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.05)", transition: "transform 0.3s, box-shadow 0.3s" }} className="hover:transform hover:-translate-y-1 hover:shadow-xl">
                   <Icon size={28} color="#c9a96e" strokeWidth={1.5} style={{ marginBottom: "1.5rem" }} />
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 400, marginBottom: "0.5rem", color: "#fdfbf7" }}>{a.label}</h4>
-                  <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{a.desc}</p>
+                  <h4 style={{ fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: "#123645" }}>{a.label}</h4>
+                  <p style={{ fontSize: "0.85rem", color: "rgba(0,0,0,0.6)", lineHeight: 1.6 }}>{a.desc}</p>
                 </div>
               );
             })}
