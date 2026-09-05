@@ -72,7 +72,74 @@ function AntigravityParticles({ isLight }) {
   );
 }
 
-// 1. Home Scene (The Antigravity Spiral + Dodecahedron)
+function WavyHorizonLogo({ isLight }) {
+  const alphaMap = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1024;
+    canvas.height = 1024;
+    const ctx = canvas.getContext("2d");
+
+    // White = solid copper
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 1024, 1024);
+
+    // Black = cutouts/gaps
+    ctx.fillStyle = "#000000";
+    const numGaps = 4;
+    for (let i = 0; i < numGaps; i++) {
+      const yCenter = 240 + (i * 180); 
+      ctx.beginPath();
+      for (let x = 0; x <= 1024; x += 10) {
+        const amplitude = 35 + Math.sin(i * 1.5) * 15;
+        const frequency = 0.007;
+        const phase = i * 0.8;
+        const y = yCenter + Math.sin(x * frequency + phase) * amplitude;
+        if (x === 0) ctx.moveTo(x, y - 16); 
+        else ctx.lineTo(x, y - 16);
+      }
+      for (let x = 1024; x >= 0; x -= 10) {
+        const amplitude = 35 + Math.sin(i * 1.5) * 15;
+        const frequency = 0.007;
+        const phase = i * 0.8;
+        const y = yCenter + Math.sin(x * frequency + phase) * amplitude;
+        ctx.lineTo(x, y + 16);
+      }
+      ctx.fill();
+    }
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    return texture;
+  }, []);
+
+  const meshRef = useRef();
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15;
+      meshRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.15) * 0.1;
+    }
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={0.2} floatIntensity={1.5}>
+      <mesh ref={meshRef} position={[2, -1, -8]}>
+        <sphereGeometry args={[4, 128, 128]} />
+        <meshStandardMaterial 
+          color="#A75536" 
+          metalness={0.4}
+          roughness={0.2}
+          alphaMap={alphaMap}
+          alphaTest={0.5}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </Float>
+  );
+}
+
+// 1. Home Scene (The Antigravity Spiral + Horizon Logo)
 function HomeScene({ isLight, logoTex }) {
   return (
     <>
@@ -81,21 +148,10 @@ function HomeScene({ isLight, logoTex }) {
         <MeshDistortMaterial color={isLight ? "#e8e3d5" : "#06202b"} roughness={0.8} metalness={0.2} distort={0.5} speed={0.8} side={THREE.BackSide} />
       </mesh>
       <AntigravityParticles isLight={isLight} />
-      {/* Wavy, floating, light-colored ambient shape */}
-      <Float speed={2.5} rotationIntensity={0.5} floatIntensity={2}>
-        <mesh position={[2, -1, -8]}>
-          <sphereGeometry args={[4, 128, 128]} />
-          <MeshDistortMaterial 
-            color={isLight ? "#fef8f0" : "#0a2a22"} 
-            distort={0.4} 
-            speed={2} 
-            roughness={0.1} 
-            metalness={0.3}
-            transparent={true}
-            opacity={0.85}
-          />
-        </mesh>
-      </Float>
+      
+      {/* 3D Horizon Logo "O" Model */}
+      <WavyHorizonLogo isLight={isLight} />
+      
       {/* Sleek ambient shadow floor */}
       <ContactShadows position={[0, -5, 0]} opacity={isLight ? 0.4 : 0.2} scale={20} blur={2} far={10} />
     </>
