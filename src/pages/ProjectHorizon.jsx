@@ -214,8 +214,40 @@ export default function ProjectHorizon() {
           
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", background: "#fff", width: "100%", maxWidth: "1200px" }}>
-              <img className="reveal-img" src="/horizon pics/floor-scaled.webp" alt="Horizon Floor Plan" style={{ cursor: "zoom-in", width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} onClick={() => setLightboxImg("/horizon pics/floor-scaled.webp")} />
+              <img className="reveal-img" src="/horizon pics/typical-floor-plan.jpg" alt="Horizon Floor Plan" style={{ cursor: "zoom-in", width: "100%", height: "auto", display: "block", imageRendering: "high-quality" }} onClick={() => setLightboxImg("/horizon pics/typical-floor-plan.jpg")} />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3D FLAT VIEWS */}
+      <section style={{ padding: "0 clamp(1.5rem, 5vw, 4rem) clamp(4rem, 10vw, 10rem)", background: "#f4f1ea", color: "#123645" }}>
+        <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1rem" }}>Immersive Perspectives</span>
+            <KineticText as="h2" text="3D Flat Views." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: 0, color: "#123645" }} />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { src: "/horizon pics/3d-flat-1.jpg", title: "Flat 1" },
+              { src: "/horizon pics/3d-flat-2-7.jpg", title: "Flats 2-7" },
+              { src: "/horizon pics/3d-flat-8.jpg", title: "Flat 8" },
+              { src: "/horizon pics/3d-flat-9.jpg", title: "Flat 9" },
+              { src: "/horizon pics/3d-flat-10-12.jpg", title: "Flats 10-12" },
+              { src: "/horizon pics/3d-flat-13.jpg", title: "Flat 13" }
+            ].map((img, i) => (
+              <div key={i} className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-zoom-in bg-white" onClick={() => setLightboxImg(img.src)}>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={img.src} alt={img.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                  <div className="p-6 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="text-white font-serif text-xl tracking-wide">{img.title}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -336,6 +368,7 @@ export default function ProjectHorizon() {
     </div>
   );
 }
+
 
 
 
