@@ -130,7 +130,7 @@ export default function ProjectHorizon() {
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Premium Living in Kompally." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#123645" }} />
           </div>
-          <div style={{ flex: "1 1 600px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "3rem" }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12" style={{ flex: "1 1 600px" }}>
             {[ { v: "1", l: "Tower" }, { v: "8+2", l: "Floors" }, { v: "126", l: "Exclusive Units" }, { v: "3 BHK", l: "Only" }, { v: "1945-2400", l: "SQ.FT" } ].map((stat, i) => (
               <div key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1.5rem" }}>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: "2.5rem", display: "block", marginBottom: "0.5rem" }}>{stat.v}</span>
@@ -191,7 +191,7 @@ export default function ProjectHorizon() {
       <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "2rem" }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
@@ -276,7 +276,7 @@ export default function ProjectHorizon() {
         </div>
 
         {/* EXTRACTED DETAILS GRID */}
-        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16" style={{ maxWidth: "1400px", margin: "0 auto", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
           
           {/* CORPORATE ADDRESS */}
           <div>
@@ -336,6 +336,7 @@ export default function ProjectHorizon() {
     </div>
   );
 }
+
 
 
 

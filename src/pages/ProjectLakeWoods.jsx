@@ -212,7 +212,7 @@ export default function ProjectLakeWoods() {
       <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "2rem" }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
@@ -328,7 +328,7 @@ export default function ProjectLakeWoods() {
           </div>
 
           {/* EXTRACTED DETAILS GRID */}
-          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16" style={{ maxWidth: "1400px", margin: "0 auto", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
             
             {/* CORPORATE ADDRESS */}
             <div>
@@ -373,6 +373,7 @@ export default function ProjectLakeWoods() {
   );
 
 }
+
 
 
 
