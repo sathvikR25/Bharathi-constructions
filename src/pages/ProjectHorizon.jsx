@@ -12,6 +12,7 @@ import Header from "../components/Header";
 
 import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
+import BrochureDownloadButton from "../components/BrochureDownloadButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,30 +120,7 @@ export default function ProjectHorizon() {
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto" }}>
             <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
             <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#fff", textShadow: "0 10px 30px rgba(0,0,0,0.3)" }} />
-            <a 
-              href="/brouchers/Horizon_Brohure.pdf" 
-              download
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "1rem",
-                padding: "1.2rem 3rem",
-                borderRadius: "100px",
-                color: "#123645",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: "0.15em",
-                fontSize: "0.8rem",
-                textDecoration: "none",
-                transition: "all 0.4s",
-                background: "#fff",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
-              }}
-              onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 15px 35px rgba(0,0,0,0.25)"; }}
-              onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)"; }}
-            >
-              Download Brochure <ArrowRight size={18} />
-            </a>
+            <BrochureDownloadButton project="horizon" />
           </div>
       </section>
 
@@ -293,15 +271,7 @@ export default function ProjectHorizon() {
             </div>
 
             {/* DOWNLOAD BROCHURE BUTTON */}
-            <div className="relative inline-flex group/wrap rounded-full p-[3px] shadow-2xl shadow-[#c9a96e]/20 overflow-hidden hover-target">
-              <div className="absolute inset-[-100%] animate-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#c9a96e_360deg)] opacity-100 transition-opacity duration-300" style={{ animationDuration: '3s', animationDelay: '-1.5s' }} />
-              <a href="/brouchers/Horizon_Brohure.pdf" download className="relative z-10 flex items-center justify-center bg-white shadow-xl shadow-[#123645]/10 rounded-full overflow-hidden group/inner transition-all duration-500 hover:shadow-2xl hover:shadow-[#123645]/20" style={{ padding: "1.25rem 3.5rem" }}>
-                <div className="absolute inset-0 bg-[#123645] translate-y-full translate-x-[-100%] group-hover/inner:translate-y-0 group-hover/inner:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full origin-bottom-left" />
-                <span className="relative z-20 flex items-center gap-3 text-[#123645] group-hover/inner:text-white transition-colors duration-500 text-[0.85rem] tracking-[0.2em] uppercase font-semibold">
-                  Download Brochure <ArrowRight size={18} className="transform group-hover/inner:translate-x-1 transition-transform duration-500" />
-                </span>
-              </a>
-            </div>
+              <BrochureDownloadButton project="horizon" />
           </div>
         </div>
 
@@ -366,5 +336,9 @@ export default function ProjectHorizon() {
     </div>
   );
 }
+
+
+
+
 
 
