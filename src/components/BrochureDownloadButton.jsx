@@ -12,16 +12,21 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
     
     setLoading(true);
     try {
-      const listRef = ref(storage, 'brochures');
-      const res = await listAll(listRef);
+      // First check the 'brochures' folder
+      let res;
+      try {
+        res = await listAll(ref(storage, 'brochures'));
+      } catch (err) {
+        res = { items: [] };
+      }
+      
+      // If empty (because files were uploaded to root instead of the folder), check root
+      if (!res || !res.items || res.items.length === 0) {
+        res = await listAll(ref(storage, ''));
+      }
       
       // Find a brochure matching the project name (case insensitive)
       let targetItem = res.items.find(item => item.name.toLowerCase().includes(project.toLowerCase()));
-      
-      // If not found by name, just grab the first one if it exists, or fallback
-      if (!targetItem && res.items.length > 0) {
-        targetItem = res.items[0];
-      }
 
       if (targetItem) {
         const url = await getDownloadURL(targetItem);
@@ -53,4 +58,3 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
     </div>
   );
 }
-
