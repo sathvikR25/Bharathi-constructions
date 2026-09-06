@@ -31,7 +31,7 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
       }
     } catch (error) {
       console.error("Error fetching brochure:", error);
-      alert('Failed to download brochure. Please try again.');
+      alert('Failed to download brochure: ' + error.message);
     } finally {
       setLoading(false);
     }
@@ -53,3 +53,4 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
     </div>
   );
 }
+
