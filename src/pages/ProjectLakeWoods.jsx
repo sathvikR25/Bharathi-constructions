@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
@@ -187,7 +187,7 @@ export default function ProjectLakeWoods() {
               {LAKEWOOD_RENDERS.length} renders
             </span>
           </div>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          <div className="columns-2 sm:columns-2 lg:columns-3 gap-6 space-y-6">
             {LAKEWOOD_RENDERS.map((img, i) => (
               <div 
                 key={i} 
@@ -211,7 +211,7 @@ export default function ProjectLakeWoods() {
       <section style={{ padding: "clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <KineticText as="h2" text="Project Amenities." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 6rem 0", color: "#123645" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "2rem" }}>
             {AMENITIES.map((a, i) => {
               const Icon = a.icon;
               return (
@@ -341,7 +341,7 @@ export default function ProjectLakeWoods() {
           </div>
 
           {/* EXTRACTED DETAILS GRID */}
-          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
+          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "4rem", color: "#123645", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "4rem", fontSize: "0.9rem", lineHeight: 1.8 }}>
             
             {/* CORPORATE ADDRESS */}
             <div>
@@ -379,10 +379,11 @@ export default function ProjectLakeWoods() {
           
           {/* AFFILIATIONS AND COPYRIGHT */}
           <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
-            <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>© 2026 Bharathi Constructions</span>
+            <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Â© 2026 Bharathi Constructions</span>
           </div>
         </section>
     </div>
   );
 
 }
+

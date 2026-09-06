@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -248,28 +248,28 @@ export default function Home() {
         
         <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
-          <div className="horizontal-card-inner" style={{ width: "120vw", flexShrink: 0, display: "flex", gap: "5vw", alignItems: "center" }}>
-            <div style={{ flex: "0 0 55%", position: "relative" }}>
+          <div className="horizontal-card-inner w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row gap-8 md:gap-[5vw] items-center">
+            <div className="w-full md:w-[55%] relative">
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
               </div>
               <h2 className="parallax-layer" data-speed="1.3" style={{ position: "absolute", top: "10%", left: "-10%", fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 14vw, 15rem)", color: "#fff", margin: 0, whiteSpace: "nowrap" }}>Horizon.</h2>
             </div>
-            <div style={{ flex: "0 0 40%", paddingRight: "4vw" }}>
+            <div className="w-full md:w-[40%] md:pr-[4vw] text-center md:text-left">
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>01 HORIZON</span>
               <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>An exclusive collection of 128 premium luxury flats designed for those who choose to live at the very top.</p>
               <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
             </div>
           </div>
 
-          <div className="horizontal-card-inner" style={{ width: "120vw", flexShrink: 0, display: "flex", gap: "5vw", alignItems: "center", flexDirection: "row-reverse" }}>
-            <div style={{ flex: "0 0 55%", position: "relative" }}>
+          <div className="horizontal-card-inner w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row-reverse gap-8 md:gap-[5vw] items-center">
+            <div className="w-full md:w-[55%] relative">
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
               </div>
               <h2 className="parallax-layer" data-speed="0.7" style={{ position: "absolute", bottom: "10%", right: "-10%", fontFamily: "Playfair Display, serif", fontSize: "clamp(5rem, 14vw, 15rem)", color: "#fff", margin: 0, textAlign: "right", whiteSpace: "nowrap" }}>Lake<br/>Woods.</h2>
             </div>
-            <div style={{ flex: "0 0 40%", paddingLeft: "4vw" }}>
+            <div className="w-full md:w-[40%] md:pl-[4vw] text-center md:text-left">
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>02 LAKE WOODS</span>
               <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra &mdash; a premium flats community crafted for tranquil living.</p>
               <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
@@ -338,7 +338,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Office</span>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad â€” 500067</p>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad Ã¢â‚¬â€ 500067</p>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
@@ -355,7 +355,7 @@ export default function Home() {
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <span>Ã‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <span>Hyderabad, Telangana</span>
           </div>
         </div>
@@ -363,6 +363,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
