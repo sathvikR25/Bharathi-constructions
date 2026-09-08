@@ -93,7 +93,7 @@ export default function MediaManager({ role }) {
           >
             <option value="brochures">Brochures (/brochures)</option>
             <option value="gallery">Gallery (/gallery)</option>
-            <option value="media">General Media (/media)</option>
+            <option value="media">General Media (/media)</option>`n            <option value="home-hero">Home Hero Slider (/home-hero)</option>
           </select>
 
           {canEdit ? (
@@ -157,3 +157,4 @@ export default function MediaManager({ role }) {
     </div>
   );
 }
+

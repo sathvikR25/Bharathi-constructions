@@ -7,6 +7,8 @@ import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
+import { storage } from "../lib/firebase";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +16,8 @@ export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
+  const [heroMedia, setHeroMedia] = useState([{ url: "/onboarding.mp4", type: "video" }]);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const mainRef = useRef(null);
   
   // Refs
@@ -27,6 +31,35 @@ export default function Home() {
   const horizontalSectionRef = useRef(null);
   const horizontalTrackRef = useRef(null);
   const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    const fetchHeroMedia = async () => {
+      try {
+        const listRef = ref(storage, "home-hero");
+        const res = await listAll(listRef);
+        if (res.items.length > 0) {
+          const mediaPromises = res.items.map(async (itemRef) => {
+            const url = await getDownloadURL(itemRef);
+            const isVideo = itemRef.name.match(/\.(mp4|webm|ogg|mov)$/i);
+            return { url, type: isVideo ? "video" : "image", name: itemRef.name };
+          });
+          const fetchedMedia = await Promise.all(mediaPromises);
+          setHeroMedia(fetchedMedia);
+        }
+      } catch (error) {
+        console.error("Error fetching hero media:", error);
+      }
+    };
+    fetchHeroMedia();
+  }, []);
+
+  useEffect(() => {
+    if (heroMedia.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % heroMedia.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [heroMedia]);
 
   useEffect(() => {
     // PRELOADER SEQUENCE
@@ -175,10 +208,28 @@ export default function Home() {
         setMousePos({ x, y });
       }} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
         
-        {/* PARALLAX VIDEO BACKGROUND */}
-        <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.65, transform: `scale(1.05) translate(${mousePos.x}px, ${mousePos.y}px)`, transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}>
-          <source src="/onboarding.mp4" type="video/mp4" />
-        </video>
+        {/* PARALLAX SLIDER BACKGROUND */}
+          {heroMedia.map((media, index) => {
+            const isActive = index === currentSlide;
+            const style = {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: isActive ? 0.65 : 0,
+              transform: `scale(1.05) translate(${mousePos.x}px, ${mousePos.y}px)`,
+              transition: "opacity 1.5s ease-in-out, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+              zIndex: isActive ? 0 : -1
+            };
+
+            return media.type === "video" ? (
+              <video key={index} src={media.url} autoPlay loop muted playsInline style={style} />
+            ) : (
+              <img key={index} src={media.url} alt={`Slide ${index}`} style={style} />
+            );
+          })}
 
         {/* CINEMATIC VIGNETTE OVERLAY */}
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%)", zIndex: 0, pointerEvents: "none" }} />
@@ -194,8 +245,17 @@ export default function Home() {
           </div>
           <div style={{ perspective: "800px" }}>
             <h1 className="hero-onboarding-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 5vw, 6rem)", margin: 0, lineHeight: 1, color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.7)", fontStyle: "italic", textTransform: "uppercase", letterSpacing: "0.15em", marginTop: "0.5rem" }}>Constructions</h1>
+            </div>
+
+            {/* SLIDER PROGRESS DOTS */}
+            {heroMedia.length > 1 && (
+              <div className="hero-onboarding-text" style={{ marginTop: "3rem", display: "flex", gap: "0.75rem", zIndex: 1 }}>
+                {heroMedia.map((_, idx) => (
+                  <div key={idx} onClick={() => setCurrentSlide(idx)} style={{ width: "3rem", height: "2px", background: idx === currentSlide ? "#c9a96e" : "rgba(255,255,255,0.2)", transition: "all 0.5s ease", cursor: "pointer" }} />
+                ))}
+              </div>
+            )}
           </div>
-        </div>
 
         {/* SCROLL INDICATOR */}
         <div className="hero-onboarding-text" style={{ position: "absolute", bottom: "3rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
@@ -363,6 +423,10 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
 
 
 
