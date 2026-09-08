@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -55,11 +55,30 @@ export default function Home() {
 
   useEffect(() => {
     if (heroMedia.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % heroMedia.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [heroMedia]);
+    
+    let timer;
+    const currentMedia = heroMedia[currentSlide];
+    
+    if (currentMedia && currentMedia.type !== "video") {
+      timer = setTimeout(() => {
+        setCurrentSlide(prev => (prev + 1) % heroMedia.length);
+      }, 6000);
+    } else if (currentMedia && currentMedia.type === "video") {
+      const videoEl = document.getElementById(`hero-video-${currentSlide}`);
+      if (videoEl) {
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      }
+      heroMedia.forEach((_, idx) => {
+        if (idx !== currentSlide) {
+          const otherEl = document.getElementById(`hero-video-${idx}`);
+          if (otherEl) otherEl.pause();
+        }
+      });
+    }
+    
+    return () => clearTimeout(timer);
+  }, [heroMedia, currentSlide]);
 
   useEffect(() => {
     // PRELOADER SEQUENCE
@@ -225,7 +244,7 @@ export default function Home() {
             };
 
             return media.type === "video" ? (
-              <video key={index} src={media.url} autoPlay loop muted playsInline style={style} />
+              <video id={`hero-video-${index}`} key={index} src={media.url} autoPlay loop={heroMedia.length === 1} muted playsInline style={style} onEnded={() => { if (isActive && heroMedia.length > 1) setCurrentSlide(prev => (prev + 1) % heroMedia.length); }} />
             ) : (
               <img key={index} src={media.url} alt={`Slide ${index}`} style={style} />
             );
@@ -387,7 +406,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Office</span>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad Ã¢â‚¬â€ 500067</p>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 500067</p>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
@@ -404,7 +423,7 @@ export default function Home() {
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>Ã‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <span>Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <span>Hyderabad, Telangana</span>
           </div>
         </div>
@@ -412,6 +431,8 @@ export default function Home() {
     </div>
   );
 }
+
+
 
 
 
