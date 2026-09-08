@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Upload, Trash2, Eye, Lock, FileText, Link as LinkIcon, Loader2, Copy } from 'lucide-react';
 import { storage } from '../../lib/firebase';
 import { ref, listAll, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
@@ -8,7 +8,7 @@ export default function MediaManager({ role }) {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [folder, setFolder] = useState('brochures');
+  const [folder, setFolder] = useState('');
 
   const canEdit = role === 'MD' || role === 'Tech Handler' || role === 'Admin'; // Added Admin just in case
 
@@ -91,7 +91,7 @@ export default function MediaManager({ role }) {
             onChange={(e) => setFolder(e.target.value)}
             className="bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-lg text-sm font-medium outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition-all"
           >
-            <option value="brochures">Brochures (/brochures)</option>
+            <option value="">Brochures & Root Files (/)</option>
             <option value="home-hero">Home Hero Slider (/home-hero)</option>
           </select>
 
@@ -156,4 +156,5 @@ export default function MediaManager({ role }) {
     </div>
   );
 }
+
 
