@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { storage } from '../lib/firebase';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
@@ -31,15 +31,21 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
       if (targetItem) {
         const url = await getDownloadURL(targetItem);
         // Route through our Vercel Serverless Function to hide the Firebase URL and force a direct download
-        const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(targetItem.name)}`;
-        
-        // Use a hidden anchor to trigger download instead of opening a new tab
-        const a = document.createElement("a");
-        a.href = proxyUrl;
-        a.download = targetItem.name;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        if (import.meta.env.DEV) {
+          // Local development fallback since Vercel Serverless functions don't run in Vite dev server
+          window.open(url, '_blank');
+        } else {
+          // Route through our Vercel Serverless Function to hide the Firebase URL and force a direct download
+          const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(targetItem.name)}`;
+          
+          // Use a hidden anchor to trigger download instead of opening a new tab
+          const a = document.createElement("a");
+          a.href = proxyUrl;
+          a.download = targetItem.name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
       } else {
         alert('Brochure not found in database. Please check back later.');
       }
@@ -67,4 +73,5 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
     </div>
   );
 }
+
 

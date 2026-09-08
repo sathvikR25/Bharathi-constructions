@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon } from 'lucide-react';
 import Overview from './Overview';
@@ -50,7 +50,7 @@ export default function AdminShell() {
         "sales@bharathiconstructions.com"
       ];
       
-      const emailLower = email.toLowerCase();
+      const emailLower = email?.toLowerCase() || "";
       const isDomainAllowed = emailLower.endsWith("@bharathiconstructions.com");
       const isExplicitlyAllowed = allowedEmails.includes(emailLower);
       

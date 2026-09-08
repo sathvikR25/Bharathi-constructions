@@ -1,4 +1,4 @@
-﻿export default async function handler(req, res) {
+export default async function handler(req, res) {
   const { url, filename } = req.query;
 
   if (!url) {
