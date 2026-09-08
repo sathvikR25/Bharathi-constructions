@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Upload, Trash2, Eye, Lock, FileText, Link as LinkIcon, Loader2, Copy } from 'lucide-react';
 import { storage } from '../../lib/firebase';
 import { ref, listAll, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
@@ -92,8 +92,7 @@ export default function MediaManager({ role }) {
             className="bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-lg text-sm font-medium outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition-all"
           >
             <option value="brochures">Brochures (/brochures)</option>
-            <option value="gallery">Gallery (/gallery)</option>
-            <option value="media">General Media (/media)</option>`n            <option value="home-hero">Home Hero Slider (/home-hero)</option>
+            <option value="home-hero">Home Hero Slider (/home-hero)</option>
           </select>
 
           {canEdit ? (

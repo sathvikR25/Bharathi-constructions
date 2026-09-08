@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -236,17 +236,6 @@ export default function Home() {
         
         {/* TOP GRACEFUL TEXT */}
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div className="hero-onboarding-text" style={{ overflow: "hidden", marginBottom: "2rem" }}>
-            <span style={{ fontSize: "0.85rem", letterSpacing: "0.5em", textTransform: "uppercase", display: "inline-block", opacity: 0.9, borderBottom: "1px solid rgba(255,255,255,0.2)", paddingBottom: "0.8rem", color: "#c9a96e" }}>A New Standard of Living</span>
-          </div>
-
-          <div style={{ perspective: "800px" }}>
-            <h1 className="hero-onboarding-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 11vw, 12rem)", margin: 0, lineHeight: 0.9, color: "#fff", textTransform: "uppercase", letterSpacing: "0.02em", textShadow: "0 20px 50px rgba(0,0,0,0.8)" }}>Bharathi</h1>
-          </div>
-          <div style={{ perspective: "800px" }}>
-            <h1 className="hero-onboarding-text" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 5vw, 6rem)", margin: 0, lineHeight: 1, color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.7)", fontStyle: "italic", textTransform: "uppercase", letterSpacing: "0.15em", marginTop: "0.5rem" }}>Constructions</h1>
-            </div>
-
             {/* SLIDER PROGRESS DOTS */}
             {heroMedia.length > 1 && (
               <div className="hero-onboarding-text" style={{ marginTop: "3rem", display: "flex", gap: "0.75rem", zIndex: 1 }}>
