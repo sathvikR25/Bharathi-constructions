@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from "react";
+﻿import React, { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
@@ -83,6 +83,16 @@ const PageLoader = () => (
   </div>
 );
 
+function GlobalPolicyButton() {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) return null;
+  return (
+    <a href="/policy" className="fixed bottom-4 left-4 z-50 bg-black/60 hover:bg-black text-white/70 hover:text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-md transition-all uppercase tracking-widest border border-white/10" style={{ textDecoration: "none" }}>
+      Privacy Policy
+    </a>
+  );
+}
+
 export default function App() {
   return (
     <HelmetProvider>
@@ -106,12 +116,11 @@ export default function App() {
             </Suspense>
             
             {/* Global Accessible Policy Button */}
-            <a href="/policy" className="fixed bottom-4 left-4 z-50 bg-black/60 hover:bg-black text-white/70 hover:text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-md transition-all uppercase tracking-widest border border-white/10" style={{ textDecoration: 'none' }}>
-              Privacy Policy
-            </a>
+            <GlobalPolicyButton />
           </SmoothScroll>
         </BrowserRouter>
       </ErrorBoundary>
     </HelmetProvider>
   );
 }
+

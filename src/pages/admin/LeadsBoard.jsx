@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Download, Search, Trash2, Save, MessageSquare } from 'lucide-react';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
 export default function LeadsBoard({ leads, updateLeadStatus, updateLeadNote, deleteLead, role }) {
   const [projectFilter, setProjectFilter] = useState('All');
+  const canDelete = role === 'MD' || role === 'Admin';
+  const canExport = role === 'MD' || role === 'Admin' || role === 'Tech Handler';
   const [statusFilter, setStatusFilter] = useState('All');
   const [editingNotes, setEditingNotes] = useState({});
   const [expandedMessage, setExpandedMessage] = useState(null);
@@ -106,12 +108,16 @@ export default function LeadsBoard({ leads, updateLeadStatus, updateLeadNote, de
             </select>
           </div>
           
-          <button onClick={exportCSV} className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm">
-            <Download className="w-4 h-4" /> CSV
-          </button>
-          <button onClick={exportPDF} className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm">
-            <Download className="w-4 h-4" /> PDF
-          </button>
+          {canExport && (
+            <>
+              <button onClick={exportCSV} className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm">
+                <Download className="w-4 h-4" /> CSV
+              </button>
+              <button onClick={exportPDF} className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm">
+                <Download className="w-4 h-4" /> PDF
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -209,13 +215,15 @@ export default function LeadsBoard({ leads, updateLeadStatus, updateLeadNote, de
                   </td>
                   
                   <td className="p-4 align-top text-right">
-                    <button 
-                      onClick={() => deleteLead && deleteLead(lead.id)}
-                      className="text-gray-400 hover:text-red-500 transition-colors p-2 rounded-lg hover:bg-red-50 inline-flex"
-                      title="Delete Lead"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    {canDelete && (
+                      <button 
+                        onClick={() => deleteLead && deleteLead(lead.id)}
+                        className="text-gray-400 hover:text-red-500 transition-colors p-2 rounded-lg hover:bg-red-50 inline-flex"
+                        title="Delete Lead"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -234,3 +242,6 @@ export default function LeadsBoard({ leads, updateLeadStatus, updateLeadNote, de
     </div>
   );
 }
+
+
+

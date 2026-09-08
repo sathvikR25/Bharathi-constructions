@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Bell, Image as ImageIcon } from 'lucide-react';
+import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon } from 'lucide-react';
 import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
 import MediaManager from './MediaManager';
@@ -175,12 +175,7 @@ export default function AdminShell() {
             <input type="text" placeholder="Search leads, projects..." className="bg-transparent border-none focus:outline-none text-sm w-full text-[#123645] placeholder-[#123645]/40 font-medium" />
           </div>
 
-          <div className="flex items-center gap-6">
-            <button className="relative text-[#123645]/60 hover:text-[#c9a96e] transition-colors p-2 bg-white/50 rounded-full border border-white/80 shadow-sm hover:shadow-md">
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-[#c9a96e] border-2 border-white rounded-full"></span>
-            </button>
-          </div>
+          
         </header>
 
         {/* ROUTES CONTAINER */}
@@ -196,3 +191,4 @@ export default function AdminShell() {
     </div>
   );
 }
+
