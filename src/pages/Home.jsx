@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
@@ -253,17 +253,23 @@ export default function Home() {
         {/* CINEMATIC VIGNETTE OVERLAY */}
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%)", zIndex: 0, pointerEvents: "none" }} />
         
-        {/* TOP GRACEFUL TEXT */}
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            {/* SLIDER PROGRESS DOTS */}
-            {heroMedia.length > 1 && (
-              <div className="hero-onboarding-text" style={{ marginTop: "3rem", display: "flex", gap: "0.75rem", zIndex: 1 }}>
-                {heroMedia.map((_, idx) => (
-                  <div key={idx} onClick={() => setCurrentSlide(idx)} style={{ width: "3rem", height: "2px", background: idx === currentSlide ? "#c9a96e" : "rgba(255,255,255,0.2)", transition: "all 0.5s ease", cursor: "pointer" }} />
-                ))}
-              </div>
-            )}
-          </div>
+        {/* SLIDER NAVIGATION ARROWS */}
+        {heroMedia.length > 1 && (
+          <>
+            <button 
+              onClick={() => setCurrentSlide(prev => (prev === 0 ? heroMedia.length - 1 : prev - 1))}
+              className="hero-onboarding-text absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/50 border border-white/10 text-white transition-all backdrop-blur-md cursor-pointer group"
+            >
+              <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button 
+              onClick={() => setCurrentSlide(prev => (prev + 1) % heroMedia.length)}
+              className="hero-onboarding-text absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/50 border border-white/10 text-white transition-all backdrop-blur-md cursor-pointer group"
+            >
+              <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </>
+        )}
 
         {/* SCROLL INDICATOR */}
         <div className="hero-onboarding-text" style={{ position: "absolute", bottom: "3rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
@@ -431,6 +437,9 @@ export default function Home() {
     </div>
   );
 }
+
+
+
 
 
 
