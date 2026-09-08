@@ -161,7 +161,7 @@ export default function ProjectLakeWoods() {
           <div style={{ flex: "1 1 300px" }}>
             <KineticText as="h2" text="Project Highlights" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 4vw, 4rem)", margin: "0 0 2rem 0", color: "#123645" }} />
           </div>
-          <div style={{ flex: "1 1 500px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12" style={{ flex: "1 1 500px" }}>
             {[ { v: "40", l: "Exclusive Units" }, { v: "8+2", l: "Floors" }, { v: "3 BHK", l: "Premium Layouts" }, { v: "2026", l: "Completion" } ].map((stat, i) => (
               <div key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1.5rem" }}>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: "2.5rem", display: "block", marginBottom: "0.5rem", color: "#123645" }}>{stat.v}</span>
@@ -373,6 +373,7 @@ export default function ProjectLakeWoods() {
   );
 
 }
+
 
 
 

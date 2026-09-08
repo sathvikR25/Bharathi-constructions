@@ -5,6 +5,16 @@
     return res.status(400).json({ error: 'URL is required' });
   }
 
+  // Security: SSRF Protection
+  try {
+    const parsedUrl = new URL(url);
+    if (parsedUrl.hostname !== 'firebasestorage.googleapis.com') {
+      return res.status(403).json({ error: 'Unauthorized domain' });
+    }
+  } catch (err) {
+    return res.status(400).json({ error: 'Invalid URL format' });
+  }
+
   try {
     const response = await fetch(url);
     
