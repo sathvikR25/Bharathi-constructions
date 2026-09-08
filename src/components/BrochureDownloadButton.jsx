@@ -30,7 +30,16 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
 
       if (targetItem) {
         const url = await getDownloadURL(targetItem);
-        window.open(url, '_blank');
+        // Route through our Vercel Serverless Function to hide the Firebase URL and force a direct download
+        const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(targetItem.name)}`;
+        
+        // Use a hidden anchor to trigger download instead of opening a new tab
+        const a = document.createElement("a");
+        a.href = proxyUrl;
+        a.download = targetItem.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       } else {
         alert('Brochure not found in database. Please check back later.');
       }
@@ -58,3 +67,4 @@ export default function BrochureDownloadButton({ project = "horizon", label = "D
     </div>
   );
 }
+
