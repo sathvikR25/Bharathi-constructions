@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
@@ -340,9 +340,13 @@ export default function ProjectHorizon() {
         </div>
         
         {/* AFFILIATIONS AND COPYRIGHT */}
-        <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
-          <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>&copy; 2026 Bharathi Constructions</span>
-        </div>
+        <div style={{ maxWidth: "1400px", margin: "4rem auto 0", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "2rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "2rem", fontSize: "0.8rem", color: "#666" }}>
+            <span style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>&copy; 2026 Bharathi Constructions</span>
+            <div style={{ display: "flex", gap: "1.5rem" }}>
+              <Link to="/policy" style={{ color: "#666", textDecoration: "none" }}>Privacy Policy</Link>
+              <Link to="/terms" style={{ color: "#666", textDecoration: "none" }}>Terms & Conditions</Link>
+            </div>
+          </div>
       </section>
       
       {/* GLOBAL LIGHTBOX PORTAL */}

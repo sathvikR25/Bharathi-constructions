@@ -212,6 +212,7 @@ export default function Home() {
 
   return (
     <div ref={mainRef} style={{ background: "transparent", color: "#123645", overflowX: "hidden" }}>
+      <SEO title="Home" description="Premium luxury apartments and gated communities in Kompally, Hyderabad." />
       
       {/* PRELOADER */}
       <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem", pointerEvents: "none" }}>
@@ -412,7 +413,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Office</span>
-              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 500067</p>
+              <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(0,0,0,0.6)", margin: 0 }}>Delight Square, 3rd Floor<br />Suchitra X Roads<br />Hyderabad - 500067</p>
             </div>
             <div>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", display: "block", marginBottom: "1rem" }}>Contact</span>
@@ -428,9 +429,13 @@ export default function Home() {
           </div>
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
-            <span>Hyderabad, Telangana</span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <span>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <div style={{ display: "flex", gap: "2rem" }}>
+              <Link to="/policy" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Privacy Policy</Link>
+              <Link to="/terms" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Terms & Conditions</Link>
+              <span>Hyderabad, Telangana</span>
+            </div>
           </div>
         </div>
       </footer>

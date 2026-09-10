@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 
 import Background3D from "./components/Background3D";
 import WhatsAppWidget from "./components/WhatsAppWidget";
+import CookieBanner from "./components/CookieBanner";
 
 // Lazy load routes to split JS bundle sizes
 const Home = lazy(() => import("./pages/Home"));
@@ -15,7 +16,8 @@ const ProjectLakeWoods = lazy(() => import("./pages/ProjectLakeWoods"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Legacy = lazy(() => import("./pages/Legacy"));
 const BuilderProfile = lazy(() => import("./pages/BuilderProfile"));
-const Policy = lazy(() => import("./pages/Policy"));
+const Policy = lazy(() => import(./pages/Policy));
+const Terms = lazy(() => import(./pages/Terms));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 
@@ -101,6 +103,7 @@ export default function App() {
           <SmoothScroll>
             <Background3D />
             <WhatsAppWidget />
+            <CookieBanner />
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -110,6 +113,7 @@ export default function App() {
                 <Route path="/legacy" element={<Legacy />} />
                 <Route path="/builder-profile" element={<BuilderProfile />} />
                 <Route path="/policy" element={<Policy />} />
+                <Route path="/terms" element={<Terms />} />
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

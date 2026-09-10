@@ -12,6 +12,7 @@ export default function Contact() {
   const [navOpen, setNavOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const pageRef = useRef(null);
   
   const [formData, setFormData] = useState({
@@ -35,6 +36,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (honeypot) return; // Spam protection
     setSubmitting(true);
     
     const fullPhone = `${formData.countryCode} ${formData.phone}`;
@@ -155,7 +157,8 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2.5rem", position: "relative", zIndex: 1 }}>
+              <form onSubmit={handleSubmit} className="space-y-6">
+              <input type="text" name="b_name" value={honeypot} onChange={e => setHoneypot(e.target.value)} style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
                 <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "2rem", color: "#fff", margin: 0 }}>
                   Send an Inquiry
                 </h3>
@@ -186,6 +189,9 @@ export default function Contact() {
                         onChange={e => setFormData({...formData, phone: e.target.value})} 
                         type="tel" 
                         placeholder="99999 99999" 
+                        pattern="[0-9]{10}"
+                        title="Please enter a valid 10-digit mobile number"
+                        required
                         style={{ ...INPUT_STYLE, flex: 1 }} 
                         onFocus={e => e.target.style.borderColor = "#c9a96e"} 
                         onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} 
@@ -196,7 +202,7 @@ export default function Contact() {
 
                 <div>
                   <label style={LABEL_STYLE}>Email Address</label>
-                  <input value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} type="email" placeholder="your@email.com" style={INPUT_STYLE} onFocus={e => e.target.style.borderColor = "#c9a96e"} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} />
+                  <input value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} type="email" required placeholder="your@email.com" style={INPUT_STYLE} onFocus={e => e.target.style.borderColor = "#c9a96e"} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} />
                 </div>
 
                 <div>
