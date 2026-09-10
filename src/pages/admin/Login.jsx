@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { auth } from '../../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ArrowRight, Lock } from 'lucide-react';
+import { ArrowRight, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
 
   const handleLogin = async (e) => {
@@ -18,7 +19,7 @@ export default function Login({ onLogin }) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       onLogin(userCredential.user);
     } catch (error) {
-      setError(error.message);
+      setError('Invalid credentials');
     }
     setLoading(false);
   };
@@ -53,16 +54,25 @@ export default function Login({ onLogin }) {
             />
           </div>
           
-          <div className="space-y-1.5">
+                    <div className="space-y-1.5">
             <label className="block text-[0.7rem] font-bold text-[#123645]/70 uppercase tracking-widest ml-1">Password</label>
-            <input 
-              type="password" 
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="w-full bg-white/60 border border-white/80 text-[#123645] rounded-xl px-5 py-3.5 focus:outline-none focus:border-[#c9a96e] focus:bg-white focus:ring-4 focus:ring-[#c9a96e]/20 transition-all duration-300 shadow-sm placeholder-[#123645]/30 font-medium"
-              placeholder="••••••••"
-              required 
-            />
+            <div className="relative">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="w-full bg-white/60 border border-white/80 text-[#123645] rounded-xl px-5 py-3.5 pr-12 focus:outline-none focus:border-[#c9a96e] focus:bg-white focus:ring-4 focus:ring-[#c9a96e]/20 transition-all duration-300 shadow-sm placeholder-[#123645]/30 font-medium"
+                placeholder="••••••••"
+                required 
+              />
+              <button 
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#123645]/50 hover:text-[#c9a96e] transition-colors focus:outline-none"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
           
           <button 
