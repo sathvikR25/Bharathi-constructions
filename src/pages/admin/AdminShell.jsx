@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon } from 'lucide-react';
+import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon, Tag } from 'lucide-react';
 import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
 import OffersBoard from './OffersBoard';
@@ -136,6 +136,7 @@ export default function AdminShell() {
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Pipeline (Table)', path: '/admin/pipeline', icon: Users },
     { name: 'Media Library', path: '/admin/media', icon: ImageIcon },
+    { name: 'Offers & Ads', path: '/admin/offers', icon: Tag },
     { name: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 
@@ -214,6 +215,7 @@ export default function AdminShell() {
             <Route path="dashboard" element={<Overview leads={leads} />} />
             <Route path="pipeline" element={<LeadsBoard leads={leads} updateLeadStatus={updateLeadStatus} updateLeadNote={updateLeadNote} deleteLead={deleteLead} role={role} />} />
             <Route path="media" element={<MediaManager role={role} />} />
+            <Route path="offers" element={<OffersBoard />} />
             <Route path="settings" element={<div className="text-[#123645]/60 text-center mt-20 font-medium bg-white/40 p-10 rounded-3xl border border-white/60 backdrop-blur-xl max-w-md mx-auto">Settings Module Coming Soon</div>} />
           </Routes>
         </div>
