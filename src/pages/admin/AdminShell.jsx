@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon } from 'lucide-react';
 import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
+import OffersBoard from './OffersBoard';
 import MediaManager from './MediaManager';
 import Login from './Login';
 import { auth, db } from '../../lib/firebase';

@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
+import { useABTest } from "../hooks/useABTest";
 import KineticText from "../components/KineticText";
 import { storage } from "../lib/firebase";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
@@ -18,6 +19,7 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [heroMedia, setHeroMedia] = useState([{ url: "/onboarding.mp4", type: "video" }]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const abVariant = useABTest('hero_cta_test');
   const mainRef = useRef(null);
   
   // Refs
@@ -300,7 +302,11 @@ export default function Home() {
             {visionText.map((word, i) => <span key={i} className="vision-word" style={{ opacity: 0.1 }}>{word}</span>)}
           </p>
           <div style={{ marginTop: "6rem" }}>
-            <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
+            {abVariant === 'B' ? (
+              <Link to="/contact" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Schedule a Viewing <ArrowRight size={16}/></Link>
+            ) : (
+              <Link to="/legacy" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(0,0,0,0.2)" }}>Read Our Story <ArrowRight size={16}/></Link>
+            )}
           </div>
         </div>
       </section>
@@ -430,7 +436,7 @@ export default function Home() {
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <span>ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <div style={{ display: "flex", gap: "2rem" }}>
               <Link to="/policy" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Privacy Policy</Link>
               <Link to="/terms" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Terms & Conditions</Link>

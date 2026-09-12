@@ -168,9 +168,20 @@ export default function LeadsBoard({ leads, updateLeadStatus, updateLeadNote, de
                   </td>
                   
                   <td className="p-4 align-top">
-                    <span className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md text-xs font-medium border border-gray-200">
-                      {lead.project}
-                    </span>
+                    <div className="flex flex-col gap-2 items-start">
+                        <span className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md text-xs font-medium border border-gray-200">
+                          {lead.project}
+                        </span>
+                        {lead.ab_variant && (
+                          <span className={`px-2 py-0.5 rounded text-[0.65rem] font-bold tracking-wider uppercase ${
+                            lead.ab_variant === 'A' ? 'bg-blue-100 text-blue-700' : 
+                            lead.ab_variant === 'B' ? 'bg-purple-100 text-purple-700' : 
+                            'bg-gray-100 text-gray-500'
+                          }`}>
+                            Exp: {lead.ab_variant}
+                          </span>
+                        )}
+                      </div>
                   </td>
                   
                   <td className="p-4 align-top">

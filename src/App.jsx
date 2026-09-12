@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Background3D from "./components/Background3D";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import CookieBanner from "./components/CookieBanner";
+import PremiumOfferDisplay from "./components/PremiumOfferDisplay";
 
 // Lazy load routes to split JS bundle sizes
 const Home = lazy(() => import("./pages/Home"));
@@ -104,6 +105,7 @@ export default function App() {
             <Background3D />
             <WhatsAppWidget />
             <CookieBanner />
+            <PremiumOfferDisplay />
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />

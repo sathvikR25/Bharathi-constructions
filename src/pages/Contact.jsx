@@ -42,7 +42,9 @@ export default function Contact() {
     const fullPhone = `${formData.countryCode} ${formData.phone}`;
     
     try {
+      const abVariant = localStorage.getItem("ab_hero_cta_test") || "Unknown";
       await addDoc(collection(db, 'leads'), {
+        ab_variant: abVariant,
         name: formData.name, 
         email: formData.email, 
         phone: fullPhone, 

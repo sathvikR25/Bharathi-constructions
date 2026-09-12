@@ -35,6 +35,7 @@ export default async function handler(req, res) {
 
     // Save lead to Firebase CRM
     await addDoc(collection(db, 'leads'), {
+      ab_variant: "Webhook",
       name: name || 'Unknown',
       email: email || 'No Email',
       phone: phone || 'No Phone',
