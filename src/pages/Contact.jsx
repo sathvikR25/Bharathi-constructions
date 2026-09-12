@@ -191,9 +191,7 @@ export default function Contact() {
                         onChange={e => setFormData({...formData, phone: e.target.value})} 
                         type="tel" 
                         placeholder="99999 99999" 
-                        pattern="[0-9]{10}"
-                        title="Please enter a valid 10-digit mobile number"
-                        required
+                        pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number"
                         style={{ ...INPUT_STYLE, flex: 1 }} 
                         onFocus={e => e.target.style.borderColor = "#c9a96e"} 
                         onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.15)"} 

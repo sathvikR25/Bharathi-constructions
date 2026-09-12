@@ -17,8 +17,8 @@ const ProjectLakeWoods = lazy(() => import("./pages/ProjectLakeWoods"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Legacy = lazy(() => import("./pages/Legacy"));
 const BuilderProfile = lazy(() => import("./pages/BuilderProfile"));
-const Policy = lazy(() => import(./pages/Policy));
-const Terms = lazy(() => import(./pages/Terms));
+const Policy = lazy(() => import("./pages/Policy"));
+const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 
