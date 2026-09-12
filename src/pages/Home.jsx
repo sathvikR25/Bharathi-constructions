@@ -275,9 +275,9 @@ export default function Home() {
         )}
 
         {/* SCROLL INDICATOR */}
-        <div className="hero-onboarding-text" style={{ position: "absolute", bottom: "3rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
-          <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", display: "block", marginBottom: "1rem", opacity: 0.5 }}>Scroll to Explore</span>
-          <div style={{ width: "1px", height: "80px", background: "rgba(255,255,255,0.15)", margin: "0 auto", position: "relative", overflow: "hidden" }}>
+        <div className="hero-onboarding-text" style={{ position: "absolute", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", color: "#fff", zIndex: 1 }}>
+          <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem", opacity: 0.5 }}>Scroll to Explore</span>
+          <div style={{ width: "1px", height: "50px", background: "rgba(255,255,255,0.15)", margin: "0 auto", position: "relative", overflow: "hidden" }}>
              <div className="scroll-indicator-line" style={{ position: "absolute", top: "-100%", left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, transparent, #c9a96e, #fff)" }} />
           </div>
         </div>
@@ -322,10 +322,7 @@ export default function Home() {
       {/* 3. HORIZONTAL SCROLL JOURNEY */}
       <section ref={horizontalSectionRef} style={{ height: "100vh", position: "relative", background: "transparent", color: "#123645", overflow: "hidden" }}>
         
-        {/* Faded Background Text */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100%", textAlign: "center", zIndex: 0, opacity: 0.03, pointerEvents: "none", whiteSpace: "nowrap" }}>
-          <span style={{ fontFamily: "Playfair Display, serif", fontSize: "30vw", fontWeight: 700 }}>PORTFOLIO</span>
-        </div>
+        
         
         <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
@@ -436,7 +433,7 @@ export default function Home() {
 
           <div style={{ height: "1px", background: "rgba(0,0,0,0.06)", marginBottom: "2rem" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem", color: "rgba(0,0,0,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <span>ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
+            <span>ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Bharathi Constructions. All Rights Reserved.</span>
             <div style={{ display: "flex", gap: "2rem" }}>
               <Link to="/policy" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Privacy Policy</Link>
               <Link to="/terms" style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={e => e.target.style.color="#123645"} onMouseLeave={e => e.target.style.color="rgba(0,0,0,0.4)"}>Terms & Conditions</Link>

@@ -198,7 +198,7 @@ export default function AdminShell() {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 flex flex-col min-w-0 relative z-10">
+      <main className="flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden relative z-10">
         {/* HEADER */}
         <header className="h-20 relative z-20 backdrop-blur-2xl bg-white/50 border-b border-white/60 flex items-center justify-between px-4 md:px-10 shadow-sm">
           <div className="flex items-center gap-4 bg-white/50 border border-white/80 shadow-inner rounded-full px-4 md:px-5 py-2.5 w-full md:w-96 focus-within:ring-4 focus-within:ring-[#c9a96e]/20 focus-within:bg-white transition-all duration-300">
