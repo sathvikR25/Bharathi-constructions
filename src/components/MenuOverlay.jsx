@@ -100,7 +100,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           clipPath: "inset(0 0 100% 0)",
         }}
       >
-        {/* LEFT PANEL � hidden on mobile */}
+        {/* LEFT PANEL â€” hidden on mobile */}
         <div
           ref={leftRef}
           className="menu-left-panel"
@@ -149,7 +149,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
                   >
                     <div>
                       <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", color: "#c9a96e", display: "block", marginBottom: "0.3rem", textTransform: "uppercase" }}>
-                        {p.num} � {p.sub}
+                        {p.num} â€” {p.sub}
                       </span>
                       <span style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)", color: isActive ? "#c9a96e" : "#fff", fontStyle: "italic", lineHeight: 1 }}>
                         {p.label}
@@ -163,7 +163,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
 
             <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: "1rem" }}>
               <Phone size={14} color="rgba(255,255,255,0.3)" />
-              <a href="tel:+917997992051" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.05em", transition: "color 0.3s" }}
+              <a href="tel:+917997992051" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", fontSize: "0.85rem", letterSpacing: "0.05em", transition: "color 0.3s" }}
                 onMouseEnter={e => e.target.style.color = "#c9a96e"}
                 onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
               >
@@ -173,7 +173,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           </div>
         </div>
 
-        {/* RIGHT PANEL � full width on mobile */}
+        {/* RIGHT PANEL â€” full width on mobile */}
         <div
           ref={rightRef}
           className="menu-right-panel"
@@ -238,7 +238,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
                       }}
                     >
                       <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
-                        <span style={{ fontSize: "0.55rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)" }}>{item.num}</span>
+                        <span style={{ fontSize: "0.55rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.6)" }}>{item.num}</span>
                         {item.label}
                       </div>
                       <ArrowUpRight size={18} style={{ opacity: isActive ? 1 : 0.15, flexShrink: 0 }} />
@@ -255,27 +255,27 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem",
             marginTop: "2rem", flexWrap: "wrap", gap: "1rem",
           }}>
-            <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
-              � 2026 Bharathi Constructions
+            <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+              Â© 2026 Bharathi Constructions
             </span>
-              <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
+              <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
             <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer"
-                style={{ color: "rgba(255,255,255,0.3)", transition: "color 0.3s" }}
+                style={{ color: "rgba(255,255,255,0.6)", transition: "color 0.3s" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a96e"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
               <a href="https://www.youtube.com/@bharathiconstructionshyd" target="_blank" rel="noopener noreferrer"
-                style={{ color: "rgba(255,255,255,0.3)", transition: "color 0.3s" }}
+                style={{ color: "rgba(255,255,255,0.6)", transition: "color 0.3s" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a96e"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
               </a>
               {/* Mobile phone link */}
-              <a href="tel:+917997992051" style={{ color: "rgba(255,255,255,0.3)", transition: "color 0.3s", display: "flex", alignItems: "center" }}
+              <a href="tel:+917997992051" style={{ color: "rgba(255,255,255,0.6)", transition: "color 0.3s", display: "flex", alignItems: "center" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a96e"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
               >

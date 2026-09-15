@@ -155,7 +155,8 @@ function HomeScene({ isLight, logoTex }) {
         <mesh position={[2, -1, -8]}>
           <sphereGeometry args={[4, 128, 128]} />
           <MeshDistortMaterial 
-            color={isLight ? "#fef8f0" : "#0a2a22"} 
+            map={logoTex}
+            color={isLight ? "#ffffff" : "#c9a96e"} 
             distort={0.4} 
             speed={2} 
             roughness={0.1} 
