@@ -4,7 +4,17 @@ import Header from '../components/Header';
 import SEO from '../components/SEO';
 
 export default function Terms() {
+  const [content, setContent] = React.useState(null);
+
   useEffect(() => {
+    import("../lib/firebase").then(({ db }) => {
+      import("firebase/firestore").then(({ doc, getDoc }) => {
+        getDoc(doc(db, "legal", "terms")).then((d) => {
+          if(d.exists()) setContent(d.data().content);
+          else setContent("Terms & Conditions content not yet uploaded. Please configure in Admin Panel.");
+        });
+      });
+    });
     window.scrollTo(0, 0);
   }, []);
 
@@ -19,30 +29,11 @@ export default function Terms() {
         <h1 className="text-4xl md:text-6xl font-serif mb-12 text-[#123645]">Terms & Conditions</h1>
         
         <div className="space-y-8 text-[#123645]/80 leading-relaxed font-medium">
-          <section>
-            <h2 className="text-2xl font-serif text-[#123645] mb-4">1. Acceptance of Terms</h2>
-            <p>By accessing and using the Bharathi Constructions website, you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree with any part of these terms, please do not use our website.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-serif text-[#123645] mb-4">2. Use of Information</h2>
-            <p>All content on this website, including but not limited to floor plans, project images, text, and graphics, is the property of Bharathi Constructions and is protected by copyright laws. You may not reproduce, distribute, or modify any content without explicit written permission.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-serif text-[#123645] mb-4">3. Accuracy of Project Details</h2>
-            <p>The architectural designs, dimensions, amenities, and visual representations shown on this website are conceptual and subject to change. Bharathi Constructions reserves the right to alter plans, specifications, and features without prior notice. These details do not constitute a legal offering or contract.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-serif text-[#123645] mb-4">4. Limitation of Liability</h2>
-            <p>Bharathi Constructions shall not be held liable for any direct, indirect, incidental, or consequential damages arising from your use of this website or reliance on any information provided herein.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-serif text-[#123645] mb-4">5. Governing Law</h2>
-            <p>These terms and conditions are governed by the laws of India. Any disputes arising in relation to this website shall be subject to the exclusive jurisdiction of the courts in Hyderabad, Telangana.</p>
-          </section>
+          {content ? (
+            <div dangerouslySetInnerHTML={{ __html: content }} style={{ whiteSpace: "pre-wrap" }} />
+          ) : (
+            <p>Loading Terms & Conditions...</p>
+          )}
         </div>
       </div>
       

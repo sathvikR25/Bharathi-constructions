@@ -153,7 +153,7 @@ export default function AdminShell() {
   };
 
   if (loadingAuth) {
-    return <div className="min-h-screen bg-gray-50 flex items-center justify-center text-gray-900 font-serif text-2xl">Loading...</div>;
+    return <div className="min-h-[100dvh] bg-gray-50 flex items-center justify-center text-gray-900 font-serif text-2xl">Loading...</div>;
   }
 
   if (!user) {
@@ -170,7 +170,7 @@ export default function AdminShell() {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#f8f9fa] relative overflow-hidden text-[#123645] font-sans">
+    <div className="flex flex-col md:flex-row h-[100dvh] bg-[#f8f9fa] relative overflow-hidden text-[#123645] font-sans">
       {/* Ambient Glassmorphism Background Orbs */}
       <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-[#c9a96e] rounded-full mix-blend-multiply filter blur-[150px] opacity-20 pointer-events-none animate-pulse" style={{ animationDuration: '10s' }}></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#123645] rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }}></div>
@@ -239,7 +239,7 @@ export default function AdminShell() {
         </header>
 
         {/* ROUTES CONTAINER */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-10 custom-scrollbar relative z-10">
+        <div className="flex-1 overflow-y-auto p-4 md:p-10 pb-32 md:pb-32 custom-scrollbar relative z-10">
           <Routes>
             <Route path="dashboard" element={<Overview leads={leads} />} />
             <Route path="pipeline" element={<LeadsBoard leads={leads} updateLeadStatus={updateLeadStatus} updateLeadNote={updateLeadNote} deleteLead={deleteLead} role={role} />} />

@@ -52,7 +52,7 @@ export default function LegalManager() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="space-y-12 pb-24">
+    <div className="space-y-12 pb-48 w-full max-w-5xl mx-auto">
       <div>
         <h2 className="text-2xl font-serif text-[#123645] mb-4">Edit Privacy Policy</h2>
         <textarea 

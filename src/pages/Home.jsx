@@ -284,17 +284,19 @@ export default function Home() {
       </section>
 
       {/* 1. IMMERSIVE HERO */}
-      <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center"}}>
-          <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#123645", WebkitTextStroke: "2px #123645", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
-          <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 8.5vw, 15rem)", margin: 0, color: "transparent", WebkitTextStroke: "3px #c9a96e", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Constructions</h1>
-        </div>
-        <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "30vw", height: "40vh", borderRadius: "200px", overflow: "hidden", willChange: "transform, width, height, border-radius" }}>
-          <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon Skyline" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) contrast(1.1)" }} />
-        </div>
-      </section>
-
-      {/* 2. THE VISION */}
+        {false && (
+        <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+          <div style={{ position: "absolute", zIndex: 5, pointerEvents: "none", width: "100%", textAlign: "center"}}>
+            <h1 ref={textTopRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(4rem, 12vw, 15rem)", margin: 0, color: "#123645", WebkitTextStroke: "2px #123645", lineHeight: 0.8, textTransform: "uppercase" }}>Bharathi</h1>
+            <h1 ref={textBottomRef} style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2.5rem, 8.5vw, 15rem)", margin: 0, color: "transparent", WebkitTextStroke: "3px #c9a96e", lineHeight: 0.8, fontStyle: "italic", textTransform: "uppercase" }}>Constructions</h1>
+          </div>
+          <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "30vw", height: "40vh", borderRadius: "200px", overflow: "hidden", willChange: "transform, width, height, border-radius" }}>
+            <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon Skyline" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) contrast(1.1)" }} />
+          </div>
+        </section>
+        )}
+  
+        {/* 2. THE VISION */}
       <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#123645", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
