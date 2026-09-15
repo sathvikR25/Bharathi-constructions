@@ -8,7 +8,7 @@ import MediaManager from './MediaManager';
 import Login from './Login';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, getDocs, updateDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, deleteDoc, doc, query, orderBy, getDoc, setDoc } from 'firebase/firestore';
 
 export default function AdminShell() {
   const [user, setUser] = useState(null);
@@ -30,7 +30,7 @@ export default function AdminShell() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        fetchUserRole(currentUser.email);
+        fetchUserRole(currentUser);
         fetchLeads();
       }
       setLoadingAuth(false);
@@ -39,8 +39,22 @@ export default function AdminShell() {
     return () => unsubscribe();
   }, []);
 
-  const fetchUserRole = async (email) => {
+  const fetchUserRole = async (userObj) => {
     try {
+      const email = userObj.email;
+      const uid = userObj.uid;
+      
+      const userDocRef = doc(db, "users", uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        if (data.role) {
+          setRole(data.role);
+          return;
+        }
+      }
+
       // Security Patch: Prevent arbitrary sign-ups from gaining access
       const allowedEmails = [
         "sathvik0825@gmail.com",
@@ -62,11 +76,24 @@ export default function AdminShell() {
         return;
       }
 
-      if (emailLower.includes("md") || emailLower.includes("admin")) setRole("MD");
-      else if (emailLower.includes("tech")) setRole("Tech Handler");
-      else setRole("Sales Manager");
+      let defaultRole = "Sales Manager";
+      if (emailLower.includes("md") || emailLower.includes("admin") || emailLower === "sathvik0825@gmail.com") defaultRole = "MD";
+      else if (emailLower.includes("tech")) defaultRole = "Tech Handler";
+
+      setRole(defaultRole);
+      
+      try {
+        await setDoc(userDocRef, {
+          email: emailLower,
+          role: defaultRole,
+          created_at: new Date()
+        }, { merge: true });
+      } catch (err) {
+        console.warn("Could not save initial user role to DB. Missing permissions?", err);
+      }
     } catch (e) {
       console.error(e);
+      setRole("Sales Manager");
     }
   };
 
