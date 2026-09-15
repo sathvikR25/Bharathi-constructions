@@ -4,6 +4,7 @@ import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as Im
 import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
 import OffersBoard from './OffersBoard';
+import LegalManager from './LegalManager';
 import MediaManager from './MediaManager';
 import Login from './Login';
 import { auth, db } from '../../lib/firebase';
@@ -164,6 +165,7 @@ export default function AdminShell() {
     { name: 'Pipeline (Table)', path: '/admin/pipeline', icon: Users },
     { name: 'Media Library', path: '/admin/media', icon: ImageIcon },
     { name: 'Offers & Ads', path: '/admin/offers', icon: Tag },
+    { name: 'Legal Pages', path: '/admin/legal', icon: Settings },
     
   ];
 
@@ -242,7 +244,7 @@ export default function AdminShell() {
             <Route path="dashboard" element={<Overview leads={leads} />} />
             <Route path="pipeline" element={<LeadsBoard leads={leads} updateLeadStatus={updateLeadStatus} updateLeadNote={updateLeadNote} deleteLead={deleteLead} role={role} />} />
             <Route path="media" element={<MediaManager role={role} />} />
-            <Route path="offers" element={<OffersBoard />} />
+            <Route path="offers" element={<OffersBoard />} />`n            <Route path="legal" element={<LegalManager />} />
             
           </Routes>
         </div>

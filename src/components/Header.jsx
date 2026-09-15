@@ -33,8 +33,8 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
     : { filter: "invert(1) grayscale(1) brightness(2)", mixBlendMode: "screen" };
 
   const textColor = (isLight && !forceDarkMenu) ? "#000" : "#fff";
-  const headerBg = navOpen ? "transparent" : (isLight ? "#fdfbf7" : "rgba(5, 5, 5, 0.85)");
-    const headerBlur = navOpen ? "none" : (isLight ? "none" : "blur(12px)");
+  const headerBg = navOpen ? "transparent" : (isLight ? "#fdfbf7" : "#0a0a0a");
+    const headerBlur = "none";
   const border = navOpen ? "none" : `1px solid ${isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)'}`;
 
   return (

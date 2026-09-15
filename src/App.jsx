@@ -88,7 +88,7 @@ const PageLoader = () => (
 
 function GlobalPolicyButton() {
   const location = useLocation();
-  if (location.pathname.startsWith('/admin')) return null;
+  if (location.pathname.startsWith('/admin') || location.pathname === '/policy') return null;
   return (
     <a href="/policy" className="fixed bottom-4 left-4 z-50 bg-black/60 hover:bg-black text-white/70 hover:text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-md transition-all uppercase tracking-widest border border-white/10" style={{ textDecoration: "none" }}>
       Privacy Policy

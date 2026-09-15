@@ -100,7 +100,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           clipPath: "inset(0 0 100% 0)",
         }}
       >
-        {/* LEFT PANEL â€” hidden on mobile */}
+        {/* LEFT PANEL - hidden on mobile */}
         <div
           ref={leftRef}
           className="menu-left-panel"
@@ -149,7 +149,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
                   >
                     <div>
                       <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", color: "#c9a96e", display: "block", marginBottom: "0.3rem", textTransform: "uppercase" }}>
-                        {p.num} â€” {p.sub}
+                        {p.num} - {p.sub}
                       </span>
                       <span style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)", color: isActive ? "#c9a96e" : "#fff", fontStyle: "italic", lineHeight: 1 }}>
                         {p.label}
@@ -173,7 +173,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           </div>
         </div>
 
-        {/* RIGHT PANEL â€” full width on mobile */}
+        {/* RIGHT PANEL - full width on mobile */}
         <div
           ref={rightRef}
           className="menu-right-panel"
@@ -256,7 +256,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             marginTop: "2rem", flexWrap: "wrap", gap: "1rem",
           }}>
             <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
-              Â© 2026 Bharathi Constructions
+              © 2026 Bharathi Constructions
             </span>
               <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
             <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>

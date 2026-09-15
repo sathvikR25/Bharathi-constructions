@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
@@ -8,6 +8,18 @@ import { ArrowLeft } from "lucide-react";
 
 export default function Policy() {
   const [navOpen, setNavOpen] = React.useState(false);
+  const [content, setContent] = React.useState(null);
+
+  React.useEffect(() => {
+    import("../lib/firebase").then(({ db }) => {
+      import("firebase/firestore").then(({ doc, getDoc }) => {
+        getDoc(doc(db, "legal", "privacy")).then((d) => {
+          if(d.exists()) setContent(d.data().content);
+          else setContent("Privacy Policy content not yet uploaded. Please configure in Admin Panel.");
+        });
+      });
+    });
+  }, []);
 
   return (
     <div style={{ background: "#fdfbf7", color: "#123645", minHeight: "100vh", overflowX: "hidden" }}>
