@@ -8,13 +8,6 @@ export default function Overview({ leads = [] }) {
     { label: 'Conversions', value: leads.filter(l => l.status === 'Closed').length, icon: TrendingUp, color: 'text-emerald-600', bg: 'bg-emerald-100' },
   ];
 
-  // A/B Testing Data
-  const variantA = leads.filter(l => l.ab_variant === 'A').length;
-  const variantB = leads.filter(l => l.ab_variant === 'B').length;
-  const abTotal = variantA + variantB;
-  const aPercentage = abTotal === 0 ? 0 : Math.round((variantA / abTotal) * 100);
-  const bPercentage = abTotal === 0 ? 0 : Math.round((variantB / abTotal) * 100);
-
   // Source Breakdown
   const sources = leads.reduce((acc, lead) => {
     const s = lead.source || 'Organic / Direct';
@@ -49,38 +42,6 @@ export default function Overview({ leads = [] }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* A/B TESTING RESULTS */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-lg text-gray-900 font-bold mb-1 flex items-center gap-2">
-            <Target className="w-5 h-5 text-[#c9a96e]" /> A/B Test Results (Home CTA)
-          </h3>
-          <p className="text-sm text-gray-500 mb-6">Real-time conversion tracking for your active UI experiments.</p>
-          
-          <div className="space-y-6">
-            <div>
-              <div className="flex justify-between text-sm font-medium mb-2">
-                <span className="text-gray-700">Variant A: "Our Legacy"</span>
-                <span className="text-blue-600 font-bold">{variantA} Leads ({aPercentage}%)</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-3 border border-gray-200 overflow-hidden">
-                <div className="bg-blue-500 h-3 rounded-full transition-all duration-1000" style={{ width: `${aPercentage}%` }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-sm font-medium mb-2">
-                <span className="text-gray-700">Variant B: "Schedule Viewing"</span>
-                <span className="text-purple-600 font-bold">{variantB} Leads ({bPercentage}%)</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-3 border border-gray-200 overflow-hidden">
-                <div className="bg-purple-500 h-3 rounded-full transition-all duration-1000" style={{ width: `${bPercentage}%` }}></div>
-              </div>
-            </div>
-
-            {abTotal === 0 && <p className="text-xs text-gray-400 italic text-center mt-4">Waiting for first experimental lead...</p>}
-          </div>
-        </div>
-
         {/* LEAD SOURCES */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
           <h3 className="text-lg text-gray-900 font-bold mb-1 flex items-center gap-2">

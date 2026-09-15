@@ -179,7 +179,7 @@ export default function AdminShell() {
       <aside className="w-full md:w-72 h-auto md:h-full relative z-20 backdrop-blur-2xl bg-white/60 border-b md:border-b-0 md:border-r border-white/60 shadow-[4px_0_24px_rgba(0,0,0,0.02)] flex flex-col transition-all duration-300">
         <div className="p-6 md:p-8 md:pb-12 flex justify-between items-center">
           <Link to="/">
-            <img src="/logo.png" alt="Logo" className="h-8 md:h-10 drop-shadow-sm" style={{ mixBlendMode: "multiply" }} />
+            <img src="/logo.png" alt="Logo" className="h-12 md:h-16 drop-shadow-sm" style={{ mixBlendMode: "multiply" }} />
           </Link>
           <button className="md:hidden p-2 bg-white/50 rounded-lg shadow-sm border border-white/80" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <div className="space-y-1">
