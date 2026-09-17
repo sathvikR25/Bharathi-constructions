@@ -128,7 +128,7 @@ function WavyHorizonLogo({ isLight, position = [2, -1, -8] }) {
       <mesh ref={meshRef} position={position}>
         <sphereGeometry args={[4, 128, 128]} />
         <meshStandardMaterial 
-          color="#BA5A31" 
+          color="#c9a96e" 
           metalness={0.5}
           roughness={0.15}
           alphaMap={alphaMap}

@@ -328,7 +328,7 @@ export default function Home() {
         
         <div ref={horizontalTrackRef} style={{ display: "flex", height: "100%", alignItems: "center", gap: "15vw", padding: "0 10vw", width: "max-content", position: "relative", zIndex: 1 }}>
           
-          <div className="horizontal-card-inner w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row gap-8 md:gap-[5vw] items-center">
+          <Link to="/horizon" className="horizontal-card-inner group w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row gap-8 md:gap-[5vw] items-center cursor-pointer transition-transform duration-500 hover:scale-[1.02]" style={{ textDecoration: "none" }}>
             <div className="w-full md:w-[55%] relative">
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Horizon" />
@@ -338,11 +338,11 @@ export default function Home() {
             <div className="w-full md:w-[40%] md:pr-[4vw] text-center md:text-left">
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>01 HORIZON</span>
               <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>An exclusive collection of 128 premium luxury flats designed for those who choose to live at the very top.</p>
-              <Link to="/horizon" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Horizon <ArrowRight size={24}/></Link>
+              <span className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", background: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "1rem 2.5rem", borderRadius: "100px", transition: "background-color 0.3s ease", boxShadow: "0 10px 30px rgba(18,54,69,0.2)" }}>View Horizon <ArrowRight size={24}/></span>
             </div>
-          </div>
+          </Link>
 
-          <div className="horizontal-card-inner w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row-reverse gap-8 md:gap-[5vw] items-center">
+          <Link to="/lake-woods" className="horizontal-card-inner group w-[85vw] md:w-[120vw] flex-shrink-0 flex flex-col md:flex-row-reverse gap-8 md:gap-[5vw] items-center cursor-pointer transition-transform duration-500 hover:scale-[1.02]" style={{ textDecoration: "none" }}>
             <div className="w-full md:w-[55%] relative">
               <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2vw" }}>
                 <img src="/lakewood-media/lakewood-cover.jpg" style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="Lake Woods" />
@@ -352,9 +352,9 @@ export default function Home() {
             <div className="w-full md:w-[40%] md:pl-[4vw] text-center md:text-left">
               <span style={{ fontSize: "clamp(0.75rem, 1vw, 1.2rem)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#fff", background: "#c9a96e", padding: "0.8em 2em", borderRadius: "100px", display: "inline-block", marginBottom: "3vw", fontWeight: 600 }}>02 LAKE WOODS</span>
               <p style={{ fontSize: "clamp(1.5rem, 2.5vw, 3.5rem)", lineHeight: 1.4, color: "#1b4a5e", marginBottom: "4vw" }}>Nestled in lush greenery at Suchitra &mdash; a premium flats community crafted for tranquil living.</p>
-              <Link to="/lake-woods" className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.2em", textTransform: "uppercase", paddingBottom: "0.8rem", borderBottom: "2px solid rgba(0,0,0,0.3)" }}>View Lake Woods <ArrowRight size={24}/></Link>
+              <span className="hover-target" style={{ display: "inline-flex", alignItems: "center", gap: "1rem", color: "#fff", background: "#123645", textDecoration: "none", fontSize: "clamp(0.9rem, 1.2vw, 1.5rem)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "1rem 2.5rem", borderRadius: "100px", transition: "background-color 0.3s ease", boxShadow: "0 10px 30px rgba(18,54,69,0.2)" }}>View Lake Woods <ArrowRight size={24}/></span>
             </div>
-          </div>
+          </Link>
 
         </div>
       </section>

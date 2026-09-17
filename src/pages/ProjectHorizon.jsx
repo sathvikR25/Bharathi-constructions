@@ -102,17 +102,17 @@ export default function ProjectHorizon() {
       {/* HERO SECTION */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {/* Affiliation Logos Top Right */}
-        <div style={{ position: "absolute", top: "clamp(110px, 15vh, 140px)", right: "clamp(1.5rem, 4vw, 3rem)", zIndex: 50, display: "flex", gap: "1.5rem", alignItems: "center", background: "rgba(255,255,255,0.95)", padding: "0.75rem 1.5rem", borderRadius: "100px", boxShadow: "0 20px 40px rgba(0,0,0,0.15)", backdropFilter: "blur(10px)" }}>
-          <img src="/lakewood-media/credai_logo.png" alt="CREDAI" style={{ height: "25px", objectFit: "contain" }} />
-          <img src="/lakewood-media/hmda-logo.png" alt="HMDA" style={{ height: "35px", objectFit: "contain" }} />
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderLeft: "1px solid rgba(0,0,0,0.1)", paddingLeft: "1.5rem" }}>
-            <img src="/lakewood-media/tsrera-logo.png" alt="TS RERA" style={{ height: "30px", objectFit: "contain" }} />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "#123645", letterSpacing: "0.05em", lineHeight: 1.2, textTransform: "uppercase" }}>TS RERA</span>
-              <span style={{ fontSize: "0.55rem", fontWeight: 700, color: "#123645", letterSpacing: "0.05em", lineHeight: 1 }}>P02200006340</span>
+        <div className="absolute z-50 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl top-[100px] md:top-[120px] right-2 sm:right-6 lg:right-12 px-3 py-2 sm:px-6 sm:py-3 gap-3 sm:gap-6 origin-right scale-[0.85] sm:scale-100">
+            <img src="/lakewood-media/credai_logo.png" alt="CREDAI" className="h-5 sm:h-6 object-contain" />
+            <img src="/lakewood-media/hmda-logo.png" alt="HMDA" className="h-7 sm:h-9 object-contain" />
+            <div className="flex items-center gap-2 sm:gap-3 border-l border-black/10 pl-3 sm:pl-6">
+              <img src="/lakewood-media/tsrera-logo.png" alt="TS RERA" className="h-6 sm:h-8 object-contain" />
+              <div className="flex flex-col">
+                <span className="text-[0.55rem] sm:text-[0.6rem] font-extrabold text-[#123645] tracking-wider leading-tight uppercase">TS RERA</span>
+                <span className="text-[0.5rem] sm:text-[0.55rem] font-bold text-[#123645] tracking-wider leading-none">P02200006340</span>
+              </div>
             </div>
           </div>
-        </div>
 
         <div ref={heroWrapRef} style={{ position: "absolute", inset: 0, overflow: "hidden", willChange: "transform, opacity, border-radius", transformOrigin: "center center" }}>
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75)" }} />
