@@ -405,30 +405,9 @@ function Scene({ isLight, path }) {
 export default function Background3D() {
   const location = useLocation();
   const path = location.pathname;
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
   
   // Define light theme paths
   const isLight = ["/", "/lake-woods", "/legacy", "/horizon"].includes(path);
-
-  if (isMobile) {
-    // Elegant, lightweight CSS gradient fallback for mobile
-    const bgGradient = isLight 
-      ? "radial-gradient(circle at 50% 50%, #fdfbf7 0%, #f0ede6 100%)"
-      : "radial-gradient(circle at 50% 50%, #0a192f 0%, #050505 100%)";
-    return (
-      <div 
-        className="fixed top-0 left-0 w-screen h-screen -z-10 pointer-events-none transition-colors duration-700" 
-        style={{ background: bgGradient }} 
-      />
-    );
-  }
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen -z-10 pointer-events-none opacity-40 md:opacity-100 transition-opacity duration-500">
