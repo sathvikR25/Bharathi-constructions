@@ -34,9 +34,69 @@ export default function MediaManager({ role }) {
     fetchFiles();
   }, [folder]);
 
-  const handleUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  const compressImage = (file) => {
+    return new Promise((resolve, reject) => {
+      // Don't compress non-images or SVGs/GIFs
+      if (!file.type.startsWith("image/") || file.type === "image/svg+xml" || file.type === "image/gif") {
+        return resolve(file);
+      }
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
+          
+          // Max dimension 1920
+          const MAX = 1920;
+          if (width > MAX || height > MAX) {
+            if (width > height) {
+              height *= MAX / width;
+              width = MAX;
+            } else {
+              width *= MAX / height;
+              height = MAX;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Convert to WebP, 80% quality
+          canvas.toBlob((blob) => {
+            if (!blob) return resolve(file);
+            // Create a new File object from the blob
+            const newName = file.name.replace(/\.[^/.]+$/, ".webp");
+            const compressedFile = new File([blob], newName, {
+              type: "image/webp",
+              lastModified: Date.now(),
+            });
+            resolve(compressedFile);
+          }, "image/webp", 0.8);
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const handleUpload = async (e) => {
+    const rawFile = e.target.files[0];
+    if (!rawFile) return;
+
+    setUploading(true);
+    let file = rawFile;
+    try {
+      file = await compressImage(rawFile);
+    } catch (err) {
+      console.warn("Compression failed, uploading original:", err);
+    }
 
     setUploading(true);
     const storageRef = ref(storage, folder + '/' + file.name);
