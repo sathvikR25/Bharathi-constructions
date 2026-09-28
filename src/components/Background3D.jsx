@@ -128,8 +128,7 @@ function WavyHorizonLogo({ isLight, position = [2, -1, -8] }) {
       <mesh ref={meshRef} position={position}>
         <sphereGeometry args={[4, 128, 128]} />
         <meshStandardMaterial 
-          color="#c9a96e" 
-          metalness={0.5}
+          color="#e87c48" metalness={0.4}
           roughness={0.15}
           alphaMap={alphaMap}
           alphaTest={0.5}
@@ -175,23 +174,9 @@ function HomeScene({ isLight, logoTex }) {
 
 // 2. Horizon Scene (Architectural Topography Wave)
 function HorizonScene({ isLight, logoTex }) {
-  const meshRef = useRef();
   const groupRef = useRef();
 
   useFrame((state, delta) => {
-    if (!meshRef.current) return;
-    const time = state.clock.getElapsedTime() * 0.6;
-    const positions = meshRef.current.geometry.attributes.position;
-    
-    for (let i = 0; i < positions.count; i++) {
-      const x = positions.getX(i);
-      const y = positions.getY(i);
-      // Topographic sine wave interference pattern
-      const z = Math.sin(x * 0.2 + time) * Math.cos(y * 0.2 + time * 0.8) * 1.5 + Math.sin(x * 0.1 - time * 0.5) * 1.0;
-      positions.setZ(i, z);
-    }
-    positions.needsUpdate = true;
-    
     // Parallax
     if (groupRef.current) {
       const targetX = state.pointer.x * 0.2;
@@ -203,11 +188,7 @@ function HorizonScene({ isLight, logoTex }) {
 
   return (
     <group ref={groupRef} position={[0, -4, -12]}>
-      <mesh ref={meshRef} rotation={[-Math.PI / 2.2, 0, 0]}>
-        <planeGeometry args={[50, 50, 80, 80]} />
-        <meshBasicMaterial wireframe={true} color={isLight ? "#d4af37" : "#c9a96e"} transparent={true} opacity={isLight ? 0.35 : 0.4} />
-      </mesh>
-      <WavyHorizonLogo isLight={isLight} position={[2, 4, 4]} />
+      <WavyHorizonLogo isLight={isLight} position={[0, 8, 4]} />
     </group>
   );
 }
