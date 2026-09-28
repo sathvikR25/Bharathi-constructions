@@ -12,7 +12,7 @@ const NAV_ITEMS = [
 
 const PROJECTS = [
   { label: "Bharathi Horizon", sub: "The Skyline", href: "/horizon", num: "01", img: "/horizon pics/VIEW_04_FFFFFFF.jpg" },
-  { label: "Bharathi Lake Woods", sub: "The Sanctuary", href: "/lake-woods", num: "02", img: "/lakewood-media/View 03_FFFFFF copy.jpg" },
+  { label: "Bharathi Lake Woods", sub: "The Residence", href: "/lake-woods", num: "02", img: "/lakewood-media/View 03_FFFFFF copy.jpg" },
 ];
 
 export default function MenuOverlay({ navOpen, setNavOpen }) {

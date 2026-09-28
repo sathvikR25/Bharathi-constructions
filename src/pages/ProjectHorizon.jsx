@@ -288,7 +288,7 @@ export default function ProjectHorizon() {
         {/* CTA */}
         <div style={{ maxWidth: "1400px", margin: "0 auto", textAlign: "center", marginBottom: "8rem" }}>
           <span style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: "1.5rem" }}>Take The Next Step</span>
-          <KineticText as="h2" text="Secure Your Sanctuary." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
+          <KineticText as="h2" text="Secure Your Residence." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3rem, 6vw, 6rem)", margin: "0 0 4rem 0", color: "#123645" }} />
           <div style={{ display: "flex", justifyContent: "center", gap: "2.5rem", flexWrap: "wrap" }}>
             
             {/* CONTACT SALES BUTTON */}

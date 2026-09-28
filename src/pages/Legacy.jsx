@@ -84,7 +84,7 @@ export default function Legacy() {
     return () => ctx.revert();
   }, []);
 
-  const philosophyText = "A home is not a structure. It is a sanctuary that holds the weight of a family's legacy. For over a decade, we have refused to compromise on materials, structural integrity, or architectural purpose. Every beam poured, every space crafted, is a testament to our obsession with absolute perfection.".split(" ");
+  const philosophyText = "A home is not a structure. It is a residence that holds the weight of a family's legacy. For over a decade, we have refused to compromise on materials, structural integrity, or architectural purpose. Every beam poured, every space crafted, is a testament to our obsession with absolute perfection.".split(" ");
 
   return (
     <div ref={sectionRef} style={{ background: "transparent", color: "#0a0a0a", minHeight: "100vh", overflowX: "hidden" }}>

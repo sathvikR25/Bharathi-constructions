@@ -228,7 +228,7 @@ export default function Home() {
     return () => ctx.revert();
   }, [loaded]);
 
-  const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational sanctuaries. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
+  const visionText = "For over 40 years, we have refused to compromise. We don't just build structures; we engineer generational residences. Every beam, every vista, every meticulously crafted square foot is a testament to absolute perfection. This is Bharathi Constructions.".split(" ");
 
   return (
     <div ref={mainRef} style={{ background: "transparent", color: "#123645", overflowX: "hidden" }}>
