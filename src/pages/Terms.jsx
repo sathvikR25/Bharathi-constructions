@@ -24,7 +24,7 @@ export default function Terms() {
         title="Terms & Conditions" 
         description="Terms and conditions for using the Bharathi Constructions website."
       />
-      <Header />
+      <Header theme="light" transparentTheme="light" />
       <div className="max-w-4xl mx-auto px-6 py-32 md:py-40 relative z-10">
         <h1 className="text-4xl md:text-6xl font-serif mb-12 text-[#123645]">Terms & Conditions</h1>
         

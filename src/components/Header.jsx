@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 
-export default function Header({ theme = "dark", navOpen, setNavOpen }) {
+export default function Header({ theme = "dark", transparentTheme = "dark", navOpen, setNavOpen }) {
   const headerRef = useRef(null);
   const [isScrolled, setIsScrolled] = React.useState(false);
   let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
@@ -27,17 +27,14 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navOpen]);
 
-  const isLight = theme === "light";
-  const forceDarkMenu = navOpen;
-
-  const logoStyle = (isLight && !forceDarkMenu)
-    ? { filter: "none" }
-    : { filter: "brightness(0) invert(1)" };
-
-  const textColor = (isLight && !forceDarkMenu) ? "#000" : "#fff";
-  const headerBg = navOpen ? "transparent" : (isScrolled ? (isLight ? "rgba(253, 251, 247, 0.9)" : "rgba(10, 10, 10, 0.9)") : "transparent");
-  const headerBlur = (isScrolled && !navOpen) ? "blur(10px)" : "none";
-  const border = navOpen ? "none" : `1px solid ${isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)'}`;
+  const activeTheme = navOpen ? "dark" : (!isScrolled ? transparentTheme : theme);
+  const isLightActive = activeTheme === "light";
+  
+  const textColor = isLightActive ? "#123645" : "#ffffff";
+  const logoStyle = isLightActive ? { filter: "none" } : { filter: "brightness(0) invert(1)" };
+  const headerBg = navOpen ? "transparent" : (isScrolled ? (theme === "light" ? "rgba(253, 251, 247, 0.95)" : "rgba(10, 10, 10, 0.95)") : "transparent");
+  const headerBlur = (isScrolled && !navOpen) ? "blur(12px)" : "none";
+  const border = navOpen ? "none" : (isScrolled ? `1px solid ${theme === "light" ? 'rgba(18,54,69,0.05)' : 'rgba(255,255,255,0.05)'}` : "none");
 
   return (
     <header ref={headerRef} style={{
@@ -53,7 +50,7 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
         display: "flex", justifyContent: "space-between", alignItems: "center"
       }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", height: "clamp(60px, 9vw, 90px)" }} onClick={() => setNavOpen(false)}>
-          <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "100%", width: "auto", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
+          <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "clamp(35px, 5vw, 60px)", width: "auto", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
         </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: "clamp(1rem, 3vw, 2.5rem)" }}>
@@ -62,20 +59,21 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
             to="/contact"
             onClick={() => setNavOpen(false)}
             style={{
-              border: `1px solid ${textColor === "#fff" ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)"}`,
+              border: `1px solid ${textColor === "#ffffff" ? "rgba(255,255,255,0.3)" : "rgba(18,54,69,0.3)"}`,
               color: textColor,
-              padding: "0.7rem clamp(1rem, 2vw, 2rem)",
+              padding: "0.8rem clamp(1.5rem, 3vw, 2.5rem)",
               borderRadius: "100px",
               textTransform: "uppercase",
-              letterSpacing: "0.12em",
+              letterSpacing: "0.15em",
               fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)",
+              fontWeight: "600",
               textDecoration: "none",
               transition: "all 0.3s",
               display: "none",
               whiteSpace: "nowrap",
             }}
             className="header-contact-btn"
-            onMouseEnter={e => { e.target.style.background = textColor; e.target.style.color = textColor === "#fff" ? "#000" : "#fff"; }}
+            onMouseEnter={e => { e.target.style.background = textColor; e.target.style.color = textColor === "#ffffff" ? "#000" : "#fff"; }}
             onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.color = textColor; }}
           >
             Contact Us
@@ -92,19 +90,19 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
             }}
           >
             <span style={{
-              display: "block", width: "26px", height: "2px",
+              display: "block", width: "30px", height: "1px",
               background: textColor, transition: "transform 0.35s, opacity 0.3s",
-              transform: navOpen ? "translateY(8px) rotate(45deg)" : "none"
+              transform: navOpen ? "translateY(7px) rotate(45deg)" : "none"
             }} />
             <span style={{
-              display: "block", width: "26px", height: "2px",
+              display: "block", width: "30px", height: "1px",
               background: textColor, transition: "opacity 0.3s",
               opacity: navOpen ? 0 : 1
             }} />
             <span style={{
-              display: "block", width: "26px", height: "2px",
+              display: "block", width: "30px", height: "1px",
               background: textColor, transition: "transform 0.35s, opacity 0.3s",
-              transform: navOpen ? "translateY(-8px) rotate(-45deg)" : "none"
+              transform: navOpen ? "translateY(-7px) rotate(-45deg)" : "none"
             }} />
           </button>
         </div>

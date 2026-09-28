@@ -238,7 +238,7 @@ export default function Home() {
       <div ref={preloaderRef} style={{ position: "fixed", inset: 0, background: "transparent", zIndex: 9999, display: "flex", justifyContent: "flex-end", alignItems: "flex-end", padding: "4rem", pointerEvents: "none" }}>
       </div>
       
-      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" transparentTheme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* 0. ONBOARDING VIDEO HERO */}

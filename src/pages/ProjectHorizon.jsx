@@ -96,7 +96,7 @@ export default function ProjectHorizon() {
         description="Premium luxury residential project by Bharathi Constructions featuring infinite pools and sky gardens." 
       />
       {/* HEADER */}
-      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" transparentTheme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO SECTION */}

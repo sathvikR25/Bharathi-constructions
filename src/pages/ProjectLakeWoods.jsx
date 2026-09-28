@@ -113,7 +113,7 @@ export default function ProjectLakeWoods() {
         title="Bharathi Lake Woods" 
         description="Exclusive residential living spaces by Bharathi Constructions, offering unmatched tranquility and premium amenities." 
       />
-      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" transparentTheme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* LIGHTBOX MODAL */}

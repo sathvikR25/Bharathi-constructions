@@ -28,7 +28,7 @@ export default function Policy() {
         description="Comprehensive privacy policy and terms of service for Bharathi Constructions." 
       />
 
-      <Header theme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" transparentTheme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       <main style={{ paddingTop: "clamp(120px, 15vw, 200px)", paddingBottom: "6rem", maxWidth: "1000px", margin: "0 auto", paddingLeft: "clamp(1.5rem, 4vw, 4rem)", paddingRight: "clamp(1.5rem, 4vw, 4rem)" }}>
