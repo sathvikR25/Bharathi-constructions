@@ -4,14 +4,21 @@ import { gsap } from "gsap";
 
 export default function Header({ theme = "dark", transparentTheme = "dark", navOpen, setNavOpen }) {
   const headerRef = useRef(null);
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [scrollState, setScrollState] = React.useState(0); // 0: top, 1: frosted, 2: solid
   let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
 
   useEffect(() => {
     const handleScroll = () => {
       if (navOpen) return;
       const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 50);
+      const wh = window.innerHeight;
+      if (currentScrollY > wh * 0.85) {
+        setScrollState(2);
+      } else if (currentScrollY > 50) {
+        setScrollState(1);
+      } else {
+        setScrollState(0);
+      }
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY) {
           gsap.to(headerRef.current, { yPercent: -100, duration: 0.4, ease: "power2.inOut" });
