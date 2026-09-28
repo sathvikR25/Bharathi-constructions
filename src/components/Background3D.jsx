@@ -188,7 +188,7 @@ function HorizonScene({ isLight, logoTex }) {
 
   return (
     <group ref={groupRef} position={[0, -4, -12]}>
-      <WavyHorizonLogo isLight={isLight} position={[0, 8, 4]} />
+      <WavyHorizonLogo isLight={isLight} position={[0, 5, 4]} />
     </group>
   );
 }
