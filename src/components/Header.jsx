@@ -31,8 +31,8 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
   const forceDarkMenu = navOpen;
 
   const logoStyle = (isLight && !forceDarkMenu)
-    ? { filter: "none", mixBlendMode: "multiply" }
-    : { filter: "invert(1) grayscale(1) brightness(2)", mixBlendMode: "screen" };
+    ? { filter: "none" }
+    : { filter: "brightness(0) invert(1)" };
 
   const textColor = (isLight && !forceDarkMenu) ? "#000" : "#fff";
   const headerBg = navOpen ? "transparent" : (isScrolled ? (isLight ? "rgba(253, 251, 247, 0.9)" : "rgba(10, 10, 10, 0.9)") : "transparent");
