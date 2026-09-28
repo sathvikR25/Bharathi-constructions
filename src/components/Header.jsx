@@ -34,21 +34,29 @@ export default function Header({ theme = "dark", transparentTheme = "dark", navO
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navOpen]);
 
-  const activeTheme = navOpen ? "dark" : (!isScrolled ? transparentTheme : theme);
+  const activeTheme = navOpen ? "dark" : (scrollState === 0 ? transparentTheme : theme);
   const isLightActive = activeTheme === "light";
   
   const textColor = isLightActive ? "#123645" : "#ffffff";
   const logoStyle = isLightActive ? { filter: "none" } : { filter: "brightness(0) invert(1)" };
-  const headerBg = navOpen ? "transparent" : (isScrolled ? (theme === "light" ? "rgba(253, 251, 247, 0.95)" : "rgba(10, 10, 10, 0.95)") : "transparent");
-  const headerBlur = (isScrolled && !navOpen) ? "blur(12px)" : "none";
-  const border = navOpen ? "none" : (isScrolled ? `1px solid ${theme === "light" ? 'rgba(18,54,69,0.05)' : 'rgba(255,255,255,0.05)'}` : "none");
+  
+  let headerBg = "transparent";
+  if (!navOpen) {
+    if (scrollState === 1) {
+      headerBg = theme === "light" ? "rgba(253, 251, 247, 0.25)" : "rgba(10, 10, 10, 0.25)";
+    } else if (scrollState === 2) {
+      headerBg = theme === "light" ? "rgba(253, 251, 247, 0.98)" : "rgba(10, 10, 10, 0.98)";
+    }
+  }
+  const headerBlur = (scrollState > 0 && !navOpen) ? "blur(16px)" : "none";
+  const border = navOpen ? "none" : (scrollState > 0 ? `1px solid ${theme === "light" ? "rgba(18,54,69,0.05)" : "rgba(255,255,255,0.05)"}` : "none");
 
   return (
     <header ref={headerRef} style={{
       position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100,
       background: headerBg, backdropFilter: headerBlur,
       WebkitBackdropFilter: headerBlur, borderBottom: border,
-      transform: "translateY(0)", transition: "background 0.3s, backdrop-filter 0.3s"
+      transform: "translateY(0)", transition: "background 0.5s ease, backdrop-filter 0.5s ease"
     }}>
       <div style={{
         maxWidth: "1600px", margin: "0 auto",
