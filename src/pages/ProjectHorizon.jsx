@@ -102,7 +102,7 @@ export default function ProjectHorizon() {
       {/* HERO SECTION */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {/* Affiliation Logos Top Right */}
-        <div className="absolute z-50 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl top-[100px] md:top-[120px] right-2 sm:right-6 lg:right-12 px-3 py-2 sm:px-6 sm:py-3 gap-3 sm:gap-6 origin-right scale-[0.85] sm:scale-100">
+        <div className="absolute z-50 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl bottom-[30px] md:bottom-[40px] left-1/2 -translate-x-1/2 px-3 py-2 sm:px-6 sm:py-3 gap-3 sm:gap-6 origin-bottom scale-[0.75] sm:scale-90">
             <img src="/lakewood-media/credai_logo.png" alt="CREDAI" className="h-5 sm:h-6 object-contain" />
             <img src="/lakewood-media/hmda-logo.png" alt="HMDA" className="h-7 sm:h-9 object-contain" />
             <div className="flex items-center gap-2 sm:gap-3 border-l border-black/10 pl-3 sm:pl-6">
@@ -118,8 +118,8 @@ export default function ProjectHorizon() {
           <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 2rem", pointerEvents: "auto" }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Bharathi Horizon</span>
-            <KineticText as="h1" text="Horizon Project." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#fff", textShadow: "0 10px 30px rgba(0,0,0,0.3)" }} />
+            <span style={{ fontSize: "0.7rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "1rem" }}>Premium Residences</span>
+            <KineticText as="h1" text="Bharathi Horizon." style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(3.5rem, 8vw, 8rem)", margin: "0 0 2rem 0", fontWeight: 400, color: "#fff", textShadow: "0 10px 30px rgba(0,0,0,0.3)" }} />
             <BrochureDownloadButton project="horizon" />
           </div>
       </section>
