@@ -22,6 +22,7 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(true);
   const abVariant = useABTest('hero_cta_test');
   const mainRef = useRef(null);
+  const heroSliderRef = useRef(null);
   
   // Refs
   const preloaderRef = useRef(null);
@@ -130,7 +131,22 @@ export default function Home() {
 
       // 1. (Removed Immersive Hero Animation)
 
-      // Arch Reveal Animation
+      // Hero Pinned Overlay Effect
+        ScrollTrigger.create({
+          trigger: heroSliderRef.current,
+          start: "top top",
+          end: "+=100%", 
+          pin: true,
+          pinSpacing: false,
+          animation: gsap.to(heroSliderRef.current, {
+            scale: 0.95,
+            opacity: 0.5,
+            ease: "none"
+          }),
+          scrub: true
+        });
+
+        // Arch Reveal Animation
         gsap.to(visionSectionRef.current, {
           borderTopLeftRadius: "0px",
           borderTopRightRadius: "0px",
@@ -226,7 +242,7 @@ export default function Home() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* 0. ONBOARDING VIDEO HERO */}
-      <section style={{ height: "100vh", position: "sticky", top: 0, zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
+        <section ref={heroSliderRef} style={{ height: "100vh", position: "relative", zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
         
         {/* PARALLAX SLIDER BACKGROUND */}
           {heroMedia.map((media, index) => {
@@ -293,7 +309,7 @@ export default function Home() {
       
   
         {/* 2. THE VISION */}
-        <section ref={visionSectionRef} style={{ position: "relative", zIndex: 10, padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "#fdfbf7", color: "#123645", borderTopLeftRadius: "50% 15vh", borderTopRightRadius: "50% 15vh", marginTop: "-5vh", boxShadow: "0 -20px 50px rgba(0,0,0,0.15)" }}>
+        <section ref={visionSectionRef} style={{ position: "relative", zIndex: 10, padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "#fdfbf7", color: "#123645", borderTopLeftRadius: "50% 150px", borderTopRightRadius: "50% 150px", marginTop: "0", boxShadow: "0 -20px 50px rgba(0,0,0,0.15)" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#123645", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
