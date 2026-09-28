@@ -49,8 +49,8 @@ export default function Header({ theme = "dark", transparentTheme = "dark", navO
         height: "clamp(70px, 10vw, 100px)",
         display: "flex", justifyContent: "space-between", alignItems: "center"
       }}>
-        <Link to="/" style={{ display: "flex", alignItems: "center", height: "clamp(60px, 9vw, 90px)" }} onClick={() => setNavOpen(false)}>
-          <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "clamp(35px, 5vw, 60px)", width: "auto", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
+        <Link to="/" style={{ display: "flex", alignItems: "center", height: "clamp(65px, 9.5vw, 95px)" }} onClick={() => setNavOpen(false)}>
+          <img src="/logo.png" alt="Bharathi Constructions" style={{ height: "clamp(55px, 8vw, 90px)", width: "auto", objectFit: "contain", ...logoStyle, transition: "filter 0.3s" }} />
         </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: "clamp(1rem, 3vw, 2.5rem)" }}>
