@@ -89,7 +89,7 @@ export default function Legacy() {
   return (
     <div ref={sectionRef} style={{ background: "transparent", color: "#0a0a0a", minHeight: "100vh", overflowX: "hidden" }}>
       <SEO title="Our Legacy" description="Over a decade of quality construction in Hyderabad. Discover the story, philosophy and track record of Bharathi Constructions." />
-      <Header theme="light" transparentTheme="dark" navOpen={navOpen} setNavOpen={setNavOpen} />
+      <Header theme="light" transparentTheme="light" navOpen={navOpen} setNavOpen={setNavOpen} />
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* HERO */}
