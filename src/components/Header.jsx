@@ -4,12 +4,14 @@ import { gsap } from "gsap";
 
 export default function Header({ theme = "dark", navOpen, setNavOpen }) {
   const headerRef = useRef(null);
-  let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
 
   useEffect(() => {
     const handleScroll = () => {
       if (navOpen) return;
       const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY) {
           gsap.to(headerRef.current, { yPercent: -100, duration: 0.4, ease: "power2.inOut" });
@@ -33,8 +35,8 @@ export default function Header({ theme = "dark", navOpen, setNavOpen }) {
     : { filter: "invert(1) grayscale(1) brightness(2)", mixBlendMode: "screen" };
 
   const textColor = (isLight && !forceDarkMenu) ? "#000" : "#fff";
-  const headerBg = navOpen ? "transparent" : (isLight ? "#fdfbf7" : "#0a0a0a");
-    const headerBlur = "none";
+  const headerBg = navOpen ? "transparent" : (isScrolled ? (isLight ? "rgba(253, 251, 247, 0.9)" : "rgba(10, 10, 10, 0.9)") : "transparent");
+  const headerBlur = (isScrolled && !navOpen) ? "blur(10px)" : "none";
   const border = navOpen ? "none" : `1px solid ${isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)'}`;
 
   return (

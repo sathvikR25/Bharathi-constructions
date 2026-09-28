@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import MenuOverlay from "../components/MenuOverlay";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
@@ -19,6 +19,7 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [heroMedia, setHeroMedia] = useState([{ url: "/onboarding.mp4", type: "video" }]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const abVariant = useABTest('hero_cta_test');
   const mainRef = useRef(null);
   
@@ -240,23 +241,32 @@ export default function Home() {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              opacity: isActive ? 0.65 : 0,
+              opacity: isActive ? 1 : 0,
               transform: `scale(1.05) translate(${mousePos.x}px, ${mousePos.y}px)`,
               transition: "opacity 1.5s ease-in-out, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: isActive ? 0 : -1
             };
 
             return media.type === "video" ? (
-              <video id={`hero-video-${index}`} key={index} src={media.url} autoPlay loop={heroMedia.length === 1} muted playsInline style={style} onEnded={() => { if (isActive && heroMedia.length > 1) setCurrentSlide(prev => (prev + 1) % heroMedia.length); }} />
+              <video id={`hero-video-${index}`} key={index} src={media.url} autoPlay loop={heroMedia.length === 1} muted={isMuted} playsInline style={style} onEnded={() => { if (isActive && heroMedia.length > 1) setCurrentSlide(prev => (prev + 1) % heroMedia.length); }} />
             ) : (
               <img key={index} src={media.url} alt={`Slide ${index}`} style={style} />
             );
           })}
 
         {/* CINEMATIC VIGNETTE OVERLAY */}
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%)", zIndex: 0, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%)", zIndex: 0, pointerEvents: "none" }} />
         
-        {/* SLIDER NAVIGATION ARROWS */}
+                  {/* AUDIO TOGGLE */}
+          <button 
+            onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
+            className="absolute left-4 md:left-8 bottom-8 md:bottom-12 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 border border-white/20 text-white transition-all backdrop-blur-md cursor-pointer"
+            title={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          </button>
+          
+          {/* SLIDER NAVIGATION ARROWS */}
         {heroMedia.length > 1 && (
           <>
             <button 
