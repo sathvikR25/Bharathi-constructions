@@ -39,7 +39,7 @@ const AMENITIES = [
   { icon: CarFront,   label: "EV Charging",         sub: "Smart Charging Bays in Basement" },
   { icon: Wifi,       label: "High-Speed Internet", sub: "Fibre-Optic Ready Infrastructure" },
   { icon: Camera,     label: "Smart CCTV",          sub: "180+ Camera Full-Coverage Grid" },
-  { icon: Flower2, label: "Yoga/Meditation/Multipurpose Hall", sub: "Spacious Multi-Activity Hall" },
+  { icon: Flower2, label: "Yoga / Meditation / Multipurpose Hall", sub: "Spacious Multi-Activity Hall" },
   { icon: MapPin,     label: "Prime Location",      sub: "NCL Colony, Kompally, Hyderabad" }
 ];
 
@@ -221,7 +221,7 @@ export default function ProjectLakeWoods() {
               return (
                 <div key={i} style={{ padding: "3rem 2rem", background: "rgba(0,0,0,0.02)", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.08)" }}>
                   <Icon size={32} color="#123645" strokeWidth={1.5} style={{ marginBottom: "2rem" }} />
-                  <h4 style={{ fontSize: "1.2rem", fontWeight: 600, marginBottom: "1rem", color: "#123645" }}>{a.label}</h4>
+                  <h4 style={{ fontSize: "1.2rem", fontWeight: 600, marginBottom: "1rem", color: "#123645", wordWrap: "break-word" }}>{a.label}</h4>
                   <p style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.6)", lineHeight: 1.6 }}>{a.sub}</p>
                 </div>
               );
