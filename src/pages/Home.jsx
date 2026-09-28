@@ -31,6 +31,7 @@ export default function Home() {
   const textTopRef = useRef(null);
   const textBottomRef = useRef(null);
   const visionRef = useRef(null);
+  const visionSectionRef = useRef(null);
   const horizontalSectionRef = useRef(null);
   const horizontalTrackRef = useRef(null);
   const marqueeRef = useRef(null);
@@ -127,20 +128,21 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // 1. Hero Pinned Expansion
-      const tlHero = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroSectionRef.current,
-          start: "top top",
-          end: "+=150%",
-          scrub: 1,
-          pin: true
-        }
-      });
-      tlHero.to(heroImgWrapRef.current, { width: "100vw", height: "100vh", borderRadius: "0px", ease: "power2.inOut" }, 0)
-            ;
+      // 1. (Removed Immersive Hero Animation)
 
-      // 2. The Vision (Text Reveal)
+      // Arch Reveal Animation
+        gsap.to(visionSectionRef.current, {
+          borderTopLeftRadius: "0px",
+          borderTopRightRadius: "0px",
+          scrollTrigger: {
+            trigger: visionSectionRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: true
+          }
+        });
+        
+        // 2. The Vision (Text Reveal)
       const words = gsap.utils.toArray(".vision-word");
       gsap.fromTo(words, 
         { opacity: 0.1 },
@@ -224,7 +226,7 @@ export default function Home() {
       <MenuOverlay navOpen={navOpen} setNavOpen={setNavOpen} />
 
       {/* 0. ONBOARDING VIDEO HERO */}
-      <section style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
+      <section style={{ height: "100vh", position: "sticky", top: 0, zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050505", perspective: "1000px" }}>
         
         {/* PARALLAX SLIDER BACKGROUND */}
           {heroMedia.map((media, index) => {
@@ -288,15 +290,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1. IMMERSIVE HERO */}
-          <section ref={heroSectionRef} style={{ height: "100vh", position: "relative", display: "flex", alignItems: "flex-end", paddingBottom: "10vh", justifyContent: "center", overflow: "hidden" }}>
-            <div ref={heroImgWrapRef} style={{ position: "relative", zIndex: 1, width: "clamp(250px, 30vw, 400px)", height: "clamp(300px, 45vh, 600px)", borderRadius: "200px", overflow: "hidden", willChange: "width, height, border-radius" }}>
-              <img src="/horizon pics/BIRD_VIEW_FFFFFF.jpg" alt="Horizon Skyline" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.85) contrast(1.1)" }} />
-            </div>
-          </section>
+      
   
         {/* 2. THE VISION */}
-      <section style={{ padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "transparent", color: "#123645" }}>
+        <section ref={visionSectionRef} style={{ position: "relative", zIndex: 10, padding: "clamp(6rem,15vw,15rem) clamp(1.5rem, 5vw, 4rem)", background: "#fdfbf7", color: "#123645", borderTopLeftRadius: "50% 15vh", borderTopRightRadius: "50% 15vh", marginTop: "-5vh", boxShadow: "0 -20px 50px rgba(0,0,0,0.15)" }}>
         <div ref={visionRef} style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: "0.75rem", letterSpacing: "0.4em", textTransform: "uppercase", color: "#123645", fontWeight: "700", display: "block", marginBottom: "4rem" }}>Our Manifesto</span>
           <p style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(2rem, 4vw, 4.5rem)", lineHeight: 1.4, margin: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.4em" }}>
