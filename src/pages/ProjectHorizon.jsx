@@ -13,6 +13,7 @@ import Header from "../components/Header";
 import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 import BrochureDownloadButton from "../components/BrochureDownloadButton";
+import ConstructionUpdates from "../components/ConstructionUpdates";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -281,6 +282,8 @@ export default function ProjectHorizon() {
             </div>
          </div>
       </section>
+
+      <ConstructionUpdates project="horizon" />
 
       {/* COMPREHENSIVE PROJECT FOOTER */}
       <section style={{ padding: "clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem) 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>

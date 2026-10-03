@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon, Tag } from 'lucide-react';
+import { LayoutDashboard, Users, Building, Settings, LogOut, Search, Image as ImageIcon, Tag, HardHat } from 'lucide-react';
 import Overview from './Overview';
 import LeadsBoard from './LeadsBoard';
 import OffersBoard from './OffersBoard';
 import LegalManager from './LegalManager';
 import MediaManager from './MediaManager';
+import ConstructionManager from './ConstructionManager';
 import Login from './Login';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
@@ -164,6 +165,7 @@ export default function AdminShell() {
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Pipeline (Table)', path: '/admin/pipeline', icon: Users },
     { name: 'Media Library', path: '/admin/media', icon: ImageIcon },
+      { name: 'Construction Updates', path: '/admin/construction', icon: HardHat },
     { name: 'Offers & Ads', path: '/admin/offers', icon: Tag },
     { name: 'Legal Pages', path: '/admin/legal', icon: Settings },
     
@@ -244,7 +246,9 @@ export default function AdminShell() {
             <Route path="dashboard" element={<Overview leads={leads} />} />
             <Route path="pipeline" element={<LeadsBoard leads={leads} updateLeadStatus={updateLeadStatus} updateLeadNote={updateLeadNote} deleteLead={deleteLead} role={role} />} />
             <Route path="media" element={<MediaManager role={role} />} />
-            <Route path="offers" element={<OffersBoard />} />`n            <Route path="legal" element={<LegalManager />} />
+              <Route path="construction" element={<ConstructionManager />} />
+            <Route path="offers" element={<OffersBoard />} />
+            <Route path="legal" element={<LegalManager />} />
             
           </Routes>
         </div>

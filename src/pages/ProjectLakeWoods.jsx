@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import SEO from "../components/SEO";
 import KineticText from "../components/KineticText";
 import BrochureDownloadButton from "../components/BrochureDownloadButton";
+import ConstructionUpdates from "../components/ConstructionUpdates";
 import ImageCarousel from "../components/ImageCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -297,6 +298,8 @@ export default function ProjectLakeWoods() {
             </div>
          </div>
       </section>
+
+      <ConstructionUpdates project="lake-woods" />
 
       {/* COMPREHENSIVE PROJECT FOOTER */}
         <section style={{ padding: "clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem) 4rem", background: "#f4f1ea", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
