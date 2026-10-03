@@ -30,7 +30,7 @@ export default function ContactWidgets() {
       </div>
 
       {/* DESKTOP SLEEK PILL WIDGET */}
-      <div className="hidden md:flex fixed bottom-8 right-8 z-[100] flex-row items-center bg-white/95 backdrop-blur-xl rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-gray-200/50 p-1.5 transition-transform hover:scale-[1.02]">
+      <div className="hidden md:flex fixed bottom-[38px] right-8 z-[100] flex-row items-center bg-white/95 backdrop-blur-xl rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-gray-200/50 p-1.5 transition-transform hover:scale-[1.02]">
         
         {/* Call Button */}
         <a
