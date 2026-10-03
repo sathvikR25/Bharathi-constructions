@@ -253,13 +253,13 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           <div ref={addToRefs} style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem",
-            marginTop: "2rem", flexWrap: "wrap", gap: "1rem",
+            marginTop: "2rem", flexWrap: "wrap", gap: "1rem", paddingBottom: "8rem",
           }}>
             <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
               © 2026 Bharathi Constructions
             </span>
               <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
-            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center", marginRight: "clamp(0rem, 10vw, 2rem)" }}>
+            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center", marginRight: "clamp(1rem, 25vw, 18rem)" }}>
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer"
                 style={{ color: "rgba(255,255,255,0.6)", transition: "color 0.3s" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a96e"}
