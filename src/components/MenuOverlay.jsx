@@ -274,9 +274,9 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem",
             marginTop: "2rem", flexWrap: "wrap", gap: "1rem", paddingBottom: "3rem",
           }}>
-            <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
-              © 2026 Bharathi Constructions
-            </span>
+            <Link to="/admin" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", cursor: "default" }} title="Admin">
+              &copy; 2026 Bharathi Constructions
+            </Link>
               <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
             <div className="flex md:hidden items-center gap-[1.5rem]">
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.6)" }}>
