@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../../lib/firebase';
 import { Trash2, Plus, Image as ImageIcon, X } from 'lucide-react';
 
 export default function ConstructionManager() {
@@ -9,7 +10,8 @@ export default function ConstructionManager() {
   const [projectFilter, setProjectFilter] = useState('horizon');
   
   const [isAdding, setIsAdding] = useState(false);
-  const [newUpdate, setNewUpdate] = useState({ project: 'horizon', dateStr: '', imageUrl: '', description: '' });
+  const [isUploading, setIsUploading] = useState(false);
+  const [newUpdate, setNewUpdate] = useState({ project: 'horizon', dateStr: '', imageFile: null, description: '' });
 
   useEffect(() => {
     const q = query(collection(db, 'construction_updates'), orderBy('createdAt', 'desc'));
@@ -23,20 +25,30 @@ export default function ConstructionManager() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (!newUpdate.dateStr || !newUpdate.imageUrl) return alert('Date and Image URL are required.');
+    if (!newUpdate.dateStr || !newUpdate.imageFile) return alert('Date and Image are required.');
     
+    setIsUploading(true);
     try {
+      // 1. Upload image to Firebase Storage
+      const storageRef = ref(storage, 'construction_updates/' + Date.now() + '_' + newUpdate.imageFile.name);
+      await uploadBytes(storageRef, newUpdate.imageFile);
+      const downloadUrl = await getDownloadURL(storageRef);
+
+      // 2. Save document to Firestore
       await addDoc(collection(db, 'construction_updates'), {
         project: newUpdate.project,
         dateStr: newUpdate.dateStr,
-        imageUrl: newUpdate.imageUrl,
+        imageUrl: downloadUrl,
         description: newUpdate.description,
         createdAt: serverTimestamp()
       });
+      
       setIsAdding(false);
-      setNewUpdate({ project: projectFilter, dateStr: '', imageUrl: '', description: '' });
+      setNewUpdate({ project: projectFilter, dateStr: '', imageFile: null, description: '' });
     } catch (err) {
       alert('Error adding update: ' + err.message);
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -59,7 +71,7 @@ export default function ConstructionManager() {
           <p className="text-gray-500 text-sm mt-1">Manage project progress timelines and images.</p>
         </div>
         <button 
-          onClick={() => { setIsAdding(true); setNewUpdate({ ...newUpdate, project: projectFilter }); }}
+          onClick={() => { setIsAdding(true); setNewUpdate({ ...newUpdate, project: projectFilter, imageFile: null }); }}
           className="bg-[#123645] hover:bg-[#1a4a5e] text-white px-5 py-2.5 rounded-xl font-medium transition-all shadow-md flex items-center gap-2"
         >
           <Plus size={18} /> Add Update
@@ -93,16 +105,18 @@ export default function ConstructionManager() {
               <input type="text" value={newUpdate.dateStr} onChange={e => setNewUpdate({...newUpdate, dateStr: e.target.value})} placeholder="e.g., October 2026" className="w-full px-4 py-2 border border-gray-200 rounded-xl" required />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Image URL</label>
-              <input type="text" value={newUpdate.imageUrl} onChange={e => setNewUpdate({...newUpdate, imageUrl: e.target.value})} placeholder="https://..." className="w-full px-4 py-2 border border-gray-200 rounded-xl" required />
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Image Upload</label>
+              <input type="file" accept="image/*" onChange={e => setNewUpdate({...newUpdate, imageFile: e.target.files[0]})} className="w-full px-4 py-2 border border-gray-200 rounded-xl file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#f4f1ea] file:text-[#123645] hover:file:bg-[#e8e4db]" required />
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-semibold text-gray-700 mb-1">Description (Optional)</label>
               <textarea value={newUpdate.description} onChange={e => setNewUpdate({...newUpdate, description: e.target.value})} placeholder="Slab work completed..." className="w-full px-4 py-2 border border-gray-200 rounded-xl" rows="2"></textarea>
             </div>
           </div>
-          <div className="flex justify-end">
-            <button type="submit" className="bg-[#c9a96e] text-white px-6 py-2 rounded-xl font-medium">Save Update</button>
+          <div className="flex justify-end mt-4">
+            <button type="submit" disabled={isUploading} className={"text-white px-6 py-2 rounded-xl font-medium transition-colors " + (isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-[#c9a96e] hover:bg-[#b5955a]")}>
+              {isUploading ? 'Uploading & Saving...' : 'Save Update'}
+            </button>
           </div>
         </form>
       )}
