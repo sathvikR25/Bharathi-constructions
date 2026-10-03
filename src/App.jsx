@@ -88,7 +88,7 @@ const PageLoader = () => (
 
 function GlobalPolicyButton() {
   const location = useLocation();
-  if (location.pathname.startsWith('/admin') || location.pathname === '/policy') return null;
+  if (location.pathname.startsWith('/adminnn') || location.pathname === '/policy') return null;
   return (
     <a href="/policy" className="fixed bottom-4 left-4 z-50 bg-black/60 hover:bg-black text-white/70 hover:text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-md transition-all uppercase tracking-widest border border-white/10" style={{ textDecoration: "none" }}>
       Privacy Policy
@@ -116,7 +116,7 @@ export default function App() {
                 <Route path="/builder-profile" element={<BuilderProfile />} />
                 <Route path="/policy" element={<Policy />} />
                 <Route path="/terms" element={<Terms />} />
-                <Route path="/admin/*" element={<Admin />} />
+                <Route path="/adminnn/*" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

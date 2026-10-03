@@ -23,8 +23,8 @@ export default function AdminShell() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && (location.pathname === '/admin' || location.pathname === '/admin/')) {
-      navigate('/admin/dashboard', { replace: true });
+    if (user && (location.pathname === '/adminnn' || location.pathname === '/adminnn/')) {
+      navigate('/adminnn/dashboard', { replace: true });
     }
   }, [location, navigate, user]);
 
@@ -150,7 +150,7 @@ export default function AdminShell() {
 
   const handleLogout = async () => {
     await signOut(auth);
-    navigate('/admin');
+    navigate('/adminnn');
   };
 
   if (loadingAuth) {
@@ -162,12 +162,12 @@ export default function AdminShell() {
   }
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-    { name: 'Pipeline (Table)', path: '/admin/pipeline', icon: Users },
-    { name: 'Media Library', path: '/admin/media', icon: ImageIcon },
-      { name: 'Construction Updates', path: '/admin/construction', icon: HardHat },
-    { name: 'Offers & Ads', path: '/admin/offers', icon: Tag },
-    { name: 'Legal Pages', path: '/admin/legal', icon: Settings },
+    { name: 'Dashboard', path: '/adminnn/dashboard', icon: LayoutDashboard },
+    { name: 'Pipeline (Table)', path: '/adminnn/pipeline', icon: Users },
+    { name: 'Media Library', path: '/adminnn/media', icon: ImageIcon },
+      { name: 'Construction Updates', path: '/adminnn/construction', icon: HardHat },
+    { name: 'Offers & Ads', path: '/adminnn/offers', icon: Tag },
+    { name: 'Legal Pages', path: '/adminnn/legal', icon: Settings },
     
   ];
 

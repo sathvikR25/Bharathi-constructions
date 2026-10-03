@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function ContactWidgets() {
   const location = useLocation();
-  if (location.pathname.startsWith("/admin")) return null;
+  if (location.pathname.startsWith("/adminnn")) return null;
 
   const phoneNumber = "+917997992051";
   const defaultMessage = "Hello Bharathi Constructions, I would like to know more about your projects.";
