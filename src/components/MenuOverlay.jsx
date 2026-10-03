@@ -74,7 +74,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             display: none !important;
           }
           .menu-right-panel {
-            padding: 7rem 2rem 3rem !important;
+            padding: 7rem 2rem 6rem !important;
             justify-content: flex-start !important;
             gap: 2rem !important;
           }
@@ -87,7 +87,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
         }
         @media (max-width: 380px) {
           .menu-nav-link { font-size: 1.9rem !important; }
-          .menu-right-panel { padding: 6rem 1.5rem 2rem !important; }
+          .menu-right-panel { padding: 6rem 1.5rem 6rem !important; }
         }
       `}</style>
 
@@ -179,7 +179,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
           className="menu-right-panel"
           style={{
             display: "flex", flexDirection: "column", justifyContent: "space-between",
-            padding: "8rem 5rem 3rem",
+            padding: "8rem 5rem 8rem",
             background: "#070707",
             overflowY: "auto",
           }}
@@ -259,7 +259,7 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
               © 2026 Bharathi Constructions
             </span>
               <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
-            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center", marginRight: "clamp(0rem, 10vw, 2rem)" }}>
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer"
                 style={{ color: "rgba(255,255,255,0.6)", transition: "color 0.3s" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a96e"}
