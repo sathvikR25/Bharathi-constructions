@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ArrowUpRight, Phone } from "lucide-react";
 
@@ -23,6 +23,22 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
   const itemsRef = useRef([]);
   const [hoveredProject, setHoveredProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+  const secretClickCount = useRef(0);
+  const secretClickTimeout = useRef(null);
+
+  const handleSecretClick = () => {
+    secretClickCount.current += 1;
+    if (secretClickCount.current >= 3) {
+      secretClickCount.current = 0;
+      setNavOpen(false);
+      navigate('/adminnn');
+    }
+    clearTimeout(secretClickTimeout.current);
+    secretClickTimeout.current = setTimeout(() => {
+      secretClickCount.current = 0;
+    }, 1000);
+  };
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -274,9 +290,9 @@ export default function MenuOverlay({ navOpen, setNavOpen }) {
             borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem",
             marginTop: "2rem", flexWrap: "wrap", gap: "1rem", paddingBottom: "3rem",
           }}>
-            <Link to="/admin" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", cursor: "default" }} title="Admin">
+            <span onClick={handleSecretClick} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", cursor: "default", userSelect: "none" }}>
               &copy; 2026 Bharathi Constructions
-            </Link>
+            </span>
               <Link to="/policy" onClick={() => setNavOpen(false)} style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s", marginLeft: "1.5rem" }}>Privacy Policy</Link>
             <div className="flex md:hidden items-center gap-[1.5rem]">
               <a href="https://www.instagram.com/bharathiconstructionshyd" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.6)" }}>
