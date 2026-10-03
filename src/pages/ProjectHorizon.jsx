@@ -102,7 +102,7 @@ export default function ProjectHorizon() {
       {/* HERO SECTION */}
       <section className="hero-section" style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {/* Affiliation Logos Top Right */}
-        <div className="absolute z-50 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl bottom-[30px] md:bottom-[40px] left-1/2 -translate-x-1/2 px-3 py-2 sm:px-6 sm:py-3 gap-3 sm:gap-6 origin-bottom scale-[0.75] sm:scale-90">
+        <div className="absolute z-50 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl bottom-[30px] md:bottom-[40px] left-1/2 -translate-x-1/2 px-3 py-2 sm:px-6 sm:py-3 gap-3 sm:gap-6 origin-bottom scale-[0.6] sm:scale-90 w-max whitespace-nowrap">
             <img src="/lakewood-media/credai_logo.png" alt="CREDAI" className="h-5 sm:h-6 object-contain" />
             <img src="/lakewood-media/hmda-logo.png" alt="HMDA" className="h-7 sm:h-9 object-contain" />
             <div className="flex items-center gap-2 sm:gap-3 border-l border-black/10 pl-3 sm:pl-6">
