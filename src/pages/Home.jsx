@@ -20,6 +20,7 @@ export default function Home() {
   const [heroMedia, setHeroMedia] = useState([{ url: "/onboarding.mp4", type: "video" }]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
   const abVariant = useABTest('hero_cta_test');
   const mainRef = useRef(null);
   const heroSliderRef = useRef(null);
@@ -59,31 +60,46 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          setIsHeroVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (heroSliderRef.current) observer.observe(heroSliderRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let timer;
+    
+    // 1. Play/Pause videos based on visibility and active slide
+    heroMedia.forEach((media, idx) => {
+      const videoEl = document.getElementById(`hero-video-${idx}`);
+      if (videoEl) {
+        if (idx === currentSlide && isHeroVisible) {
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.pause();
+        }
+      }
+    });
+
     if (heroMedia.length <= 1) return;
     
-    let timer;
     const currentMedia = heroMedia[currentSlide];
     
-    if (currentMedia && currentMedia.type !== "video") {
+    // 2. Auto-advance for images only if visible
+    if (isHeroVisible && currentMedia && currentMedia.type !== "video") {
       timer = setTimeout(() => {
         setCurrentSlide(prev => (prev + 1) % heroMedia.length);
       }, 6000);
-    } else if (currentMedia && currentMedia.type === "video") {
-      const videoEl = document.getElementById(`hero-video-${currentSlide}`);
-      if (videoEl) {
-        videoEl.currentTime = 0;
-        videoEl.play().catch(() => {});
-      }
-      heroMedia.forEach((_, idx) => {
-        if (idx !== currentSlide) {
-          const otherEl = document.getElementById(`hero-video-${idx}`);
-          if (otherEl) otherEl.pause();
-        }
-      });
     }
     
     return () => clearTimeout(timer);
-  }, [heroMedia, currentSlide]);
+  }, [heroMedia, currentSlide, isHeroVisible]);
 
   useEffect(() => {
     // PRELOADER SEQUENCE
